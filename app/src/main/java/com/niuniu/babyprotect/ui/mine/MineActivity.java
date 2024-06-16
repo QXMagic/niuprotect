@@ -1,18 +1,17 @@
 package com.niuniu.babyprotect.ui.mine;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.core.internal.view.SupportMenu;
+
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
+
 import com.bumptech.glide.Glide;
 import com.niuniu.babyprotect.BabyApplication;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.broadcastReceiver.BroadcastManager;
 import com.niuniu.babyprotect.manager.MineDevicePolicyManager;
 import com.niuniu.babyprotect.manager.SharedPreManager;
@@ -34,15 +33,16 @@ import com.niuniu.babyprotect.ui.login.ForgetActivity;
 import com.niuniu.babyprotect.ui.login.PhoneCodeLoginActivity;
 import com.niuniu.babyprotect.ui.setting.FeedBackActivity;
 import com.niuniu.babyprotect.ui.setting.SchoolAdminActivity;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UTrack;
-import com.yuyh.library.imgsel.ISNav;
-import com.yuyh.library.imgsel.common.ImageLoader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class MineActivity extends BaseActivity {
     TextView loginoutbtn;
     TextView tvController;
@@ -126,7 +126,7 @@ public class MineActivity extends BaseActivity {
         long etime = this.userInfo.getExpireTimeStamp();
         if (timea > etime) {
             this.txt3.setText("已过期");
-            this.txt3.setTextColor(SupportMenu.CATEGORY_MASK);
+            this.txt3.setTextColor(Constants.CATEGORY_MASK);
         } else {
             String timeStr = Tools.timeFormat(new Date(etime), "yyyy-MM-dd");
             TextView textView = this.txt3;
@@ -140,12 +140,12 @@ public class MineActivity extends BaseActivity {
         } else {
             this.loginoutbtn.setVisibility(View.GONE);
         }
-        ISNav.getInstance().init(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, String path, ImageView imageView) {
-                Glide.with(context).load(path).into(imageView);
-            }
-        });
+//        ISNav.getInstance().init(new ImageLoader() {
+//            @Override
+//            public void displayImage(Context context, String path, ImageView imageView) {
+//                Glide.with(context).load(path).into(imageView);
+//            }
+//        });
     }
 
     public void getUserInfo() {
@@ -183,12 +183,12 @@ public class MineActivity extends BaseActivity {
 
     public void outAction() {
         UserProtectManager.getInstance().setProtect(-2);
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.deleteAlias(Tools.getUsername(this), "username", new UTrack.ICallBack() {
-            @Override
-            public void onMessage(boolean isSuccess, String message) {
-            }
-        });
+//        PushAgent mPushAgent = PushAgent.getInstance(this);
+//        mPushAgent.deleteAlias(Tools.getUsername(this), "username", new UTrack.ICallBack() {
+//            @Override
+//            public void onMessage(boolean isSuccess, String message) {
+//            }
+//        });
         StoToolManager.getInstance(this).cleanAppBlack();
         StoToolManager.getInstance(this).noAppLive(getPackageName());
         StoToolManager.getInstance(this).openGps(false);

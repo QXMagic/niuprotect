@@ -1,7 +1,6 @@
 package com.niuniu.babyprotect.ui.map;
 
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.utils.CoordinateConverter;
 import com.baidu.trace.model.CoordType;
 import com.baidu.trace.model.TraceLocation;
 public class MapTools {
@@ -16,10 +15,10 @@ public class MapTools {
         }
         LatLng currentLatLng = new LatLng(latitude, longitude);
         if (CoordType.wgs84 == location.getCoordType()) {
-            CoordinateConverter converter = new CoordinateConverter();
-            converter.from(CoordinateConverter.CoordType.GPS);
-            converter.coord(currentLatLng);
-            return converter.convert();
+//            CoordinateConverter converter = new CoordinateConverter();
+//            converter.from(CoordinateConverter.CoordType.GPS);
+//            converter.coord(currentLatLng);
+//            return converter.convert();
         }
         return currentLatLng;
     }

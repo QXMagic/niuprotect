@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.MapStatus;
@@ -19,13 +20,12 @@ import com.baidu.mapapi.map.PolylineDottedLineType;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
-import com.baidu.mapapi.utils.CoordinateConverter;
-import com.baidu.trace.model.CoordType;
 import com.baidu.trace.model.SortType;
 import com.baidu.trace.model.TraceLocation;
 import com.niuniu.babyprotect.BabyApplication;
 import com.niuniu.babyprotect.map.MapConstants;
 import com.niuniu.babyprotect.map.model.CurrentLocation;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,12 +101,12 @@ public class MapUtil {
             return null;
         }
         LatLng currentLatLng = new LatLng(latitude, longitude);
-        if (CoordType.wgs84 == location.getCoordType()) {
-            CoordinateConverter converter = new CoordinateConverter();
-            converter.from(CoordinateConverter.CoordType.GPS);
-            converter.coord(currentLatLng);
-            return converter.convert();
-        }
+//        if (CoordType.wgs84 == location.getCoordType()) {
+//            CoordinateConverter converter = new CoordinateConverter();
+//            converter.from(CoordinateConverter.CoordType.GPS);
+//            converter.coord(currentLatLng);
+//            return converter.convert();
+//        }
         return currentLatLng;
     }
 

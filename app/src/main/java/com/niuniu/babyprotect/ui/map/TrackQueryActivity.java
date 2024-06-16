@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.core.view.ViewCompat;
+
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapPoi;
@@ -38,7 +40,6 @@ import com.baidu.trace.model.ProcessOption;
 import com.baidu.trace.model.SortType;
 import com.baidu.trace.model.TransportMode;
 import com.niuniu.babyprotect.BabyApplication;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.map.maputil.BitmapUtil;
 import com.niuniu.babyprotect.map.maputil.CommonUtil;
 import com.niuniu.babyprotect.map.maputil.MapUtil;
@@ -46,9 +47,11 @@ import com.niuniu.babyprotect.map.maputil.ViewUtil;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.widget.TrackAnalysisDialog;
 import com.niuniu.babyprotect.widget.TrackAnalysisInfoLayout;
-import com.umeng.analytics.AnalyticsConfig;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import im.niu.protect.R;
 public class TrackQueryActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, BaiduMap.OnMarkerClickListener, BaiduMap.OnMapClickListener {
     private TextView mHistoryTrackView;
     private BabyApplication trackApp = null;
@@ -175,8 +178,8 @@ public class TrackQueryActivity extends BaseActivity implements CompoundButton.O
         }
         this.trackPoints.clear();
         this.pageIndex = 1;
-        if (data.hasExtra(AnalyticsConfig.RTD_START_TIME)) {
-            this.startTime = data.getLongExtra(AnalyticsConfig.RTD_START_TIME, (CommonUtil.getCurrentTime() - 216000) + 60);
+        if (data.hasExtra("startTime")) {
+            this.startTime = data.getLongExtra("startTime", (CommonUtil.getCurrentTime() - 216000) + 60);
         }
         if (data.hasExtra("endTime")) {
             this.endTime = data.getLongExtra("endTime", CommonUtil.getCurrentTime());
@@ -300,7 +303,7 @@ public class TrackQueryActivity extends BaseActivity implements CompoundButton.O
                 if (response.getStatus() != 0) {
                     viewUtil.showToast(TrackQueryActivity.this, response.getMessage());
                 } else if (total == 0) {
-                    ViewUtil viewUtil = viewUtil;
+//                    ViewUtil viewUtil = viewUtil;
                     TrackQueryActivity trackQueryActivity = TrackQueryActivity.this;
                     viewUtil.showToast(trackQueryActivity, trackQueryActivity.getString(R.string.no_track_data));
                 } else {

@@ -1,10 +1,8 @@
 package com.niuniu.babyprotect.ui.mine;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.internal.view.SupportMenu;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -22,7 +19,6 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.hb.dialog.myDialog.ActionSheetDialog;
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.manager.UserInstallWhiteAppListManager;
 import com.niuniu.babyprotect.model.JsonBean;
@@ -37,13 +33,6 @@ import com.niuniu.babyprotect.tools.data.GetJsonDataUtil;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.login.LoginActivity;
 import com.niuniu.babyprotect.ui.setting.FeedBackActivity;
-import com.umeng.analytics.pro.ak;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UTrack;
-import com.yuyh.library.imgsel.ISNav;
-import com.yuyh.library.imgsel.common.ImageLoader;
-import com.yuyh.library.imgsel.config.ISCameraConfig;
-import com.yuyh.library.imgsel.config.ISListConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,12 +76,12 @@ public class MineDetailInfoActivity extends BaseActivity {
         setContentView(R.layout.activity_mine);
         changeTitle("修改信息");
         showBack();
-        ISNav.getInstance().init(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, String path, ImageView imageView) {
-                Glide.with(context).load(path).into(imageView);
-            }
-        });
+//        ISNav.getInstance().init(new ImageLoader() {
+//            @Override
+//            public void displayImage(Context context, String path, ImageView imageView) {
+//                Glide.with(context).load(path).into(imageView);
+//            }
+//        });
         this.userImage = (ImageView) findViewById(R.id.userImage);
         this.view0 = (LinearLayout) findViewById(R.id.userhead);
         this.view1 = (LinearLayout) findViewById(R.id.view1);
@@ -115,12 +104,12 @@ public class MineDetailInfoActivity extends BaseActivity {
         this.loginOutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PushAgent mPushAgent = PushAgent.getInstance(MineDetailInfoActivity.this);
-                mPushAgent.deleteAlias(Tools.getUsername(MineDetailInfoActivity.this), "username", new UTrack.ICallBack() {
-                    @Override
-                    public void onMessage(boolean isSuccess, String message) {
-                    }
-                });
+//                PushAgent mPushAgent = PushAgent.getInstance(MineDetailInfoActivity.this);
+//                mPushAgent.deleteAlias(Tools.getUsername(MineDetailInfoActivity.this), "username", new UTrack.ICallBack() {
+//                    @Override
+//                    public void onMessage(boolean isSuccess, String message) {
+//                    }
+//                });
                 StoToolManager.getInstance(MineDetailInfoActivity.this).clearAllController();
                 UserInfoManager.getInstance().saveUser(_context, null);
                 Tools.saveToken(_context, null);
@@ -254,7 +243,7 @@ public class MineDetailInfoActivity extends BaseActivity {
         long etime = this.userInfo.getExpireTimeStamp();
         if (timea > etime) {
             this.vipTxt.setText("已过期");
-            this.vipTxt.setTextColor(SupportMenu.CATEGORY_MASK);
+            this.vipTxt.setTextColor(Constants.CATEGORY_MASK);
         } else {
             String timeStr = Tools.timeFormat(new Date(etime), "yyyy-MM-dd");
             TextView textView = this.vipTxt;
@@ -371,7 +360,7 @@ public class MineDetailInfoActivity extends BaseActivity {
             JSONArray data = new JSONArray(result);
             Gson gson = new Gson();
             for (int i = 0; i < data.length(); i++) {
-                JsonBean entity = (JsonBean) gson.fromJson(data.optJSONObject(i).toString(), (Class<Object>) JsonBean.class);
+                JsonBean entity = (JsonBean) gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
                 detail.add(entity);
             }
         } catch (Exception e) {
@@ -381,25 +370,25 @@ public class MineDetailInfoActivity extends BaseActivity {
     }
 
     public void avatarClick() {
-        ActionSheetDialog dialog = new ActionSheetDialog(this).builder().setTitle("请选择").addSheetItem("相册", null, new ActionSheetDialog.OnSheetItemClickListener() {
-            @Override
-            public void onClick(int which) {
-                showlog("相册");
-                ISListConfig config = new ISListConfig.Builder().multiSelect(false).rememberSelected(false).btnBgColor(-7829368).btnTextColor(-16776961).statusBarColor(Color.parseColor("#3F51B5")).title("图片").titleColor(-1).titleBgColor(Color.parseColor("#3F51B5")).cropSize(1, 1, 500, 500).needCrop(true).needCamera(false).maxNum(1).build();
-                ISNav iSNav = ISNav.getInstance();
-                MineDetailInfoActivity mineDetailInfoActivity = MineDetailInfoActivity.this;
-                iSNav.toListActivity(mineDetailInfoActivity, config, mineDetailInfoActivity.REQUEST_PHOTO_CODE);
-            }
-        }).addSheetItem("拍照", null, new ActionSheetDialog.OnSheetItemClickListener() {
-            @Override
-            public void onClick(int which) {
-                ISCameraConfig config = new ISCameraConfig.Builder().needCrop(true).cropSize(1, 1, 500, 500).build();
-                ISNav iSNav = ISNav.getInstance();
-                MineDetailInfoActivity mineDetailInfoActivity = MineDetailInfoActivity.this;
-                iSNav.toCameraActivity(mineDetailInfoActivity, config, mineDetailInfoActivity.REQUEST_CAMERA_CODE);
-            }
-        });
-        dialog.show();
+//        ActionSheetDialog dialog = new ActionSheetDialog(this).builder().setTitle("请选择").addSheetItem("相册", null, new ActionSheetDialog.OnSheetItemClickListener() {
+//            @Override
+//            public void onClick(int which) {
+//                showlog("相册");
+//                ISListConfig config = new ISListConfig.Builder().multiSelect(false).rememberSelected(false).btnBgColor(-7829368).btnTextColor(-16776961).statusBarColor(Color.parseColor("#3F51B5")).title("图片").titleColor(-1).titleBgColor(Color.parseColor("#3F51B5")).cropSize(1, 1, 500, 500).needCrop(true).needCamera(false).maxNum(1).build();
+//                ISNav iSNav = ISNav.getInstance();
+//                MineDetailInfoActivity mineDetailInfoActivity = MineDetailInfoActivity.this;
+//                iSNav.toListActivity(mineDetailInfoActivity, config, mineDetailInfoActivity.REQUEST_PHOTO_CODE);
+//            }
+//        }).addSheetItem("拍照", null, new ActionSheetDialog.OnSheetItemClickListener() {
+//            @Override
+//            public void onClick(int which) {
+//                ISCameraConfig config = new ISCameraConfig.Builder().needCrop(true).cropSize(1, 1, 500, 500).build();
+//                ISNav iSNav = ISNav.getInstance();
+//                MineDetailInfoActivity mineDetailInfoActivity = MineDetailInfoActivity.this;
+//                iSNav.toCameraActivity(mineDetailInfoActivity, config, mineDetailInfoActivity.REQUEST_CAMERA_CODE);
+//            }
+//        });
+//        dialog.show();
     }
 
     @Override
@@ -420,7 +409,7 @@ public class MineDetailInfoActivity extends BaseActivity {
         showLoad();
         Map<String, String> parameters = new HashMap<>();
         parameters.put("file", path);
-        parameters.put(ak.e, "company");
+        parameters.put("name", "company");
         NetTools.getInstance().postImageAsynHttp(this, false, StudentBaseUrl.fileInfos_upload, parameters, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {
