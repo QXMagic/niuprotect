@@ -142,7 +142,7 @@ public class WebSocketManager {
 
     public void dealMsg(String msg) {
         if (!TextUtils.isEmpty(msg) && !msg.equals("conn_success")) {
-            WebsocketMessage mUmengCustomMsg = (WebsocketMessage) new Gson().fromJson(msg, (Class<Object>) WebsocketMessage.class);
+            WebsocketMessage mUmengCustomMsg = (WebsocketMessage) new Gson().fromJson(msg, WebsocketMessage.class);
             int type = mUmengCustomMsg.getOperateType();
             ILog.d(TAG, "onMessage--orderorder ==" + type);
             if (type == 12) {

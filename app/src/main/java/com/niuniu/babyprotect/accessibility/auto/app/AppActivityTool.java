@@ -25,7 +25,6 @@ import com.niuniu.babyprotect.ui.main.DesktopActivity;
 import com.niuniu.babyprotect.ui.main.MainActivity;
 import com.niuniu.babyprotect.ui.setting.OpenQxActivity;
 import com.niuniu.babyprotect.ui.setting.SysSetActivity;
-import com.umeng.message.MsgConstant;
 import java.io.IOException;
 import java.util.List;
 public class AppActivityTool {
@@ -208,7 +207,7 @@ public class AppActivityTool {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP  |Intent.FLAG_ACTIVITY_CLEAR_TOP );
         Uri uri = Uri.parse("com.niuniu.babyprotect.ui.setting.SysSetActivity");
         intent.setData(uri);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         try {
             pendingIntent.send();
         } catch (PendingIntent.CanceledException e) {
@@ -242,7 +241,7 @@ public class AppActivityTool {
     }
 
     public static void killService(Context context) {
-        ActivityManager manager = (ActivityManager) context.getSystemService(MsgConstant.KEY_MESSAGE_BODY);
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> list = manager.getRunningAppProcesses();
         for (int i = 0; i < list.size(); i++) {
             String process = list.get(i).processName;
@@ -264,7 +263,7 @@ public class AppActivityTool {
     }
 
     public static void killServiceByPackage(Context context, String packageName) {
-        ActivityManager manager = (ActivityManager) context.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         manager.killBackgroundProcesses(packageName);
     }
 }

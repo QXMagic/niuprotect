@@ -27,11 +27,10 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
-import androidx.core.internal.view.SupportMenu;
-import androidx.lifecycle.CoroutineLiveDataKt;
+
 import com.niuniu.babyprotect.BuildConfig;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.download.DownloadUtil;
 import com.niuniu.babyprotect.manager.LocationManager;
 import com.niuniu.babyprotect.manager.UploadAppManager;
@@ -49,10 +48,11 @@ import com.niuniu.babyprotect.tools.EventUtils;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.tools.image.ImageSave;
-import com.taobao.accs.common.Constants;
-import com.umeng.analytics.pro.ak;
-import com.umeng.message.MsgConstant;
-import com.umeng.message.proguard.z;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,9 +63,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class MyService extends Service {
     public static final String CHANNEL_ID = "com.github.103style.SampleService";
     public static final String CHANNEL_NAME = "com.github.103style";
@@ -152,7 +152,7 @@ public class MyService extends Service {
                 while (true) {
                     handler.sendEmptyMessage(1);
                     try {
-                        Thread.sleep(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+                        Thread.sleep(Constants.DEFAULT_TIMEOUT);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -165,12 +165,13 @@ public class MyService extends Service {
                 @Override
                 public void run() {
                     
-//本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
-
-return;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
-
-//throw new UnsupportedOperationException(
-Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
+////本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
+//
+//return;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
+//
+////throw new UnsupportedOperationException(
+//Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
+                    //TODO decode
                 }
             }).start();
         }
@@ -186,7 +187,7 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
     }
 
     private String getProcessName(Context context) {
-        ActivityManager am = (ActivityManager) context.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
         if (runningApps == null) {
             return null;
@@ -204,9 +205,9 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel("com.github.103style.SampleService");
             if (notificationChannel == null) {
-                NotificationChannel channel = new NotificationChannel("com.github.103style.SampleService", "com.github.103style", 4);
+                NotificationChannel channel = new NotificationChannel("com.github.103style.SampleService", "com.github.103style", NotificationManager.IMPORTANCE_HIGH);
                 channel.enableLights(false);
-                channel.setLightColor(SupportMenu.CATEGORY_MASK);
+                channel.setLightColor(Constants.CATEGORY_MASK);
                 channel.setLockscreenVisibility(1);
                 mNotificationManager.createNotificationChannel(channel);
             }
@@ -298,7 +299,7 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
         ImageSave.delFile();
         Map<String, String> parameters = new HashMap<>();
         parameters.put("file", fileStr);
-        parameters.put(ak.e, "123123");
+        parameters.put("name", "123123");
         NetTools.getInstance().postImageAsynHttp(this, false, StudentBaseUrl.fileInfos_uploadZip, parameters, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {
@@ -479,7 +480,7 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
                     this.nowUserTime = 0L;
                 }
             }
-            Log.i(EventUtils.TAG, "aaaaaa ===== " + pagename + com.xiaomi.mipush.sdk.Constants.COLON_SEPARATOR + this.nowUserTime);
+            Log.i(EventUtils.TAG, "aaaaaa ===== " + pagename + ":" + this.nowUserTime);
             List<String> list = new ArrayList<>();
             list.clear();
             if (!userInfo.isBindTeacher() && !userInfo.isBindParent()) {
@@ -663,15 +664,15 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
     }
 
     private boolean isScreenLocked() {
-        KeyguardManager keyguardManager = (KeyguardManager) getSystemService("keyguard");
+        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
         return keyguardManager.inKeyguardRestrictedInputMode();
     }
 
     public String getForegroundApp(Context context) {
-        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
         long ts = System.currentTimeMillis();
         usageStatsManager.queryUsageStats(4, 0L, ts);
-        UsageEvents usageEvents = usageStatsManager.queryEvents(1 != 0 ? 0L : ts - CoroutineLiveDataKt.DEFAULT_TIMEOUT, ts);
+        UsageEvents usageEvents = usageStatsManager.queryEvents(1 != 0 ? 0L : ts - Constants.DEFAULT_TIMEOUT, ts);
         if (usageEvents == null) {
             return null;
         }
@@ -691,10 +692,10 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
     public String apprun() {
         UsageEvents events;
         String packageName = "";
-        ActivityManager activityManager = (ActivityManager) this.context.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager activityManager = (ActivityManager) this.context.getSystemService(Context.ACTIVITY_SERVICE);
         if (Build.VERSION.SDK_INT > 21) {
             long end = System.currentTimeMillis();
-            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService("usagestats");
+            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService(Context.USAGE_STATS_SERVICE);
             if (usageStatsManager == null || (events = usageStatsManager.queryEvents(end - 120000, end)) == null) {
                 return "";
             }
@@ -745,7 +746,7 @@ Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
     }
 
     public void startDown() {
-        Pattern pat = Pattern.compile("[\\w]+[\\.](apk" + z.t);
+        Pattern pat = Pattern.compile("\\w+\\.apk");
         Matcher mc = pat.matcher(this.downBreUrl);
         while (mc.find()) {
             this.fileName = mc.group();

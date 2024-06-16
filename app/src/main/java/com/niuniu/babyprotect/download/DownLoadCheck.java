@@ -11,7 +11,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.niuniu.babyprotect.network.StudentBaseUrl;
-import com.umeng.message.proguard.z;
 
 import java.io.File;
 import java.util.regex.Matcher;
@@ -58,7 +57,7 @@ public class DownLoadCheck {
     }
 
     public void startDown() {
-        Pattern pat = Pattern.compile("[\\w]+[\\.](apk" + z.t);
+        Pattern pat = Pattern.compile("\\w+\\.apk");
         Matcher mc = pat.matcher(this.downBreUrl);
         while (mc.find()) {
             this.fileName = mc.group();

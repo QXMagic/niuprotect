@@ -5,18 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.model.UserInfo;
 import com.niuniu.babyprotect.model.WeekModel;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
-import com.umeng.analytics.AnalyticsConfig;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import im.niu.protect.R;
 public class ParentActivity extends BaseActivity {
     List<WeekModel> timelist = new ArrayList();
     TextView userModel;
@@ -84,7 +87,7 @@ public class ParentActivity extends BaseActivity {
                     JSONObject object = (JSONObject) this.weekModel.getPatternTimeScopes().get(i);
                     TextView timetxt1 = (TextView) linearLayout.findViewWithTag((((i + 1) * 1000) + 1) + "");
                     TextView timetxt2 = (TextView) linearLayout.findViewWithTag((((i + 1) * 1000) + 2) + "");
-                    timetxt1.setText(object.getString(AnalyticsConfig.RTD_START_TIME));
+                    timetxt1.setText(object.getString("startTime"));
                     timetxt2.setText(object.getString("endTime"));
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'im.niu.protect'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "im.niu.protect"
         minSdk 28
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -48,9 +48,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
-    implementation 'androidx.activity:activity-compose:1.9.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
+    implementation 'androidx.activity:activity-compose:1.6.1'
     implementation platform('androidx.compose:compose-bom:2023.03.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
@@ -64,11 +64,16 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.work:work-runtime:2.8.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.databinding:databinding-runtime:8.5.0'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.crazyandcoder:citypicker:6.0.2'
     implementation 'org.java-websocket:Java-WebSocket:1.5.6'
     implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
@@ -76,7 +81,26 @@ dependencies {
     implementation 'com.baidu.lbsyun:BaiduMapSDK_Panorama:2.9.0'
     implementation 'com.baidu.lbsyun:BaiduMapSDK_Location:9.3.7'
     implementation 'com.baidu.lbsyun:BaiduMapSDK_Map:7.5.4'
-//    implementation 'com.google.gson:gson:2.4'
+    implementation 'io.github.xiaofeidev:round:1.1.2'
+//    implementation 'com.hjq:xxpermissions:9.0'
+    implementation 'com.github.getActivity:XXPermissions:18.63'
+    implementation 'com.google.code.gson:gson:2.4'
+    implementation 'cn.bertsir.zbarLibary:zbarlibary:1.4.2'
+    implementation 'com.zyao89:zloading:1.2.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation  'org.greenrobot:eventbus:3.3.1'
+    implementation 'com.tencent:mmkv:1.3.5'
 
+    implementation 'cn.bingoogolapple:bga-qrcodecore:1.1.9'
+    implementation 'cn.bingoogolapple:bga-zxing:1.1.9'
+//    implementation 'cn.bingoogolapple:bga-photopicker:2.0.2'
+//    implementation 'cn.bingoogolapple:bga-baseadapter:2.0.0@aar'
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    implementation 'com.github.crazyandcoder:citypicker:6.0.2'
+
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.13'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.13'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
 
 }

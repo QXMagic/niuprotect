@@ -3,14 +3,15 @@ package com.niuniu.babyprotect.third.floatwindow;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+
 import im.niu.protect.R;
-import com.niuniu.babyprotect.third.floatwindow.AppRunFloatWindowsManager;
 public class AppRunFloatWindowsManager {
     private static volatile AppRunFloatWindowsManager mInstance;
     private ValueAnimator animator;
@@ -54,13 +55,13 @@ public class AppRunFloatWindowsManager {
         this.btnClose = (Button) inflate.findViewById(R.id.btn_close);
         this.mLayoutParams = new WindowManager.LayoutParams();
         if (Build.VERSION.SDK_INT >= 26) {
-            this.mLayoutParams.type = 2038;
+            this.mLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
-            this.mLayoutParams.type = 2003;
+            this.mLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         }
         this.mLayoutParams.format = 1;
-        this.mLayoutParams.gravity = 51;
-        this.mLayoutParams.flags = 40;
+        this.mLayoutParams.gravity = Gravity.TOP|Gravity.LEFT;//51 = 32,16,2,1;
+        this.mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL|WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE ;//40;
         this.mContext.getResources().getDisplayMetrics();
         this.layoutY = 0;
         this.layoutX = 0;
@@ -131,7 +132,8 @@ public class AppRunFloatWindowsManager {
                     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            AppRunFloatWindowsManager.1.this.lambda$onTouch$0$AppRunFloatWindowsManager$1(valueAnimator);
+                            onTouch(valueAnimator);
+//                            AppRunFloatWindowsManager.1.this.lambda$onTouch$0$AppRunFloatWindowsManager$1(valueAnimator);
                         }
                     });
                     animator.start();
@@ -140,7 +142,7 @@ public class AppRunFloatWindowsManager {
             }
         }
 
-        public void lambda$onTouch$0$AppRunFloatWindowsManager$1(ValueAnimator animation) {
+        public void onTouch(ValueAnimator animation) {
             if (animation != null) {
                 this.moveX = ((Integer) animation.getAnimatedValue()).intValue();
                 mLayoutParams.x = ((Integer) animation.getAnimatedValue()).intValue();

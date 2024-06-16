@@ -1,11 +1,10 @@
 package com.niuniu.babyprotect.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.umeng.analytics.AnalyticsConfig;
 public class PatternTimeScopesDTO {
     @SerializedName("endTime")
     private String endTime;
-    @SerializedName(AnalyticsConfig.RTD_START_TIME)
+    @SerializedName("startTime")
     private String startTime;
 
     public String getEndTime() {

@@ -80,7 +80,7 @@ public class TempOutControlManager {
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_TEMP_OUT_CONTROL, "");
         ILog.d(TAG, userMsg);
-        if (!TextUtils.isEmpty(userMsg) && (mSystemWhiteAppModel = (TempOutControlModel) new Gson().fromJson(userMsg, (Class<Object>) TempOutControlModel.class)) != null) {
+        if (!TextUtils.isEmpty(userMsg) && (mSystemWhiteAppModel = (TempOutControlModel) new Gson().fromJson(userMsg, TempOutControlModel.class)) != null) {
             return mSystemWhiteAppModel.getData();
         }
         return null;

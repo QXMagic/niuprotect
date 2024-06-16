@@ -1,11 +1,9 @@
 package com.niuniu.babyprotect.model;
 
-import com.umeng.analytics.AnalyticsConfig;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import org.android.agoo.message.MessageService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +32,7 @@ public class WeekModel {
         for (int i = 0; i < this.patternTimeScopes.length(); i++) {
             try {
                 JSONObject object = this.patternTimeScopes.getJSONObject(i);
-                String startTime = object.getString(AnalyticsConfig.RTD_START_TIME);
+                String startTime = object.getString("startTime");
                 String endTime = object.getString("endTime");
                 long startTimeInt = makeData(startTime);
                 long endTimeInt = makeData(endTime);
@@ -54,7 +52,7 @@ public class WeekModel {
         if (wd == 0) {
             wd = 7;
         }
-        if (!this.dayTheWeek.equals(MessageService.MSG_DB_READY_REPORT)) {
+        if (!this.dayTheWeek.equals("0")) {
             String str = this.dayTheWeek;
             if (!str.equals(wd + "")) {
                 return false;

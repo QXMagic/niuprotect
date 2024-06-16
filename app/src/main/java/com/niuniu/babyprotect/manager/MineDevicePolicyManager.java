@@ -14,7 +14,7 @@ public class MineDevicePolicyManager {
 
     private MineDevicePolicyManager(Context context) {
         this.mContext = context;
-        this.devicePolicyManager = (DevicePolicyManager) context.getSystemService("device_policy");
+        this.devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
         this.componentName = new ComponentName(context, DeviceReceiver.class);
     }
 

@@ -12,6 +12,9 @@ import com.niuniu.babyprotect.databinding.RcPermCollectionBindingImpl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import im.niu.protect.R;
+
 public class DataBinderMapperImpl extends DataBinderMapper {
     private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP;
     private static final int LAYOUT_ACTIVITYMAIN = 1;

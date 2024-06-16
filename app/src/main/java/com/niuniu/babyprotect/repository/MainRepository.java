@@ -1,14 +1,14 @@
 package com.niuniu.babyprotect.repository;
 
 import android.content.Context;
-import anet.channel.strategy.dispatch.DispatchConstants;
+import atmp.consts.Constants;
+
 import com.niuniu.babyprotect.network.NetTools;
 import com.niuniu.babyprotect.network.ResultCallBackListener;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.AppInfoUtils;
 import java.util.HashMap;
 import java.util.Map;
-import org.android.agoo.message.MessageService;
 public class MainRepository extends BaseRepository {
     public static MainRepository instance;
 
@@ -40,7 +40,7 @@ public class MainRepository extends BaseRepository {
     public void getSystemConfig(Context context, ResultCallBackListener resultCallBackListener) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("appDownChannel", AppInfoUtils.getChannel(context));
-        parameters.put("appType", MessageService.MSG_DB_READY_REPORT);
+        parameters.put("appType", "0");
         parameters.put("versionCode", AppInfoUtils.getVersionCode(context) + "");
         NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.SYSTEM_CONFIG, parameters, resultCallBackListener);
     }
@@ -48,7 +48,7 @@ public class MainRepository extends BaseRepository {
     public void updataApp(Context context, ResultCallBackListener resultCallBackListener) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("type", "android_version");
-        parameters.put(DispatchConstants.PLATFORM, "xiaomi");
+        parameters.put(Constants.PLATFORM, "xiaomi");
         parameters.put("service", "student");
         NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.appversion_info, parameters, resultCallBackListener);
     }

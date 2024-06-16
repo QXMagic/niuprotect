@@ -14,7 +14,7 @@ public class MineAlarmManager {
     PendingIntent pendingIntent;
 
     private MineAlarmManager(Context context) {
-        this.alarmManager = (AlarmManager) context.getSystemService(NotificationCompat.CATEGORY_ALARM);
+        this.alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 
     public static MineAlarmManager getInstance(Context context) {

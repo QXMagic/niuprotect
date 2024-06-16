@@ -123,7 +123,7 @@ public class SystemBlackAppListManager {
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_SYSTEM_BLACK_APP, "");
         ILog.d("SystemBlackAppModel", userMsg);
-        if (!TextUtils.isEmpty(userMsg) && (mSystemBlackAppModel = (SystemBlackAppModel) new Gson().fromJson(userMsg, (Class<Object>) SystemBlackAppModel.class)) != null) {
+        if (!TextUtils.isEmpty(userMsg) && (mSystemBlackAppModel = (SystemBlackAppModel) new Gson().fromJson(userMsg, SystemBlackAppModel.class)) != null) {
             return mSystemBlackAppModel.getData();
         }
         return null;

@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import com.google.gson.Gson;
 import com.hjq.permissions.OnPermissionCallback;
+import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.accessibility.auto.device.SystemDeviceInfo;
 import com.niuniu.babyprotect.action.MyOnClickListener;
 import com.niuniu.babyprotect.manager.UserInfoManager;
@@ -30,12 +32,16 @@ import com.niuniu.babyprotect.tools.JumpActivityTools;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.webview.OneWebActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.android.agoo.message.MessageService;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class LoginActivity extends BaseActivity {
     private static final int READ_WRITE_SDCARD_PERMISSION_REQUEST_CODE = 0;
     String[] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.ACCESS_FINE_LOCATION"};
@@ -108,7 +114,7 @@ public class LoginActivity extends BaseActivity {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("username", this.phonetxt.getText().toString());
         parameters.put("password", this.pwdtxt.getText().toString());
-        parameters.put("memberType", MessageService.MSG_DB_READY_REPORT);
+        parameters.put("memberType", Constants.MSG_DB_READY_REPORT);
         parameters.put("mobileBrand", SystemDeviceInfo.getBrand());
         parameters.put("mobileModel", SystemDeviceInfo.getModel());
         parameters.put("systemVersion", SystemDeviceInfo.getPhoneOs());
@@ -154,6 +160,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 0) {
             if (grantResults.length <= 0 || grantResults[0] != 0 || grantResults[1] != 0) {
                 Toast.makeText(this, "读写内存卡内容权限被拒绝", Toast.LENGTH_SHORT).show();
@@ -162,7 +169,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void requestPermissions2() {
-        XXPermissions.with(this).permission("android.permission.READ_PHONE_STATE").permission("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION").request(new OnPermissionCallback() {
+        XXPermissions.with(this).permission(Permission.READ_PHONE_STATE).permission("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION").request(new OnPermissionCallback() {
             @Override
             public void onGranted(List<String> permissions, boolean all) {
             }

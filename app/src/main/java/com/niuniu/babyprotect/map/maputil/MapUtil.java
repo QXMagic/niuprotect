@@ -1,10 +1,10 @@
 package com.niuniu.babyprotect.map.maputil;
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import androidx.core.internal.view.SupportMenu;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.MapStatus;
@@ -26,7 +26,6 @@ import com.baidu.trace.model.TraceLocation;
 import com.niuniu.babyprotect.BabyApplication;
 import com.niuniu.babyprotect.map.MapConstants;
 import com.niuniu.babyprotect.map.model.CurrentLocation;
-import com.tencent.bugly.crashreport.crash.BuglyBroadcastRecevier;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -260,7 +259,7 @@ public class MapUtil {
     }
 
     public void drawPolyline(List<LatLng> points) {
-        OverlayOptions polylineOptions = new PolylineOptions().width(10).color(SupportMenu.CATEGORY_MASK).dottedLine(true).dottedLineType(PolylineDottedLineType.DOTTED_LINE_SQUARE).points(points);
+        OverlayOptions polylineOptions = new PolylineOptions().width(10).color(Color.GRAY).dottedLine(true).dottedLineType(PolylineDottedLineType.DOTTED_LINE_SQUARE).points(points);
         this.polylineOverlay = this.baiduMap.addOverlay(polylineOptions);
     }
 
@@ -308,7 +307,7 @@ public class MapUtil {
             long days = diff / 86400000;
             Long.signum(days);
             long hours = (diff - (days * 86400000)) / 3600000;
-            long minutes = ((diff - (86400000 * days)) - (3600000 * hours)) / BuglyBroadcastRecevier.UPLOADLIMITED;
+            long minutes = ((diff - (86400000 * days)) - (3600000 * hours)) / 60000;
             Log.d("MapUtils", "差值:" + diff + "分钟" + minutes);
             if (minutes > 5) {
                 return true;

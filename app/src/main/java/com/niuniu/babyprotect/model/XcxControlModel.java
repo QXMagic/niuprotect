@@ -2,8 +2,6 @@ package com.niuniu.babyprotect.model;
 
 import com.baidu.platform.comapi.map.MapBundleKey;
 import com.google.gson.annotations.SerializedName;
-import com.taobao.accs.common.Constants;
-import com.umeng.analytics.AnalyticsConfig;
 import java.util.List;
 public class XcxControlModel extends BaseModel {
     @SerializedName("data")
@@ -28,11 +26,11 @@ public class XcxControlModel extends BaseModel {
         private String id;
         @SerializedName(MapBundleKey.OfflineMapKey.OFFLINE_CITYNAME)
         private String name;
-        @SerializedName(Constants.KEY_PACKAGE_NAME)
+        @SerializedName("packageName")
         private String packageName;
         @SerializedName("smallProgramId")
         private String smallProgramId;
-        @SerializedName(AnalyticsConfig.RTD_START_TIME)
+        @SerializedName("startTime")
         private String startTime;
         @SerializedName("studentId")
         private String studentId;

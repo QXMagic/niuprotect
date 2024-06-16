@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
-import androidx.lifecycle.CoroutineLiveDataKt;
 public class KeepAliveJobService extends JobService {
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -36,12 +35,12 @@ public class KeepAliveJobService extends JobService {
     }
 
     public static void startJob(Context context) {
-        JobScheduler jobScheduler = (JobScheduler) context.getSystemService("jobscheduler");
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         JobInfo.Builder jobInfoBuilder = new JobInfo.Builder(10, new ComponentName(context.getPackageName(), KeepAliveJobService.class.getName())).setPersisted(true);
         if (Build.VERSION.SDK_INT < 24) {
-            jobInfoBuilder.setPeriodic(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+            jobInfoBuilder.setPeriodic(5000L);
         } else {
-            jobInfoBuilder.setMinimumLatency(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+            jobInfoBuilder.setMinimumLatency(5000L);
         }
         jobScheduler.schedule(jobInfoBuilder.build());
     }

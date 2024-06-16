@@ -3,13 +3,16 @@ package com.niuniu.babyprotect.service;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
-import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.CoroutineLiveDataKt;
+//import androidx.lifecycle.CoroutineLiveDataKt;
 import com.niuniu.babyprotect.manager.StudentMainController;
 import com.niuniu.babyprotect.tools.ILog;
+
+import atmp.consts.Constants;
+
 public class StudentControlWayService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
@@ -19,11 +22,11 @@ public class StudentControlWayService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        AlarmManager manager = (AlarmManager) getSystemService(NotificationCompat.CATEGORY_ALARM);
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, getClass());
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 134217728);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         long triggerAtTime = SystemClock.elapsedRealtime();
-        manager.setRepeating(0, triggerAtTime, CoroutineLiveDataKt.DEFAULT_TIMEOUT, pendingIntent);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime, Constants.DEFAULT_TIMEOUT, pendingIntent);
         Intent floatWinIntent = new Intent(this, FloatingService.class);
         startService(floatWinIntent);
         ILog.d("----------", "--StudentControlWayService---------");
@@ -44,7 +47,7 @@ public class StudentControlWayService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return 1;
+        return Service.START_STICKY;
     }
 
     @Override

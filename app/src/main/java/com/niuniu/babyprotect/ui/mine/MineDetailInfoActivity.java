@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.core.internal.view.SupportMenu;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
+
 import com.baidu.platform.comapi.map.MapBundleKey;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -21,7 +23,6 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hb.dialog.myDialog.ActionSheetDialog;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.manager.UserInstallWhiteAppListManager;
 import com.niuniu.babyprotect.model.JsonBean;
@@ -36,7 +37,6 @@ import com.niuniu.babyprotect.tools.data.GetJsonDataUtil;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.login.LoginActivity;
 import com.niuniu.babyprotect.ui.setting.FeedBackActivity;
-import com.taobao.accs.common.Constants;
 import com.umeng.analytics.pro.ak;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
@@ -44,14 +44,19 @@ import com.yuyh.library.imgsel.ISNav;
 import com.yuyh.library.imgsel.common.ImageLoader;
 import com.yuyh.library.imgsel.config.ISCameraConfig;
 import com.yuyh.library.imgsel.config.ISListConfig;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class MineDetailInfoActivity extends BaseActivity {
     TextView addrTxt;
     TextView classTxt;

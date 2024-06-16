@@ -5,22 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import com.taobao.accs.common.Constants;
-import org.android.agoo.common.AgooConstants;
+
+import atmp.consts.Constants;
+
 public class PermissionSettingPage {
     private static final String MARK = Build.MANUFACTURER.toLowerCase();
 
     public static void start(Context context, boolean newTask) {
         Intent intent = null;
-        if (MARK.contains(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI)) {
+        if (MARK.contains(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI)) {
             intent = huawei(context);
         } else if (MARK.contains("xiaomi")) {
             intent = xiaomi(context);
-        } else if (MARK.contains(AgooConstants.MESSAGE_SYSTEM_SOURCE_OPPO)) {
+        } else if (MARK.contains(Constants.MESSAGE_SYSTEM_SOURCE_OPPO)) {
             intent = oppo(context);
-        } else if (MARK.contains(AgooConstants.MESSAGE_SYSTEM_SOURCE_VIVO)) {
+        } else if (MARK.contains(Constants.MESSAGE_SYSTEM_SOURCE_VIVO)) {
             intent = vivo(context);
-        } else if (MARK.contains(AgooConstants.MESSAGE_SYSTEM_SOURCE_MEIZU)) {
+        } else if (MARK.contains(Constants.MESSAGE_SYSTEM_SOURCE_MEIZU)) {
             intent = meizu(context);
         }
         if (intent == null || !hasIntent(context, intent)) {

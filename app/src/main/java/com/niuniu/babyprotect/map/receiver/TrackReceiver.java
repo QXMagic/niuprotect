@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import com.baidu.trace.model.StatusCodes;
-import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
+
+import atmp.consts.Constants;
+
 public class TrackReceiver extends BroadcastReceiver {
     private PowerManager.WakeLock wakeLock;
 
@@ -28,7 +30,7 @@ public class TrackReceiver extends BroadcastReceiver {
                 this.wakeLock.release();
             }
         } else if (StatusCodes.GPS_STATUS_ACTION.equals(action)) {
-            int statusCode = intent.getIntExtra(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, 0);
+            int statusCode = intent.getIntExtra(Constants.RESULT, 0);
             String statusMessage = intent.getStringExtra("statusMessage");
             System.out.println(String.format("GPS status, statusCode:%d, statusMessage:%s", Integer.valueOf(statusCode), statusMessage));
         }

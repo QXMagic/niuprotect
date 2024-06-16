@@ -17,8 +17,6 @@ import android.os.Message;
 import android.os.Process;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
-import androidx.core.internal.view.SupportMenu;
-import androidx.lifecycle.CoroutineLiveDataKt;
 import com.niuniu.babyprotect.BuildConfig;
 import im.niu.protect.R;
 import com.niuniu.babyprotect.model.AppInfo;
@@ -34,8 +32,8 @@ import com.niuniu.babyprotect.stomon.StoToolManager;
 import com.niuniu.babyprotect.tools.EventUtils;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.Tools;
-import com.umeng.message.MsgConstant;
-import com.xiaomi.mipush.sdk.Constants;
+//import com.umeng.message.MsgConstant;
+//import com.xiaomi.mipush.sdk.Constants;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -104,7 +102,7 @@ public class PerTaskManager {
                 while (true) {
                     handler.sendEmptyMessage(1);
                     try {
-                        Thread.sleep(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+                        Thread.sleep(5000L);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -123,7 +121,7 @@ public class PerTaskManager {
     }
 
     private String getProcessName(Context context) {
-        ActivityManager am = (ActivityManager) context.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
         if (runningApps == null) {
             return null;
@@ -141,9 +139,9 @@ public class PerTaskManager {
             NotificationManager mNotificationManager = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel("com.github.103style.SampleService");
             if (notificationChannel == null) {
-                NotificationChannel channel = new NotificationChannel("com.github.103style.SampleService", "com.github.103style", 4);
+                NotificationChannel channel = new NotificationChannel("com.github.103style.SampleService", "com.github.103style", NotificationManager.IMPORTANCE_HIGH);
                 channel.enableLights(false);
-                channel.setLightColor(SupportMenu.CATEGORY_MASK);
+                channel.setLightColor(-65536);
                 channel.setLockscreenVisibility(1);
                 mNotificationManager.createNotificationChannel(channel);
             }
@@ -339,7 +337,7 @@ public class PerTaskManager {
                     this.nowUserTime = 0L;
                 }
             }
-            Log.i(EventUtils.TAG, "aaaaaa ===== " + pagename + Constants.COLON_SEPARATOR + this.nowUserTime);
+            Log.i(EventUtils.TAG, "aaaaaa ===== " + pagename + " - " + this.nowUserTime);
             List<String> list = new ArrayList<>();
             list.clear();
             if (!userInfo.isBindTeacher() && !userInfo.isBindParent()) {
@@ -520,15 +518,15 @@ public class PerTaskManager {
     }
 
     private boolean isScreenLocked() {
-        KeyguardManager keyguardManager = (KeyguardManager) this.context.getSystemService("keyguard");
+        KeyguardManager keyguardManager = (KeyguardManager) this.context.getSystemService(Context.KEYGUARD_SERVICE);
         return keyguardManager.inKeyguardRestrictedInputMode();
     }
 
     public String getForegroundApp(Context context) {
-        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
         long ts = System.currentTimeMillis();
         usageStatsManager.queryUsageStats(4, 0L, ts);
-        UsageEvents usageEvents = usageStatsManager.queryEvents(1 != 0 ? 0L : ts - CoroutineLiveDataKt.DEFAULT_TIMEOUT, ts);
+        UsageEvents usageEvents = usageStatsManager.queryEvents(1 != 0 ? 0L : ts - 5000L, ts);
         if (usageEvents == null) {
             return null;
         }
@@ -550,7 +548,7 @@ public class PerTaskManager {
         String packageName = "";
         if (Build.VERSION.SDK_INT > 21) {
             long end = System.currentTimeMillis();
-            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService("usagestats");
+            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService(Context.USAGE_STATS_SERVICE);
             if (usageStatsManager == null || (events = usageStatsManager.queryEvents(end - 120000, end)) == null) {
                 return "";
             }

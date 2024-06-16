@@ -19,7 +19,7 @@ public class BabyRequestManager {
             @Override
             public void onResponse(JSONObject msg) {
                 if (msg != null) {
-                    BaseModel baseModel = (BaseModel) new Gson().fromJson(msg.toString(), (Class<Object>) tClass);
+                    BaseModel baseModel = (BaseModel) new Gson().fromJson(msg.toString(), tClass);
                     if (callBack != null) {
                         if (baseModel.getStatus().equals("200")) {
                             callBack.onSuceess(baseModel);

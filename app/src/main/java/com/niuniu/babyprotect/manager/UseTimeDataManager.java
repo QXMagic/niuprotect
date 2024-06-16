@@ -24,7 +24,6 @@ import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.SystemUtil;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.tools.secret.Base64Utils;
-import com.xiaomi.mipush.sdk.Constants;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -62,12 +61,12 @@ public class UseTimeDataManager {
     }
 
     private void getSystemAppUseInfo() {
-        UsageStatsManager usageStatsManager;
-        List<UsageStats> queryUsageStats;
+        UsageStatsManager usageStatsManager = null;
+        List<UsageStats> queryUsageStats = null;
         this.appUseInfos = new ArrayList();
         long end = System.currentTimeMillis();
         long currentStamp = Tools.zeroTimeForLong(Long.valueOf(end));
-        UsageStatsManager usageStatsManager2 = (UsageStatsManager) this.mContext.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager2 = (UsageStatsManager) this.mContext.getSystemService(Context.USAGE_STATS_SERVICE);
         if (usageStatsManager2 == null) {
             ILog.d(TAG, "not get usageStatsManager upload use info");
             return;
@@ -154,9 +153,8 @@ public class UseTimeDataManager {
                                 appUseInfos.add(appUseInfo);
                             }
                         }
-                        Log.i(TAG, "packageInfo" + packageInfo.getmAppName() + Constants.COLON_SEPARATOR + usetime);
+                        Log.i(TAG, "packageInfo" + packageInfo.getmAppName() + ":" + usetime);
                     } catch (JSONException e2) {
-                        e = e2;
                         token = token2;
                     }
                     i++;
@@ -173,7 +171,7 @@ public class UseTimeDataManager {
         List<AppUseInfo> appUseInfos = new ArrayList<>();
         long end = System.currentTimeMillis();
         long currentStamp = Tools.zeroTimeForLong(Long.valueOf(end));
-        UsageStatsManager usageStatsManager = (UsageStatsManager) this.mContext.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager = (UsageStatsManager) this.mContext.getSystemService(Context.USAGE_STATS_SERVICE);
         if (usageStatsManager == null) {
             ILog.d(TAG, "usageStatsManager is null");
             return;
@@ -243,7 +241,7 @@ public class UseTimeDataManager {
     private synchronized String getTopApp() {
         long end = System.currentTimeMillis();
         long currentStamp = Tools.zeroTimeForLong(Long.valueOf(end));
-        UsageStatsManager usageStatsManager = (UsageStatsManager) this.mContext.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager = (UsageStatsManager) this.mContext.getSystemService(Context.USAGE_STATS_SERVICE);
         if (usageStatsManager == null) {
             return null;
         }

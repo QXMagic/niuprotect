@@ -20,11 +20,11 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
+
 import androidx.core.view.ViewCompat;
-import anet.channel.strategy.dispatch.DispatchConstants;
+
 import com.baidu.location.BDLocation;
 import com.google.gson.Gson;
-import com.huawei.hms.framework.common.ContainerUtils;
 import com.niuniu.babyprotect.model.AppInfo;
 import com.niuniu.babyprotect.model.OtherTimeInfo;
 import com.niuniu.babyprotect.model.ParentModelInfo;
@@ -32,7 +32,11 @@ import com.niuniu.babyprotect.model.TeacherModelInfo;
 import com.niuniu.babyprotect.model.UsePackageInfo;
 import com.niuniu.babyprotect.model.UserInfo;
 import com.niuniu.babyprotect.model.WeekModel;
-import com.xiaomi.mipush.sdk.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,10 +52,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.android.agoo.message.MessageService;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import atmp.consts.Constants;
+
 public class Tools {
     public static final String BasePath = Environment.getExternalStorageDirectory().getPath() + "/smartlamp/";
     public static final String filepath = "smartlamp";
@@ -361,7 +364,7 @@ public class Tools {
 
     public static String BinaryToHex(String s) {
         if (s.equals("")) {
-            return MessageService.MSG_DB_READY_REPORT;
+            return Constants.MSG_DB_READY_REPORT;
         }
         return Long.toHexString(Long.parseLong(s, 2));
     }
@@ -386,7 +389,7 @@ public class Tools {
         Map<String, String> list = new HashMap<>();
         String[] sta = url.split("&");
         for (String str : sta) {
-            String[] ccc = str.split(ContainerUtils.KEY_VALUE_DELIMITER);
+            String[] ccc = str.split("=");
             list.put(ccc[0], ccc[1]);
         }
         return list;
@@ -428,7 +431,7 @@ public class Tools {
         String revmsg = "";
         for (byte b : data) {
             String aa = Integer.toHexString(b);
-            revmsg = aa.length() == 1 ? revmsg + MessageService.MSG_DB_READY_REPORT + aa + Constants.ACCEPT_TIME_SEPARATOR_SP : revmsg + aa.replace("ffffff", "") + Constants.ACCEPT_TIME_SEPARATOR_SP;
+            revmsg = aa.length() == 1 ? revmsg + Constants.MSG_DB_READY_REPORT + aa + Constants.ACCEPT_TIME_SEPARATOR_SP : revmsg + aa.replace("ffffff", "") + Constants.ACCEPT_TIME_SEPARATOR_SP;
         }
         return revmsg;
     }
@@ -583,7 +586,7 @@ public class Tools {
             return null;
         }
         Gson gson = new Gson();
-        UserInfo userModel = (UserInfo) gson.fromJson(userMsg, (Class<Object>) UserInfo.class);
+        UserInfo userModel = (UserInfo) gson.fromJson(userMsg, UserInfo.class);
         return userModel;
     }
 
@@ -714,7 +717,7 @@ public class Tools {
             return null;
         }
         Gson gson = new Gson();
-        ParentModelInfo userModel = (ParentModelInfo) gson.fromJson(userMsg, (Class<Object>) ParentModelInfo.class);
+        ParentModelInfo userModel = (ParentModelInfo) gson.fromJson(userMsg, ParentModelInfo.class);
         return userModel;
     }
 
@@ -741,7 +744,7 @@ public class Tools {
             Gson gson = new Gson();
             for (int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
-                OtherTimeInfo userModel = (OtherTimeInfo) gson.fromJson(object.toString(), (Class<Object>) OtherTimeInfo.class);
+                OtherTimeInfo userModel = (OtherTimeInfo) gson.fromJson(object.toString(), OtherTimeInfo.class);
                 mlist.add(userModel);
             }
         } catch (JSONException e) {
@@ -832,7 +835,7 @@ public class Tools {
             return null;
         }
         Gson gson = new Gson();
-        ParentModelInfo userModel = (ParentModelInfo) gson.fromJson(userMsg, (Class<Object>) ParentModelInfo.class);
+        ParentModelInfo userModel = (ParentModelInfo) gson.fromJson(userMsg, ParentModelInfo.class);
         return userModel;
     }
 
@@ -844,7 +847,7 @@ public class Tools {
         }
         Log.e("xxxxxx", userMsg);
         Gson gson = new Gson();
-        TeacherModelInfo userModel = (TeacherModelInfo) gson.fromJson(userMsg, (Class<Object>) TeacherModelInfo.class);
+        TeacherModelInfo userModel = (TeacherModelInfo) gson.fromJson(userMsg, TeacherModelInfo.class);
         return userModel;
     }
 
@@ -853,12 +856,12 @@ public class Tools {
         if (appName.toLowerCase().contains("输入法") || packageInfo.packageName.contains("com.xiaomi.cameratest") || packageInfo.packageName.contains("com.miui.contentextension") || packageInfo.packageName.contains("com.miui.qr") || packageInfo.packageName.contains("com.miui.fm") || packageInfo.packageName.contains("com.xiaomi.cameratools") || packageInfo.packageName.contains("com.miui.gallery") || packageInfo.packageName.contains("com.xiaomi.payment") || packageInfo.packageName.contains("com.miui.player") || packageInfo.packageName.contains("com.miui.video") || packageInfo.packageName.contains("com.xiaomi.market") || packageInfo.packageName.contains("com.xiaomi.misettings") || packageInfo.packageName.contains("com.miui.yellowpage")) {
             return true;
         }
-        return (packageInfo.packageName.equals(DispatchConstants.ANDROID) || packageInfo.packageName.contains("android.") || packageInfo.packageName.contains(".mi") || packageInfo.packageName.contains("miui") || packageInfo.packageName.contains("fido.") || packageInfo.packageName.contains("wapi.") || packageInfo.packageName.contains("xiaomi.") || packageInfo.packageName.contains("op01") || packageInfo.packageName.contains("sdk") || packageInfo.packageName.contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM) || appName.toLowerCase().contains("miui")) ? false : true;
+        return (packageInfo.packageName.equals(Constants.ANDROID) || packageInfo.packageName.contains("android.") || packageInfo.packageName.contains(".mi") || packageInfo.packageName.contains("miui") || packageInfo.packageName.contains("fido.") || packageInfo.packageName.contains("wapi.") || packageInfo.packageName.contains("xiaomi.") || packageInfo.packageName.contains("op01") || packageInfo.packageName.contains("sdk") || packageInfo.packageName.contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM) || appName.toLowerCase().contains("miui")) ? false : true;
     }
 
     public static boolean checkSysApp(PackageInfo packageInfo, Context context) {
         String appName = packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString();
-        return packageInfo.packageName.equals(DispatchConstants.ANDROID) || packageInfo.packageName.contains("android.") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM);
+        return packageInfo.packageName.equals(Constants.ANDROID) || packageInfo.packageName.contains("android.") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM);
     }
 
     public static boolean checkOkApp(UsePackageInfo packageInfo, Context context) {
@@ -866,7 +869,7 @@ public class Tools {
         if (appName.toLowerCase().contains("输入法") || packageInfo.getmPackageName().contains("com.xiaomi.cameratest") || packageInfo.getmPackageName().contains("com.miui.contentextension") || packageInfo.getmPackageName().contains("com.miui.qr") || packageInfo.getmPackageName().contains("com.miui.fm") || packageInfo.getmPackageName().contains("com.xiaomi.cameratools") || packageInfo.getmPackageName().contains("com.miui.gallery") || packageInfo.getmPackageName().contains("com.xiaomi.payment") || packageInfo.getmPackageName().contains("com.miui.player") || packageInfo.getmPackageName().contains("com.miui.video") || packageInfo.getmPackageName().contains("com.xiaomi.market") || packageInfo.getmPackageName().contains("com.xiaomi.misettings") || packageInfo.getmPackageName().contains("com.miui.yellowpage")) {
             return true;
         }
-        return (packageInfo.getmPackageName().equals(DispatchConstants.ANDROID) || packageInfo.getmPackageName().contains("android.") || packageInfo.getmPackageName().contains(".mi") || packageInfo.getmPackageName().contains("miui") || packageInfo.getmPackageName().contains("fido.") || packageInfo.getmPackageName().contains("wapi.") || packageInfo.getmPackageName().contains("xiaomi.") || packageInfo.getmPackageName().contains("op01") || packageInfo.getmPackageName().contains("sdk") || packageInfo.getmPackageName().contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM) || appName.toLowerCase().contains("miui")) ? false : true;
+        return (packageInfo.getmPackageName().equals(Constants.ANDROID) || packageInfo.getmPackageName().contains("android.") || packageInfo.getmPackageName().contains(".mi") || packageInfo.getmPackageName().contains("miui") || packageInfo.getmPackageName().contains("fido.") || packageInfo.getmPackageName().contains("wapi.") || packageInfo.getmPackageName().contains("xiaomi.") || packageInfo.getmPackageName().contains("op01") || packageInfo.getmPackageName().contains("sdk") || packageInfo.getmPackageName().contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM) || appName.toLowerCase().contains("miui")) ? false : true;
     }
 
     public static void saveBlackUserApp(Context context, String msg) {
@@ -890,7 +893,7 @@ public class Tools {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
                     Gson gson = new Gson();
-                    AppInfo userModel = (AppInfo) gson.fromJson(obj.toString(), (Class<Object>) AppInfo.class);
+                    AppInfo userModel = (AppInfo) gson.fromJson(obj.toString(), AppInfo.class);
                     list.add(userModel);
                 }
             } catch (JSONException e) {
@@ -921,7 +924,7 @@ public class Tools {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
                     Gson gson = new Gson();
-                    AppInfo userModel = (AppInfo) gson.fromJson(obj.toString(), (Class<Object>) AppInfo.class);
+                    AppInfo userModel = (AppInfo) gson.fromJson(obj.toString(),  AppInfo.class);
                     list.add(userModel);
                 }
             } catch (JSONException e) {

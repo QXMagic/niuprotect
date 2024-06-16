@@ -77,7 +77,7 @@ public class UserWhiteAppListManager {
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_USER_WHITE_APP, "");
         if (!TextUtils.isEmpty(userMsg)) {
-            UserBlackAppInfoModel userBlackAppInfoModel = (UserBlackAppInfoModel) new Gson().fromJson(userMsg, (Class<Object>) UserBlackAppInfoModel.class);
+            UserBlackAppInfoModel userBlackAppInfoModel = (UserBlackAppInfoModel) new Gson().fromJson(userMsg, UserBlackAppInfoModel.class);
             List<UserBlackAppInfoModel.DataDTO> appInfos = userBlackAppInfoModel.getData();
             return appInfos;
         }

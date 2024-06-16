@@ -5,26 +5,30 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.action.MyOnClickListener;
 import com.niuniu.babyprotect.ui.NavigationBar;
-import com.taobao.accs.common.Constants;
 import com.zyao89.view.zloading.ZLoadingDialog;
 import com.zyao89.view.zloading.Z_TYPE;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import im.niu.protect.R;
 public class BaseActivity extends AppCompatActivity {
     public Context _context;
     public NavigationBar bar;
     private Dialog mLoadDialog;
     int REQUEST_CAMERA_CODE = 200;
-    int REQUEST_CODE = Constants.COMMAND_PING;
+    int REQUEST_CODE = 201;
     public String imagePath = "";
     private AtomicInteger progressDialogCount = new AtomicInteger(0);
     ZLoadingDialog dialog = new ZLoadingDialog(this, R.style.loading_dialog);
@@ -33,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this._context = this;
-        setRequestedOrientation(1);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().hide();
         getBar();
     }

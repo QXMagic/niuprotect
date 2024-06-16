@@ -22,15 +22,15 @@ public class BaseWebActivity extends BaseActivity {
 
     public void initWebView(WebView wView) {
         this.webView = wView;
-        wView.getSettings().setCacheMode(2);
+        wView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         WebSettings settings = this.webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
-        settings.setAppCacheMaxSize(8388608L);
+//        settings.setAppCacheMaxSize(8388608L);
         String appCachePath = this._context.getApplicationContext().getCacheDir().getAbsolutePath();
-        settings.setAppCachePath(appCachePath);
+//        settings.setAppCachePath(appCachePath);
         settings.setAllowFileAccess(true);
-        settings.setAppCacheEnabled(true);
+//        settings.setAppCacheEnabled(true);
         this.webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {

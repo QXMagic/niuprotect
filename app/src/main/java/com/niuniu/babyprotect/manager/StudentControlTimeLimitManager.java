@@ -66,7 +66,7 @@ public class StudentControlTimeLimitManager {
         if (this.mParentLimiteHoliday == null) {
             String parentLimteMsg = (String) SharedPreUtil.getParam(BabyApplication.getInstance(), SharedPreManager.KEY_PARENT_HOLIDAY, "");
             if (!TextUtils.isEmpty(parentLimteMsg)) {
-                this.mParentLimiteHoliday = (ParentLimiteTimeModel) new Gson().fromJson(parentLimteMsg, (Class<Object>) ParentLimiteTimeModel.class);
+                this.mParentLimiteHoliday = (ParentLimiteTimeModel) new Gson().fromJson(parentLimteMsg, ParentLimiteTimeModel.class);
             }
         }
         return this.mParentLimiteHoliday;
@@ -76,7 +76,7 @@ public class StudentControlTimeLimitManager {
         if (this.mParentLimiteSchool == null) {
             String parentLimteMsg = (String) SharedPreUtil.getParam(BabyApplication.getInstance(), SharedPreManager.KEY_PARENT_SCHOOL, "");
             if (!TextUtils.isEmpty(parentLimteMsg)) {
-                this.mParentLimiteSchool = (ParentLimiteTimeModel) new Gson().fromJson(parentLimteMsg, (Class<Object>) ParentLimiteTimeModel.class);
+                this.mParentLimiteSchool = (ParentLimiteTimeModel) new Gson().fromJson(parentLimteMsg, ParentLimiteTimeModel.class);
             }
         }
         return this.mParentLimiteSchool;
@@ -86,7 +86,7 @@ public class StudentControlTimeLimitManager {
         if (this.mParentLimteTimeByAppModel == null) {
             String parentLimteMsg = (String) SharedPreUtil.getParam(BabyApplication.getInstance(), SharedPreManager.KEY_OTHER_LIMIT_TIME, "");
             if (!TextUtils.isEmpty(parentLimteMsg)) {
-                this.mParentLimteTimeByAppModel = (ParentLimteTimeByAppModel) new Gson().fromJson(parentLimteMsg, (Class<Object>) ParentLimteTimeByAppModel.class);
+                this.mParentLimteTimeByAppModel = (ParentLimteTimeByAppModel) new Gson().fromJson(parentLimteMsg,ParentLimteTimeByAppModel.class);
             }
         }
         return this.mParentLimteTimeByAppModel;
@@ -96,7 +96,7 @@ public class StudentControlTimeLimitManager {
         if (this.mTeacherLimiteTimeModel == null) {
             String parentLimteMsg = (String) SharedPreUtil.getParam(BabyApplication.getInstance(), SharedPreManager.KEY_CONTROL_TEACHER, "");
             if (!TextUtils.isEmpty(parentLimteMsg)) {
-                this.mTeacherLimiteTimeModel = (TeacherLimiteTimeModel) new Gson().fromJson(parentLimteMsg, (Class<Object>) TeacherLimiteTimeModel.class);
+                this.mTeacherLimiteTimeModel = (TeacherLimiteTimeModel) new Gson().fromJson(parentLimteMsg, TeacherLimiteTimeModel.class);
             }
         }
         return this.mTeacherLimiteTimeModel;

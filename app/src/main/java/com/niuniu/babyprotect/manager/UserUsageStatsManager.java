@@ -25,7 +25,7 @@ public class UserUsageStatsManager {
         UsageEvents events;
         long end = System.currentTimeMillis();
         long startTime = Tools.zeroTimeForLong(Long.valueOf(end));
-        UsageStatsManager usageStatsManager = (UsageStatsManager) mContext.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager = (UsageStatsManager) mContext.getSystemService(Context.USAGE_STATS_SERVICE);
         if (usageStatsManager == null || (events = usageStatsManager.queryEvents(startTime, end)) == null) {
             return;
         }

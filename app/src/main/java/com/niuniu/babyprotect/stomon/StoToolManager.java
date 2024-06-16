@@ -3,7 +3,9 @@ package com.niuniu.babyprotect.stomon;
 import android.content.Context;
 import com.niuniu.babyprotect.tools.SystemUtil;
 import java.util.List;
-import org.android.agoo.common.AgooConstants;
+
+import atmp.consts.Constants;
+
 public class StoToolManager {
     private static StoToolManager instance;
     public Context context;
@@ -27,7 +29,7 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().cleanAppBlack();
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
@@ -35,7 +37,7 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().setAppBlack(list);
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
@@ -43,7 +45,7 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().disRestoreFactory(isopen);
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
@@ -51,7 +53,7 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().openGps(isOpen);
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
@@ -59,7 +61,7 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().disSetTime(isOpen);
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
@@ -67,7 +69,7 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().makeAppLive(pagename);
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
@@ -75,13 +77,13 @@ public class StoToolManager {
         if (SystemUtil.checkPhone().equals("xiaomi")) {
             MiManager.getInstance().noAppLive(pagename);
         } else {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 
     public void makeSetView(int index) {
         if (!SystemUtil.checkPhone().equals("xiaomi")) {
-            SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
+            SystemUtil.checkPhone().equals(Constants.MESSAGE_SYSTEM_SOURCE_HUAWEI);
         }
     }
 

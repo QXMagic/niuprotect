@@ -2,11 +2,10 @@ package com.niuniu.babyprotect.accessibility.auto.app;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import com.umeng.message.MsgConstant;
 import java.util.List;
 public class CheckAppRunninng {
     public static boolean isServiceWork(Context mContext, String serviceName) {
-        ActivityManager myAM = (ActivityManager) mContext.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager myAM = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(50);
         if (myList.size() <= 0) {
             return false;

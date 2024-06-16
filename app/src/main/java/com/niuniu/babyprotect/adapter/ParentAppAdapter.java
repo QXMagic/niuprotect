@@ -12,7 +12,7 @@ import im.niu.protect.R;
 import com.niuniu.babyprotect.model.OtherTimeInfo;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.squareup.picasso.Picasso;
-import com.xiaomi.mipush.sdk.Constants;
+//import com.xiaomi.mipush.sdk.Constants;
 import java.util.List;
 public class ParentAppAdapter extends BaseAdapter {
     private Context context;
@@ -69,7 +69,7 @@ public class ParentAppAdapter extends BaseAdapter {
                 appType.setText("不限制");
                 appType.setTextColor(this.context.getResources().getColor(R.color.green));
             } else {
-                appType.setText(otherTimeInfo.getDailyStartTime() + Constants.ACCEPT_TIME_SEPARATOR_SERVER + otherTimeInfo.getDailyEndTime());
+                appType.setText(otherTimeInfo.getDailyStartTime() + "-" + otherTimeInfo.getDailyEndTime());
                 appType.setTextColor(this.context.getResources().getColor(R.color.blue));
             }
         } else if (i == 2) {
@@ -80,7 +80,7 @@ public class ParentAppAdapter extends BaseAdapter {
                 appType.setText("不限制");
                 appType.setTextColor(this.context.getResources().getColor(R.color.green));
             } else {
-                appType.setText(otherTimeInfo.getWeekendStartTime() + Constants.ACCEPT_TIME_SEPARATOR_SERVER + otherTimeInfo.getWeekendEndTime());
+                appType.setText(otherTimeInfo.getWeekendStartTime() + "-" + otherTimeInfo.getWeekendEndTime());
                 appType.setTextColor(this.context.getResources().getColor(R.color.blue));
             }
         } else if (i == 3) {
@@ -91,7 +91,7 @@ public class ParentAppAdapter extends BaseAdapter {
                 appType.setText("不限制");
                 appType.setTextColor(this.context.getResources().getColor(R.color.green));
             } else {
-                appType.setText(otherTimeInfo.getHolidayStartTime() + Constants.ACCEPT_TIME_SEPARATOR_SERVER + otherTimeInfo.getHolidayEndTime());
+                appType.setText(otherTimeInfo.getHolidayStartTime() +"-" + otherTimeInfo.getHolidayEndTime());
                 appType.setTextColor(this.context.getResources().getColor(R.color.blue));
             }
         }

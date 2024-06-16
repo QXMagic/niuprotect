@@ -20,6 +20,8 @@ import com.baidu.trace.model.BaseRequest;
 import com.baidu.trace.model.OnCustomAttributeListener;
 import com.baidu.trace.model.ProcessOption;
 import com.niuniu.babyprotect.BabyApplication;
+
+import atmp.consts.Constants;
 import im.niu.protect.R;
 import com.niuniu.babyprotect.map.maputil.CommonUtil;
 import com.niuniu.babyprotect.map.model.ItemInfo;
@@ -32,7 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.android.agoo.common.AgooConstants;
 public class TrackManager {
     private Context mContext;
     private AtomicInteger mSequenceGenerator = new AtomicInteger();
@@ -129,11 +130,11 @@ public class TrackManager {
         Intent notificationIntent = new Intent(BabyApplication.getInstance(), TracingActivity.class);
         Bitmap icon = BitmapFactory.decodeResource(BabyApplication.getInstance().getResources(), R.mipmap.icon_tracing);
         NotificationManager notificationManager = (NotificationManager) BabyApplication.getInstance().getSystemService(Context.NOTIFICATION_SERVICE);
-        builder.setContentIntent(PendingIntent.getActivity(BabyApplication.getInstance(), 0, notificationIntent, 0)).setLargeIcon(icon).setContentTitle("百度鹰眼").setSmallIcon(R.mipmap.icon_tracing).setContentText("服务正在运行...").setWhen(System.currentTimeMillis());
+        builder.setContentIntent(PendingIntent.getActivity(BabyApplication.getInstance(), 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)).setLargeIcon(icon).setContentTitle("百度鹰眼").setSmallIcon(R.mipmap.icon_tracing).setContentText("服务正在运行...").setWhen(System.currentTimeMillis());
         if (Build.VERSION.SDK_INT >= 26 && notificationManager != null) {
-            NotificationChannel notificationChannel = new NotificationChannel(AgooConstants.MESSAGE_TRACE, "trace_channel", 4);
+            NotificationChannel notificationChannel = new NotificationChannel(Constants.MESSAGE_TRACE, "trace_channel", NotificationManager.IMPORTANCE_HIGH);
             notificationManager.createNotificationChannel(notificationChannel);
-            builder.setChannelId(AgooConstants.MESSAGE_TRACE);
+            builder.setChannelId(Constants.MESSAGE_TRACE);
         }
         Notification build = builder.build();
         this.notification = build;

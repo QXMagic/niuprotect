@@ -16,7 +16,6 @@ import com.niuniu.babyprotect.tools.SharedPreUtil;
 import com.niuniu.babyprotect.tools.apk.ApkTools;
 import com.niuniu.babyprotect.tools.file.FileHelper;
 import com.niuniu.babyprotect.tools.image.ImageSave;
-import com.umeng.analytics.pro.ak;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,7 +104,7 @@ public class ApkInfoRepository extends BaseRepository {
     public void uploadImage(final String fileStr) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("file", fileStr);
-        parameters.put(ak.e, "123123");
+        parameters.put("name", "123123");
         NetTools.getInstance().postImageAsynHttp(BabyApplication.getInstance(), false, StudentBaseUrl.fileInfos_uploadZip, parameters, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {

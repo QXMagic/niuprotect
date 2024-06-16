@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.network.NetTools;
 import com.niuniu.babyprotect.network.ResultCallBackListener;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
@@ -16,10 +16,14 @@ import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.InputCheckUtil;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
-import com.taobao.accs.common.Constants;
+
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONObject;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class ForgetActivity extends BaseActivity {
     TextView codebtn;
     EditText codetxt;

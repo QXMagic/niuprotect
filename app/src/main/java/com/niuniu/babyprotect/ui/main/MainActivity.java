@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
@@ -31,13 +32,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.work.WorkRequest;
-import cn.bertsir.zbar.Qr.ScanResult;
-import cn.bertsir.zbar.QrManager;
+
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hjq.permissions.Permission;
 import com.niuniu.babyprotect.BabyApplication;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.accessibility.OpenAccessibilitySettingHelper;
 import com.niuniu.babyprotect.accessibility.StatusUseAccessibilityService;
 import com.niuniu.babyprotect.broadcastReceiver.BroadcastManager;
@@ -71,17 +70,23 @@ import com.niuniu.babyprotect.viewmodel.MainViewModel;
 import com.niuniu.babyprotect.viewmodel.MainViewModelFactory;
 import com.niuniu.babyprotect.widget.UpdateDialog;
 import com.niuniu.babyprotect.work.MineWorkerManager;
-import com.taobao.accs.common.Constants;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import atmp.consts.Constants;
+import cn.bertsir.zbar.Qr.ScanResult;
+import cn.bertsir.zbar.QrManager;
+import im.niu.protect.R;
 public class MainActivity extends BaseActivity {
     public static final String TAG_USERINFO = "tag_intent_userinfo";
     public static boolean mainRunning = false;

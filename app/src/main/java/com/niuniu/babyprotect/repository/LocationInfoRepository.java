@@ -9,10 +9,12 @@ import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.Tools;
 import java.util.List;
-import org.android.agoo.common.AgooConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import atmp.consts.Constants;
+
 public class LocationInfoRepository extends BaseRepository {
     public static LocationInfoRepository instance;
 
@@ -57,7 +59,7 @@ public class LocationInfoRepository extends BaseRepository {
         } catch (JSONException e2) {
             e2.printStackTrace();
         }
-        Log.i(AgooConstants.MESSAGE_LOCAL, alist.toString());
+        Log.i(Constants.MESSAGE_LOCAL, alist.toString());
         NetTools.getInstance().postAsynJSONHttp(BabyApplication.getInstance(), StudentBaseUrl.traceGatherRecords_saveGatherRecords, object2, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {

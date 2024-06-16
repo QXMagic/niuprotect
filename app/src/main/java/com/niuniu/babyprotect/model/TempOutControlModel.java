@@ -1,7 +1,6 @@
 package com.niuniu.babyprotect.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.umeng.analytics.AnalyticsConfig;
 public class TempOutControlModel extends BaseModel {
     @SerializedName("data")
     private DataDTO data;
@@ -29,7 +28,7 @@ public class TempOutControlModel extends BaseModel {
         private String lastModifiedBy;
         @SerializedName("lastModifiedDate")
         private String lastModifiedDate;
-        @SerializedName(AnalyticsConfig.RTD_START_TIME)
+        @SerializedName("startTime")
         private String startTime;
         @SerializedName("studentId")
         private String studentId;

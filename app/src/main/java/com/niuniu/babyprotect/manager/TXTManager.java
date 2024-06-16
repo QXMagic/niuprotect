@@ -1,7 +1,6 @@
 package com.niuniu.babyprotect.manager;
 
 import android.os.Environment;
-import com.baidubce.BceConfig;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +17,7 @@ public class TXTManager {
 
     public static boolean writeToTxt(String fileName, String content) {
         createDirectory(rootXMLPath);
-        File file = new File(rootXMLPath + BceConfig.BOS_DELIMITER + fileName + ".txt");
+        File file = new File(rootXMLPath + "/" + fileName + ".txt");
         try {
             file.createNewFile();
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -34,7 +33,7 @@ public class TXTManager {
 
     public static boolean addToTxt(String fileName, String content) {
         createDirectory(rootXMLPath);
-        File file = new File(rootXMLPath + BceConfig.BOS_DELIMITER + fileName + ".txt");
+        File file = new File(rootXMLPath + "/"+ fileName + ".txt");
         BufferedWriter out = null;
         try {
             try {

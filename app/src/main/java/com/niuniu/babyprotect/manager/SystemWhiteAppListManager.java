@@ -15,8 +15,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.android.agoo.message.MessageService;
 import org.json.JSONObject;
+
+import atmp.consts.Constants;
+
 public class SystemWhiteAppListManager {
     private static final String TAG = "SystemWhiteAppListManager";
     private static SystemWhiteAppListManager instance;
@@ -110,7 +112,7 @@ public class SystemWhiteAppListManager {
 
     public void requestSystemWhitelist(final Context context) {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("isBlacklist", MessageService.MSG_DB_READY_REPORT);
+        parameters.put("isBlacklist", Constants.MSG_DB_READY_REPORT);
         NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.appBlacklists_systemWhiteList, parameters, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {
@@ -128,7 +130,7 @@ public class SystemWhiteAppListManager {
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_SYSTEM_WHITE_APP, "");
         ILog.d("SystemWhiteAppModel", userMsg);
-        if (!TextUtils.isEmpty(userMsg) && (mSystemWhiteAppModel = (SystemWhiteAppModel) new Gson().fromJson(userMsg, (Class<Object>) SystemWhiteAppModel.class)) != null) {
+        if (!TextUtils.isEmpty(userMsg) && (mSystemWhiteAppModel = (SystemWhiteAppModel) new Gson().fromJson(userMsg, SystemWhiteAppModel.class)) != null) {
             return mSystemWhiteAppModel.getData();
         }
         return null;

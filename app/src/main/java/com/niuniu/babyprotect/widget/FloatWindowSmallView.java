@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import androidx.lifecycle.CoroutineLiveDataKt;
+
+import atmp.consts.Constants;
 import im.niu.protect.R;
 import com.niuniu.babyprotect.adapter.DeskTopGridViewBaseAdapter;
 import com.niuniu.babyprotect.model.AppInfo;
@@ -62,7 +64,7 @@ public class FloatWindowSmallView extends LinearLayout {
                 while (true) {
                     checkBlackApp();
                     try {
-                        Thread.sleep(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+                        Thread.sleep(Constants.DEFAULT_TIMEOUT);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

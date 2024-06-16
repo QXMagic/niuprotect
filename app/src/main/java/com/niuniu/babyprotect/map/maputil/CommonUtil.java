@@ -8,7 +8,6 @@ import com.baidu.mapapi.model.LatLng;
 import com.niuniu.babyprotect.BabyApplication;
 import com.niuniu.babyprotect.map.MapConstants;
 import com.niuniu.babyprotect.map.model.CurrentLocation;
-import com.umeng.message.MsgConstant;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -22,7 +21,7 @@ public class CommonUtil {
 
     public static String getCurProcessName(Context context) {
         int pid = Process.myPid();
-        ActivityManager activityManager = (ActivityManager) context.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningAppProcessInfo appProcess : activityManager.getRunningAppProcesses()) {
             if (appProcess.pid == pid) {
                 return appProcess.processName;

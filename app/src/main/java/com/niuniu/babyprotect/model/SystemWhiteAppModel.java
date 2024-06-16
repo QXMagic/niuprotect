@@ -1,8 +1,6 @@
 package com.niuniu.babyprotect.model;
 
-import anet.channel.strategy.dispatch.DispatchConstants;
 import com.google.gson.annotations.SerializedName;
-import com.taobao.accs.common.Constants;
 import java.util.List;
 public class SystemWhiteAppModel extends BaseModel {
     @SerializedName("data")
@@ -19,7 +17,7 @@ public class SystemWhiteAppModel extends BaseModel {
     public static class DataDTO {
         @SerializedName("appImage")
         private String appImage;
-        @SerializedName(DispatchConstants.APP_NAME)
+        @SerializedName("appName")
         private String appName;
         @SerializedName("createdBy")
         private String createdBy;
@@ -35,7 +33,7 @@ public class SystemWhiteAppModel extends BaseModel {
         private String lastModifiedBy;
         @SerializedName("lastModifiedDate")
         private String lastModifiedDate;
-        @SerializedName(Constants.KEY_PACKAGE_NAME)
+        @SerializedName("packageName")
         private String packageName;
         @SerializedName("parentId")
         private String parentId;

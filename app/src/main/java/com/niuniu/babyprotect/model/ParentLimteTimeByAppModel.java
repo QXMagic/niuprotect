@@ -2,8 +2,10 @@ package com.niuniu.babyprotect.model;
 
 import com.baidu.platform.comapi.map.MapBundleKey;
 import com.google.gson.annotations.SerializedName;
-import com.taobao.accs.common.Constants;
 import java.util.List;
+
+import atmp.consts.Constants;
+
 public class ParentLimteTimeByAppModel extends BaseModel {
     @SerializedName("data")
     private List<DataDTO> data;

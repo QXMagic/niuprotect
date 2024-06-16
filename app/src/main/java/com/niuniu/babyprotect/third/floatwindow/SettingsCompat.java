@@ -9,10 +9,14 @@ import android.os.Binder;
 import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
+
 import com.baidu.platform.comapi.map.MapBundleKey;
-import com.taobao.accs.common.Constants;
+
 import java.lang.reflect.Method;
 import java.util.List;
+
+import atmp.consts.Constants;
+
 public class SettingsCompat {
     private static final String HUAWEI_PACKAGE = "com.huawei.systemmanager";
     private static final int OP_SYSTEM_ALERT_WINDOW = 24;
@@ -87,7 +91,7 @@ public class SettingsCompat {
     }
 
     private static boolean checkOp(Context context, int op) {
-        AppOpsManager manager = (AppOpsManager) context.getSystemService("appops");
+        AppOpsManager manager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
         try {
             Method method = AppOpsManager.class.getDeclaredMethod("checkOp", Integer.TYPE, Integer.TYPE, String.class);
             return ((Integer) method.invoke(manager, Integer.valueOf(op), Integer.valueOf(Binder.getCallingUid()), context.getPackageName())).intValue() == 0;
@@ -100,7 +104,7 @@ public class SettingsCompat {
         if (Build.VERSION.SDK_INT < 18 || Build.VERSION.SDK_INT >= 21) {
             return false;
         }
-        AppOpsManager manager = (AppOpsManager) context.getSystemService("appops");
+        AppOpsManager manager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
         try {
             Method method = AppOpsManager.class.getDeclaredMethod("setMode", Integer.TYPE, Integer.TYPE, String.class, Integer.TYPE);
             Object[] objArr = new Object[4];

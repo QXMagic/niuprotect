@@ -1,20 +1,25 @@
 package com.niuniu.babyprotect.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Toast;
-import cn.bingoogolapple.qrcode.core.QRCodeView;
-import cn.bingoogolapple.qrcode.core.ScanBoxView;
-import cn.bingoogolapple.qrcode.zxing.ZXingView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.network.NetTools;
 import com.niuniu.babyprotect.network.ResultCallBackListener;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
+
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONObject;
+
+import cn.bingoogolapple.qrcode.core.QRCodeView;
+import cn.bingoogolapple.qrcode.core.ScanBoxView;
+import cn.bingoogolapple.qrcode.zxing.ZXingView;
+import im.niu.protect.R;
 public class QrScanActivity extends BaseActivity {
     QRCodeView qrCodeView;
 
@@ -35,7 +40,6 @@ public class QrScanActivity extends BaseActivity {
                 qrCodeView.stopSpot();
             }
 
-            @Override
             public void onCameraAmbientBrightnessChanged(boolean isDark) {
                 String tipText = qrCodeView.getScanBoxView().getTipText();
                 if (isDark) {

@@ -75,7 +75,7 @@ public class UserInfoManager {
             this.mmkv.removeValueForKey(SharedPreManager.KEY_USER_INFO);
             return;
         }
-        userInfo = (UserInfo) new Gson().fromJson(msg, (Class<Object>) UserInfo.class);
+        userInfo = (UserInfo) new Gson().fromJson(msg, UserInfo.class);
         boolean saveSuccess = this.mmkv.encode(SharedPreManager.KEY_USER_INFO, msg);
         ILog.d("---", saveSuccess + "-userInfo mode--" + userInfo.getParentPattern());
     }
@@ -85,7 +85,7 @@ public class UserInfoManager {
         if (!TextUtils.isEmpty(userMsg)) {
             ILog.d("userMsg", userMsg + "--");
             Gson gson = new Gson();
-            UserInfo userModel = (UserInfo) gson.fromJson(userMsg, (Class<Object>) UserInfo.class);
+            UserInfo userModel = (UserInfo) gson.fromJson(userMsg, UserInfo.class);
             return userModel;
         }
         return null;

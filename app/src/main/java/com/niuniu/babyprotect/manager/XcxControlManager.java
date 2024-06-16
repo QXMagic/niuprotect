@@ -10,7 +10,7 @@ import com.niuniu.babyprotect.network.ResultCallBackListener;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.SharedPreUtil;
-import com.xiaomi.mipush.sdk.Constants;
+//import com.xiaomi.mipush.sdk.Constants;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -70,7 +70,7 @@ public class XcxControlManager {
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_XCX_CONTROL, "");
         ILog.d(TAG, userMsg);
-        if (!TextUtils.isEmpty(userMsg) && (mXcxControlModel = (XcxControlModel) new Gson().fromJson(userMsg, (Class<Object>) XcxControlModel.class)) != null) {
+        if (!TextUtils.isEmpty(userMsg) && (mXcxControlModel = (XcxControlModel) new Gson().fromJson(userMsg, XcxControlModel.class)) != null) {
             return mXcxControlModel;
         }
         return null;
@@ -110,10 +110,10 @@ public class XcxControlManager {
 
     private boolean checkControlTime(int currentHour, int currentMinute, String startTime, String endTime) {
         if (!TextUtils.isEmpty(startTime) && !TextUtils.isEmpty(endTime)) {
-            String[] startHours = startTime.split(Constants.COLON_SEPARATOR);
+            String[] startHours = startTime.split(":");
             int startHour = Integer.valueOf(startHours[0]).intValue();
             int startMinute = Integer.valueOf(startHours[1]).intValue();
-            String[] endHours = endTime.split(Constants.COLON_SEPARATOR);
+            String[] endHours = endTime.split(":");
             int endHour = Integer.valueOf(endHours[0]).intValue();
             int endMinute = Integer.valueOf(endHours[1]).intValue();
             int currentTotalTime = (currentHour * 60) + currentMinute;

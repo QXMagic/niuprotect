@@ -38,13 +38,17 @@ import com.niuniu.babyprotect.third.umeng.UMengManager;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.ui.map.TracingActivity;
 import com.tencent.mmkv.MMKV;
+//import com.tencent.mmkv.MMKV;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.android.agoo.common.AgooConstants;
+//import org.android.agoo.common.AgooConstants;
+
+import im.niu.protect.R;
+
 public class BabyApplication extends Application {
     private static BabyApplication instance;
     public static int width;
@@ -194,11 +198,11 @@ public class BabyApplication extends Application {
         Intent notificationIntent = new Intent(this, TracingActivity.class);
         Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder.setContentIntent(PendingIntent.getActivity(this, 0, notificationIntent, 0)).setLargeIcon(icon).setContentTitle("3985学生端").setSmallIcon(R.mipmap.ic_launcher).setContentText("服务正在运行...").setWhen(System.currentTimeMillis());
+        builder.setContentIntent(PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)).setLargeIcon(icon).setContentTitle("3985学生端").setSmallIcon(R.mipmap.ic_launcher).setContentText("服务正在运行...").setWhen(System.currentTimeMillis());
         if (Build.VERSION.SDK_INT >= 26 && notificationManager != null) {
-            NotificationChannel notificationChannel = new NotificationChannel(AgooConstants.MESSAGE_TRACE, "trace_channel", 4);
+            NotificationChannel notificationChannel = new NotificationChannel("trace", "trace_channel", NotificationManager.IMPORTANCE_HIGH);
             notificationManager.createNotificationChannel(notificationChannel);
-            builder.setChannelId(AgooConstants.MESSAGE_TRACE);
+            builder.setChannelId("trace");
         }
         Notification build = builder.build();
         this.notification = build;

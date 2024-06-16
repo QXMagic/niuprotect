@@ -12,9 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import androidx.core.app.NotificationCompat;
-import anet.channel.strategy.dispatch.DispatchConstants;
+
 import com.niuniu.babyprotect.BuildConfig;
 import com.niuniu.babyprotect.accessibility.auto.app.AppActivityTool;
 import com.niuniu.babyprotect.accessibility.auto.service.BaseAccessibility;
@@ -39,12 +37,16 @@ import com.niuniu.babyprotect.tools.SystemUtil;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.login.SplashActivity;
 import com.niuniu.babyprotect.ui.main.DesktopActivity;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import atmp.consts.Constants;
 public class StatusUseAccessibilityService extends BaseAccessibility {
     public static StatusUseAccessibilityService mService;
     public static int step = 0;
@@ -155,7 +157,7 @@ public class StatusUseAccessibilityService extends BaseAccessibility {
                     goBack();
                 }
             }
-            if (packagetName.equals(DispatchConstants.ANDROID) || packagetName.contains("input") || packagetName.contains("input_huawei") || packagetName.contains("UniHomeLauncher") || packagetName.contains("password") || packagetName.contains("keyboard") || packagetName.contains("sogouoem") || packagetName.equals(BuildConfig.APPLICATION_ID) || packagetName.equals("com.android.launcher") || packagetName.equals("com.android.mms") || packagetName.equals("com.android.systemUi")) {
+            if (packagetName.equals(Constants.ANDROID) || packagetName.contains("input") || packagetName.contains("input_huawei") || packagetName.contains("UniHomeLauncher") || packagetName.contains("password") || packagetName.contains("keyboard") || packagetName.contains("sogouoem") || packagetName.equals(BuildConfig.APPLICATION_ID) || packagetName.equals("com.android.launcher") || packagetName.equals("com.android.mms") || packagetName.equals("com.android.systemUi")) {
                 return;
             }
             if (event.getText() != null && packagetName.equals("com.hihonor.systemmanager") && event.getText().toString().contains("应用锁")) {

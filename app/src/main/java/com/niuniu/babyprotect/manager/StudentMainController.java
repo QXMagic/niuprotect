@@ -3,7 +3,6 @@ package com.niuniu.babyprotect.manager;
 import android.content.Context;
 import android.text.TextUtils;
 import com.niuniu.babyprotect.BabyApplication;
-import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.model.ParentLimiteTimeModel;
 import com.niuniu.babyprotect.model.ParentLimteTimeByAppModel;
 import com.niuniu.babyprotect.model.PatternTimeScopesDTO;
@@ -11,9 +10,11 @@ import com.niuniu.babyprotect.model.TeacherLimiteTimeModel;
 import com.niuniu.babyprotect.model.UserInfo;
 import com.niuniu.babyprotect.repository.StudentControllerRepository;
 import com.niuniu.babyprotect.tools.ILog;
-import com.xiaomi.mipush.sdk.Constants;
 import java.util.Calendar;
 import java.util.List;
+
+import atmp.consts.Constants;
+
 public class StudentMainController {
     private static StudentMainController instance;
     List<ParentLimteTimeByAppModel.DataDTO> parentLimitTimesByApps;

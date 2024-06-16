@@ -1,11 +1,14 @@
 package com.niuniu.babyprotect.tools.data;
 
 import android.util.Log;
-import com.xiaomi.mipush.sdk.Constants;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import atmp.consts.Constants;
+
 public class DateTransUtils {
     public static final long DAY_IN_MILLIS = 86400000;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("M-d-yyyy");

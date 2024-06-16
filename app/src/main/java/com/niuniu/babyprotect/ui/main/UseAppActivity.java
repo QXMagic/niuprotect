@@ -15,14 +15,16 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.adapter.UseAppAdapter;
 import com.niuniu.babyprotect.model.AppInfo;
 import com.niuniu.babyprotect.model.UsePackageInfo;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
-import com.umeng.message.MsgConstant;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import im.niu.protect.R;
 public class UseAppActivity extends BaseActivity {
     private static final int MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS = 1101;
     List<AppInfo> alist;
@@ -55,23 +57,23 @@ public class UseAppActivity extends BaseActivity {
     }
 
     private synchronized void getHigherPackageName() {
-        
+        //TODO decode
 //本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
 
 return;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
 
 //throw new UnsupportedOperationException(
-Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.getHigherPackageName():void");
+//Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.getHigherPackageName():void");
     }
 
     public boolean checkApp(java.lang.String r4) {
-        
+        //TODO decode
 //本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
 
 return true;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
 
 //throw new UnsupportedOperationException(
-Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.checkApp(java.lang.String):boolean");
+//Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.checkApp(java.lang.String):boolean");
     }
 
     public static List<AppInfo> getAppList(Context context) {
@@ -97,7 +99,7 @@ Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.checkApp(ja
     }
 
     private String getLowerVersionPackageName() {
-        ActivityManager activityManager = (ActivityManager) getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ComponentName topActivity = activityManager.getRunningTasks(1).get(0).topActivity;
         String topPackageName = topActivity.getPackageName();
         return topPackageName;

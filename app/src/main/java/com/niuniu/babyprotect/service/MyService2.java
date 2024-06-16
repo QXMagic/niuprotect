@@ -34,14 +34,14 @@ import com.niuniu.babyprotect.tools.EventUtils;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.tools.image.ImageSave;
-import com.umeng.analytics.pro.ak;
-import com.umeng.message.MsgConstant;
-import com.xiaomi.mipush.sdk.Constants;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import atmp.consts.Constants;
+
 public class MyService2 extends Service {
     Context context;
     String userAppName = "";
@@ -86,7 +86,7 @@ public class MyService2 extends Service {
                 while (true) {
                     handler.sendEmptyMessage(1);
                     try {
-                        Thread.sleep(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+                        Thread.sleep(Constants.DEFAULT_TIMEOUT);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -150,7 +150,7 @@ public class MyService2 extends Service {
         String fileStr = ImageSave.makeZip();
         Map<String, String> parameters = new HashMap<>();
         parameters.put("file", fileStr);
-        parameters.put(ak.e, "123123");
+        parameters.put("name", "123123");
         NetTools.getInstance().postImageAsynHttp(this, false, StudentBaseUrl.fileInfos_uploadZip, parameters, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {
@@ -387,15 +387,15 @@ public class MyService2 extends Service {
     }
 
     private boolean isScreenLocked() {
-        KeyguardManager keyguardManager = (KeyguardManager) getSystemService("keyguard");
+        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
         return keyguardManager.inKeyguardRestrictedInputMode();
     }
 
     public String getForegroundApp(Context context) {
-        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService("usagestats");
+        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
         long ts = System.currentTimeMillis();
         usageStatsManager.queryUsageStats(4, 0L, ts);
-        UsageEvents usageEvents = usageStatsManager.queryEvents(1 != 0 ? 0L : ts - CoroutineLiveDataKt.DEFAULT_TIMEOUT, ts);
+        UsageEvents usageEvents = usageStatsManager.queryEvents(1 != 0 ? 0L : ts - Constants.DEFAULT_TIMEOUT, ts);
         if (usageEvents == null) {
             return null;
         }
@@ -415,7 +415,7 @@ public class MyService2 extends Service {
     public String apprun() {
         UsageEvents events;
         String packageName = "";
-        ActivityManager activityManager = (ActivityManager) this.context.getSystemService(MsgConstant.KEY_ACTIVITY);
+        ActivityManager activityManager = (ActivityManager) this.context.getSystemService(Context.ACTIVITY_SERVICE);
         if (Build.VERSION.SDK_INT > 21) {
             long end = System.currentTimeMillis();
             UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService("usagestats");

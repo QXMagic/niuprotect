@@ -3,6 +3,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
     }
 }
 dependencyResolutionManagement {
@@ -12,10 +13,10 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url "https://mvnrepository.com/artifact/" }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         //https://mvnrepository.com/artifact/com.google.gson/gson
     }
 }
-
 
 rootProject.name = "niuprotect"
 include ':app'

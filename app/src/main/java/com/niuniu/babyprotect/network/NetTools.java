@@ -5,20 +5,18 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import com.baidubce.AbstractBceClient;
-import com.huawei.hms.framework.common.ContainerUtils;
-import com.niuniu.babyprotect.BuildConfig;
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.ToastUtil;
 import com.niuniu.babyprotect.tools.Tools;
-import com.xiaomi.mipush.sdk.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import atmp.consts.Constants;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -28,11 +26,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
+//import okhttp3.logging.HttpLoggingInterceptor;
 import org.json.JSONException;
 import org.json.JSONObject;
 public class NetTools {
-    public static final MediaType FORM_CONTENT_TYPE = MediaType.parse(AbstractBceClient.DEFAULT_CONTENT_TYPE);
+//    public static final MediaType FORM_CONTENT_TYPE = MediaType.parse(AbstractBceClient.DEFAULT_CONTENT_TYPE);
     private static final String TAG = "netTools";
     static NetTools netTools;
     ResultCallBackListener netListener;
@@ -108,8 +106,8 @@ public class NetTools {
     public void postAsynHttp(Context context, boolean showLoad, String key, Map<String, String> parameters, ResultCallBackListener nListener, String authorization) {
         this.urlKey = key;
         this.softContext = new WeakReference<>(context);
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+//        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+//        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         OkHttpClient mOkHttpClient = new OkHttpClient.Builder().connectTimeout(10L, TimeUnit.SECONDS).writeTimeout(10L, TimeUnit.SECONDS).readTimeout(30L, TimeUnit.SECONDS).build();
         this.netListener = nListener;
         if (!NetCheckUtil.isNetworkAvailable(this.softContext.get())) {
@@ -131,7 +129,7 @@ public class NetTools {
         ILog.d(TAG, "token ==" + token);
         JSONObject object = new JSONObject(parameters);
         ILog.d(TAG, "content ==" + object.toString());
-        RequestBody requestBody = FormBody.create(MediaType.parse(AbstractBceClient.DEFAULT_CONTENT_TYPE), object.toString());
+        RequestBody requestBody = FormBody.create(MediaType.parse(Constants.DEFAULT_CONTENT_TYPE), object.toString());
         if (authorization != null && !authorization.equals("")) {
             Request.Builder builder = new Request.Builder();
             Request.Builder url = builder.url(StudentBaseUrl.baseurl + key);
@@ -180,7 +178,7 @@ public class NetTools {
             return;
         }
         String params = object.toString();
-        MediaType JSON = MediaType.parse(AbstractBceClient.DEFAULT_CONTENT_TYPE);
+        MediaType JSON = MediaType.parse(Constants.DEFAULT_CONTENT_TYPE);
         RequestBody body = RequestBody.create(JSON, params);
         Request.Builder builder = new Request.Builder();
         Request.Builder url = builder.url(StudentBaseUrl.baseurl + key);
@@ -222,8 +220,8 @@ public class NetTools {
         String token2;
         this.urlKey = key;
         this.softContext = new WeakReference<>(context);
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+//        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+//        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         OkHttpClient mOkHttpClient = new OkHttpClient.Builder().build();
         this.netListener = nListener;
         if (!NetCheckUtil.isNetworkAvailable(this.softContext.get())) {

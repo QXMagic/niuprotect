@@ -14,13 +14,12 @@ import com.niuniu.babyprotect.network.ResultCallBackListener;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.Tools;
-import com.xiaomi.mipush.sdk.Constants;
+//import com.xiaomi.mipush.sdk.Constants;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import org.android.agoo.common.AgooConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -125,14 +124,14 @@ public class LocationManager {
 
     public void stopLocation() {
         this.tmplatLngList.clear();
-        this.mLocationClient.stopIndoorMode();
+//        this.mLocationClient.stopIndoorMode();
         this.mLocationClient.stop();
         this.mLocationClient = null;
     }
 
     public void floorLocation(BDLocation location) {
         if (location.getFloor() != null) {
-            this.mLocationClient.startIndoorMode();
+//            this.mLocationClient.startIndoorMode();
         }
     }
 
@@ -147,7 +146,7 @@ public class LocationManager {
     public LatLngInfo checkLocal() {
         TXTManager.writeTxtAdd("gps", "\r\n");
         for (LatLngInfo latLngInfo : this.latLngList) {
-            String mms = this.locationTimes + "------" + Tools.timeFormat(new Date(latLngInfo.getLocaltime().longValue()), "yyyy-MM-dd HH:mm:ss") + "-----------" + Tools.timeFormat(new Date(), "yyyy-MM-dd HH:mm:ss") + "-----" + latLngInfo.getLatLng().latitude + Constants.ACCEPT_TIME_SEPARATOR_SP + latLngInfo.getLatLng().longitude;
+            String mms = this.locationTimes + "------" + Tools.timeFormat(new Date(latLngInfo.getLocaltime().longValue()), "yyyy-MM-dd HH:mm:ss") + "-----------" + Tools.timeFormat(new Date(), "yyyy-MM-dd HH:mm:ss") + "-----" + latLngInfo.getLatLng().latitude +"-" + latLngInfo.getLatLng().longitude;
             TXTManager.writeTxtAdd("gps", mms);
         }
         LatLngInfo aInfo = null;
@@ -243,7 +242,7 @@ public class LocationManager {
         } catch (JSONException e2) {
             e2.printStackTrace();
         }
-        Log.i(AgooConstants.MESSAGE_LOCAL, alist.toString());
+        Log.i("location", alist.toString());
         NetTools.getInstance().postAsynJSONHttp(this.context, StudentBaseUrl.traceGatherRecords_saveGatherRecords, object2, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {

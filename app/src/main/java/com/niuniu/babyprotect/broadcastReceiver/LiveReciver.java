@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import androidx.lifecycle.CoroutineLiveDataKt;
+//import androidx.lifecycle.CoroutineLiveDataKt;
 import com.niuniu.babyprotect.accessibility.auto.app.OpenSettingApp;
 import com.niuniu.babyprotect.manager.WebSocketManager;
 import com.niuniu.babyprotect.tools.ILog;

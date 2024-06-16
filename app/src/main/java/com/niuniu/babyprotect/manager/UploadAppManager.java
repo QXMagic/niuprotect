@@ -26,17 +26,17 @@ import com.niuniu.babyprotect.tools.SystemUtil;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.tools.apk.ApkTools;
 import com.niuniu.babyprotect.tools.secret.Base64Utils;
-import com.taobao.accs.common.Constants;
-import com.umeng.message.MsgConstant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.android.agoo.common.AgooConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import atmp.consts.Constants;
+
 public class UploadAppManager {
     private static UploadAppManager instance = null;
     private Context context;
@@ -169,7 +169,7 @@ public class UploadAppManager {
     public Drawable getFullResIcon(Resources resources, int iconId) {
         Drawable d;
         try {
-            ActivityManager activityManager = (ActivityManager) this.context.getSystemService(MsgConstant.KEY_ACTIVITY);
+            ActivityManager activityManager = (ActivityManager) this.context.getSystemService(Context.ACTIVITY_SERVICE);
             int iconDpi = activityManager.getLauncherLargeIconDensity();
             d = resources.getDrawableForDensity(iconId, iconDpi);
         } catch (Resources.NotFoundException e) {
@@ -247,7 +247,7 @@ public class UploadAppManager {
                 obj.put("type", packageInfo.getType());
                 if (SystemUtil.checkPhone().equals("xiaomi")) {
                     obj.put("brand", 1);
-                } else if (SystemUtil.checkPhone().equals(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI)) {
+                } else if (SystemUtil.checkPhone().equals("huawei")) {
                     obj.put("brand", 2);
                 } else if (RomUtil.isOppo()) {
                     obj.put("brand", 3);

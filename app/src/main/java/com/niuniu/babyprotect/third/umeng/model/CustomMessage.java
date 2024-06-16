@@ -1,10 +1,8 @@
 package com.niuniu.babyprotect.third.umeng.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.umeng.message.entity.UMessage;
-import org.android.agoo.common.AgooConstants;
 public class CustomMessage {
-    @SerializedName(AgooConstants.MESSAGE_BODY)
+    @SerializedName("body")
     private BodyDTO body;
     @SerializedName("display_type")
     private String displayType;
@@ -36,7 +34,7 @@ public class CustomMessage {
     }
 
     public static class BodyDTO {
-        @SerializedName(UMessage.DISPLAY_TYPE_CUSTOM)
+        @SerializedName("custom")
         private String custom;
 
         public String getCustom() {

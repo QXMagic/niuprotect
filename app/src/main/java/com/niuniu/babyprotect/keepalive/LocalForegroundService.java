@@ -18,7 +18,6 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import androidx.core.app.NotificationCompat;
-import androidx.work.WorkRequest;
 import com.google.gson.Gson;
 import com.niuniu.babyprotect.BabyApplication;
 import im.niu.protect.R;
@@ -90,7 +89,7 @@ public class LocalForegroundService extends Service {
                 return;
             }
         }
-        NotificationChannel channel = new NotificationChannel("service", "service", 0);
+        NotificationChannel channel = new NotificationChannel("service", "service", NotificationManager.IMPORTANCE_NONE);
         channel.setLightColor(-16776961);
         channel.setLockscreenVisibility(0);
         NotificationManager service = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -209,7 +208,7 @@ public class LocalForegroundService extends Service {
                             reconnectWebsocket();
                         }
                     }
-                }, WorkRequest.MIN_BACKOFF_MILLIS);
+                }, 10000l);
             }
         }
 
@@ -221,7 +220,7 @@ public class LocalForegroundService extends Service {
 
     public void dealMsg(String content) {
         if (!TextUtils.isEmpty(content) && !content.equals("conn_success")) {
-            WebsocketMessage mUmengCustomMsg = (WebsocketMessage) new Gson().fromJson(content, (Class<Object>) WebsocketMessage.class);
+            WebsocketMessage mUmengCustomMsg = (WebsocketMessage) new Gson().fromJson(content,WebsocketMessage.class);
             int type = mUmengCustomMsg.getOperateType();
             ILog.d(TAG, "onMessage--orderorder ==" + type);
             if (type == 12) {

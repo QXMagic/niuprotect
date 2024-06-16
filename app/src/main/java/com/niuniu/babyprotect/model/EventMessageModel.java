@@ -1,7 +1,9 @@
 package com.niuniu.babyprotect.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.taobao.accs.common.Constants;
+
+import atmp.consts.Constants;
+
 public class EventMessageModel {
     @SerializedName("eventName")
     private String eventName;

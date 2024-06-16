@@ -41,7 +41,7 @@ public class PermCollectActivity extends BaseActivity {
     int mPosition = -1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityPermCollectBinding inflate = ActivityPermCollectBinding.inflate(getLayoutInflater());
         this.binding = inflate;

@@ -1,5 +1,6 @@
 package com.niuniu.babyprotect.ui.main;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
@@ -18,10 +19,11 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.CoroutineLiveDataKt;
 import androidx.viewpager.widget.ViewPager;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.adapter.DeskTopGridViewBaseAdapter;
 import com.niuniu.babyprotect.adapter.GridViewAdapter;
 import com.niuniu.babyprotect.adapter.ViewPagerAdapter;
@@ -30,10 +32,14 @@ import com.niuniu.babyprotect.model.AppInfo;
 import com.niuniu.babyprotect.service.FloatingService;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
-import com.umeng.message.MsgConstant;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONArray;
+
+import im.niu.protect.R;
+
 public class DesktopActivity extends BaseActivity {
     public static int item_grid_num = 24;
     public static int number_columns = 4;
@@ -51,6 +57,10 @@ public class DesktopActivity extends BaseActivity {
         setContentView(R.layout.activity_desktop);
         LinearLayout bgview = (LinearLayout) findViewById(R.id.bgview);
         WallpaperManager manager = WallpaperManager.getInstance(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            //TODO add permission
+            return;
+        }
         Drawable drawable = manager.getDrawable();
         bgview.setBackground(drawable);
         initViews();
@@ -80,7 +90,7 @@ public class DesktopActivity extends BaseActivity {
                 while (true) {
                     checkBlackApp();
                     try {
-                        Thread.sleep(CoroutineLiveDataKt.DEFAULT_TIMEOUT);
+                        Thread.sleep(5000L);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -182,7 +192,7 @@ public class DesktopActivity extends BaseActivity {
     public Drawable getFullResIcon(Resources resources, int iconId) {
         Drawable d;
         try {
-            ActivityManager activityManager = (ActivityManager) getSystemService(MsgConstant.KEY_ACTIVITY);
+            ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
             int iconDpi = activityManager.getLauncherLargeIconDensity();
             d = resources.getDrawableForDensity(iconId, iconDpi);
         } catch (Resources.NotFoundException e) {

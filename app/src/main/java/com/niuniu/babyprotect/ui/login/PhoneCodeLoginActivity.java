@@ -9,9 +9,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
 import com.lljjcoder.style.citylist.Toast.ToastUtils;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.accessibility.auto.device.SystemDeviceInfo;
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.model.BaseModel;
@@ -27,13 +27,15 @@ import com.niuniu.babyprotect.tools.ToastUtil;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.webview.OneWebActivity;
-import com.taobao.accs.common.Constants;
-//import com.tencent.bugly.crashreport.crash.BuglyBroadcastRecevier;
-import java.util.HashMap;
-import java.util.Map;
-import org.android.agoo.message.MessageService;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class PhoneCodeLoginActivity extends BaseActivity {
     private Button btnGetCode;
     CheckBox ckPrivate;
@@ -137,7 +139,7 @@ public class PhoneCodeLoginActivity extends BaseActivity {
         parameters.put(Constants.KEY_HTTP_CODE, code);
         parameters.put("appDownChannel", AppInfoUtils.getChannel(this));
         parameters.put("versionCode", AppInfoUtils.getVersionName(this));
-        parameters.put("memberType", MessageService.MSG_DB_READY_REPORT);
+        parameters.put("memberType", Constants.MSG_DB_READY_REPORT);
         parameters.put("mobileBrand", SystemDeviceInfo.getBrand());
         parameters.put("mobileModel", SystemDeviceInfo.getModel());
         parameters.put("systemVersion", SystemDeviceInfo.getPhoneOs());

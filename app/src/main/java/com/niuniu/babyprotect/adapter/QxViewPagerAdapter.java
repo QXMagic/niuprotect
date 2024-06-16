@@ -8,13 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.internal.view.SupportMenu;
 import androidx.viewpager.widget.PagerAdapter;
+
+import atmp.consts.AgooConstants;
 import im.niu.protect.R;
 import com.niuniu.babyprotect.action.QxOnClickListener;
 import com.niuniu.babyprotect.model.QxInfo;
 import com.niuniu.babyprotect.tools.RomUtil;
 import java.util.ArrayList;
 import java.util.List;
-import org.android.agoo.common.AgooConstants;
 public class QxViewPagerAdapter extends PagerAdapter implements View.OnClickListener {
     Context mContext;
     QxOnClickListener qxOnClickListener;
@@ -82,7 +83,7 @@ public class QxViewPagerAdapter extends PagerAdapter implements View.OnClickList
             type.setTextColor(-16711936);
         } else {
             type.setText("未授权");
-            type.setTextColor(SupportMenu.CATEGORY_MASK);
+            type.setTextColor(-65536);
         }
         int tag = position + 100;
         TextView xqActionBtn = (TextView) view.findViewById(R.id.xqActionBtn);

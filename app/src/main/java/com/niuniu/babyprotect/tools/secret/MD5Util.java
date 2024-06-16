@@ -1,7 +1,5 @@
 package com.niuniu.babyprotect.tools.secret;
 
-import com.umeng.analytics.pro.ak;
-import com.umeng.analytics.pro.bz;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -77,7 +75,7 @@ public class MD5Util {
     private static void appendHexPair(byte bt, StringBuffer stringbuffer) {
         char[] cArr = hexDigits;
         char c0 = cArr[(bt & 240) >> 4];
-        char c1 = cArr[bt & bz.m];
+        char c1 = cArr[bt & 0xf];
         stringbuffer.append(c0);
         stringbuffer.append(c1);
     }
@@ -88,6 +86,6 @@ public class MD5Util {
         String md5 = getFileMD5String(file);
         long end = System.currentTimeMillis();
         PrintStream printStream = System.out;
-        printStream.println("md5:" + md5 + " time:" + ((end - begin) / 1000) + ak.aB);
+        printStream.println("md5:" + md5 + " time:" + ((end - begin) / 1000));
     }
 }

@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.model.UserInfo;
 import com.niuniu.babyprotect.network.NetTools;
@@ -22,12 +22,15 @@ import com.niuniu.babyprotect.tools.InputCheckUtil;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.webview.OneWebActivity;
-import com.taobao.accs.common.Constants;
-import java.util.HashMap;
-import java.util.Map;
-import org.android.agoo.message.MessageService;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class RegActivity extends BaseActivity {
     TextView codebtn;
     EditText codetxt;
@@ -131,7 +134,7 @@ public class RegActivity extends BaseActivity {
             parameters.put(Constants.KEY_HTTP_CODE, this.codetxt.getText().toString());
             parameters.put("appDownChannel", AppInfoUtils.getChannel(this));
             parameters.put("versionCode", AppInfoUtils.getVersionName(this));
-            parameters.put("memberType", MessageService.MSG_DB_READY_REPORT);
+            parameters.put("memberType", Constants.MSG_DB_READY_REPORT);
             showLoadText("注册中...");
             NetTools.getInstance().postAsynHttp(this, StudentBaseUrl.user_register, parameters, new ResultCallBackListener() {
                 @Override

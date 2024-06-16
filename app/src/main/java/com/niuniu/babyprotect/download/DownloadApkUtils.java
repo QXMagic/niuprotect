@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.StrictMode;
 import androidx.core.content.FileProvider;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
-import com.umeng.message.proguard.z;
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,7 +51,7 @@ public class DownloadApkUtils {
     }
 
     private void initFile(String url) {
-        Pattern pat = Pattern.compile("[\\w]+[\\.](apk" + z.t);
+        Pattern pat = Pattern.compile("\\w+\\.apk");
         Matcher mc = pat.matcher(url);
         String fileName = null;
         while (mc.find()) {
@@ -67,7 +66,7 @@ public class DownloadApkUtils {
     public long downLoadApk(Context context, String url, String title) {
         this.mContext = context;
         context.registerReceiver(this.receiver, new IntentFilter("android.intent.action.DOWNLOAD_COMPLETE"));
-        this.manager = (DownloadManager) context.getSystemService("download");
+        this.manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(url);
         if (Build.VERSION.SDK_INT >= 24) {
             StrictMode.VmPolicy.Builder localBuilder = new StrictMode.VmPolicy.Builder();
@@ -91,7 +90,7 @@ public class DownloadApkUtils {
     }
 
     public void clearCurrentTask(Context mContext, long downloadId2) {
-        DownloadManager dm = (DownloadManager) mContext.getSystemService("download");
+        DownloadManager dm = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
         try {
             dm.remove(downloadId2);
         } catch (IllegalArgumentException ex) {
@@ -125,7 +124,8 @@ public class DownloadApkUtils {
         query.setFilterById(downloadId);
         Cursor cursor = this.manager.query(query);
         if (cursor.moveToFirst()) {
-            int status = cursor.getInt(cursor.getColumnIndex("status"));
+            int st = cursor.getColumnIndex("status");
+            int status = cursor.getInt(st);
             if (status == 8) {
                 installApk(this.mContext);
                 cursor.close();
