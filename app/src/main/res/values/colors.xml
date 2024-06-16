@@ -279,4 +279,5 @@
   <color name="yellow">#ffffff00</color>
   <color name="z_dialog_bg_color">#ffffffff</color>
   <color name="z_transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

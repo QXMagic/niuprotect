@@ -217,7 +217,7 @@ public class RegMsgActivity extends BaseActivity {
             JSONArray data = new JSONArray(result);
             Gson gson = new Gson();
             for (int i = 0; i < data.length(); i++) {
-                JsonBean entity = (JsonBean) gson.fromJson(data.optJSONObject(i).toString(), (Class<Object>) JsonBean.class);
+                JsonBean entity = (JsonBean) gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
                 detail.add(entity);
             }
         } catch (Exception e) {

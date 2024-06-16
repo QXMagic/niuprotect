@@ -3,7 +3,7 @@ package com.niuniu.babyprotect.third.bugly;
 import android.content.Context;
 import android.os.Process;
 import android.text.TextUtils;
-import com.tencent.bugly.crashreport.CrashReport;
+//import com.tencent.bugly.crashreport.CrashReport;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,8 +11,8 @@ public class BuglyTools {
     public static void initBugly(Context context) {
         context.getPackageName();
         getProcessName(Process.myPid());
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
-        CrashReport.initCrashReport(context, "e5d1b2abd2", false, strategy);
+//        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+//        CrashReport.initCrashReport(context, "e5d1b2abd2", false, strategy);
     }
 
     private static String getProcessName(int pid) {

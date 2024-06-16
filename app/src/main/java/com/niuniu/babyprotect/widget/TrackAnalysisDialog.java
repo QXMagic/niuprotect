@@ -1,10 +1,12 @@
 package com.niuniu.babyprotect.widget;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import com.niuniu.babyprotect.ui.map.TrackQueryActivity;
 public class TrackAnalysisDialog extends PopupWindow {
     private Button cancelBtn;

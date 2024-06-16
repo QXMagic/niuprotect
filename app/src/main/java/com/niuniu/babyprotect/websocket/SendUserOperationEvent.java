@@ -1,7 +1,9 @@
 package com.niuniu.babyprotect.websocket;
 
 import com.google.gson.annotations.SerializedName;
-import com.taobao.accs.common.Constants;
+
+import atmp.consts.Constants;
+
 public class SendUserOperationEvent {
     @SerializedName("eventName")
     private String eventName;

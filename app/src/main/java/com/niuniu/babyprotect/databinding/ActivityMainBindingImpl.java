@@ -5,11 +5,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.ui.NavigationBar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import im.niu.protect.R;
 public class ActivityMainBindingImpl extends ActivityMainBinding {
     private static final ViewDataBinding.IncludedLayouts sIncludes = null;
     private static final SparseIntArray sViewsWithIds;
@@ -43,7 +46,9 @@ public class ActivityMainBindingImpl extends ActivityMainBinding {
     }
 
     public ActivityMainBindingImpl(DataBindingComponent bindingComponent, View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 22, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, null);
+        //TODO error
+//        this(bindingComponent, root, mapBindings(bindingComponent, root, 22, sIncludes, sViewsWithIds));
     }
 
     private ActivityMainBindingImpl(DataBindingComponent bindingComponent, View root, Object[] bindings) {

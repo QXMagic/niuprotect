@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,9 +21,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.trace.api.entity.OnEntityListener;
@@ -38,7 +41,6 @@ import com.baidu.trace.model.StatusCodes;
 import com.baidu.trace.model.TraceLocation;
 import com.hjq.permissions.Permission;
 import com.niuniu.babyprotect.BabyApplication;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.map.maputil.BitmapUtil;
 import com.niuniu.babyprotect.map.maputil.CommonUtil;
 import com.niuniu.babyprotect.map.maputil.MapUtil;
@@ -47,8 +49,11 @@ import com.niuniu.babyprotect.map.model.CurrentLocation;
 import com.niuniu.babyprotect.map.receiver.TrackReceiver;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import im.niu.protect.R;
 public class TracingActivity extends BaseActivity implements View.OnClickListener {
     private BabyApplication trackApp = null;
     private ViewUtil viewUtil = null;
@@ -406,6 +411,11 @@ public class TracingActivity extends BaseActivity implements View.OnClickListene
             public void onInitBOSCallback(int errorNo, String message) {
                 viewUtil.showToast(TracingActivity.this, String.format("onInitBOSCallback, errorNo:%d, message:%s ", Integer.valueOf(errorNo), message));
             }
+
+            @Override
+            public void onTraceDataUploadCallBack(int i, String s, int i1, int i2) {
+                viewUtil.showToast(TracingActivity.this,String.format("on tracedata update: %s %d,%d",s,i1,i2));
+            }
         };
     }
 
@@ -466,7 +476,7 @@ public class TracingActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void addPermission(List<String> permissionsList, String permission) {
-        if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(permission) != 0) {
+        if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
             permissionsList.add(permission);
         }
     }

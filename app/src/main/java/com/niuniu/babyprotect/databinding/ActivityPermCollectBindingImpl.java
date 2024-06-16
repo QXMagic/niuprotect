@@ -6,11 +6,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.ui.NavigationBar;
+
+import im.niu.protect.R;
 public class ActivityPermCollectBindingImpl extends ActivityPermCollectBinding {
     private static final ViewDataBinding.IncludedLayouts sIncludes = null;
     private static final SparseIntArray sViewsWithIds;
@@ -29,7 +32,9 @@ public class ActivityPermCollectBindingImpl extends ActivityPermCollectBinding {
     }
 
     public ActivityPermCollectBindingImpl(DataBindingComponent bindingComponent, View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
+        this(bindingComponent, root,null);
+        //TODO error
+//        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
     }
 
     private ActivityPermCollectBindingImpl(DataBindingComponent bindingComponent, View root, Object[] bindings) {

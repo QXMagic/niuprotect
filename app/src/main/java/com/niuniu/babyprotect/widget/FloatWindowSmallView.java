@@ -1,5 +1,6 @@
 package com.niuniu.babyprotect.widget;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
@@ -18,17 +19,22 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import androidx.lifecycle.CoroutineLiveDataKt;
 
-import atmp.consts.Constants;
-import im.niu.protect.R;
+import androidx.core.app.ActivityCompat;
+
 import com.niuniu.babyprotect.adapter.DeskTopGridViewBaseAdapter;
 import com.niuniu.babyprotect.model.AppInfo;
 import com.niuniu.babyprotect.tools.Tools;
-import java.util.ArrayList;
-import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
+
 public class FloatWindowSmallView extends LinearLayout {
     Context _context;
     List<AppInfo> appInfos;
@@ -47,6 +53,10 @@ public class FloatWindowSmallView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.activity_desktop, this);
         LinearLayout bgview = (LinearLayout) findViewById(R.id.bgview);
         WallpaperManager manager = WallpaperManager.getInstance(context);
+        if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            return;
+        }
         Drawable drawable = manager.getDrawable();
         bgview.setBackground(drawable);
         initAppList();
@@ -84,7 +94,7 @@ public class FloatWindowSmallView extends LinearLayout {
         this.mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String pagename;
+                String pagename = null;
                 AppInfo appInfo = appInfos.get(position);
                 JSONArray array = Tools.getBlackApp(_context);
                 for (int i = 0; i < array.length(); i++) {

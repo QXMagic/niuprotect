@@ -8,12 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
 import android.text.TextUtils;
+
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.trace.api.entity.OnEntityListener;
 import com.baidu.trace.api.fence.FenceAlarmPushInfo;
@@ -26,7 +28,6 @@ import com.baidu.trace.model.PushMessage;
 import com.baidu.trace.model.StatusCodes;
 import com.baidu.trace.model.TraceLocation;
 import com.niuniu.babyprotect.BabyApplication;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.map.maputil.CommonUtil;
 import com.niuniu.babyprotect.map.model.CurrentLocation;
@@ -35,9 +36,12 @@ import com.niuniu.babyprotect.model.UploadLocationInfo;
 import com.niuniu.babyprotect.model.UserInfo;
 import com.niuniu.babyprotect.repository.LocationInfoRepository;
 import com.niuniu.babyprotect.tools.ILog;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.android.agoo.message.MessageService;
+
+import atmp.consts.Constants;
+import im.niu.protect.R;
 public class LocationTraceService extends Service {
     private static final String TAG = "LocationTraceService";
     Context context;
@@ -188,7 +192,7 @@ public class LocationTraceService extends Service {
     }
 
     private void addPermission(List<String> permissionsList, String permission) {
-        if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(permission) != 0) {
+        if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
             permissionsList.add(permission);
         }
     }
@@ -215,7 +219,7 @@ public class LocationTraceService extends Service {
                     ILog.d("--location----", "speed:" + speed);
                     ILog.d("--location----", "floor:" + floor2);
                     if (TextUtils.isEmpty(floor2)) {
-                        floor = MessageService.MSG_DB_READY_REPORT;
+                        floor = Constants.MSG_DB_READY_REPORT;
                     } else {
                         floor = "1";
                     }
@@ -238,7 +242,7 @@ public class LocationTraceService extends Service {
                 ILog.d("--entityListener----", "speed:" + speed);
                 ILog.d("--entityListener----", "floor:" + floor2);
                 if (TextUtils.isEmpty(floor2)) {
-                    floor = MessageService.MSG_DB_READY_REPORT;
+                    floor = Constants.MSG_DB_READY_REPORT;
                 } else {
                     floor = "1";
                 }
@@ -318,6 +322,11 @@ public class LocationTraceService extends Service {
 
             @Override
             public void onInitBOSCallback(int errorNo, String message) {
+            }
+
+            @Override
+            public void onTraceDataUploadCallBack(int i, String s, int i1, int i2) {
+
             }
         };
     }

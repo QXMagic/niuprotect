@@ -1,16 +1,16 @@
 package com.niuniu.babyprotect.databinding;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.databinding.DataBindingUtil;
+
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.ui.NavigationBar;
+
+import im.niu.protect.R;
 public abstract class ActivityPermCollectBinding extends ViewDataBinding {
     public final Button btnStart;
     public final LinearLayout llContact;
@@ -28,28 +28,29 @@ public abstract class ActivityPermCollectBinding extends ViewDataBinding {
         this.textInfo = textInfo;
         this.tvPhone = tvPhone;
     }
-
-    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot) {
-        return inflate(inflater, root, attachToRoot, DataBindingUtil.getDefaultComponent());
-    }
-
-    @Deprecated
-    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot, Object component) {
-        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, root, attachToRoot, component);
-    }
-
-    public static ActivityPermCollectBinding inflate(LayoutInflater inflater) {
-        return inflate(inflater, DataBindingUtil.getDefaultComponent());
-    }
-
-    @Deprecated
-    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, Object component) {
-        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, null, false, component);
-    }
-
-    public static ActivityPermCollectBinding bind(View view) {
-        return bind(view, DataBindingUtil.getDefaultComponent());
-    }
+    //TODO error
+//
+//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot) {
+//        return inflate(inflater, root, attachToRoot, DataBindingUtil.getDefaultComponent());
+//    }
+//
+//    @Deprecated
+//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot, Object component) {
+//        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, root, attachToRoot, component);
+//    }
+//
+//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater) {
+//        return inflate(inflater, DataBindingUtil.getDefaultComponent());
+//    }
+//
+//    @Deprecated
+//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, Object component) {
+//        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, null, false, component);
+//    }
+//
+//    public static ActivityPermCollectBinding bind(View view) {
+//        return bind(view, DataBindingUtil.getDefaultComponent());
+//    }
 
     @Deprecated
     public static ActivityPermCollectBinding bind(View view, Object component) {

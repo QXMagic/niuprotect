@@ -59,42 +59,43 @@ public class DataBinderMapperImpl extends DataBinderMapper {
         return null;
     }
 
-    @Override
-    public ViewDataBinding getDataBinder(DataBindingComponent component, View[] views, int layoutId) {
-        if (views == null || views.length == 0) {
-            return null;
-        }
-        int localizedLayoutId = INTERNAL_LAYOUT_ID_LOOKUP.get(layoutId);
-        if (localizedLayoutId > 0) {
-            Object tag = views[0].getTag();
-            if (tag == null) {
-                throw new RuntimeException("view must have a tag");
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public int getLayoutId(String tag) {
-        Integer tmpVal;
-        if (tag == null || (tmpVal = InnerLayoutIdLookup.sKeys.get(tag)) == null) {
-            return 0;
-        }
-        return tmpVal.intValue();
-    }
-
-    @Override
-    public String convertBrIdToString(int localId) {
-        String tmpVal = InnerBrLookup.sKeys.get(localId);
-        return tmpVal;
-    }
-
-    @Override
-    public List<DataBinderMapper> collectDependencies() {
-        ArrayList<DataBinderMapper> result = new ArrayList<>(1);
-        result.add(new androidx.databinding.library.baseAdapters.DataBinderMapperImpl());
-        return result;
-    }
+//
+//    @Override
+//    public ViewDataBinding getDataBinder(DataBindingComponent component, View[] views, int layoutId) {
+//        if (views == null || views.length == 0) {
+//            return null;
+//        }
+//        int localizedLayoutId = INTERNAL_LAYOUT_ID_LOOKUP.get(layoutId);
+//        if (localizedLayoutId > 0) {
+//            Object tag = views[0].getTag();
+//            if (tag == null) {
+//                throw new RuntimeException("view must have a tag");
+//            }
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public int getLayoutId(String tag) {
+//        Integer tmpVal;
+//        if (tag == null || (tmpVal = InnerLayoutIdLookup.sKeys.get(tag)) == null) {
+//            return 0;
+//        }
+//        return tmpVal.intValue();
+//    }
+//
+//    @Override
+//    public String convertBrIdToString(int localId) {
+//        String tmpVal = InnerBrLookup.sKeys.get(localId);
+//        return tmpVal;
+//    }
+//
+//    @Override
+//    public List<DataBinderMapper> collectDependencies() {
+//        ArrayList<DataBinderMapper> result = new ArrayList<>(1);
+//        result.add(new androidx.databinding.library.baseAdapters.DataBinderMapperImpl());
+//        return result;
+//    }
 
     private static class InnerBrLookup {
         static final SparseArray<String> sKeys;

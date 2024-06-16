@@ -1,13 +1,16 @@
 package com.niuniu.babyprotect.widget;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.baidu.mapapi.map.BaiduMap;
-import im.niu.protect.R;
 import com.niuniu.babyprotect.ui.map.TrackQueryActivity;
+
+import im.niu.protect.R;
 public class TrackAnalysisInfoLayout extends LinearLayout {
     public TextView key1;
     public TextView key2;

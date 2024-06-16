@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -154,7 +155,7 @@ public class OpenQxActivity extends BaseActivity {
     }
 
     public void openLock() {
-        this.dpm = (DevicePolicyManager) getSystemService("device_policy");
+        this.dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         ComponentName componentName = new ComponentName(getApplicationContext(), DeviceReceiver.class);
         this.mDeviceAdminSample = componentName;
         if (this.dpm.isAdminActive(componentName)) {

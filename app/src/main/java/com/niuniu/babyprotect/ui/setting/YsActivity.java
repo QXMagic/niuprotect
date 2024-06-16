@@ -9,7 +9,7 @@ import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.Tools;
@@ -17,9 +17,11 @@ import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.login.PhoneCodeLoginActivity;
 import com.niuniu.babyprotect.ui.main.MainActivity;
 import com.niuniu.babyprotect.ui.webview.OneWebActivity;
+
+import im.niu.protect.R;
 public class YsActivity extends BaseActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ys);
         changeTitle("隐私保护说明");

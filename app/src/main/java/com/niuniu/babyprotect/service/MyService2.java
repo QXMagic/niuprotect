@@ -17,8 +17,9 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import androidx.lifecycle.CoroutineLiveDataKt;
+
 import androidx.work.WorkRequest;
+
 import com.miui.enterprise.sdk.ApplicationManager;
 import com.niuniu.babyprotect.manager.LocationManager;
 import com.niuniu.babyprotect.manager.UploadAppManager;
@@ -34,11 +35,13 @@ import com.niuniu.babyprotect.tools.EventUtils;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.tools.image.ImageSave;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import atmp.consts.Constants;
 
@@ -418,7 +421,7 @@ public class MyService2 extends Service {
         ActivityManager activityManager = (ActivityManager) this.context.getSystemService(Context.ACTIVITY_SERVICE);
         if (Build.VERSION.SDK_INT > 21) {
             long end = System.currentTimeMillis();
-            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService("usagestats");
+            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService(Context.USAGE_STATS_SERVICE);
             if (usageStatsManager == null || (events = usageStatsManager.queryEvents(end - 120000, end)) == null) {
                 return "";
             }
