@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:padding="15.0dip" android:layout_width="fill_parent" android:layout_height="580.0dip" android:layout_centerInParent="true">
+        <TextView android:textSize="18.0sp" android:textColor="@color/black" android:id="@+id/tv" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip" android:text="Lable" android:maxLines="1" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="1000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="1001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="1002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="2000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="2001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="2002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="3000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="3001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="3002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="4000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="4001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="4002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="5000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="5001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="5002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="6000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="6001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="6002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="7000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="7001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="7002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="8000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="8001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="8002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="9000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="9001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="9002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="10000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="10001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="10002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="11000" android:layout_width="fill_parent" android:layout_height="35.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/black" android:tag="11001" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lable" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/red" android:tag="11002" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Lable" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+        <TextView android:textSize="18.0dip" android:textColor="@color/white" android:gravity="center" android:id="@+id/xqActionBtn" android:background="@drawable/roundbg20" android:layout_width="200.0dip" android:layout_height="40.0dip" android:layout_marginTop="20.0dip" android:layout_marginBottom="10.0dip" android:text="开始授权" />
+    </LinearLayout>
+</RelativeLayout>

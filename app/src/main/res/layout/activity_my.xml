@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@color/appblackColor" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:id="@+id/layout_login_center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center_vertical" android:id="@+id/usermsg" android:background="@color/white" android:paddingLeft="15.0dip" android:layout_width="fill_parent" android:layout_height="80.0dip" android:layout_marginTop="10.0dip">
+                    <com.github.xiaofeidev.round.RoundImageView android:id="@+id/userImage" android:layout_width="66.0dip" android:layout_height="66.0dip" android:src="@mipmap/uhead1" app:rd_radius="33.0dip" app:rd_stroke_color="@color/white" app:rd_stroke_width="2.0dip" />
+                    <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
+                        <TextView android:textSize="15.0sp" android:textColor="#ff424242" android:id="@+id/txt1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="王小明" />
+                        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:id="@+id/txt2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1年级1班" />
+                    </LinearLayout>
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/buyvipbtn" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="5.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/p049" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="VIP" android:layout_weight="1.0" />
+                    <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:id="@+id/txt3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="到期时间2021-02-02" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/notivebtn" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/p050" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="使用报告" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/schooladminbtn" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/p71" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="教务管理" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/setpwdbtn" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/p053" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="重置密码" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/feedbackbtn" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/p054" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="意见反馈" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/p055" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:id="@+id/tv_aboutus" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="关于我们" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="5.0dip">
+                    <TextView android:textSize="16.0sp" android:textColor="@color/red" android:gravity="center" android:id="@+id/loginoutbtn" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="退出" />
+                </LinearLayout>
+                <TextView android:gravity="center" android:id="@+id/tv_versionInfo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" />
+                <TextView android:id="@+id/tv_parentInfo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
+                <TextView android:id="@+id/tv_teacherInfo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
+                <TextView android:id="@+id/tv_limitInfo" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

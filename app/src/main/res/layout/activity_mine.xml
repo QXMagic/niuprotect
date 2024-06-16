@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#fff6f5fb" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/userhead" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="80.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="头像" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <com.github.xiaofeidev.round.RoundImageView android:id="@+id/userImage" android:layout_width="66.0dip" android:layout_height="66.0dip" android:src="@mipmap/uhead1" app:rd_radius="33.0dip" app:rd_stroke_color="@color/white" app:rd_stroke_width="2.0dip" />
+        <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:src="@mipmap/p033" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="VIP" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <TextView android:textSize="15.0sp" android:textColor="@color/red" android:id="@+id/vipTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="已到期" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/view1" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="昵称" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/nickNameTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="肖战" />
+        <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:src="@mipmap/p033" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/view2" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="真实姓名" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/realNameTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="肖战" />
+        <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:src="@mipmap/p033" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/view3" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="性别" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/sexTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="男" />
+        <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:src="@mipmap/p033" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/view4" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="地区" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/addrTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="湖北省 武汉市 武昌区" />
+        <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:src="@mipmap/p033" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/view5" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="年级" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/classTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="二年级" />
+        <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:src="@mipmap/p033" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/view6" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="问题反馈" />
+        <LinearLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <ImageView android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@mipmap/jiantou" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@+id/loginOut" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+        <TextView android:textSize="18.0sp" android:textColor="@color/red" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="退出" />
+    </LinearLayout>
+</LinearLayout>

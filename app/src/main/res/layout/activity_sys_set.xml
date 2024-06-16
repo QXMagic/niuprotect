@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@color/appblackColor" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:id="@+id/layout_login_center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/btn0" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/sys5" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="扫码绑定家长/老师" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/btn1" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/sys1" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="WLAN设置" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/btn2" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="60.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/sys2" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="移动网络" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/btn3" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="60.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/sys3" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="蓝牙设置" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+                <LinearLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/btn4" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="60.0dip">
+                    <ImageView android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginLeft="15.0dip" android:src="@mipmap/sys4" />
+                    <TextView android:textSize="16.0sp" android:textColor="#ff424242" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="通话设置" android:layout_weight="1.0" />
+                    <ImageView android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginRight="15.0dip" android:src="@mipmap/p033" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView android:id="@+id/outbtn" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

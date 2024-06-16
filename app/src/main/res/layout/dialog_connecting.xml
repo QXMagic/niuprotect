@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@drawable/shape_white_corner" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:padding="@dimen/dp_20" android:layout_width="220.0dip" android:layout_height="wrap_content">
+        <TextView android:layout_gravity="center_horizontal" android:id="@+id/tv_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <RelativeLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="80.0dip" android:layout_marginTop="@dimen/dp_10">
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:text="手机" android:layout_toLeftOf="@id/iv_anim" android:layout_centerVertical="true" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dp_10" android:text="连接中" android:layout_above="@id/iv_anim" android:layout_centerHorizontal="true" />
+            <ImageView android:id="@+id/iv_anim" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/anim_connecting" android:layout_centerInParent="true" />
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="text" android:layout_toRightOf="@id/iv_anim" android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

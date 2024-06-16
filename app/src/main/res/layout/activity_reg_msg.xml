@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="30.0dip">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/sexbtn1" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+                <ImageView android:layout_width="70.0dip" android:layout_height="70.0dip" android:src="@mipmap/uhead1" />
+                <TextView android:textSize="18.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="男生" />
+                <ImageView android:id="@+id/sex1Icon" android:background="@drawable/view_round4" android:layout_width="16.0dip" android:layout_height="16.0dip" android:layout_marginTop="10.0dip" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/sexbtn2" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+                <ImageView android:layout_width="70.0dip" android:layout_height="70.0dip" android:src="@mipmap/uhead2" />
+                <TextView android:textSize="18.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="女生" />
+                <ImageView android:id="@+id/sex2Icon" android:background="@drawable/view_round5" android:layout_width="16.0dip" android:layout_height="16.0dip" android:layout_marginTop="10.0dip" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginLeft="50.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="50.0dip">
+            <TextView android:textSize="@dimen/text_size_15" android:textColor="@color/black_dark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="昵称：" />
+            <EditText android:textSize="@dimen/text_size_15" android:textColor="@color/black" android:id="@+id/nickNameTxt" android:background="@null" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:hint="请输入昵称" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginLeft="50.0dip" android:layout_marginRight="50.0dip">
+            <TextView android:textSize="@dimen/text_size_15" android:textColor="@color/black_dark" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="地区：" />
+            <TextView android:textSize="15.0sp" android:textColor="@color/black" android:gravity="center_vertical" android:id="@+id/localTxt" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:hint="请选择地区" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginLeft="50.0dip" android:layout_marginRight="50.0dip">
+            <TextView android:textSize="@dimen/text_size_15" android:textColor="@color/black_dark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="年级：" />
+            <TextView android:textSize="@dimen/text_size_15" android:textColor="@color/black" android:gravity="center_vertical" android:id="@+id/classTxt" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:hint="请选择年级" />
+        </LinearLayout>
+        <Button android:id="@+id/regBtn" android:background="@drawable/selector_btn" android:layout_marginTop="40.0dip" android:text="完成注册" style="@style/BtnSyle" />
+    </LinearLayout>
+</LinearLayout>

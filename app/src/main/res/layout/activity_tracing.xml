@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@+id/layout_top" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true">
+        <include layout="@layout/activity_top" />
+    </LinearLayout>
+    <com.baidu.mapapi.map.MapView android:id="@+id/tracing_mapView" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/layout_top" />
+    <LinearLayout android:orientation="horizontal" android:id="@+id/layout_tracing_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="25.0dip" android:weightSum="1.0" android:layout_alignParentBottom="true">
+        <Button android:textColor="@color/colorAccent" android:id="@+id/btn_trace" android:background="@mipmap/bg_btn_cancel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="55.0dip" android:layout_marginRight="10.0dip" android:text="@string/start_trace" android:layout_weight="0.3" />
+        <Button android:textColor="@color/colorAccent" android:id="@+id/btn_gather" android:background="@mipmap/bg_btn_cancel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="55.0dip" android:text="@string/start_gather" android:layout_weight="0.3" android:onClick="onTraceControl" />
+        <Button android:textColor="@color/colorAccent" android:id="@+id/btn_guiji" android:background="@mipmap/bg_btn_cancel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="55.0dip" android:text="轨迹" android:layout_weight="0.3" android:onClick="onTraceControl" />
+    </LinearLayout>
+</RelativeLayout>

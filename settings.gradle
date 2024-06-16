@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://mvnrepository.com/artifact/" }
+        //https://mvnrepository.com/artifact/com.google.gson/gson
+    }
+}
+
+
+rootProject.name = "niuprotect"
+include ':app'

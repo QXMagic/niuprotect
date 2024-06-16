@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.github.gzuliyujiang.wheelpicker.widget.DateWheelLayout android:id="@+id/wheel_picker_date_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.2" style="@style/WheelDefault" />
+    <com.github.gzuliyujiang.wheelpicker.widget.TimeWheelLayout android:id="@+id/wheel_picker_time_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+</LinearLayout>

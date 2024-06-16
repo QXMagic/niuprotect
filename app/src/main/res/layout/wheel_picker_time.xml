@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.github.gzuliyujiang.wheelview.widget.NumberWheelView android:id="@+id/wheel_picker_time_hour_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+    <TextView android:layout_gravity="center_vertical" android:id="@+id/wheel_picker_time_hour_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <com.github.gzuliyujiang.wheelview.widget.NumberWheelView android:id="@+id/wheel_picker_time_minute_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+    <TextView android:layout_gravity="center_vertical" android:id="@+id/wheel_picker_time_minute_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <com.github.gzuliyujiang.wheelview.widget.NumberWheelView android:id="@+id/wheel_picker_time_second_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+    <TextView android:layout_gravity="center_vertical" android:id="@+id/wheel_picker_time_second_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    <com.github.gzuliyujiang.wheelview.widget.WheelView android:id="@+id/wheel_picker_time_meridiem_wheel" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+</LinearLayout>

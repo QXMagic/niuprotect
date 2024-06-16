@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@+id/lLayout_bg" android:background="@drawable/shape_alertdialog" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="@color/dialog_black" android:gravity="center" android:id="@+id/txt_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="15.0dip" />
+    <TextView android:textSize="16.0sp" android:textColor="@color/dialog_black" android:gravity="center" android:id="@+id/txt_msg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="15.0dip" />
+    <EditText android:textSize="16.0sp" android:textColor="@color/dialog_black" android:gravity="center" android:id="@+id/edittxt_result" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="15.0dip" android:hint="请输入信息" />
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/dialog_Group" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" />
+    <ImageView android:id="@+id/dialog_marBottom" android:background="@color/alertdialog_line" android:layout_width="fill_parent" android:layout_height="0.5dip" android:layout_marginTop="15.0dip" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10" android:layout_marginRight="@dimen/dp_10">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/ll_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <TextView android:textSize="@dimen/text_size_14" android:textColor="@color/dialog_cancel" android:gravity="center" android:id="@+id/btn_neg" android:background="@color/dialog_white" android:paddingTop="@dimen/dp_10" android:paddingBottom="@dimen/dp_10" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </LinearLayout>
+        <ImageView android:id="@+id/img_line" android:background="@color/alertdialog_line" android:layout_width="0.5dip" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/ll_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <TextView android:textSize="@dimen/text_size_14" android:textColor="@color/dialog_black" android:gravity="center" android:id="@+id/btn_pos" android:paddingTop="@dimen/dp_10" android:paddingBottom="@dimen/dp_10" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

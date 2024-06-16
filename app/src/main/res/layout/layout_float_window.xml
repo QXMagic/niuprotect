@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/darkgray" android:padding="@dimen/dp_20" android:layout_width="@dimen/dp_250" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="14.0sp" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="自动化操作请勿手动操作，谢谢" />
+        <Button android:textSize="12.0sp" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@+id/btn_close" android:background="@drawable/selector_btn" android:layout_width="70.0dip" android:layout_height="30.0dip" android:layout_marginTop="20.0dip" android:text="关闭" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

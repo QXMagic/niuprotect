@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:id="@+id/layout_login_center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip">
+            <TextView android:textSize="21.0sp" android:textColor="#ff454545" android:gravity="center" android:id="@+id/dataTxt" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="2021.06.12" />
+            <TextView android:textSize="16.0sp" android:textColor="#ff454545" android:gravity="center" android:id="@+id/weekTxt1" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="本周统计" />
+            <TextView android:textSize="16.0sp" android:textColor="#ff454545" android:gravity="center" android:id="@+id/weekTxt2" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="上周统计" />
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:id="@+id/userDesBtn" android:background="@drawable/roundbg3" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="20.0dip" android:layout_marginBottom="20.0dip" android:layout_weight="1.0">
+            <TextView android:textSize="17.0sp" android:textColor="#ff424242" android:id="@+id/alltimetxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:text="11:00:00" />
+            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="5.0dip" android:text="app使用时长" />
+            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="5.0dip" android:text="统计有误差，仅做参考" />
+            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="5.0dip" android:layout_marginBottom="20.0dip" android:text="部分app在后台运行，也会计入统计时长" />
+            <ListView android:id="@+id/listview" android:paddingBottom="20.0dip" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:listSelector="#00000000" android:cacheColorHint="#00000000" android:divider="@color/allbg" android:dividerHeight="0.0dip" android:layout_weight="1.0" android:fastScrollEnabled="false" android:headerDividersEnabled="false" android:footerDividersEnabled="false" android:smoothScrollbar="true" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

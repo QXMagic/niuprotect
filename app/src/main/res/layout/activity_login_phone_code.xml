@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <TextView android:textSize="13.0sp" android:textColor="@color/colorAccent" android:layout_gravity="right" android:id="@+id/tv_not_login" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="免登录注册功能体验>>" />
+        <TextView android:textSize="25.0sp" android:textColor="#ff212121" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40.0dip" android:layout_marginTop="60.0dip" android:text="欢迎登录注册学生端" />
+        <TextView android:textSize="14.0sp" android:textColor="#ff212121" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40.0dip" android:layout_marginTop="8.0dip" android:text="专注学生手机使用管理" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginLeft="40.0dip" android:layout_marginTop="40.0dip" android:layout_marginRight="40.0dip">
+            <EditText android:textSize="@dimen/text_size_16" android:textColorHint="@color/lightgrey" android:gravity="center_vertical" android:id="@+id/phonetxt" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:hint="请输入手机号码，勿使用家长端手机号码" android:maxLines="1" android:singleLine="true" android:maxLength="11" android:layout_weight="1.0" android:inputType="number" />
+        </LinearLayout>
+        <View android:background="@color/listjgbg" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginLeft="40.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="30.0dip">
+            <EditText android:textSize="16.0sp" android:textColorHint="@color/lightgrey" android:gravity="center_vertical" android:id="@+id/pwdPhoneCode" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:hint="请输入验证码" android:maxLines="1" android:singleLine="true" android:maxLength="6" android:layout_weight="2.5" android:inputType="number" />
+            <Button android:textSize="13.0sp" android:textColor="@color/white" android:gravity="center" android:layout_gravity="center" android:id="@+id/btn_getcode" android:background="@drawable/selector_btn" android:layout_width="0.0dip" android:layout_height="40.0dip" android:text="获取验证码" android:layout_weight="1.5" />
+        </LinearLayout>
+        <View android:background="@color/listjgbg" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="20.0dip" android:layout_marginRight="150.0dip" />
+        <RelativeLayout android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="@dimen/text_size_16" android:textColor="@color/myblack" android:gravity="center" android:id="@+id/regbtn" android:layout_width="100.0dip" android:layout_height="50.0dip" android:layout_marginLeft="40.0dip" android:layout_marginTop="10.0dip" android:text="注册" />
+            <TextView android:textSize="@dimen/text_size_16" android:textColor="@color/myblack" android:gravity="center" android:id="@+id/fortegbtn" android:layout_width="100.0dip" android:layout_height="50.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="40.0dip" android:text="忘记密码" android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <CheckBox android:layout_gravity="center_vertical" android:id="@+id/cb_xieyi" android:layout_width="@dimen/dp_25" android:layout_height="@dimen/dp_25" />
+            <TextView android:textSize="13.0sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="登录注册表示同意" />
+            <TextView android:textSize="13.0sp" android:textStyle="bold" android:textColor="@color/colorAccent" android:id="@+id/tv_user" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="用户协议" />
+            <TextView android:textSize="13.0sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="和" />
+            <TextView android:textSize="14.0sp" android:textStyle="bold" android:textColor="@color/colorAccent" android:id="@+id/tv_private" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="隐私协议" />
+        </LinearLayout>
+        <Button android:textSize="16.0sp" android:textColor="@color/white" android:gravity="center" android:layout_gravity="center" android:id="@+id/btn_login" android:background="@drawable/selector_btn" android:layout_width="fill_parent" android:layout_height="45.0dip" android:layout_marginLeft="@dimen/dp_20" android:layout_marginTop="10.0dip" android:layout_marginRight="20.0dip" android:text="登录注册" />
+        <View android:visibility="gone" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    </LinearLayout>
+</RelativeLayout>

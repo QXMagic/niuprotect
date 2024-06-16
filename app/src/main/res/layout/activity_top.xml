@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="horizontal" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="@dimen/activity_title_height" android:weightSum="1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:id="@+id/btn_activity_back" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.15" android:onClick="onBack">
+        <ImageView android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView android:textSize="@dimen/text_size_14" android:textColor="@color/white" android:gravity="center" android:id="@+id/tv_activity_title" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="轨迹" android:layout_weight="0.7" />
+    <LinearLayout android:gravity="center" android:id="@+id/btn_activity_options" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.15">
+        <ImageView android:layout_gravity="center_vertical" android:background="@mipmap/icon_settings" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

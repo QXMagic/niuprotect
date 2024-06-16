@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="30.0dip" android:layout_marginRight="10.0dip" android:text="欢迎使用3985，您可以使用本应用以实现对您的监护对象实时查询其所在地理位置及管理其安全上网等功能，我们非常重视及保护您（即监护人）和您的监护对象（您的孩子或学生）的个人隐私，我们将按照法律法规要求收集、使用、储存和共享您和您的监护对象的相关信息。在此，我们郑重提醒您：" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="1.在您使用3985各项产品或服务前，请您务必仔细阅读透彻理解《隐私政策》，在确认充分理解并后后再使用相关产品或服务。如果您不同意急私政策的任何内容，您应当立即停止使用我们的产品或服务。" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="2.为向您提供交易相关基本功能，我们会收集、使用必要的信息;" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="3.基于您的明示授权，我们可能会获取您的位置；" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="4.我们会采取业界先进的安全措施保护您的信息安全;" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="5.未经您同意，我们不会从第三方处获取、共享或向其提供您的信息;" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="6.您可以查询、更正您的个人信息。" android:lineHeight="22.0dip" />
+            <TextView android:textSize="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="5.未经您同意，我们不会从第三方处获取、共享或向其提供您的信息;" android:lineHeight="22.0dip" />
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="15.0dip" android:id="@+id/nottxt" android:paddingTop="10.0dip" android:paddingBottom="20.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:text="为了便于您阅读，请您点击下列链接，完整阅读全文：《用户协议》《隐私政策》" android:lineHeight="22.0dip" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip">
+                <TextView android:textSize="18.0dip" android:gravity="center" android:id="@+id/cancelbtn" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="不同意" android:layout_weight="1.0" />
+                <TextView android:textSize="18.0dip" android:textColor="@color/white" android:gravity="center" android:id="@+id/okbtn" android:background="@color/btntextcolor" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="同意" android:layout_weight="1.0" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="50.0dip">
+        <LinearLayout android:orientation="horizontal" android:id="@+id/layout_tab" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:id="@+id/province_tv" android:text="江苏省" style="@style/tab" />
+            <TextView android:id="@+id/city_tv" android:text="常州市" style="@style/tab" />
+            <TextView android:id="@+id/area_tv" android:text="新北区" style="@style/tab" />
+        </LinearLayout>
+        <View android:id="@+id/indicator" android:background="@android:color/holo_red_light" android:layout_width="0.0dip" android:layout_height="2.0dip" android:layout_below="@id/layout_tab" />
+    </RelativeLayout>
+    <View android:background="#ffe8e8e8" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <androidx.viewpager.widget.ViewPager android:id="@+id/cityViewpager" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="250.0dip" />
+</LinearLayout>

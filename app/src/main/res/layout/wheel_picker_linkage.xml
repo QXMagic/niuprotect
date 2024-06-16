@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.github.gzuliyujiang.wheelview.widget.WheelView android:id="@+id/wheel_picker_linkage_first_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+        <TextView android:layout_gravity="center_vertical" android:id="@+id/wheel_picker_linkage_first_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        <com.github.gzuliyujiang.wheelview.widget.WheelView android:id="@+id/wheel_picker_linkage_second_wheel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+        <TextView android:layout_gravity="center_vertical" android:id="@+id/wheel_picker_linkage_second_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        <com.github.gzuliyujiang.wheelview.widget.WheelView android:id="@+id/wheel_picker_linkage_third_wheel" android:visibility="visible" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/WheelDefault" />
+        <TextView android:layout_gravity="center_vertical" android:id="@+id/wheel_picker_linkage_third_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+    </LinearLayout>
+    <ProgressBar android:layout_gravity="center" android:id="@+id/wheel_picker_linkage_loading" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@android:style/Widget.ProgressBar" />
+</FrameLayout>
