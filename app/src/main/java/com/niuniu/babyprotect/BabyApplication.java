@@ -15,7 +15,9 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+
 import androidx.multidex.MultiDex;
+
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.trace.LBSTraceClient;
@@ -38,14 +40,13 @@ import com.niuniu.babyprotect.third.umeng.UMengManager;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.ui.map.TracingActivity;
 import com.tencent.mmkv.MMKV;
-//import com.tencent.mmkv.MMKV;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-//import org.android.agoo.common.AgooConstants;
 
 import im.niu.protect.R;
 
