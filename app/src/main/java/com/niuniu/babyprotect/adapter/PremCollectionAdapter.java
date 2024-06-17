@@ -7,13 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.accessibility.auto.app.OpenSettingApp;
 import com.niuniu.babyprotect.accessibility.auto.bean.CheckBoxModel;
 import com.niuniu.babyprotect.accessibility.auto.bean.PageInfoModel;
 import com.niuniu.babyprotect.databinding.RcPermCollectionBinding;
+
 import java.util.List;
+
+import im.niu.protect.R;
 public class PremCollectionAdapter extends RecyclerView.Adapter<PremCollectionAdapter.ViewHolder> {
     RcPermCollectionBinding binding;
     private List<PageInfoModel> datas;
@@ -35,13 +39,16 @@ public class PremCollectionAdapter extends RecyclerView.Adapter<PremCollectionAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RcPermCollectionBinding inflate = RcPermCollectionBinding.inflate(LayoutInflater.from(this.mContext), parent, false);
-        this.binding = inflate;
-        return new ViewHolder(inflate.getRoot());
+//        RcPermCollectionBinding inflate = RcPermCollectionBinding.inflate(LayoutInflater.from(this.mContext), parent, false);
+//        this.binding = inflate;
+//        return new ViewHolder(inflate.getRoot());
+        //TODO error
+        return null;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        position = holder.getBindingAdapterPosition();
         holder.tv_perm_title.setText(this.datas.get(position).getMainPageInfo());
         List<CheckBoxModel> checkBoxs = this.datas.get(position).getCheckBoxModels();
         if (checkBoxs != null && checkBoxs.size() > 0) {
@@ -61,21 +68,23 @@ public class PremCollectionAdapter extends RecyclerView.Adapter<PremCollectionAd
                 }
                 view.setPadding(0, 10, 0, 0);
                 holder.permCheckBoxContainer.addView(view);
+                int finalPosition = position;
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OpenSettingApp.gotoSetting(mContext, ((PageInfoModel) datas.get(position)).getGotoSettingType());
+                        OpenSettingApp.gotoSetting(mContext, ((PageInfoModel) datas.get(finalPosition)).getGotoSettingType());
                         if (mOnItemClickListener != null) {
-                            mOnItemClickListener.onItemClick(position, location);
+                            mOnItemClickListener.onItemClick(finalPosition, location);
                         }
                     }
                 });
             }
         }
+        int finalPosition1 = position;
         holder.tv_perm_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view2) {
-                OpenSettingApp.gotoSetting(mContext, ((PageInfoModel) datas.get(position)).getGotoSettingType());
+                OpenSettingApp.gotoSetting(mContext, ((PageInfoModel) datas.get(finalPosition1)).getGotoSettingType());
             }
         });
     }

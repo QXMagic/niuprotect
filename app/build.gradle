@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'im.niu.protect'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "im.niu.protect"
@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
+        }
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi-v8a", "armeabi-v7a"
         }
     }
 
@@ -39,6 +43,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
     }
+    dataBinding {
+        //noinspection DataBindingWithoutKapt
+        enabled = true
+    }
 //    packaging {
 //        resources {
 //            excludes += '/META-INF/{AL2.0,LGPL2.1}'
@@ -50,8 +58,8 @@ android {
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
-    implementation 'androidx.activity:activity-compose:1.6.1'
+//    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
+//    implementation 'androidx.activity:activity-compose:1.6.1'
     implementation platform('androidx.compose:compose-bom:2023.03.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
@@ -64,6 +72,7 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    implementation 'com.google.android.material:material:1.11.0'
 
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -80,10 +89,10 @@ dependencies {
     implementation 'org.java-websocket:Java-WebSocket:1.5.6'
     implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
 
-    implementation 'com.baidu.lbsyun:BaiduMapSDK_Panorama:2.9.0'
+//    implementation 'com.baidu.lbsyun:BaiduMapSDK_Panorama:2.9.0'
     implementation 'com.baidu.lbsyun:BaiduMapSDK_Location:9.3.7'
     implementation 'com.baidu.lbsyun:BaiduMapSDK_Map:7.5.4'
-    implementation 'io.github.xiaofeidev:round:1.1.2'
+//    implementation 'io.github.xiaofeidev:round:1.1.2'
 //    implementation 'com.hjq:xxpermissions:9.0'
     implementation 'com.github.getActivity:XXPermissions:18.63'
     implementation 'com.google.code.gson:gson:2.4'
@@ -94,13 +103,13 @@ dependencies {
     implementation  'org.greenrobot:eventbus:3.3.1'
     implementation 'com.tencent:mmkv:1.3.5'
 
-//    implementation 'cn.bingoogolapple:bga-qrcodecore:1.1.9'
-//    implementation 'cn.bingoogolapple:bga-zxing:1.1.9'
+    implementation 'cn.bingoogolapple:bga-qrcodecore:1.1.9'
+//    implementation 'cn.bingoogolapple:bga-zxing:+'
 //    implementation 'cn.bingoogolapple:bga-photopicker:2.0.2'
 //    implementation 'cn.bingoogolapple:bga-baseadapter:2.0.0@aar'
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
     implementation 'com.github.crazyandcoder:citypicker:6.0.2'
-
+//
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.13'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.13'
     implementation 'com.github.bumptech.glide:glide:4.16.0'

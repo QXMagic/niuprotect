@@ -29,7 +29,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.work.WorkRequest;
 
@@ -67,7 +66,6 @@ import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.mine.MineActivity;
 import com.niuniu.babyprotect.ui.setting.OpenQxActivity;
 import com.niuniu.babyprotect.viewmodel.MainViewModel;
-import com.niuniu.babyprotect.viewmodel.MainViewModelFactory;
 import com.niuniu.babyprotect.widget.UpdateDialog;
 import com.niuniu.babyprotect.work.MineWorkerManager;
 
@@ -102,17 +100,18 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
-        this.binding = inflate;
-        setContentView(inflate.getRoot());
-        this.mainViewModel = (MainViewModel) new ViewModelProvider(this, new MainViewModelFactory()).get(MainViewModel.class);
-        initUi();
-        initObserve();
-        this.mUserInfo = UserInfoManager.getInstance().getUserInfo(this);
-        regist();
-        WebSocketManager.getInstance().start();
-        mainRunning = true;
-        uploadAllAPP();
+        //TODO error
+//        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
+//        this.binding = inflate;
+//        setContentView(inflate.getRoot());
+//        this.mainViewModel = (MainViewModel) new ViewModelProvider(this, new MainViewModelFactory()).get(MainViewModel.class);
+//        initUi();
+//        initObserve();
+//        this.mUserInfo = UserInfoManager.getInstance().getUserInfo(this);
+//        regist();
+//        WebSocketManager.getInstance().start();
+//        mainRunning = true;
+//        uploadAllAPP();
     }
 
     public void uploadAllAPP() {

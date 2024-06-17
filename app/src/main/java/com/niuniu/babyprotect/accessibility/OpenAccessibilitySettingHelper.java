@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 import com.niuniu.babyprotect.tools.ILog;
-import com.umeng.message.MsgConstant;
 import java.util.List;
 public class OpenAccessibilitySettingHelper {
     private static final String TAG = "OpenAccessibilitySettingHelper";

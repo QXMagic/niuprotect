@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.bingoogolapple.qrcode.core.QRCodeView;
-import cn.bingoogolapple.qrcode.core.ScanBoxView;
-import cn.bingoogolapple.qrcode.zxing.ZXingView;
 import im.niu.protect.R;
 public class QrScanActivity extends BaseActivity {
     QRCodeView qrCodeView;
@@ -29,34 +27,35 @@ public class QrScanActivity extends BaseActivity {
         setContentView(R.layout.activity_qr_scan);
         changeTitle("扫码");
         showBack();
-        ZXingView zXingView = (ZXingView) findViewById(R.id.zbarview);
-        this.qrCodeView = zXingView;
-        zXingView.setDelegate(new QRCodeView.Delegate() {
-            @Override
-            public void onScanQRCodeSuccess(String result) {
-                vibrate();
-                Toast.makeText(_context, result, Toast.LENGTH_SHORT).show();
-                bindNet(result);
-                qrCodeView.stopSpot();
-            }
-
-            public void onCameraAmbientBrightnessChanged(boolean isDark) {
-                String tipText = qrCodeView.getScanBoxView().getTipText();
-                if (isDark) {
-                    if (!tipText.contains("\n环境过暗，请打开闪光灯")) {
-                        ScanBoxView scanBoxView = qrCodeView.getScanBoxView();
-                        scanBoxView.setTipText(tipText + "\n环境过暗，请打开闪光灯");
-                    }
-                } else if (tipText.contains("\n环境过暗，请打开闪光灯")) {
-                    qrCodeView.getScanBoxView().setTipText(tipText.substring(0, tipText.indexOf("\n环境过暗，请打开闪光灯")));
-                }
-            }
-
-            @Override
-            public void onScanQRCodeOpenCameraError() {
-                Toast.makeText(_context, "错误", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //TODO
+//        ZXingView zXingView = (ZXingView) findViewById(R.id.zbarview);
+//        this.qrCodeView = zXingView;
+//        zXingView.setDelegate(new QRCodeView.Delegate() {
+//            @Override
+//            public void onScanQRCodeSuccess(String result) {
+//                vibrate();
+//                Toast.makeText(_context, result, Toast.LENGTH_SHORT).show();
+//                bindNet(result);
+//                qrCodeView.stopSpot();
+//            }
+//
+//            public void onCameraAmbientBrightnessChanged(boolean isDark) {
+//                String tipText = qrCodeView.getScanBoxView().getTipText();
+//                if (isDark) {
+//                    if (!tipText.contains("\n环境过暗，请打开闪光灯")) {
+//                        ScanBoxView scanBoxView = qrCodeView.getScanBoxView();
+//                        scanBoxView.setTipText(tipText + "\n环境过暗，请打开闪光灯");
+//                    }
+//                } else if (tipText.contains("\n环境过暗，请打开闪光灯")) {
+//                    qrCodeView.getScanBoxView().setTipText(tipText.substring(0, tipText.indexOf("\n环境过暗，请打开闪光灯")));
+//                }
+//            }
+//
+//            @Override
+//            public void onScanQRCodeOpenCameraError() {
+//                Toast.makeText(_context, "错误", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         this.qrCodeView.startCamera();
     }
 
