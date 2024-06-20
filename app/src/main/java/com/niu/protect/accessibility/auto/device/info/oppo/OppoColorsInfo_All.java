@@ -35,7 +35,7 @@ public class OppoColorsInfo_All extends BaseCreatePageInfo {
         childinfoModels.add(pInfoNotificationDetail);
         PageInfoModel pInfoPowerSetting = createCenterPage("应用信息", "耗电", 2, 7);
         childinfoModels.add(pInfoPowerSetting);
-        PageInfoModel pInfoPowerDetail = createLastPage("3985学生端", 2, 8, 1, "耗电管理", 2);
+        PageInfoModel pInfoPowerDetail = createLastPage(Constant.APP_NAME, 2, 8, 1, "耗电管理", 2);
         pInfoPowerDetail.addCheckBox(createCheckBoxStep("允许后台运行", 1, true));
         childinfoModels.add(pInfoPowerDetail);
         PageInfoModel pInfoPremFloat = createLastPage("应用信息", 2, 9, 1, "允许悬浮窗", 2);
@@ -48,7 +48,7 @@ public class OppoColorsInfo_All extends BaseCreatePageInfo {
         PageInfoModel pInfoAutoStartManagerLast = createCenterPage("应用管理", "自启动", 3, 12);
         childinfoModels.add(pInfoAutoStartManagerLast);
         PageInfoModel pInfoAutoStartDetail = createLastPage("自启动管理", 3, 13, 3, "允许自启动", 1);
-        pInfoAutoStartDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pInfoAutoStartDetail.addCheckBox(createCheckBoxStep(Constant.APP_NAME, 1, true));
         childinfoModels.add(pInfoAutoStartDetail);
         PageInfoModel pInfoDeviceUse = createMineSettingPage("自动授权中心", "应用使用记录", 4, 14);
         childinfoModels.add(pInfoDeviceUse);

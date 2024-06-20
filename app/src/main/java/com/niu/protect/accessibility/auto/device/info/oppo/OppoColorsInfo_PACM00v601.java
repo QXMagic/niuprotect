@@ -37,7 +37,7 @@ public class OppoColorsInfo_PACM00v601 extends BaseCreatePageInfo {
         PageInfoModel pInfoDeviceUse = createMineSettingPage("自动授权中心", "应用使用记录", 2, 7);
         childinfoModels.add(pInfoDeviceUse);
         PageInfoModel pInfoCenterAPPUseDetail = createLastPage("使用情况", 2, 8, 2, "应用使用记录", 3);
-        pInfoCenterAPPUseDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pInfoCenterAPPUseDetail.addCheckBox(createCheckBoxStep(Constant.APP_NAME, 1, true));
         childinfoModels.add(pInfoCenterAPPUseDetail);
         String infos = new Gson().toJson(childinfoModels);
         ILog.d("OppoColorsInfo_PBCM30v71", infos);

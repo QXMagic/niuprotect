@@ -36,7 +36,7 @@ public class UserInstallWhiteAppListManager {
     }
 
     public UserInstallWhiteAppListManager initWhiteApps() {
-        this.whiteApps.add("3985学生端");
+        this.whiteApps.add(Constant.APP_NAME);
         this.whiteApps.add("Breeno 指令");
         this.whiteApps.add("天气");
         this.whiteApps.add("日历");

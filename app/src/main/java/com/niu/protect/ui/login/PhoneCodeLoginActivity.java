@@ -49,7 +49,7 @@ public class PhoneCodeLoginActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_phone_code);
-        changeTitle("3985学生端");
+        changeTitle(Constant.APP_NAME);
         CheckBox checkBox = (CheckBox) findViewById(R.id.cb_xieyi);
         this.ckPrivate = checkBox;
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

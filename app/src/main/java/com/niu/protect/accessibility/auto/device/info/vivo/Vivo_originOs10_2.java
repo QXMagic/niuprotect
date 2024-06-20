@@ -53,7 +53,7 @@ public class Vivo_originOs10_2 extends BaseCreatePageInfo {
         PageInfoModel pageAutoStart = createMineSettingPage("自动授权中心", "自启动权限设置", 5, 15);
         childinfoModels.add(pageAutoStart);
         PageInfoModel pageAutoStartDetail = createLastPage("自启动", 5, 16, 1, "自启动权限设置", 9);
-        pageAutoStartDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pageAutoStartDetail.addCheckBox(createCheckBoxStep(Constant.APP_NAME, 1, true));
         childinfoModels.add(pageAutoStartDetail);
         String infos = new Gson().toJson(childinfoModels);
         ILog.d("Vivo_originOs10", infos);

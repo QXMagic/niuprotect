@@ -29,12 +29,12 @@ public class OppoColorsInfo_All5 extends BaseCreatePageInfo {
         childinfoModels.add(pInfoMainAutoStart);
         PageInfoModel pInfoPowerSetting = createCenterPage("应用信息", "耗电", 2, 5);
         childinfoModels.add(pInfoPowerSetting);
-        PageInfoModel pInfoPowerDetail = createLastPage("3985学生端", 2, 6, 1, "耗电管理", 2);
+        PageInfoModel pInfoPowerDetail = createLastPage(Constant.APP_NAME, 2, 6, 1, "耗电管理", 2);
         pInfoPowerDetail.addCheckBox(createCheckBoxStep("开启后会导致功耗", 1, true));
         childinfoModels.add(pInfoPowerDetail);
         PageInfoModel pInfoAppSetting = createParentPage("应用信息", "通知管理", 3, 7);
         childinfoModels.add(pInfoAppSetting);
-        PageInfoModel pInfoPremCenter = createLastPage("3985学生端", 3, 8, 1, "允许通知", 4);
+        PageInfoModel pInfoPremCenter = createLastPage(Constant.APP_NAME, 3, 8, 1, "允许通知", 4);
         pInfoPremCenter.addCheckBox(createCheckBoxStep("允许通知", 1, true));
         childinfoModels.add(pInfoPremCenter);
         PageInfoModel pInfoAppCheckBoxSetting = createLastPage("应用信息", 4, 9, 1, "允许显示悬浮窗", 5);
@@ -42,7 +42,7 @@ public class OppoColorsInfo_All5 extends BaseCreatePageInfo {
         childinfoModels.add(pInfoAppCheckBoxSetting);
         PageInfoModel pInfoDeviceUse = createMineSettingPage("自动授权中心", "应用使用记录", 5, 10);
         childinfoModels.add(pInfoDeviceUse);
-        PageInfoModel pInfoCenterAPPUse = createCenterPage("使用", "3985学生端", 5, 11);
+        PageInfoModel pInfoCenterAPPUse = createCenterPage("使用", Constant.APP_NAME, 5, 11);
         childinfoModels.add(pInfoCenterAPPUse);
         PageInfoModel pInfoCenterAPPUseDetail = createLastPage("允许查看使用情况", 5, 12, 2, "应用使用记录", 3);
         pInfoCenterAPPUseDetail.addCheckBox(createCheckBoxStep("允许查看使用情况", 1, true));
@@ -54,12 +54,12 @@ public class OppoColorsInfo_All5 extends BaseCreatePageInfo {
         PageInfoModel pInfoManagerMain = createCenterPage("权限隐私", "自启动管理", 5, 15);
         childinfoModels.add(pInfoManagerMain);
         PageInfoModel pInfoAutoDetail = createLastPage("自启动管理", 5, 16, 1, "自启动管理", 8);
-        pInfoAutoDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pInfoAutoDetail.addCheckBox(createCheckBoxStep(Constant.APP_NAME, 1, true));
         childinfoModels.add(pInfoAutoDetail);
         PageInfoModel pInfoRelatStart = createParentPage("权限隐私", "关联启动管理", 5, 17);
         childinfoModels.add(pInfoRelatStart);
         PageInfoModel pInfoRelatStartLast = createLastPage("关联启动管理", 5, 18, 3, "关联启动", 8);
-        pInfoRelatStartLast.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pInfoRelatStartLast.addCheckBox(createCheckBoxStep(Constant.APP_NAME, 1, true));
         childinfoModels.add(pInfoRelatStartLast);
         String infos = new Gson().toJson(childinfoModels);
         ILog.d("OppoColorsInfo_All4", infos);

@@ -19,7 +19,7 @@ public class GetAppSettingInfoAccessibility extends BaseAccessibility {
             ILog.d(TAG, "event-getPackageName-" + ((Object) event.getPackageName()));
             ILog.d(TAG, "event-getClassName-" + ((Object) event.getClassName()));
         }
-        if (event.getEventType() == 32 && event.getClassName() != null && event.getClassName().toString().startsWith("com")) {
+        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && event.getClassName() != null && event.getClassName().toString().startsWith("com")) {
             normalModeSleep(500L);
             ILog.d(TAG, "event--" + event.getAction());
             ILog.d(TAG, "event-getPackageName-" + ((Object) event.getPackageName()));

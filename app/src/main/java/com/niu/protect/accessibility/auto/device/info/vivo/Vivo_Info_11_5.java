@@ -51,7 +51,7 @@ public class Vivo_Info_11_5 extends BaseCreatePageInfo {
         PageInfoModel pageAutoStart = createMineSettingPage("自动授权中心", "自启动权限设置", 4, 14);
         childinfoModels.add(pageAutoStart);
         PageInfoModel pageAutoStartDetail = createLastPage("自启动", 4, 15, 1, "自启动权限设置", 9);
-        pageAutoStartDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pageAutoStartDetail.addCheckBox(createCheckBoxStep(Constant.APP_NAME, 1, true));
         childinfoModels.add(pageAutoStartDetail);
         String infos = new Gson().toJson(childinfoModels);
         ILog.d("Vivo_Info_11.5", infos);

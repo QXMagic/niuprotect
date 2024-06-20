@@ -95,7 +95,7 @@ public class PermCollectActivity extends BaseActivity {
     }
 
     private void loadData() {
-        this.mVivoInfos = BabyApplication.getInstance().getAutoSettingSteps();
+        this.mVivoInfos = BabyApplication.getInstance().autoSettingSteps;
         this.checkBoxModels.clear();
         if (this.mVivoInfos != null) {
             for (int i = 0; i < this.mVivoInfos.size(); i++) {

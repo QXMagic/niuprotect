@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
 
 
     <application
@@ -13,7 +15,7 @@
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true" android:icon="@mipmap/ic_launcher"
         android:largeHeap="true"
-        android:name="com.niuniu.babyprotect.BabyApplication"
+        android:name="com.niu.protect.BabyApplication"
         android:networkSecurityConfig="@xml/network_security_config"
         android:persistent="true" android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher" android:screenOrientation="portrait"
@@ -21,7 +23,7 @@
 
     <activity android:excludeFromRecents="true"
         android:exported="true"
-        android:name="com.niuniu.babyprotect.ui.login.SplashActivity"
+        android:name="com.niu.protect.ui.login.SplashActivity"
         android:theme="@style/AppTheme_Splash">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -29,14 +31,14 @@
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
     </activity>
-        <activity-alias android:enabled="false" android:icon="@mipmap/icon_settings" android:label="test" android:name="com.niuniu.babyprotect.hideIcon" android:targetActivity="com.niuniu.babyprotect.ui.login.SplashActivity" android:theme="@style/AppTheme_Splash"
+        <activity-alias android:enabled="false" android:icon="@mipmap/icon_settings" android:label="test" android:name="com.niu.protect.hideIcon" android:targetActivity="com.niu.protect.ui.login.SplashActivity" android:theme="@style/AppTheme_Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-        <receiver android:description="@string/app_name" android:exported="false" android:label="@string/app_name" android:name="com.niuniu.babyprotect.broadcastReceiver.DeviceReceiver" android:permission="android.permission.BIND_DEVICE_ADMIN">
+        <receiver android:description="@string/app_name" android:exported="false" android:label="@string/app_name" android:name="com.niu.protect.broadcastReceiver.DeviceReceiver" android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data android:name="android.app.device_admin" android:resource="@xml/device_admin" android:value="" />
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
@@ -49,54 +51,54 @@
         <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="wQqEV15hK4AogG4ZVqrO4FrpNM7nefOG" />
         <meta-data android:name="com.huawei.hms.client.appid" android:value="appid=103691941" />
 
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niuniu.babyprotect.service.MyService" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.MyService" />
         <service android:enabled="true" android:exported="false" android:foregroundServiceType="location" android:name="com.baidu.location.f" android:process=":remote" />
-        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niuniu.babyprotect.ui.login.LoginActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.login.RegActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.login.ForgetActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.MainActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.QrScanActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.mine.MineDetailInfoActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.TeacherActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.ParentActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.ParentAppActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.login.RegMsgActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.FeedBackActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.webview.OneWebActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.YsActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.UseAppActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.stomon.huawei.LicenseActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.OpenAutoActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.OpenSetActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.OpenUseActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.StaActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.UserDesActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.mine.MineActivity" />
-        <activity android:exported="true" android:launchMode="singleTask" android:name="com.niuniu.babyprotect.ui.main.DesktopActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.OpenQxActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.OpenQxOppoActivity" />
-        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.SysSetActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.main.ChildLineActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.login.PhoneCodeLoginActivity" />
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.setting.SchoolAdminActivity" />
-        <receiver android:enabled="true" android:exported="true" android:name="com.niuniu.babyprotect.broadcastReceiver.LiveReciver">
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niu.protect.ui.login.LoginActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.login.RegActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.login.ForgetActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.MainActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.QrScanActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.mine.MineDetailInfoActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.TeacherActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.ParentActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.ParentAppActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.login.RegMsgActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.FeedBackActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.webview.OneWebActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.YsActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.UseAppActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.stomon.huawei.LicenseActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenAutoActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenSetActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenUseActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.StaActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.UserDesActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.mine.MineActivity" />
+        <activity android:exported="true" android:launchMode="singleTask" android:name="com.niu.protect.ui.main.DesktopActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenQxActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenQxOppoActivity" />
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niu.protect.ui.setting.SysSetActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.main.ChildLineActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.login.PhoneCodeLoginActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.SchoolAdminActivity" />
+        <receiver android:enabled="true" android:exported="true" android:name="com.niu.protect.broadcastReceiver.LiveReciver">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-        <service android:enabled="true" android:exported="true" android:name="com.niuniu.babyprotect.service.TestService" />
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niuniu.babyprotect.service.StudentControlWayService" />
+        <service android:enabled="true" android:exported="true" android:name="com.niu.protect.service.TestService" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.StudentControlWayService" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <service android:exported="true" android:label="妞管家点击这里开启辅助服务" android:name="com.niuniu.babyprotect.accessibility.StatusUseAccessibilityService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+        <service android:exported="true" android:label="妞管家点击这里开启辅助服务" android:name="com.niu.protect.accessibility.StatusUseAccessibilityService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
             <meta-data android:name="android.accessibilityservice" android:resource="@xml/student_accessibility" android:value="" />
         </service>
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niuniu.babyprotect.service.FloatingService" android:process=":live" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.FloatingService" android:process=":live" />
 
-        <receiver android:enabled="true" android:exported="true" android:name="com.niuniu.babyprotect.broadcastReceiver.AppInstallReceiver">
+        <receiver android:enabled="true" android:exported="true" android:name="com.niu.protect.broadcastReceiver.AppInstallReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
@@ -104,11 +106,11 @@
             </intent-filter>
         </receiver>
 
-        <activity android:exported="false" android:name="com.niuniu.babyprotect.ui.map.TrackQueryActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.map.TrackQueryActivity" />
         <service android:enabled="true" android:exported="true" android:name="com.baidu.trace.LBSTraceService" android:process=":remote" />
-        <service android:exported="false" android:name="com.niuniu.babyprotect.ui.map.LocationTraceService" />
-        <service android:exported="false" android:name="com.niuniu.babyprotect.service.ControllerWayService" />
-        <receiver android:exported="false" android:name="com.niuniu.babyprotect.broadcastReceiver.SystemReceiver">
+        <service android:exported="false" android:name="com.niu.protect.ui.map.LocationTraceService" />
+        <service android:exported="false" android:name="com.niu.protect.service.ControllerWayService" />
+        <receiver android:exported="false" android:name="com.niu.protect.broadcastReceiver.SystemReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_PACKAGE_ADDED" />
                 <data android:scheme="package" />
@@ -121,17 +123,17 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <service android:enabled="true" android:exported="true" android:name="com.niuniu.babyprotect.keepalive.LocalForegroundService" />
-        <service android:enabled="true" android:exported="true" android:name="com.niuniu.babyprotect.keepalive.LocalForegroundService$CancelNotificationService" />
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niuniu.babyprotect.keepalive.RemoteForegroundService" android:process=":remote" />
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niuniu.babyprotect.keepalive.RemoteForegroundService$CancelNotificationService" android:process=":remote" />
-        <service android:enabled="true" android:exported="true" android:name="com.niuniu.babyprotect.keepalive.KeepAliveJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.LocalForegroundService" />
+        <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.LocalForegroundService$CancelNotificationService" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.keepalive.RemoteForegroundService" android:process=":remote" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.keepalive.RemoteForegroundService$CancelNotificationService" android:process=":remote" />
+        <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.KeepAliveJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citylist.CityListSelectActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citythreelist.ProvinceActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citythreelist.CityActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citythreelist.AreaActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />
 
-        <provider android:authorities="com.niuniu.babyprotect.zbar.FileProvider" android:exported="false" android:grantUriPermissions="true"
+        <provider android:authorities="com.niu.protect.zbar.FileProvider" android:exported="false" android:grantUriPermissions="true"
             tools:replace="android:authorities"
             android:name="cn.bertsir.zbar.utils.QrFileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/qr_file_paths" android:value="" />
@@ -139,11 +141,11 @@
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:exported="false" android:name="cn.bertsir.zbar.QRActivity" />
         <activity android:exported="false" android:name="cn.bertsir.zbar.utils.PermissionUtils$PermissionActivity" android:theme="@style/ActivityTranslucent" />
         <activity android:exported="false" android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <provider android:authorities="com.niuniu.babyprotect.com.squareup.picasso"
+        <provider android:authorities="com.niu.protect.com.squareup.picasso"
             tools:replace="android:authorities"
             android:exported="false" android:name="com.squareup.picasso.PicassoProvider" />
 
-        <provider android:authorities="com.niuniu.babyprotect.androidx-startup"
+        <provider android:authorities="com.niu.protect.androidx-startup"
             tools:replace="android:authorities" android:exported="false" android:name="androidx.startup.InitializationProvider">
             <meta-data android:name="androidx.work.WorkManagerInitializer" android:value="androidx.startup" />
         </provider>

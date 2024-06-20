@@ -40,7 +40,7 @@ public class MineNotificationManager {
         registerNotificationChannel();
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, "com.github.103style.SampleService");
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
-        mBuilder.setContentTitle("3985学生端");
+        mBuilder.setContentTitle(Constant.APP_NAME);
         mBuilder.setContentText("正在守护");
         if (Build.VERSION.SDK_INT < 24) {
             mBuilder.setContentTitle(this.context.getResources().getString(R.string.app_name));

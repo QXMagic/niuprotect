@@ -37,7 +37,7 @@ public abstract class BaseAccessibility extends BaseAutoSettingTools {
             }
         }
     };
-    private List<PageInfoModel> mVivoInfos = BabyApplication.getInstance().getAutoSettingSteps();
+    private List<PageInfoModel> mVivoInfos = BabyApplication.getInstance().autoSettingSteps;
     boolean findCheckBox = false;
 
     protected void initAccessibilityService() {
@@ -327,7 +327,7 @@ public abstract class BaseAccessibility extends BaseAutoSettingTools {
                 normalModeSleep(100L);
                 BackClick();
                 normalModeSleep(200L);
-            } else if (event.getText().toString().equals("3985学生端")) {
+            } else if (event.getText().toString().equals(Constant.APP_NAME)) {
                 normalModeSleep(200L);
                 findTextAndClick("允许", 1);
                 BackClick();
@@ -372,7 +372,7 @@ public abstract class BaseAccessibility extends BaseAutoSettingTools {
                 CheckBoxModel checkBoxModel = checkBoxModels.get(k);
                 if (checkBoxModel.getClickCheckBoxItemText().equals(text)) {
                     checkBoxModel.setClickedStatus(1);
-                    BabyApplication.getInstance().setAutoSettingSteps(this.mVivoInfos);
+                    BabyApplication.getInstance().autoSettingSteps=this.mVivoInfos;
                     return;
                 }
             }

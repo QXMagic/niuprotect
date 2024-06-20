@@ -81,7 +81,7 @@ public class OpenQxOppoActivity extends BaseActivity {
                 qxInfo.setDes("设备管理器 ➜ 激活");
             } else if (i == 2) {
                 qxInfo.setTitle("辅助功能");
-                qxInfo.setDes("选择3985学生端 ➜ 打开开关");
+                qxInfo.setDes("选择Constant.APP_NAME ➜ 打开开关");
             }
             this.qxInfoList.add(qxInfo);
         }

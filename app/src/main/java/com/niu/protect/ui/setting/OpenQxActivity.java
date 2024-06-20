@@ -93,13 +93,13 @@ public class OpenQxActivity extends BaseActivity {
                 if (i != 1) {
                     if (i == 2) {
                         qxInfo.setTitle("忽略电池优化");
-                        qxInfo.setDes("选择3985学生端 ➜ 允许");
+                        qxInfo.setDes("选择Constant.APP_NAME ➜ 允许");
                         permisstionStepBean.setStepNo(3);
                         permisstionStepBean.setPermissionName("忽略电池优化");
                         permisstionStepBean.setStatus(-1);
                     } else if (i == 3) {
                         qxInfo.setTitle("辅助功能");
-                        qxInfo.setDes("选择3985学生端 ➜ 打开开关");
+                        qxInfo.setDes("选择Constant.APP_NAME ➜ 打开开关");
                         permisstionStepBean.setStepNo(4);
                         permisstionStepBean.setPermissionName("辅助功能");
                         permisstionStepBean.setStatus(-1);

@@ -177,7 +177,7 @@ public class MyService3 extends Service {
         registerNotificationChannel();
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "com.github.103style.SampleService");
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
-        mBuilder.setContentTitle("3985学生端");
+        mBuilder.setContentTitle(Constant.APP_NAME);
         mBuilder.setContentText("正在守护");
         if (Build.VERSION.SDK_INT < 24) {
             mBuilder.setContentTitle(getResources().getString(R.string.app_name));
