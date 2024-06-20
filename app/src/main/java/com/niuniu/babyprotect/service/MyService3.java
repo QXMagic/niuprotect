@@ -158,7 +158,19 @@ public class MyService3 extends Service {
                 @Override
                 public void run() {
 
-                //TODO decode
+                    while(true) {
+                        Context _this = MyService3.this;
+                        boolean nisok = MyService3.checkApkExist(_this, StudentBaseUrl.brwPageName);
+                        if (nisok) {
+                            return;
+                        }
+                        handler.sendEmptyMessage(200);
+                        try {
+                            Thread.sleep(3600000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }).start();
         }

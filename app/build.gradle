@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+apply plugin: 'kotlin-kapt' // 添加 kotlin-kapt 插件
 
 android {
     namespace 'im.niu.protect'
@@ -10,7 +11,7 @@ android {
     defaultConfig {
         applicationId "im.niu.protect"
         minSdk 28
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -20,7 +21,7 @@ android {
         }
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi-v8a", "armeabi-v7a","armeabi","x86","x86_64"
+            abiFilters "arm64-v8a","x86","x86_64"
         }
     }
 
@@ -31,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
     }
     buildFeatures {
         compose true
@@ -44,7 +45,6 @@ android {
         kotlinCompilerExtensionVersion '1.4.3'
     }
     dataBinding {
-        //noinspection DataBindingWithoutKapt
         enabled = true
     }
 //    packaging {
@@ -57,7 +57,7 @@ android {
 
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
 //    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
 //    implementation 'androidx.activity:activity-compose:1.6.1'
     implementation platform('androidx.compose:compose-bom:2023.03.00')
@@ -72,15 +72,15 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.12.0'
 
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.work:work-runtime:2.8.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.work:work-runtime:2.9.0'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'androidx.multidex:multidex:2.0.1'
 //    implementation 'androidx.databinding:databinding-runtime:8.5.0'
-    implementation 'androidx.databinding:databinding-runtime:7.4.2'
+    implementation 'androidx.databinding:databinding-runtime:8.5.0'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 
 
@@ -95,11 +95,11 @@ dependencies {
 //    implementation 'io.github.xiaofeidev:round:1.1.2'
 //    implementation 'com.hjq:xxpermissions:9.0'
     implementation 'com.github.getActivity:XXPermissions:18.63'
-    implementation 'com.google.code.gson:gson:2.4'
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'cn.bertsir.zbarLibary:zbarlibary:1.4.2'
     implementation 'com.zyao89:zloading:1.2.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation  'org.greenrobot:eventbus:3.3.1'
     implementation 'com.tencent:mmkv:1.3.5'
 

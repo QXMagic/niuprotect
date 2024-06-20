@@ -1,7 +1,11 @@
 package com.niuniu.babyprotect.ui.main;
 
+import static android.app.usage.UsageEvents.Event.ACTIVITY_RESUMED;
+
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
+import android.app.usage.UsageEvents;
+import android.app.usage.UsageStatsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +20,17 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.niuniu.babyprotect.BuildConfig;
 import com.niuniu.babyprotect.adapter.UseAppAdapter;
 import com.niuniu.babyprotect.model.AppInfo;
 import com.niuniu.babyprotect.model.UsePackageInfo;
+import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import im.niu.protect.R;
 public class UseAppActivity extends BaseActivity {
@@ -55,27 +63,140 @@ public class UseAppActivity extends BaseActivity {
             }
         });
     }
+    private synchronized void getHigherPackageName(){
 
-    private synchronized void getHigherPackageName() {
-        //TODO decode
-//本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
+        this.appList.clear();
+        this.writeList.clear();
+        this.desList.clear();
+        this.showList.clear();
+        long time_now = java.lang.System.currentTimeMillis();
+        long timeZero = Tools.zeroTimeForLong(time_now);
+        UsageStatsManager statsManager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);     // Catch: java.lang.Throwable -> L123
+        if (statsManager == null) return;
+        UsageEvents events = statsManager.queryEvents(timeZero, time_now);     // Catch: java.lang.Throwable -> L123
+        if (events == null) return;
 
-return;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
+        UsageEvents.Event event = new UsageEvents.Event();     // Catch: java.lang.Throwable -> L123
+        PackageManager pk0 = getPackageManager();     // Catch: java.lang.Throwable -> L123
+        for (;events.hasNextEvent() ;events.getNextEvent(event) ) {
+            UsePackageInfo pkinfo = new UsePackageInfo();
+            if (event.getEventType() != ACTIVITY_RESUMED) {
+//                if (event.getEventType() != ACTIVITY_PAUSED) {
+//                    for (UsePackageInfo usePackageInfo : writeList) {
+//                        String r10 = usePackageInfo.getChangeTimes() + "------" +
+//                                Tools.timeFormat(new Date(usePackageInfo.getChangeTimes()),"yyyy-MM-dd HH:mm:ss")
+//                                + "-----" + usePackageInfo.getmAppName() + "-----";     // Catch: java.lang.Throwable -> L123
+//                        if (usePackageInfo.getAppType() != ACTIVITY_RESUMED) {
+//                            //L37:
+//                            if (usePackageInfo.getAppType() != ACTIVITY_PAUSED) {
+//                                //L41:
+//                                if (usePackageInfo.getAppType() != 23) {
+//                                    continue;
+//                                }
+//                                java.lang.String rs0 = r10 + "停止";     // Catch: java.lang.Throwable -> L123
+//                                continue;
+//                            }
+//                            java.lang.String r11 = r10 + "暂停";     // Catch: java.lang.Throwable -> L123
+//                            continue;
+//                        } else {
+//                            java.lang.String r11 = r10 + "开始";     // Catch: java.lang.Throwable -> L123
+//                            continue;
+//                        }
+//                    }
+//                }
+                     // Catch: java.lang.Throwable -> L123
+//                android.content.pm.PackageInfo pr0 = pk0.getPackageInfo(event.getPackageName(), 0);     // Catch: android.content.pm.PackageManager.NameNotFoundException -> L61 java.lang.Throwable -> L123
+//                pkinfo.setmAppName(pr0.applicationInfo.loadLabel(getPackageManager()).toString());
+                pkinfo.setStaTime(event.getTimeStamp());
+                pkinfo.setmPackageName(event.getPackageName());     // Catch: java.lang.Throwable -> L123
+                pkinfo.setAppType(event.getEventType());     // Catch: java.lang.Throwable -> L123
+                pkinfo.setChangeTimes(event.getTimeStamp());     // Catch: java.lang.Throwable -> L123
+                if (checkApp(pkinfo.getmPackageName())) {
+                    appList.add(pkinfo);
+                } else {
+                    writeList.add(pkinfo);//新增app
+                }
+            }
+        }
 
-//throw new UnsupportedOperationException(
-//Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.getHigherPackageName():void");
+//L64
+        //计算使用时间
+        UsePackageInfo start = null;
+        for (UsePackageInfo endInfo : appList) {
+            if (start == null) {
+                if (endInfo.getAppType() != ACTIVITY_RESUMED) continue;
+                start = endInfo;
+                continue;
+            }
+            if (!start.getmPackageName().equals(endInfo.getmPackageName())) {
+                if (endInfo.getAppType() != ACTIVITY_RESUMED) continue;
+                start = endInfo;
+                continue;
+            }
+            if (start.getAppType() != ACTIVITY_RESUMED) {
+                if (start.getAppType() != ACTIVITY_RESUMED) {
+                    if (endInfo.getAppType() != ACTIVITY_RESUMED) continue;
+                    start = endInfo;
+                    continue;
+                }
+                ;
+                if (endInfo.getAppType() == ACTIVITY_RESUMED) {
+                    continue;
+                }
+                ;
+            }
+            if (endInfo.getAppType() != 2) {
+                if (start.getAppType() != ACTIVITY_RESUMED) {
+                    if (endInfo.getAppType() != ACTIVITY_RESUMED) continue;
+                    start = endInfo;
+                    continue;
+                }
+                ;
+                if (endInfo.getAppType() == ACTIVITY_RESUMED) continue;
+            }
+            long timeDiff = (endInfo.getChangeTimes() - start.getChangeTimes()) / 1000;
+            if (timeDiff <= 5) {
+                start = null;
+            } else {
+                start.setStaTime(start.getChangeTimes());     // Catch: java.lang.Throwable -> L123
+                start.setEndTime(endInfo.getChangeTimes());     // Catch: java.lang.Throwable -> L123
+                start.setmUsedTime(timeDiff * 1000);     // Catch: java.lang.Throwable -> L123
+                showList.add(start);     // Catch: java.lang.Throwable -> L123
+            }
+        }
+        //合并使用时间
+        Map<String, UsePackageInfo> map = new HashMap();
+        for (UsePackageInfo pinfo : showList) {
+            UsePackageInfo old = map.get(pinfo.getmPackageName());
+            if (old == null) {
+                map.put(pinfo.getmPackageName(), pinfo);
+                desList.add(pinfo);
+            } else {
+                old.setmUsedTime(old.getmUsedTime() + pinfo.getmUsedTime());
+            }
+        }
     }
 
-    public boolean checkApp(java.lang.String r4) {
-        //TODO decode
-//本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
-
-return true;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
-
-//throw new UnsupportedOperationException(
-//Method not decompiled: com.niuniu.babyprotect.ui.main.UseAppActivity.checkApp(java.lang.String):boolean");
+   /**
+    * 检测Name 是否在alist中,是否为本APP
+    * */
+    public boolean checkApp(String appName) {
+        for(AppInfo info:alist){
+            if(info.getPackageName().equals(appName)){
+                return true;
+            }
+            if(appName.equals(BuildConfig.APPLICATION_ID)){
+                return true;
+            }
+        }
+        return false;
     }
 
+
+
+    /**
+     * 获取所有APP list
+     * */
     public static List<AppInfo> getAppList(Context context) {
         List<AppInfo> list = new ArrayList<>();
         PackageManager pm = context.getPackageManager();
@@ -106,7 +227,7 @@ return true;//这行代码是为了保证方法体完整性额外添加的，请
     }
 
     private boolean hasPermission() {
-        AppOpsManager appOpsM = (AppOpsManager) getSystemService("appops");
+        AppOpsManager appOpsM = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
         int mode = 0;
         if (Build.VERSION.SDK_INT > 19) {
             mode = appOpsM.checkOpNoThrow("android:get_usage_stats", Process.myUid(), getPackageName());

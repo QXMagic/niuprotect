@@ -1,15 +1,21 @@
 package com.niuniu.babyprotect.databinding;
 
+import android.util.Log;
+import android.view.InflateException;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
 import com.niuniu.babyprotect.ui.NavigationBar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import im.niu.protect.R;
 
 public abstract class ActivityMainBinding extends ViewDataBinding {
     public final TextView appMoreTxt;
@@ -58,31 +64,35 @@ public abstract class ActivityMainBinding extends ViewDataBinding {
         this.userHead = userHead;
         this.username = username;
     }
-    //TODO error
-//
+    public static ActivityMainBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot) {
+        return inflate(inflater, root, attachToRoot);
+    }
+
+////    @SuppressLint("RestrictedApi")
 //    public static ActivityMainBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot) {
-//        return inflate(inflater, root, attachToRoot, DataBindingUtil.getDefaultComponent());
+////        return (ActivityMainBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_main, root, attachToRoot, component);
+//        return (ActivityMainBinding)DataBindingUtil.inflate(inflater,R.layout.activity_main,root,attachToRoot,DataBindingUtil.getDefaultComponent());
 //    }
-//
-//    @Deprecated
-//    public static ActivityMainBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot, Object component) {
-//        return (ActivityMainBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_main, root, attachToRoot, component);
-//    }
-//
-//    public static ActivityMainBinding inflate(LayoutInflater inflater) {
+
+    public static ActivityMainBinding inflate(LayoutInflater inflater) {
+        try {
+            return DataBindingUtil.inflate(inflater, R.layout.activity_main, null, false, DataBindingUtil.getDefaultComponent());
+        }catch (InflateException e){
+            e.printStackTrace();
+            Log.e("binding",e.getMessage());
+        }
+        return null;
 //        return inflate(inflater, DataBindingUtil.getDefaultComponent());
-//    }
-//
-//    @Deprecated
+    }
+
 //    public static ActivityMainBinding inflate(LayoutInflater inflater, Object component) {
 //        return (ActivityMainBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_main, null, false, component);
 //    }
-//
+
 //    public static ActivityMainBinding bind(View view) {
 //        return bind(view, DataBindingUtil.getDefaultComponent());
 //    }
 //
-//    @Deprecated
 //    public static ActivityMainBinding bind(View view, Object component) {
 //        return (ActivityMainBinding) bind(component, view, R.layout.activity_main);
 //    }

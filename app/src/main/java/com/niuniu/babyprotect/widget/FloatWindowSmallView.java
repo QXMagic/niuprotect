@@ -1,6 +1,5 @@
 package com.niuniu.babyprotect.widget;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
@@ -19,8 +18,6 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-
-import androidx.core.app.ActivityCompat;
 
 import com.niuniu.babyprotect.adapter.DeskTopGridViewBaseAdapter;
 import com.niuniu.babyprotect.model.AppInfo;
@@ -53,10 +50,7 @@ public class FloatWindowSmallView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.activity_desktop, this);
         LinearLayout bgview = (LinearLayout) findViewById(R.id.bgview);
         WallpaperManager manager = WallpaperManager.getInstance(context);
-        if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            return;
-        }
+
         Drawable drawable = manager.getDrawable();
         bgview.setBackground(drawable);
         initAppList();

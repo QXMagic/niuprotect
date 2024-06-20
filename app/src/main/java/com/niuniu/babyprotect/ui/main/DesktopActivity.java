@@ -1,6 +1,5 @@
 package com.niuniu.babyprotect.ui.main;
 
-import android.Manifest;
 import android.app.ActivityManager;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
@@ -20,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.viewpager.widget.ViewPager;
 
@@ -57,10 +55,6 @@ public class DesktopActivity extends BaseActivity {
         setContentView(R.layout.activity_desktop);
         LinearLayout bgview = (LinearLayout) findViewById(R.id.bgview);
         WallpaperManager manager = WallpaperManager.getInstance(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            //TODO add permission
-            return;
-        }
         Drawable drawable = manager.getDrawable();
         bgview.setBackground(drawable);
         initViews();

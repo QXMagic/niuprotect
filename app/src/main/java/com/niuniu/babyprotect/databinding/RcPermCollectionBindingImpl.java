@@ -21,9 +21,7 @@ public class RcPermCollectionBindingImpl extends RcPermCollectionBinding {
     }
 
     public RcPermCollectionBindingImpl(DataBindingComponent bindingComponent, View root) {
-        this(bindingComponent, root,null);
-//TODO error
-// this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
     }
 
     private RcPermCollectionBindingImpl(DataBindingComponent bindingComponent, View root, Object[] bindings) {

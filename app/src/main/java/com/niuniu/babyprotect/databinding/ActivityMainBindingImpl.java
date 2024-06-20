@@ -46,9 +46,7 @@ public class ActivityMainBindingImpl extends ActivityMainBinding {
     }
 
     public ActivityMainBindingImpl(DataBindingComponent bindingComponent, View root) {
-        this(bindingComponent, root, null);
-        //TODO error
-//        this(bindingComponent, root, mapBindings(bindingComponent, root, 22, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 22, sIncludes, sViewsWithIds));
     }
 
     private ActivityMainBindingImpl(DataBindingComponent bindingComponent, View root, Object[] bindings) {

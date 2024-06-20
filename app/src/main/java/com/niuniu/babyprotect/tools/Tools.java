@@ -78,6 +78,9 @@ public class Tools {
         return timestamp;
     }
 
+    /**
+     * 获取指定时间的凌晨时间戳
+     * */
     public static long zeroTimeForLong(Long timest) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(timest.longValue());

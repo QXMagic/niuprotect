@@ -3,7 +3,7 @@ package com.niuniu.babyprotect.network;
 import android.os.Environment;
 import java.io.File;
 public final class StudentBaseUrl {
-    public static final String BASE_URL = "http://139.9.121.96:8281";
+    public static final String BASE_URL = "http://dev.xinyu126.com";
     public static final String BASE_URL_JIAOWU = "http://139.9.121.96:8080/h5/#/?token=";
     public static final String GET_SMALLPROGRAMLIST = "v1/apps/smallProgramList";
     public static final String GET_TEMPORARY_UNBINDINFO = "v1/apps/getTemporaryUnBindInfo";
@@ -16,7 +16,7 @@ public final class StudentBaseUrl {
     public static final String USER_CONTROLLER_STATUS = "v1/status/setUserControlStatus";
     public static final String USER_SEND_VCODE = "v1/members/sendVCode";
     public static final String USER_WHITE_APP_LIST = "v1/appWhitelist/studentWhitelist";
-    public static final String WEBSOCKET_URI = "ws://139.9.121.96:8281/stu-mob-mon-customer/api/websocket/";
+    public static final String WEBSOCKET_URI = "ws://139.9.121.96:8281/api/websocket/";
     public static final String appBlacklists_studentBlacklist = "v1/appBlacklists/studentBlacklist";
     public static final String appBlacklists_systemBlacklist = "v1/appBlacklists/systemBlacklist";
     public static final String appBlacklists_systemWhiteList = "v1/appBlacklists/systemWhitelist";
@@ -31,14 +31,14 @@ public final class StudentBaseUrl {
     public static final String appversion_info = "v1/app-version/info";
     public static final String auto_setting_content = "v1/power/findByCondition";
     public static final File baseFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    public static final String baseurl = "http://139.9.121.96:8281/stu-mob-mon-customer/api/";
-    public static final String baseweb = "http://139.9.121.96:8281:8289/";
+    public static final String baseurl = StudentBaseUrl.BASE_URL+"/api/";
+    public static final String baseweb = "http://139.9.121.96:8289/";
     public static final String brwDownUrl = "https://stu-mob-mon.oss-cn-hangzhou.aliyuncs.com/app/apk/browser20.apk";
     public static final String brwPageName = "com.qjj.studydainty";
     public static final String feedbacks_add = "v1/feedbacks/add";
     public static final String fileInfos_upload = "v1/fileInfos/upload";
     public static final String fileInfos_uploadZip = "v1/fileInfos/uploadZip";
-    public static final String imgurl = "http://139.9.121.96:8281";
+    public static final String imgurl = StudentBaseUrl.BASE_URL;
     public static final String inspirationalMottos_random = "v1/inspirationalMottos/random";
     public static final String members_getMemberInfo = "v1/members/getMemberInfo";
     public static final String members_sendVCode = "v1/members/sendVCode";

@@ -39,11 +39,9 @@ public class PremCollectionAdapter extends RecyclerView.Adapter<PremCollectionAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        RcPermCollectionBinding inflate = RcPermCollectionBinding.inflate(LayoutInflater.from(this.mContext), parent, false);
-//        this.binding = inflate;
-//        return new ViewHolder(inflate.getRoot());
-        //TODO error
-        return null;
+        RcPermCollectionBinding inflate = RcPermCollectionBinding.inflate(LayoutInflater.from(this.mContext), parent, false);
+        this.binding = inflate;
+        return new ViewHolder(inflate.getRoot());
     }
 
     @Override

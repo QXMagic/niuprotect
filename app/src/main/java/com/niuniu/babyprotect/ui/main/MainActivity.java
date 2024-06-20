@@ -29,6 +29,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.work.WorkRequest;
 
@@ -66,6 +67,7 @@ import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.mine.MineActivity;
 import com.niuniu.babyprotect.ui.setting.OpenQxActivity;
 import com.niuniu.babyprotect.viewmodel.MainViewModel;
+import com.niuniu.babyprotect.viewmodel.MainViewModelFactory;
 import com.niuniu.babyprotect.widget.UpdateDialog;
 import com.niuniu.babyprotect.work.MineWorkerManager;
 
@@ -85,6 +87,7 @@ import atmp.consts.Constants;
 import cn.bertsir.zbar.Qr.ScanResult;
 import cn.bertsir.zbar.QrManager;
 import im.niu.protect.R;
+
 public class MainActivity extends BaseActivity {
     public static final String TAG_USERINFO = "tag_intent_userinfo";
     public static boolean mainRunning = false;
@@ -100,18 +103,18 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO error
-//        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
-//        this.binding = inflate;
-//        setContentView(inflate.getRoot());
-//        this.mainViewModel = (MainViewModel) new ViewModelProvider(this, new MainViewModelFactory()).get(MainViewModel.class);
-//        initUi();
-//        initObserve();
-//        this.mUserInfo = UserInfoManager.getInstance().getUserInfo(this);
-//        regist();
-//        WebSocketManager.getInstance().start();
-//        mainRunning = true;
-//        uploadAllAPP();
+
+        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
+        this.binding = inflate;
+        setContentView(inflate.getRoot());
+        this.mainViewModel = new ViewModelProvider(this, new MainViewModelFactory()).get(MainViewModel.class);
+        initUi();
+        initObserve();
+        this.mUserInfo = UserInfoManager.getInstance().getUserInfo(this);
+        regist();
+        WebSocketManager.getInstance().start();
+        mainRunning = true;
+        uploadAllAPP();
     }
 
     public void uploadAllAPP() {
@@ -619,7 +622,7 @@ public class MainActivity extends BaseActivity {
                 TextView txt2 = (TextView) convertView.findViewWithTag((tag + 3) + "");
                 ProgressBar probar = (ProgressBar) convertView.findViewWithTag((tag + 4) + "");
                 String userTime2 = userTime;
-                Glide.with((FragmentActivity) this).asBitmap().load("http://139.9.121.96:8281" + appInfo.getAppImage()).into(img1);
+                Glide.with((FragmentActivity) this).asBitmap().load(StudentBaseUrl.BASE_URL + appInfo.getAppImage()).into(img1);
                 probar.setMax(1440);
                 probar.setProgress(appInfo.getUseTime());
                 String timeStr = "";

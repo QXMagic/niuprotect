@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import im.niu.protect.R;
+
+import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.webview.OneWebActivity;
+
+import im.niu.protect.R;
 public class SchoolAdminActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class SchoolAdminActivity extends BaseActivity {
                 if (token == null) {
                     return;
                 }
-                String url = "http://139.9.121.96:8080/h5/#/?token=" + token;
+                String url = StudentBaseUrl.BASE_URL_JIAOWU + token;
                 Intent intent = new Intent(SchoolAdminActivity.this, OneWebActivity.class);
                 intent.putExtra("jumpUrl", url);
                 intent.putExtra("title", "请假管理");

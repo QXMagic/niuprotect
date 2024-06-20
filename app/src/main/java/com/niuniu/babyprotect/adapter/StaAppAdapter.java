@@ -8,12 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.model.AppRecInfo;
+import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.Tools;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
+
+import im.niu.protect.R;
 public class StaAppAdapter extends BaseAdapter {
     public int alltime;
     private Context context;
@@ -51,7 +55,7 @@ public class StaAppAdapter extends BaseAdapter {
         TextView txt1 = (TextView) convertView.findViewById(R.id.txt1);
         TextView txt2 = (TextView) convertView.findViewById(R.id.txt2);
         ProgressBar probar = (ProgressBar) convertView.findViewById(R.id.probar);
-        Picasso.get().load("http://139.9.121.96:8281" + appRecInfo.getAppImage()).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).into(imageview);
+        Picasso.get().load(StudentBaseUrl.BASE_URL + appRecInfo.getAppImage()).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).into(imageview);
         if (!Tools.objIsNullStr(appRecInfo.getAppName())) {
             String timeStr = "";
             int hour = (appRecInfo.getUseTime() / 60) / 60;

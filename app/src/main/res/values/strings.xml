@@ -275,4 +275,5 @@
   <string name="walking">最短步行路线</string>
   <string name="walking_mode">步行</string>
   <string name="yellow">黄色</string>
+    <string name="app_title">妞管家</string>
 </resources>

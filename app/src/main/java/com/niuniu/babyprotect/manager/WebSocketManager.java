@@ -6,25 +6,28 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.niuniu.babyprotect.BabyApplication;
 import com.niuniu.babyprotect.accessibility.auto.app.OpenSettingApp;
-import com.niuniu.babyprotect.manager.UserInfoManager;
 import com.niuniu.babyprotect.model.AppInfo;
 import com.niuniu.babyprotect.model.EventMessageModel;
 import com.niuniu.babyprotect.model.UserInfo;
 import com.niuniu.babyprotect.model.WebsocketMessage;
 import com.niuniu.babyprotect.model.eventbus.EventParentChangeBindMode;
+import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.niuniu.babyprotect.tools.ILog;
 import com.niuniu.babyprotect.tools.apk.ApkTools;
 import com.niuniu.babyprotect.ui.map.LocationTraceService;
 import com.niuniu.babyprotect.websocket.BaseWebSocketEvent;
-import java.net.URI;
-import java.net.URISyntaxException;
+
 import org.greenrobot.eventbus.EventBus;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 public class WebSocketManager {
     private static final String TAG = "WebSClient";
     public static final int TAG_MSG_SEND_MSG = 2;
@@ -65,7 +68,7 @@ public class WebSocketManager {
             return;
         }
         this.userId = userInfo.getId();
-        String uri = "ws://139.9.121.96:8281/stu-mob-mon-customer/api/websocket/" + userInfo.getId();
+        String uri = StudentBaseUrl.WEBSOCKET_URI + userInfo.getId();
         ILog.d(TAG, "-uri-" + uri);
         try {
             WebSClient webSClient = new WebSClient(new URI(uri));

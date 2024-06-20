@@ -24,8 +24,6 @@ public class ControllerWayService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        
-//TODO decode
         return  null;
     }
 

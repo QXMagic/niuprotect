@@ -10,6 +10,8 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.niuniu.babyprotect.BabyApplication;
 import com.niuniu.babyprotect.accessibility.auto.bean.CheckBoxModel;
 import com.niuniu.babyprotect.accessibility.auto.bean.PageInfoModel;
@@ -25,6 +27,7 @@ import com.niuniu.babyprotect.tools.Tools;
 import com.niuniu.babyprotect.ui.base.BaseActivity;
 import com.niuniu.babyprotect.ui.main.MainActivity;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,23 +47,22 @@ public class PermCollectActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO error
-//        ActivityPermCollectBinding inflate = ActivityPermCollectBinding.inflate(getLayoutInflater());
-//        this.binding = inflate;
-//        setContentView(inflate.getRoot());
-//        changeTitle("自动授权中心(自动操作)");
-//        Type type = new TypeToken<ArrayList<PermisstionStepBean>>() {
-//        }.getType();
-//        String permissionData = getIntent().getStringExtra("data");
-//        List<PermisstionStepBean> list = (List) new Gson().fromJson(permissionData, type);
-//        this.upStepPermisstionStepBeans = list;
-//        if (list != null) {
-//            this.upStepPermissSize = list.size();
-//        }
-//        this.permisstionStepBeans = new ArrayList();
-//        showBack();
-//        initUi();
-//        initAdapter();
+        ActivityPermCollectBinding inflate = ActivityPermCollectBinding.inflate(getLayoutInflater());
+        this.binding = inflate;
+        setContentView(inflate.getRoot());
+        changeTitle("自动授权中心(自动操作)");
+        Type type = new TypeToken<ArrayList<PermisstionStepBean>>() {
+        }.getType();
+        String permissionData = getIntent().getStringExtra("data");
+        List<PermisstionStepBean> list = (List) new Gson().fromJson(permissionData, type);
+        this.upStepPermisstionStepBeans = list;
+        if (list != null) {
+            this.upStepPermissSize = list.size();
+        }
+        this.permisstionStepBeans = new ArrayList();
+        showBack();
+        initUi();
+        initAdapter();
     }
 
     @Override

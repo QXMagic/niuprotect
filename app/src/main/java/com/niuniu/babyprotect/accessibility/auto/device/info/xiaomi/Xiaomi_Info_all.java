@@ -8,6 +8,9 @@ import com.niuniu.babyprotect.accessibility.auto.device.BaseCreatePageInfo;
 import com.niuniu.babyprotect.tools.ILog;
 import java.util.ArrayList;
 import java.util.List;
+
+import im.niu.protect.R;
+
 public class Xiaomi_Info_all extends BaseCreatePageInfo {
     @Override
     protected BaseCreatePageInfo createInfo() {
@@ -25,12 +28,12 @@ public class Xiaomi_Info_all extends BaseCreatePageInfo {
         PageInfoModel pageFloatWindows = createMineSettingPage("自动授权中心", "悬浮窗权限设置", 2, 3);
         childinfoModels.add(pageFloatWindows);
         PageInfoModel pageFloatWindowsDetail = createLastPage("悬浮窗", 2, 4, 1, "悬浮窗权限设置", 5);
-        pageFloatWindowsDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pageFloatWindowsDetail.addCheckBox(createCheckBoxStep(context.getString(R.string.app_title), 1, true));
         childinfoModels.add(pageFloatWindowsDetail);
         PageInfoModel pageAutoStart = createMineSettingPage("自动授权中心", "自启动权限设置", 3, 5);
         childinfoModels.add(pageAutoStart);
         PageInfoModel pageAutoStartDetail = createLastPage("自启动", 3, 6, 1, "自启动权限设置", 2);
-        pageAutoStartDetail.addCheckBox(createCheckBoxStep("3985学生端", 1, true));
+        pageAutoStartDetail.addCheckBox(createCheckBoxStep("context.getString(R.string.app_title)", 1, true));
         childinfoModels.add(pageAutoStartDetail);
         PageInfoModel pInfoDeviceUse = createMineSettingPage("自动授权中心", "应用使用记录", 4, 7);
         childinfoModels.add(pInfoDeviceUse);
@@ -49,7 +52,7 @@ public class Xiaomi_Info_all extends BaseCreatePageInfo {
         pInfoPowerDetail.addCheckBox(createCheckBoxStep(AppInfo.getAppName(context), 1, true));
         childinfoModels.add(pInfoPowerDetail);
         String infos = new Gson().toJson(childinfoModels);
-        ILog.d("Vivo_Info_all", infos);
+        ILog.d("xiao mi info", infos);
         return childinfoModels;
     }
 }

@@ -7,10 +7,9 @@ import com.niuniu.babyprotect.accessibility.auto.bean.PageInfoModel;
 import java.util.ArrayList;
 import java.util.List;
 public abstract class BaseCreatePageInfo {
-    public static final String APPNAME = "3985学生端";
     List<CheckBoxModel> checkBoxModels;
     MineSettingInfoModel mMineSettingInfoModel;
-    protected List<MineSettingInfoModel> settingInfoModels = new ArrayList();
+    protected List<MineSettingInfoModel> settingInfoModels = new ArrayList<>();
     protected int totalSteps;
 
     protected abstract BaseCreatePageInfo createInfo();
@@ -24,7 +23,7 @@ public abstract class BaseCreatePageInfo {
         MineSettingInfoModel mineSettingInfoModel = new MineSettingInfoModel();
         this.mMineSettingInfoModel = mineSettingInfoModel;
         mineSettingInfoModel.setItemName(pageTag);
-        this.checkBoxModels = new ArrayList();
+        this.checkBoxModels = new ArrayList<>();
         return pInfo;
     }
 
@@ -63,12 +62,12 @@ public abstract class BaseCreatePageInfo {
         return pInfo;
     }
 
-    protected PageInfoModel createCenterCheckboxPage(String pageTag, int parentStep, int step) {
-        PageInfoModel pInfo = createNormal(pageTag, parentStep, step);
-        pInfo.setParentPage(0);
-        this.totalSteps = step;
-        return pInfo;
-    }
+//    protected PageInfoModel createCenterCheckboxPage(String pageTag, int parentStep, int step) {
+//        PageInfoModel pInfo = createNormal(pageTag, parentStep, step);
+//        pInfo.setParentPage(0);
+//        this.totalSteps = step;
+//        return pInfo;
+//    }
 
     public CheckBoxModel createCheckBoxStep(String checkBoxText, int defaultCheckBoxValue, boolean isLastCheckbox) {
         CheckBoxModel checkBoxModel = new CheckBoxModel();

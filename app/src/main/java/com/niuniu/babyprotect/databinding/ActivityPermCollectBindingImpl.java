@@ -32,9 +32,7 @@ public class ActivityPermCollectBindingImpl extends ActivityPermCollectBinding {
     }
 
     public ActivityPermCollectBindingImpl(DataBindingComponent bindingComponent, View root) {
-        this(bindingComponent, root,null);
-        //TODO error
-//        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
     }
 
     private ActivityPermCollectBindingImpl(DataBindingComponent bindingComponent, View root, Object[] bindings) {

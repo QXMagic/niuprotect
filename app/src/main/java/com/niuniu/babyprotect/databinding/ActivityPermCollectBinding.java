@@ -1,10 +1,14 @@
 package com.niuniu.babyprotect.databinding;
 
+import android.annotation.SuppressLint;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,29 +32,28 @@ public abstract class ActivityPermCollectBinding extends ViewDataBinding {
         this.textInfo = textInfo;
         this.tvPhone = tvPhone;
     }
-    //TODO error
-//
-//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot) {
-//        return inflate(inflater, root, attachToRoot, DataBindingUtil.getDefaultComponent());
-//    }
-//
-//    @Deprecated
-//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot, Object component) {
-//        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, root, attachToRoot, component);
-//    }
-//
-//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater) {
-//        return inflate(inflater, DataBindingUtil.getDefaultComponent());
-//    }
-//
-//    @Deprecated
-//    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, Object component) {
-//        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, null, false, component);
-//    }
-//
-//    public static ActivityPermCollectBinding bind(View view) {
-//        return bind(view, DataBindingUtil.getDefaultComponent());
-//    }
+
+    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot) {
+        return inflate(inflater, root, attachToRoot, DataBindingUtil.getDefaultComponent());
+    }
+
+    @SuppressLint("RestrictedApi")
+    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, ViewGroup root, boolean attachToRoot, Object component) {
+        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, root, attachToRoot, component);
+    }
+
+    public static ActivityPermCollectBinding inflate(LayoutInflater inflater) {
+        return inflate(inflater, DataBindingUtil.getDefaultComponent());
+    }
+
+    @SuppressLint("RestrictedApi")
+    public static ActivityPermCollectBinding inflate(LayoutInflater inflater, Object component) {
+        return (ActivityPermCollectBinding) ViewDataBinding.inflateInternal(inflater, R.layout.activity_perm_collect, null, false, component);
+    }
+
+    public static ActivityPermCollectBinding bind(View view) {
+        return bind(view, DataBindingUtil.getDefaultComponent());
+    }
 
     @Deprecated
     public static ActivityPermCollectBinding bind(View view, Object component) {

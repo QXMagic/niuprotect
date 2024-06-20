@@ -9,13 +9,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import im.niu.protect.R;
+
 import com.niuniu.babyprotect.model.AppInfo;
+import com.niuniu.babyprotect.network.StudentBaseUrl;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import im.niu.protect.R;
 public class UserDesAdapter extends BaseAdapter {
     public int alltime;
     private Context context;
@@ -84,7 +88,7 @@ public class UserDesAdapter extends BaseAdapter {
                 sb.append("");
                 ProgressBar probar = (ProgressBar) convertView2.findViewWithTag(sb.toString());
                 String userTime2 = userTime;
-                Picasso.get().load("http://139.9.121.96:8281" + appInfo.getAppImage()).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).into(img1);
+                Picasso.get().load(StudentBaseUrl.BASE_URL + appInfo.getAppImage()).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).into(img1);
                 probar.setMax(1440);
                 probar.setProgress(appInfo.getUseTime());
                 String timeStr = "";

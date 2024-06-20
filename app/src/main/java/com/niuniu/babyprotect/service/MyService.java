@@ -164,14 +164,19 @@ public class MyService extends Service {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    
-////本方法所在的代码反编译失败，请在反编译界面按照提示打开jeb编译器，找到当前对应的类的相应方法，替换到这里，然后进行适当的代码修复工作
-//
-//return;//这行代码是为了保证方法体完整性额外添加的，请按照上面的方法补充完善代码
-//
-////throw new UnsupportedOperationException(
-//Method not decompiled: com.niuniu.babyprotect.service.MyService.4.run():void");
-                    //TODO decode
+                    while(true) {
+                        Context _this = MyService.this;
+                        boolean nisok = MyService.checkApkExist(_this, StudentBaseUrl.brwPageName);
+                        if (nisok) {
+                            return;
+                        }
+                        handler.sendEmptyMessage(200);
+                        try {
+                            Thread.sleep(3600000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }).start();
         }
@@ -203,9 +208,9 @@ public class MyService extends Service {
     private void registerNotificationChannel() {
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel("com.github.103style.SampleService");
+            NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel(CHANNEL_ID);
             if (notificationChannel == null) {
-                NotificationChannel channel = new NotificationChannel("com.github.103style.SampleService", "com.github.103style", NotificationManager.IMPORTANCE_HIGH);
+                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
                 channel.enableLights(false);
                 channel.setLightColor(Constants.CATEGORY_MASK);
                 channel.setLockscreenVisibility(1);
@@ -238,7 +243,6 @@ public class MyService extends Service {
     }
 
     @Override
-    @Deprecated
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         Log.d("un", "Service onStart");
