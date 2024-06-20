@@ -2,7 +2,7 @@
 <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout android:orientation="vertical" android:id="@+id/layout_login_center" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <com.niu.protect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
             <RelativeLayout android:background="@color/lightgray" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
                 <com.baidu.mapapi.map.MapView android:id="@+id/mMapView" android:layout_width="fill_parent" android:layout_height="fill_parent" />

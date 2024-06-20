@@ -2,8 +2,8 @@
 <LinearLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout android:orientation="vertical" android:id="@+id/layout_login_center" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
-        <com.niuniu.babyprotect.widget.MyViewPager android:layout_gravity="center" android:id="@+id/view_pager" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0" android:layout_below="@id/navigationbar" />
+        <com.niu.protect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <com.niu.protect.widget.MyViewPager android:layout_gravity="center" android:id="@+id/view_pager" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0" android:layout_below="@id/navigationbar" />
         <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/dotview" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginTop="20.0dip" android:layout_marginBottom="30.0dip" android:layout_alignParentBottom="true">
             <LinearLayout android:tag="1000" android:background="@drawable/view_round9" android:layout_width="8.0dip" android:layout_height="8.0dip" android:layout_marginLeft="3.0dip" android:layout_marginRight="3.0dip" />
             <LinearLayout android:tag="1001" android:background="@drawable/view_round9" android:layout_width="8.0dip" android:layout_height="8.0dip" android:layout_marginLeft="3.0dip" android:layout_marginRight="3.0dip" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <com.niu.protect.ui.NavigationBar android:id="@+id/navigationbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
     <ImageView android:layout_width="fill_parent" android:layout_height="400.0dip" android:layout_margin="30.0dip" android:src="@mipmap/auto2" android:scaleType="fitCenter" />
     <TextView android:textSize="18.0dip" android:textColor="@color/white" android:gravity="center" android:id="@+id/openBtn" android:background="@drawable/view_round7" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_margin="15.0dip" android:text="开启授权" />
 </LinearLayout>

@@ -1,117 +1,659 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical" android:tag="layout/activity_main_0" android:background="#fff8f7fc" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout android:orientation="vertical" android:id="@+id/layout_login_center" android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <com.niuniu.babyprotect.ui.NavigationBar android:id="@+id/navigationbar" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
-        <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
-            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <RelativeLayout android:background="@mipmap/p065" android:layout_width="fill_parent" android:layout_height="120.0dip">
-                    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/childmsgview" android:layout_width="fill_parent" android:layout_height="120.0dip" android:layout_marginLeft="20.0dip">
-                        <LinearLayout android:orientation="horizontal" android:tag="1000" android:layout_width="wrap_content" android:layout_height="55.0dip">
-                            <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/userHead" android:tag="101" android:layout_width="55.0dip" android:layout_height="55.0dip" android:src="@mipmap/uhead1" android:layout_centerInParent="true" app:civ_border_color="@color/white" app:civ_border_width="@dimen/dp_2" app:civ_fill_color="@color/white" />
-                            <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/dp_15">
-                                <TextView android:textSize="15.0sp" android:textColor="#fffefeff" android:id="@+id/username" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="王小明" />
-                                <TextView android:textSize="13.0sp" android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="选择自律，追随梦想" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:tag="layout/activity_main_0"
+        android:background="#fff8f7fc"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/layout_login_center"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <com.niu.protect.ui.NavigationBar
+                android:id="@+id/navigationbar"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:background="@mipmap/p065"
+                        android:layout_width="fill_parent"
+                        android:layout_height="120.0dip">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:id="@+id/childmsgview"
+                            android:layout_width="fill_parent"
+                            android:layout_height="120.0dip"
+                            android:layout_marginLeft="20.0dip">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:tag="1000"
+                                android:layout_width="wrap_content"
+                                android:layout_height="55.0dip">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/userHead"
+                                    android:tag="101"
+                                    android:layout_width="55.0dip"
+                                    android:layout_height="55.0dip"
+                                    android:src="@mipmap/uhead1"
+                                    android:layout_centerInParent="true"
+                                    app:civ_border_color="@color/white"
+                                    app:civ_border_width="@dimen/dp_2"
+                                    app:civ_fill_color="@color/white" />
+
+                                <LinearLayout
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="@dimen/dp_15">
+
+                                    <TextView
+                                        android:textSize="15.0sp"
+                                        android:textColor="#fffefeff"
+                                        android:id="@+id/username"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="王小明" />
+
+                                    <TextView
+                                        android:textSize="13.0sp"
+                                        android:textColor="#ffffffff"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="2.0dip"
+                                        android:text="选择自律，追随梦想" />
+                                </LinearLayout>
                             </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
-                <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="80.0dip" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="20.0dip">
-                    <RelativeLayout android:id="@+id/goParentBtn" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
-                        <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@mipmap/p007" android:scaleType="centerCrop" />
-                        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
-                            <TextView android:textSize="16.0sp" android:textColor="#ffffffff" android:id="@+id/bingptxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="未绑定家长" />
                         </LinearLayout>
                     </RelativeLayout>
-                    <RelativeLayout android:id="@+id/goTeacherBtn" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:layout_weight="1.0">
-                        <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@mipmap/p008" android:scaleType="centerCrop" />
-                        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
-                            <TextView android:textSize="16.0sp" android:textColor="#ffffffff" android:id="@+id/bingttxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="未绑定老师" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="80.0dip"
+                        android:layout_marginLeft="20.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:layout_marginRight="20.0dip">
+
+                        <RelativeLayout
+                            android:id="@+id/goParentBtn"
+                            android:layout_width="0.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1.0">
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:src="@mipmap/p007"
+                                android:scaleType="centerCrop" />
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent">
+
+                                <TextView
+                                    android:textSize="16.0sp"
+                                    android:textColor="#ffffffff"
+                                    android:id="@+id/bingptxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:text="未绑定家长" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/goTeacherBtn"
+                            android:layout_width="0.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_weight="1.0">
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:src="@mipmap/p008"
+                                android:scaleType="centerCrop" />
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent">
+
+                                <TextView
+                                    android:textSize="16.0sp"
+                                    android:textColor="#ffffffff"
+                                    android:id="@+id/bingttxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:text="未绑定老师" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginTop="25.0dip"
+                        android:layout_marginRight="10.0dip">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20.0dip">
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:id="@+id/scanbtn"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0">
+
+                                <ImageView
+                                    android:layout_width="25.0dip"
+                                    android:layout_height="25.0dip"
+                                    android:src="@mipmap/p060"
+                                    android:layout_centerInParent="true" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff424242"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5.0dip"
+                                    android:text="扫码绑定" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:visibility="gone"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0">
+
+                                <ImageView
+                                    android:layout_width="25.0dip"
+                                    android:layout_height="25.0dip"
+                                    android:src="@mipmap/p061"
+                                    android:layout_centerInParent="true" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff424242"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5.0dip"
+                                    android:text="监护情况" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:id="@+id/staAppBtn"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0">
+
+                                <ImageView
+                                    android:layout_width="25.0dip"
+                                    android:layout_height="25.0dip"
+                                    android:src="@mipmap/p062"
+                                    android:layout_centerInParent="true" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff424242"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5.0dip"
+                                    android:text="统计" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:id="@+id/clockbtn"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0">
+
+                                <ImageView
+                                    android:layout_width="25.0dip"
+                                    android:layout_height="25.0dip"
+                                    android:src="@mipmap/p063"
+                                    android:layout_centerInParent="true" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff424242"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5.0dip"
+                                    android:text="计划时钟" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:id="@+id/mybtn"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0">
+
+                                <ImageView
+                                    android:layout_width="25.0dip"
+                                    android:layout_height="25.0dip"
+                                    android:src="@mipmap/p064"
+                                    android:layout_centerInParent="true" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff424242"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5.0dip"
+                                    android:text="我的" />
+                            </LinearLayout>
                         </LinearLayout>
-                    </RelativeLayout>
-                </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="25.0dip" android:layout_marginRight="10.0dip">
-                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
-                        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/scanbtn" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
-                            <ImageView android:layout_width="25.0dip" android:layout_height="25.0dip" android:src="@mipmap/p060" android:layout_centerInParent="true" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="扫码绑定" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:background="@drawable/roundbg3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:layout_marginRight="20.0dip">
+
+                        <TextView
+                            android:textSize="17.0sp"
+                            android:textColor="#ff424242"
+                            android:layout_width="100.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginTop="20.0dip"
+                            android:layout_marginBottom="20.0dip"
+                            android:text="励志格言" />
+
+                        <TextView
+                            android:textSize="15.0sp"
+                            android:textColor="#ff333333"
+                            android:id="@+id/gytxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginRight="20.0dip"
+                            android:layout_marginBottom="20.0dip"
+                            android:text="--" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:background="@drawable/roundbg3"
+                        android:visibility="gone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:layout_marginRight="20.0dip">
+
+                        <TextView
+                            android:textSize="17.0sp"
+                            android:textColor="#ff424242"
+                            android:layout_width="100.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginTop="20.0dip"
+                            android:layout_marginBottom="20.0dip"
+                            android:text="统计" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="0.0dip"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginRight="20.0dip"
+                            android:layout_marginBottom="20.0dip"
+                            android:layout_weight="1.0">
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:background="@drawable/roundbg4"
+                                android:padding="10.0dip"
+                                android:layout_width="fill_parent"
+                                android:layout_height="55.0dip"
+                                android:layout_marginTop="15.0dip">
+
+                                <ImageView
+                                    android:background="@color/sandybrown"
+                                    android:layout_width="30.0dip"
+                                    android:layout_height="30.0dip"
+                                    android:src="@mipmap/p023" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff666666"
+                                    android:gravity="center_vertical"
+                                    android:id="@+id/appTimeTxt"
+                                    android:paddingLeft="10.0dip"
+                                    android:layout_width="0.0dip"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:text="今日已经使用了13分钟"
+                                    android:layout_weight="1.0" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:background="@drawable/roundbg4"
+                                android:padding="10.0dip"
+                                android:layout_width="fill_parent"
+                                android:layout_height="55.0dip"
+                                android:layout_marginTop="15.0dip">
+
+                                <ImageView
+                                    android:background="@color/sandybrown"
+                                    android:layout_width="30.0dip"
+                                    android:layout_height="30.0dip"
+                                    android:src="@mipmap/p023" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff666666"
+                                    android:gravity="center_vertical"
+                                    android:id="@+id/appMoreTxt"
+                                    android:paddingLeft="10.0dip"
+                                    android:layout_width="0.0dip"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:text="使用最多的APP"
+                                    android:layout_weight="1.0" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:background="@drawable/roundbg4"
+                                android:padding="10.0dip"
+                                android:layout_width="fill_parent"
+                                android:layout_height="55.0dip"
+                                android:layout_marginTop="15.0dip">
+
+                                <ImageView
+                                    android:background="@color/sandybrown"
+                                    android:layout_width="30.0dip"
+                                    android:layout_height="30.0dip"
+                                    android:src="@mipmap/p023" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff666666"
+                                    android:gravity="center_vertical"
+                                    android:id="@+id/appStepTxt"
+                                    android:paddingLeft="10.0dip"
+                                    android:layout_width="0.0dip"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:text="步数100"
+                                    android:layout_weight="1.0" />
+                            </LinearLayout>
                         </LinearLayout>
-                        <LinearLayout android:gravity="center" android:orientation="vertical" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
-                            <ImageView android:layout_width="25.0dip" android:layout_height="25.0dip" android:src="@mipmap/p061" android:layout_centerInParent="true" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="监护情况" />
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/staAppBtn" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
-                            <ImageView android:layout_width="25.0dip" android:layout_height="25.0dip" android:src="@mipmap/p062" android:layout_centerInParent="true" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="统计" />
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/clockbtn" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
-                            <ImageView android:layout_width="25.0dip" android:layout_height="25.0dip" android:src="@mipmap/p063" android:layout_centerInParent="true" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="计划时钟" />
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/mybtn" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
-                            <ImageView android:layout_width="25.0dip" android:layout_height="25.0dip" android:src="@mipmap/p064" android:layout_centerInParent="true" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="我的" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/userDesBtn"
+                        android:background="@drawable/roundbg3"
+                        android:visibility="gone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:layout_marginRight="20.0dip"
+                        android:layout_marginBottom="50.0dip">
+
+                        <TextView
+                            android:textSize="17.0sp"
+                            android:textColor="#ff424242"
+                            android:layout_width="100.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginTop="20.0dip"
+                            android:text="使用记录" />
+
+                        <TextView
+                            android:textSize="13.0sp"
+                            android:textColor="#ff424242"
+                            android:id="@+id/timelal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginTop="5.0dip"
+                            android:layout_marginBottom="20.0dip"
+                            android:text="7:00-8:00" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:paddingBottom="20.0dip"
+                            android:layout_width="fill_parent"
+                            android:layout_height="0.0dip"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginRight="20.0dip"
+                            android:layout_weight="1.0">
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:tag="1000"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:tag="1001"
+                                    android:layout_width="43.0dip"
+                                    android:layout_height="43.0dip" />
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:layout_marginRight="10.0dip">
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:textSize="15.0sp"
+                                            android:textColor="#ff333333"
+                                            android:id="@+id/txt1"
+                                            android:tag="1002"
+                                            android:layout_width="0.0dip"
+                                            android:layout_height="24.0dip"
+                                            android:text="微信"
+                                            android:layout_weight="1.0" />
+
+                                        <TextView
+                                            android:textSize="15.0sp"
+                                            android:textColor="#ff333333"
+                                            android:id="@+id/txt2"
+                                            android:tag="1003"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="24.0dip"
+                                            android:text="00:00" />
+                                    </LinearLayout>
+
+                                    <ProgressBar
+                                        android:layout_gravity="center_horizontal"
+                                        android:tag="1004"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="8.0dip"
+                                        android:layout_marginTop="5.0dip"
+                                        android:max="100"
+                                        android:progress="50"
+                                        android:progressDrawable="@drawable/hori_progress_drawable_bg"
+                                        style="?android:progressBarStyleHorizontal" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:tag="2000"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15.0dip">
+
+                                <ImageView
+                                    android:tag="2001"
+                                    android:layout_width="43.0dip"
+                                    android:layout_height="43.0dip" />
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:layout_marginRight="10.0dip">
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:textSize="15.0sp"
+                                            android:textColor="#ff333333"
+                                            android:tag="2002"
+                                            android:layout_width="0.0dip"
+                                            android:layout_height="24.0dip"
+                                            android:text="微信"
+                                            android:layout_weight="1.0" />
+
+                                        <TextView
+                                            android:textSize="15.0sp"
+                                            android:textColor="#ff333333"
+                                            android:tag="2003"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="24.0dip"
+                                            android:text="00:00" />
+                                    </LinearLayout>
+
+                                    <ProgressBar
+                                        android:layout_gravity="center_horizontal"
+                                        android:tag="2004"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="8.0dip"
+                                        android:layout_marginTop="5.0dip"
+                                        android:max="100"
+                                        android:progress="50"
+                                        android:progressDrawable="@drawable/hori_progress_drawable_bg"
+                                        style="?android:progressBarStyleHorizontal" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:tag="3000"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15.0dip">
+
+                                <ImageView
+                                    android:tag="3001"
+                                    android:layout_width="43.0dip"
+                                    android:layout_height="43.0dip" />
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10.0dip"
+                                    android:layout_marginRight="10.0dip">
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:textSize="15.0sp"
+                                            android:textColor="#ff333333"
+                                            android:tag="3002"
+                                            android:layout_width="0.0dip"
+                                            android:layout_height="24.0dip"
+                                            android:text="微信"
+                                            android:layout_weight="1.0" />
+
+                                        <TextView
+                                            android:textSize="15.0sp"
+                                            android:textColor="#ff333333"
+                                            android:tag="3003"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="24.0dip"
+                                            android:text="00:00" />
+                                    </LinearLayout>
+
+                                    <ProgressBar
+                                        android:layout_gravity="center_horizontal"
+                                        android:tag="3004"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="8.0dip"
+                                        android:layout_marginTop="5.0dip"
+                                        android:max="100"
+                                        android:progress="50"
+                                        android:progressDrawable="@drawable/hori_progress_drawable_bg"
+                                        style="?android:progressBarStyleHorizontal" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:background="@drawable/roundbg3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="20.0dip">
-                    <TextView android:textSize="17.0sp" android:textColor="#ff424242" android:layout_width="100.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip" android:text="励志格言" />
-                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/gytxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:layout_marginBottom="20.0dip" android:text="--" />
-                </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:background="@drawable/roundbg3" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="20.0dip">
-                    <TextView android:textSize="17.0sp" android:textColor="#ff424242" android:layout_width="100.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip" android:text="统计" />
-                    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:layout_marginBottom="20.0dip" android:layout_weight="1.0">
-                        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/roundbg4" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="15.0dip">
-                            <ImageView android:background="@color/sandybrown" android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@mipmap/p023" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:gravity="center_vertical" android:id="@+id/appTimeTxt" android:paddingLeft="10.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:text="今日已经使用了13分钟" android:layout_weight="1.0" />
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/roundbg4" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="15.0dip">
-                            <ImageView android:background="@color/sandybrown" android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@mipmap/p023" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:gravity="center_vertical" android:id="@+id/appMoreTxt" android:paddingLeft="10.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:text="使用最多的APP" android:layout_weight="1.0" />
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/roundbg4" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="15.0dip">
-                            <ImageView android:background="@color/sandybrown" android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@mipmap/p023" />
-                            <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:gravity="center_vertical" android:id="@+id/appStepTxt" android:paddingLeft="10.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:text="步数100" android:layout_weight="1.0" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:id="@+id/userDesBtn" android:background="@drawable/roundbg3" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="20.0dip" android:layout_marginBottom="50.0dip">
-                    <TextView android:textSize="17.0sp" android:textColor="#ff424242" android:layout_width="100.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="20.0dip" android:text="使用记录" />
-                    <TextView android:textSize="13.0sp" android:textColor="#ff424242" android:id="@+id/timelal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="5.0dip" android:layout_marginBottom="20.0dip" android:text="7:00-8:00" />
-                    <LinearLayout android:orientation="vertical" android:paddingBottom="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:layout_weight="1.0">
-                        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="1000" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                            <ImageView android:tag="1001" android:layout_width="43.0dip" android:layout_height="43.0dip" />
-                            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip">
-                                <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/txt1" android:tag="1002" android:layout_width="0.0dip" android:layout_height="24.0dip" android:text="微信" android:layout_weight="1.0" />
-                                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@+id/txt2" android:tag="1003" android:layout_width="wrap_content" android:layout_height="24.0dip" android:text="00:00" />
-                                </LinearLayout>
-                                <ProgressBar android:layout_gravity="center_horizontal" android:tag="1004" android:layout_width="fill_parent" android:layout_height="8.0dip" android:layout_marginTop="5.0dip" android:max="100" android:progress="50" android:progressDrawable="@drawable/hori_progress_drawable_bg" style="?android:progressBarStyleHorizontal" />
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="2000" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip">
-                            <ImageView android:tag="2001" android:layout_width="43.0dip" android:layout_height="43.0dip" />
-                            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip">
-                                <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:tag="2002" android:layout_width="0.0dip" android:layout_height="24.0dip" android:text="微信" android:layout_weight="1.0" />
-                                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:tag="2003" android:layout_width="wrap_content" android:layout_height="24.0dip" android:text="00:00" />
-                                </LinearLayout>
-                                <ProgressBar android:layout_gravity="center_horizontal" android:tag="2004" android:layout_width="fill_parent" android:layout_height="8.0dip" android:layout_marginTop="5.0dip" android:max="100" android:progress="50" android:progressDrawable="@drawable/hori_progress_drawable_bg" style="?android:progressBarStyleHorizontal" />
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="3000" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip">
-                            <ImageView android:tag="3001" android:layout_width="43.0dip" android:layout_height="43.0dip" />
-                            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip">
-                                <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:tag="3002" android:layout_width="0.0dip" android:layout_height="24.0dip" android:text="微信" android:layout_weight="1.0" />
-                                    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:tag="3003" android:layout_width="wrap_content" android:layout_height="24.0dip" android:text="00:00" />
-                                </LinearLayout>
-                                <ProgressBar android:layout_gravity="center_horizontal" android:tag="3004" android:layout_width="fill_parent" android:layout_height="8.0dip" android:layout_marginTop="5.0dip" android:max="100" android:progress="50" android:progressDrawable="@drawable/hori_progress_drawable_bg" style="?android:progressBarStyleHorizontal" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-</RelativeLayout>
+            </ScrollView>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
