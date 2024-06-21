@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
-import androidx.core.internal.view.SupportMenu;
+
 import com.niu.protect.BabyApplication;
+import com.niu.protect.Constant;
 import com.niu.protect.R;
 import com.niu.protect.service.FloatingService;
 public class MineNotificationManager {

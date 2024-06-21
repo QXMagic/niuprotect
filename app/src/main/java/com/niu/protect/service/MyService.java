@@ -31,6 +31,8 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.niu.protect.BuildConfig;
+import com.niu.protect.Constant;
+import com.niu.protect.R;
 import com.niu.protect.download.DownloadUtil;
 import com.niu.protect.manager.LocationManager;
 import com.niu.protect.manager.UploadAppManager;
@@ -65,7 +67,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import atmp.consts.Constants;
-import com.niu.protect.R;
 public class MyService extends Service {
     public static final String CHANNEL_ID = "com.github.103style.SampleService";
     public static final String CHANNEL_NAME = "com.github.103style";

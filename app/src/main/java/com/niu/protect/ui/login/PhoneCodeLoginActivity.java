@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lljjcoder.style.citylist.Toast.ToastUtils;
+import com.niu.protect.Constant;
+import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.device.SystemDeviceInfo;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.model.BaseModel;
@@ -35,7 +37,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import atmp.consts.Constants;
-import com.niu.protect.R;
 public class PhoneCodeLoginActivity extends BaseActivity {
     private Button btnGetCode;
     CheckBox ckPrivate;

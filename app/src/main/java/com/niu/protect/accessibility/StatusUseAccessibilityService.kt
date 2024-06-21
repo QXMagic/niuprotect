@@ -13,6 +13,7 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import atmp.consts.Constants
 import com.niu.protect.BuildConfig
+import com.niu.protect.Constant
 import com.niu.protect.accessibility.auto.app.AppActivityTool
 import com.niu.protect.accessibility.auto.service.BaseAccessibility
 import com.niu.protect.action.MessageEvent

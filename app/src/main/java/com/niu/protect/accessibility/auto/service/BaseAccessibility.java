@@ -9,7 +9,9 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+
 import com.niu.protect.BabyApplication;
+import com.niu.protect.Constant;
 import com.niu.protect.accessibility.auto.app.OpenSettingApp;
 import com.niu.protect.accessibility.auto.bean.CheckBoxModel;
 import com.niu.protect.accessibility.auto.bean.PageInfoModel;
@@ -18,6 +20,7 @@ import com.niu.protect.accessibility.auto.setting.BaseAutoSettingTools;
 import com.niu.protect.manager.AutoSettingManager;
 import com.niu.protect.manager.SharedPreManager;
 import com.niu.protect.tools.ILog;
+
 import java.util.List;
 public abstract class BaseAccessibility extends BaseAutoSettingTools {
     private static final int START_ACCESS = 2;

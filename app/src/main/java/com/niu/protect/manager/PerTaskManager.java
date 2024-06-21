@@ -16,8 +16,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
+
 import com.niu.protect.BuildConfig;
+import com.niu.protect.Constant;
 import com.niu.protect.R;
 import com.niu.protect.model.AppInfo;
 import com.niu.protect.model.OtherTimeInfo;
@@ -32,8 +35,11 @@ import com.niu.protect.stomon.StoToolManager;
 import com.niu.protect.tools.EventUtils;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
-//import com.umeng.message.MsgConstant;
-//import com.xiaomi.mipush.sdk.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -41,9 +47,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 public class PerTaskManager {
     public static final String CHANNEL_ID = "com.github.103style.SampleService";
     public static final String CHANNEL_NAME = "com.github.103style";
@@ -115,7 +118,7 @@ public class PerTaskManager {
         mBuilder.setContentTitle(Constant.APP_NAME);
         mBuilder.setContentText("正在守护");
         if (Build.VERSION.SDK_INT < 24) {
-            mBuilder.setContentTitle(this.context.getResources().getString(R.string.app_name));
+            mBuilder.setContentTitle(Constant.APP_NAME);
         }
         ((Service) this.context).startForeground(this.notifyId, mBuilder.build());
     }

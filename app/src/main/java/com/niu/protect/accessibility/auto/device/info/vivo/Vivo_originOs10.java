@@ -1,11 +1,14 @@
 package com.niu.protect.accessibility.auto.device.info.vivo;
 
 import android.content.Context;
+
 import com.google.gson.Gson;
+import com.niu.protect.Constant;
 import com.niu.protect.accessibility.auto.app.appinfo.AppInfo;
 import com.niu.protect.accessibility.auto.bean.PageInfoModel;
 import com.niu.protect.accessibility.auto.device.BaseCreatePageInfo;
 import com.niu.protect.tools.ILog;
+
 import java.util.ArrayList;
 import java.util.List;
 public class Vivo_originOs10 extends BaseCreatePageInfo {
