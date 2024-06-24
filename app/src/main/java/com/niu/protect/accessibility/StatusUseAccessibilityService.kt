@@ -85,6 +85,10 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         roomIsOppo = RomUtil.isOppo()
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId)
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: EventScreenOnOrOff?) {
         var info: AccessibilityNodeInfo

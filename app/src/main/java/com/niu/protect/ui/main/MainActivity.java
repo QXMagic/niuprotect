@@ -37,6 +37,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hjq.permissions.Permission;
 import com.niu.protect.BabyApplication;
+import com.niu.protect.R;
 import com.niu.protect.accessibility.OpenAccessibilitySettingHelper;
 import com.niu.protect.accessibility.StatusUseAccessibilityService;
 import com.niu.protect.broadcastReceiver.BroadcastManager;
@@ -86,7 +87,6 @@ import java.util.Map;
 import atmp.consts.Constants;
 import cn.bertsir.zbar.Qr.ScanResult;
 import cn.bertsir.zbar.QrManager;
-import com.niu.protect.R;
 
 public class MainActivity extends BaseActivity {
     public static final String TAG_USERINFO = "tag_intent_userinfo";

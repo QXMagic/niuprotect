@@ -142,7 +142,7 @@ public class DeviceAccessiFactory {
                 default: return new OppoColorsInfo_All6().createPage(context);
             }
         }
-        if (brand.equals("vivo") == false) { //goto L246;
+        if (brand.equals("vivo")) { //goto L246;
             String model = CustomOSUtils.getModel();
             String systemOsVersion = CustomOSUtils.getCustomOSVersion(SystemDeviceInfo.getBrand()).replace("V", "");
             float osVersion = Float.valueOf(systemOsVersion).floatValue();
@@ -173,10 +173,7 @@ public class DeviceAccessiFactory {
                     }
                 }
             }
-
-
-
-        }
+         }
         //L246:
         if (brand.equals("realme")) {// goto L249;
             List<PageInfoModel> pageInfoModelList15 = new OppoColorsInfo_FINDX().createPage(context);

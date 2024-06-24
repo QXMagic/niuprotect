@@ -27,6 +27,8 @@ import com.baidu.trace.model.OnCustomAttributeListener
 import com.baidu.trace.model.ProcessOption
 import com.niu.protect.accessibility.auto.bean.PageInfoModel
 import com.niu.protect.accessibility.auto.device.info.DeviceAccessiFactory
+import com.niu.protect.lib.Constants
+import com.niu.protect.lib.IGlobalInstance
 import com.niu.protect.manager.KeepAliveManger
 import com.niu.protect.map.maputil.CommonUtil
 import com.niu.protect.map.model.ItemInfo
@@ -38,7 +40,7 @@ import com.niu.protect.ui.map.TracingActivity
 import com.tencent.mmkv.MMKV
 import java.util.concurrent.atomic.AtomicInteger
 
-class BabyApplication : Application() {
+class BabyApplication : Application(), IGlobalInstance {
     @JvmField
     var autoSettingSteps:MutableList<PageInfoModel>? = null
     private val mSequenceGenerator = AtomicInteger()
@@ -68,6 +70,7 @@ class BabyApplication : Application() {
         MMKV.initialize(this)
         instance = this
         mContext = this
+        Constants.MainInstance = this
         getAppChannel()
         KeepAliveManger.getInstance().keepAliveByTowService(this)
         init()
@@ -241,6 +244,10 @@ class BabyApplication : Application() {
         }
     }
 
+    override fun getContext(): Context {
+        return this.mContext!!;
+    }
+
     companion object {
         @JvmStatic
         var instance: BabyApplication? = null
@@ -254,4 +261,6 @@ class BabyApplication : Application() {
         @JvmField
         var screenHeight = 0
     }
+
+
 }

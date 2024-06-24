@@ -157,8 +157,8 @@ class AppActivityTool {
 
         fun openLock(context: Fragment) {
             dpm =
-                context.context!!.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
-            mDeviceAdminSample = ComponentName(context.context!!, DeviceReceiver::class.java)
+                context.requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
+            mDeviceAdminSample = ComponentName(context.requireContext(), DeviceReceiver::class.java)
             val intent = Intent("android.app.action.ADD_DEVICE_ADMIN")
             intent.putExtra("android.app.extra.DEVICE_ADMIN", mDeviceAdminSample)
             intent.putExtra("android.app.extra.ADD_EXPLANATION", "开启后就可以使用锁屏功能了...")
@@ -170,11 +170,11 @@ class AppActivityTool {
             if (Build.VERSION.SDK_INT >= 26) {
                 localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 localIntent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-                localIntent.data = Uri.fromParts("package", fragment.context!!.packageName, null)
+                localIntent.data = Uri.fromParts("package", fragment.requireContext().packageName, null)
             } else if (Build.VERSION.SDK_INT >= 21) {
                 localIntent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-                localIntent.putExtra("app_package", fragment.context!!.packageName)
-                localIntent.putExtra("app_uid", fragment.context!!.applicationInfo.uid)
+                localIntent.putExtra("app_package", fragment.requireContext().packageName)
+                localIntent.putExtra("app_uid", fragment.requireContext().applicationInfo.uid)
             }
             fragment.startActivity(localIntent)
         }

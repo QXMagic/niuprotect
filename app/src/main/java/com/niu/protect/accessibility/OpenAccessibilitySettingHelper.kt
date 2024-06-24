@@ -8,6 +8,7 @@ import android.provider.Settings.SettingNotFoundException
 import android.text.TextUtils.SimpleStringSplitter
 import android.util.Log
 import android.view.accessibility.AccessibilityManager
+import com.niu.protect.Constant
 import com.niu.protect.tools.ILog
 
 class OpenAccessibilitySettingHelper {
@@ -30,7 +31,7 @@ class OpenAccessibilitySettingHelper {
         @JvmStatic
         fun isAccessibilitySettingsOn(context: Context?, className: String): Boolean {
             if (context == null) {
-                ILog.d("context--", "context is null ")
+                ILog.d(Constant.TAG_DEBUG_1, "context is null ")
                 return false
             }
             val activityManager =
@@ -38,6 +39,7 @@ class OpenAccessibilitySettingHelper {
                     ?: return false
             val runningServices = activityManager.getRunningServices(100)
             if (runningServices.size < 0) {
+                ILog.d(Constant.TAG_DEBUG_1, "running service is empty")
                 return false
             }
             for (i in runningServices.indices) {
@@ -46,6 +48,7 @@ class OpenAccessibilitySettingHelper {
                     return true
                 }
             }
+            ILog.d(Constant.TAG_DEBUG_1, "no service running named: $className")
             return false
         }
 

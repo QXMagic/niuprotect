@@ -28,6 +28,8 @@ import com.baidu.trace.model.PushMessage;
 import com.baidu.trace.model.StatusCodes;
 import com.baidu.trace.model.TraceLocation;
 import com.niu.protect.BabyApplication;
+import com.niu.protect.R;
+import com.niu.protect.lib.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.map.maputil.CommonUtil;
 import com.niu.protect.map.model.CurrentLocation;
@@ -39,9 +41,6 @@ import com.niu.protect.tools.ILog;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import atmp.consts.Constants;
-import com.niu.protect.R;
 public class LocationTraceService extends Service {
     private static final String TAG = "LocationTraceService";
     Context context;

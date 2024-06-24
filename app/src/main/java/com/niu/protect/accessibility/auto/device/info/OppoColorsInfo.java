@@ -2,7 +2,7 @@ package com.niu.protect.accessibility.auto.device.info;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import com.niu.protect.accessibility.auto.app.appinfo.AppInfo;
+import com.niu.protect.lib.appinfo.AppInfo;
 import com.niu.protect.accessibility.auto.bean.MineSettingInfoModel;
 import com.niu.protect.accessibility.auto.bean.PageInfoModel;
 import com.niu.protect.accessibility.auto.device.BaseCreatePageInfo;
