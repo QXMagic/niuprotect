@@ -221,8 +221,9 @@ object OpenSettingApp {
             e.printStackTrace()
         }
         val secondIntent = Intent(context, PermCollectActivity::class.java)
-        secondIntent.addFlags(872480768)
-        val pendingIntent = PendingIntent.getActivity(context, 0, secondIntent, 0)
+        secondIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        val pendingIntent = PendingIntent.getActivity(context, 0, secondIntent,
+            PendingIntent.FLAG_IMMUTABLE)
         try {
             pendingIntent.send()
         } catch (e2: CanceledException) {
@@ -249,14 +250,14 @@ object OpenSettingApp {
         val packageManager = instance!!.packageManager
         context.packageName
         val componentName = ComponentName(instance!!, SplashActivity::class.java)
-        packageManager.setComponentEnabledSetting(componentName, 2, 1)
+        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
     }
 
     @JvmStatic
     fun showIcon(context: Context?) {
         val packageManager = instance!!.packageManager
         val componentName = ComponentName(instance!!, SplashActivity::class.java)
-        packageManager.setComponentEnabledSetting(componentName, 1, 1)
+        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP)
     }
 
     @JvmStatic

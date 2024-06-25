@@ -12,8 +12,9 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Log;
+
 import com.google.gson.Gson;
-import com.niu.protect.BabyApplication;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.AppInfo;
 import com.niu.protect.model.AppUseInfo;
 import com.niu.protect.model.UsePackageInfo;
@@ -24,14 +25,16 @@ import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.SystemUtil;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.tools.secret.Base64Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
 public class UseTimeDataManager {
     public static final String TAG = "UseTimeDataManager";
     private static UseTimeDataManager mUseTimeDataManager;
@@ -43,7 +46,7 @@ public class UseTimeDataManager {
     List<UsePackageInfo> topappList = new ArrayList();
 
     public UseTimeDataManager() {
-        BabyApplication babyApplication = BabyApplication.getInstance();
+        Context babyApplication = Constants.MainInstance.getContext();
         this.mContext = babyApplication;
         this.alist = getAppList(babyApplication);
     }

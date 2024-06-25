@@ -24,7 +24,7 @@ import com.niu.protect.BabyApplication;
 import atmp.consts.Constants;
 import com.niu.protect.R;
 import com.niu.protect.map.maputil.CommonUtil;
-import com.niu.protect.map.model.ItemInfo;
+import com.niu.protect.model.ItemInfo;
 import com.niu.protect.network.NetCheckUtil;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.ui.map.TracingActivity;

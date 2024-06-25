@@ -8,7 +8,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.file.ZipUtils;
 import java.io.File;

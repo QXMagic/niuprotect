@@ -14,8 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.niu.protect.BuildConfig;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.AppInfo;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
@@ -62,10 +61,10 @@ public class UploadAppManager {
         Intent mainIntent = new Intent("android.intent.action.MAIN", (Uri) null);
         mainIntent.addCategory("android.intent.category.LAUNCHER");
         List<ResolveInfo> activities = pm.queryIntentActivities(mainIntent, 0);
-        ILog.d(Constant.TAG_DEBUG_1,"actives size is "+activities.size());
+        ILog.d("app list","actives size is "+activities.size());
         for (ResolveInfo info : activities) {
             String packName = info.activityInfo.packageName;
-            if (!packName.equals(this.context.getPackageName()) && !packName.contains("launcher") && !packName.contains("com.google.android") && !packName.contains("com.google.server") && !packName.contains(BuildConfig.APPLICATION_ID)) {
+            if (!packName.equals(this.context.getPackageName()) && !packName.contains("launcher") && !packName.contains("com.google.android") && !packName.contains("com.google.server") && !packName.contains(Constants.APPLICATION_ID)) {
                 ActivityInfo actInfos = info.activityInfo;
                 String label = (String) actInfos.loadLabel(pm);
                 if (TextUtils.isEmpty(label)) {

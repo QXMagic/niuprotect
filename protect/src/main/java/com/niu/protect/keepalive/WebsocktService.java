@@ -10,7 +10,8 @@ import android.os.Message;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.niu.protect.BabyApplication;
+import com.niu.protect.core.Constants;
+import com.niu.protect.lib.map.LocationService;
 import com.niu.protect.manager.StudentMainController;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.manager.WebSocketManager;
@@ -19,7 +20,6 @@ import com.niu.protect.model.WebsocketMessage;
 import com.niu.protect.model.eventbus.EventParentChangeBindMode;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
-import com.niu.protect.ui.map.LocationTraceService;
 
 import org.greenrobot.eventbus.EventBus;
 import org.java_websocket.client.WebSocketClient;
@@ -61,7 +61,7 @@ public class WebsocktService extends Service {
 
     private void start() {
         ILog.d(TAG, "-uri---start-");
-        this.mContext = BabyApplication.getInstance();
+        this.mContext = Constants.MainInstance.getContext();
         if (this.cc == null) {
             UserInfo userInfo = UserInfoManager.getInstance().getUserInfo(this.mContext);
             if (userInfo == null) {
@@ -142,7 +142,7 @@ public class WebsocktService extends Service {
             int type = mUmengCustomMsg.getOperateType();
             ILog.d(TAG, "onMessage--orderorder ==" + type);
             if (type == 12) {
-                startService(new Intent(this.mContext, LocationTraceService.class));
+                startService(new Intent(this.mContext, LocationService.class));
             } else if (type == 16 || type == 17) {
                 this.mHandler.post(new Runnable() {
                     @Override

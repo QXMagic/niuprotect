@@ -6,7 +6,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.ToastUtil;

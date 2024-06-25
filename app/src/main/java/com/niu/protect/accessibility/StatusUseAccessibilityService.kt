@@ -17,7 +17,7 @@ import com.niu.protect.Constant
 import com.niu.protect.accessibility.auto.app.AppActivityTool
 import com.niu.protect.accessibility.auto.service.BaseAccessibility
 import com.niu.protect.action.MessageEvent
-import com.niu.protect.broadcastReceiver.BroadcastManager
+import com.niu.protect.lib.receiver.BroadcastManager
 import com.niu.protect.manager.AutoSettingManager
 import com.niu.protect.manager.KeepAliveManger
 import com.niu.protect.manager.StudentMainController
@@ -526,7 +526,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
-    fun onMessageEvent(event: MessageEvent?) {
+    fun onMessageEvent(event: com.niu.protect.action.MessageEvent?) {
         Log.d("---", "-----")
         clickMenu()
     }

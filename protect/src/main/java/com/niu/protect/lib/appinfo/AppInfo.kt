@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.text.TextUtils
-import com.niu.protect.lib.Constants
+import com.niu.protect.core.Constants
 
 object AppInfo {
     var appName = ""

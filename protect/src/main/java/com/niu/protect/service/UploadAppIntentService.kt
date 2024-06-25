@@ -7,7 +7,7 @@ import android.content.Intent
 import androidx.work.OneTimeWorkRequest
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.niu.protect.BabyApplication.Companion.instance
+import com.niu.protect.core.AppGlobal
 import com.niu.protect.manager.UploadAppManager
 import com.niu.protect.tools.ILog
 import com.niu.protect.tools.image.ImageSave
@@ -23,7 +23,7 @@ class UploadAppIntentService(context: Context, workerParams: WorkerParameters) :
             e.printStackTrace()
         }
         ImageSave.delFile()
-        UploadAppManager.getInstance(instance).GetInstallAppList()
+        UploadAppManager.getInstance(AppGlobal.MainInstance.getContext()).GetInstallAppList()
         return Result.success()
     }
 

@@ -1,4 +1,4 @@
-package com.niu.protect.broadcastReceiver;
+package com.niu.protect.lib.receiver;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
@@ -7,31 +7,33 @@ import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-//import androidx.lifecycle.CoroutineLiveDataKt;
-import com.niu.protect.accessibility.auto.app.OpenSettingApp;
+
 import com.niu.protect.manager.WebSocketManager;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.ToastUtil;
+
 import java.util.ArrayList;
 public class LiveReciver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         ILog.d("LiveReciver--", "LiveReciver" + intent.getAction());
-        if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
+
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    OpenSettingApp.showIcon(context);
+//                    OpenSettingApp.showIcon(context);
                 }
             }, 5000L);
-        } else if ("android.intent.action.USER_PRESENT".equals(intent.getAction())) {
+
+        } else if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())) {
             ILog.d("xxxxxxa==1：", "手机被唤醒");
         } else if ("com.example.service_destory".equals(intent.getAction())) {
             ILog.d("xxxxxxa==1：", "上次服务被挂了");
             ToastUtil.show("上次服务被挂了");
         } else if ("com.example.clock".equals(intent.getAction())) {
             ILog.d("xxxxxxa==1：", "定时闹钟的广播");
-        } else if ("android.intent.action.ACTION_SHUTDOWN".equals(intent.getAction())) {
+        } else if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
             ILog.d("xxxxxxa==1：", "关机");
             WebSocketManager.getInstance().sendScreenEventMessage("1015", "关机");
         }

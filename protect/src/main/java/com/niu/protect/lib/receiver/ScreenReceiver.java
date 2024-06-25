@@ -1,11 +1,11 @@
-package com.niu.protect.broadcastReceiver;
+package com.niu.protect.lib.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
 
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.manager.WebSocketManager;
 import com.niu.protect.model.UserInfo;

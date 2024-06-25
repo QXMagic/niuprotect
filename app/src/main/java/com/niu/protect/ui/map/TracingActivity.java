@@ -45,7 +45,7 @@ import com.niu.protect.map.maputil.BitmapUtil;
 import com.niu.protect.map.maputil.CommonUtil;
 import com.niu.protect.map.maputil.MapUtil;
 import com.niu.protect.map.maputil.ViewUtil;
-import com.niu.protect.map.model.CurrentLocation;
+import com.niu.protect.model.CurrentLocation;
 import com.niu.protect.map.receiver.TrackReceiver;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.ui.base.BaseActivity;

@@ -31,7 +31,7 @@ import com.niu.protect.accessibility.OpenAccessibilitySettingHelper;
 import com.niu.protect.accessibility.StatusUseAccessibilityService;
 import com.niu.protect.action.QxOnClickListener;
 import com.niu.protect.adapter.QxViewPagerAdapter;
-import com.niu.protect.broadcastReceiver.DeviceReceiver;
+import com.niu.protect.lib.receiver.DeviceReceiver;
 import com.niu.protect.manager.UserProtectManager;
 import com.niu.protect.model.QxInfo;
 import com.niu.protect.tools.ILog;

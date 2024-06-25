@@ -1,7 +1,7 @@
 package com.niu.protect.network;
 
 import com.google.gson.Gson;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.BaseModel;
 import com.niu.protect.tools.ILog;
 

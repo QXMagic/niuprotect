@@ -1,4 +1,4 @@
-package com.niu.protect.broadcastReceiver;
+package com.niu.protect.lib.receiver;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;

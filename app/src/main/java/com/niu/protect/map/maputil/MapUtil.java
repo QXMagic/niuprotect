@@ -24,7 +24,7 @@ import com.baidu.trace.model.SortType;
 import com.baidu.trace.model.TraceLocation;
 import com.niu.protect.BabyApplication;
 import com.niu.protect.map.MapConstants;
-import com.niu.protect.map.model.CurrentLocation;
+import com.niu.protect.model.CurrentLocation;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,15 +1,13 @@
 package com.niu.protect.manager;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.niu.protect.accessibility.auto.app.OpenSettingApp;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.AppInfo;
 import com.niu.protect.model.EventMessageModel;
 import com.niu.protect.model.UserInfo;
@@ -18,7 +16,6 @@ import com.niu.protect.model.eventbus.EventParentChangeBindMode;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.apk.ApkTools;
-import com.niu.protect.ui.map.LocationTraceService;
 import com.niu.protect.websocket.BaseWebSocketEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -149,7 +146,7 @@ public class WebSocketManager {
             int type = mUmengCustomMsg.getOperateType();
             ILog.d(TAG, "onMessage--orderorder ==" + type);
             if (type == 12) {
-                this.mContext.startService(new Intent(this.mContext, LocationTraceService.class));
+//                this.mContext.startService(new Intent(this.mContext, LocationTraceService.class));
                 return;
             }
             if (type == 16 || type == 17) {
@@ -171,20 +168,20 @@ public class WebSocketManager {
                         });
                     }
                 });
-            } else if (type == 21) {
-                this.mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        OpenSettingApp.checkShowIcon(mContext, 1);
-                    }
-                });
-            } else if (type == 20) {
-                this.mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        OpenSettingApp.checkShowIcon(mContext, 2);
-                    }
-                });
+//            } else if (type == 21) {
+//                this.mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        OpenSettingApp.checkShowIcon(mContext, 1);
+//                    }
+//                });
+//            } else if (type == 20) {
+//                this.mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        OpenSettingApp.checkShowIcon(mContext, 2);
+//                    }
+//                });
             } else if (type == 22) {
                 this.mHandler.post(new Runnable() {
                     @Override

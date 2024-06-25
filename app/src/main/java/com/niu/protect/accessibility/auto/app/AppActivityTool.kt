@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment
 import com.niu.protect.BuildConfig
 import com.niu.protect.accessibility.OpenAccessibilitySettingHelper.Companion.isAccessibilitySettingsOn
 import com.niu.protect.accessibility.StatusUseAccessibilityService
-import com.niu.protect.broadcastReceiver.DeviceReceiver
+import com.niu.protect.lib.receiver.DeviceReceiver
 import com.niu.protect.tools.ILog
 import com.niu.protect.tools.Tools
 import com.niu.protect.ui.main.DesktopActivity

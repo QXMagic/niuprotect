@@ -5,8 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.niu.protect.BabyApplication;
-import com.niu.protect.Constant;
+import com.niu.protect.core.Constants;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
@@ -40,7 +39,7 @@ public class UserInstallWhiteAppListManager {
     }
 
     public UserInstallWhiteAppListManager initWhiteApps() {
-        this.whiteApps.add(Constant.APP_NAME);
+        this.whiteApps.add(Constants.APP_NAME);
         this.whiteApps.add("Breeno 指令");
         this.whiteApps.add("天气");
         this.whiteApps.add("日历");
@@ -109,7 +108,7 @@ public class UserInstallWhiteAppListManager {
     private void initOldInstallApps() {
         List<String> list = this.oldInstallUpdateApps;
         if (list == null || list.size() == 0) {
-            SharedPreUtil sharedPreferenUtil = new SharedPreUtil(BabyApplication.getInstance(), PRE_NAME);
+            SharedPreUtil sharedPreferenUtil = new SharedPreUtil(Constants.MainInstance.getContext(), PRE_NAME);
             this.oldInstallUpdateApps = sharedPreferenUtil.getDataList(SharedPreManager.KEY_APP_UPLOAD_APPS, String.class);
         }
         ILog.d("oldInstallUpdateApps", new Gson().toJson(this.oldInstallUpdateApps) + "--");
@@ -124,7 +123,7 @@ public class UserInstallWhiteAppListManager {
     public void saveOldApps() {
         List<String> list = this.oldInstallUpdateApps;
         if (list != null && list.size() > 0) {
-            SharedPreUtil sharedPreferenUtil = new SharedPreUtil(BabyApplication.getInstance(), PRE_NAME);
+            SharedPreUtil sharedPreferenUtil = new SharedPreUtil(Constants.MainInstance.getContext(), PRE_NAME);
             sharedPreferenUtil.setDataList(SharedPreManager.KEY_APP_UPLOAD_APPS, this.oldInstallUpdateApps);
         }
     }
@@ -132,7 +131,7 @@ public class UserInstallWhiteAppListManager {
     public void clearOldApps() {
         List<String> list = this.oldInstallUpdateApps;
         if (list != null && list.size() > 0) {
-            SharedPreUtil.clearSaveApp(BabyApplication.getInstance(), PRE_NAME);
+            SharedPreUtil.clearSaveApp(Constants.MainInstance.getContext(), PRE_NAME);
         }
     }
 

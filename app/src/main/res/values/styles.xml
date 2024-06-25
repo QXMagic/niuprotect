@@ -401,13 +401,7 @@
     <item name="android:layout_height">1.0px</item>
     <item name="android:layout_marginLeft">14.0dip</item>
   </style>
-  <style name="loading_dialog" parent="@android:style/Theme.Dialog">
-    <item name="android:windowBackground">@android:color/transparent</item>
-    <item name="android:windowFrame">@null</item>
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowIsFloating">true</item>
-    <item name="android:windowContentOverlay">@null</item>
-  </style>
+
   <style name="picker_view_scale_anim" parent="@android:style/Animation">
     <item name="android:windowEnterAnimation">@anim/pickerview_dialog_scale_in</item>
     <item name="android:windowExitAnimation">@anim/pickerview_dialog_scale_out</item>

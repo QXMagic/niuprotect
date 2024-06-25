@@ -10,7 +10,10 @@ public abstract class BaseRepository {
     public void showLoad(Context context) {
         ZLoadingDialog zLoadingDialog = new ZLoadingDialog(context, R.style.loading_dialog);
         this.dialog = zLoadingDialog;
-        zLoadingDialog.setLoadingBuilder(Z_TYPE.SINGLE_CIRCLE).setCanceledOnTouchOutside(true).setDialogBackgroundColor(0).setHintTextSize(16.0f).setHintTextColor(-12303292).setDurationTime(0.5d).show();
+        zLoadingDialog.setLoadingBuilder(Z_TYPE.SINGLE_CIRCLE)
+                .setCanceledOnTouchOutside(true).
+                setDialogBackgroundColor(0).setHintTextSize(16.0f)
+                .setHintTextColor(-12303292).setDurationTime(0.5d).show();
     }
 
     public void dissLoad() {

@@ -1,10 +1,12 @@
-package com.niu.protect.broadcastReceiver;
+package com.niu.protect.lib.receiver;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+
+import com.niu.protect.core.Constants;
 import com.niu.protect.tools.ILog;
 import java.util.List;
 public class BroadcastManager {
@@ -18,8 +20,8 @@ public class BroadcastManager {
         filter.addAction("android.intent.action.SCREEN_ON");
         filter.addAction("android.intent.action.SCREEN_OFF");
         filter.addAction("android.intent.action.USER_PRESENT");
-        filter.addAction(ScreenReceiver.ACTION_ACCESSIBILITY_START);
-        filter.addAction(ScreenReceiver.ACTION_ACCESSIBILITY_STOP);
+        filter.addAction(Constants.ACTION_ACCESSIBILITY_START);
+        filter.addAction(Constants.ACTION_ACCESSIBILITY_STOP);
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         context.registerReceiver(screenReceiver, filter);
     }
@@ -72,12 +74,12 @@ public class BroadcastManager {
     }
 
     public static void sendAccessibilityStart(Context context) {
-        Intent intent = new Intent(ScreenReceiver.ACTION_ACCESSIBILITY_START);
+        Intent intent = new Intent(Constants.ACTION_ACCESSIBILITY_START);
         context.sendBroadcast(intent);
     }
 
     public static void sendAccessibilityStop(Context context) {
-        Intent intent = new Intent(ScreenReceiver.ACTION_ACCESSIBILITY_STOP);
+        Intent intent = new Intent(Constants.ACTION_ACCESSIBILITY_STOP);
         context.sendBroadcast(intent);
     }
 

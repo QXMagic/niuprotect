@@ -1,7 +1,8 @@
 package com.niu.protect.manager;
 
 import android.content.Context;
-import com.niu.protect.BabyApplication;
+
+import com.niu.protect.core.Constants;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
 public class UserProtectManager {
@@ -35,12 +36,12 @@ public class UserProtectManager {
             return;
         }
         this.protectStatus = status;
-        Tools.savePertTop(BabyApplication.getInstance(), status);
+        Tools.savePertTop(Constants.MainInstance.getContext(), status);
     }
 
     public int getProtectStatus() {
         if (this.protectStatus == -2) {
-            this.protectStatus = getProtectStatus(BabyApplication.getInstance());
+            this.protectStatus = getProtectStatus(Constants.MainInstance.getContext());
             ILog.d("protectStatus--", this.protectStatus + "");
         }
         return this.protectStatus;

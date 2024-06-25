@@ -1,4 +1,4 @@
-package com.niu.protect.lib
+package com.niu.protect.core
 
 import android.content.ComponentCallbacks2
 import android.content.Context

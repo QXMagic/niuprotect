@@ -22,7 +22,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.gson.Gson;
 import com.niu.protect.backService.IMyAidlInterface;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.AppGlobal;
 import com.niu.protect.manager.StudentMainController;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.manager.WebSocketManager;
@@ -144,7 +144,7 @@ public class LocalForegroundService extends Service {
 
     private void start() {
         ILog.d(TAG, "-uri---start-");
-        this.mContext = Constants.MainInstance.getContext();
+        this.mContext = AppGlobal.MainInstance.getContext();
         if (this.cc == null) {
             UserInfo userInfo = UserInfoManager.getInstance().getUserInfo(this.mContext);
             if (userInfo == null) {
@@ -271,8 +271,8 @@ public class LocalForegroundService extends Service {
         filter.addAction("android.intent.action.SCREEN_ON");
         filter.addAction("android.intent.action.SCREEN_OFF");
         filter.addAction("android.intent.action.USER_PRESENT");
-        filter.addAction(Constants.ACTION_ACCESSIBILITY_START);
-        filter.addAction(Constants.ACTION_ACCESSIBILITY_STOP);
+        filter.addAction(AppGlobal.ACTION_ACCESSIBILITY_START);
+        filter.addAction(AppGlobal.ACTION_ACCESSIBILITY_STOP);
         registerReceiver(this.screenReceiver, filter);
     }
 

@@ -1,10 +1,12 @@
 package com.niu.protect.stomon;
 
 import android.content.Context;
+
+import com.niu.protect.core.Constants;
 import com.niu.protect.tools.SystemUtil;
+
 import java.util.List;
 
-import atmp.consts.Constants;
 
 public class StoToolManager {
     private static StoToolManager instance;

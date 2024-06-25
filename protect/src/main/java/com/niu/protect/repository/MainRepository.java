@@ -1,12 +1,13 @@
 package com.niu.protect.repository;
 
 import android.content.Context;
-import atmp.consts.Constants;
 
+import com.niu.protect.core.Constants;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.AppInfoUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 public class MainRepository extends BaseRepository {

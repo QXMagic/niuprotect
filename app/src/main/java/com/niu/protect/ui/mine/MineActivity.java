@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
 import com.niu.protect.BabyApplication;
-import com.niu.protect.broadcastReceiver.BroadcastManager;
+import com.niu.protect.lib.receiver.BroadcastManager;
 import com.niu.protect.manager.MineDevicePolicyManager;
 import com.niu.protect.manager.SharedPreManager;
 import com.niu.protect.manager.UserInfoManager;

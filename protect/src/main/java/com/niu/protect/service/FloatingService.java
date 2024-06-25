@@ -1,6 +1,5 @@
 package com.niu.protect.service;
 
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,13 +10,10 @@ import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import com.niu.protect.tools.ILog;
-import com.niu.protect.tools.Tools;
-import com.niu.protect.ui.main.DesktopActivity;
-import com.niu.protect.ui.main.MainActivity;
 public class FloatingService extends Service {
     public static boolean isFloatService = false;
     private TextView mFloatingButton;
@@ -30,10 +26,10 @@ public class FloatingService extends Service {
         super.onCreate();
         isFloatService = true;
         showFloatingWindow();
-        if (!MainActivity.mainRunning) {
-            ILog.d("MainActivity---------", " is dead");
-        }
-        ILog.d("FloatingService---------", " run");
+//        if (!MainActivity.mainRunning) {
+//            ILog.d("MainActivity---------", " is dead");
+//        }
+//        ILog.d("FloatingService---------", " run");
     }
 
     @Override
@@ -53,7 +49,7 @@ public class FloatingService extends Service {
             layoutParams.x = 0;
             this.mParams.y = 0;
             this.mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            this.mParams.gravity = 51;
+            this.mParams.gravity = Gravity.TOP|Gravity.LEFT;
             Log.d("MainActivity", "sdk:" + Build.VERSION.SDK_INT);
             this.mParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
             TextView textView = new TextView(this);
@@ -76,16 +72,17 @@ public class FloatingService extends Service {
     }
 
     public void gotoMain() {
-        Tools.showAlert3(this, "点击了");
-        Intent secondIntent = new Intent(this, DesktopActivity.class);
-        secondIntent.addFlags(872480768);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, secondIntent, 0);
-        try {
-            pendingIntent.send();
-        } catch (PendingIntent.CanceledException e) {
-            e.printStackTrace();
-        }
-        Tools.saveDeskTop(this, 1);
+//        Tools.showAlert3(this, "点击了");
+//        Intent secondIntent = new Intent(this, DesktopActivity.class);
+//        int flag = Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY;
+//        secondIntent.addFlags(flag);//872480768
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, secondIntent, 0);
+//        try {
+//            pendingIntent.send();
+//        } catch (PendingIntent.CanceledException e) {
+//            e.printStackTrace();
+//        }
+//        Tools.saveDeskTop(this, 1);
     }
 
     @Override

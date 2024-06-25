@@ -2,7 +2,7 @@ package com.niu.protect.tools.data;
 
 import android.util.Log;
 
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

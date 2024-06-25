@@ -2,7 +2,8 @@ package com.niu.protect.manager;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.niu.protect.BabyApplication;
+
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.ParentLimiteTimeModel;
 import com.niu.protect.model.ParentLimteTimeByAppModel;
 import com.niu.protect.model.PatternTimeScopesDTO;
@@ -195,27 +196,27 @@ public class StudentMainController {
     }
 
     private void getSystemBlackApp() {
-        SystemBlackAppListManager.getInstance().requestSystemBlacklist(BabyApplication.getInstance());
+        SystemBlackAppListManager.getInstance().requestSystemBlacklist(Constants.MainInstance.getContext());
     }
 
     private void getSystemWhiteApp() {
-        SystemWhiteAppListManager.getInstance().requestSystemWhitelist(BabyApplication.getInstance());
+        SystemWhiteAppListManager.getInstance().requestSystemWhitelist(Constants.MainInstance.getContext());
     }
 
     private void getUserBlackApp() {
-        UserBlackAppListManager.getInstance().reqeustUserBlacklist(BabyApplication.getInstance());
+        UserBlackAppListManager.getInstance().reqeustUserBlacklist(Constants.MainInstance.getContext());
     }
 
     public void getUserWhiteApp() {
-        UserWhiteAppListManager.getInstance().reqeustUserWhitelist(BabyApplication.getInstance());
+        UserWhiteAppListManager.getInstance().reqeustUserWhitelist(Constants.MainInstance.getContext());
     }
 
     public void getXcxControl() {
-        TempOutControlManager.getInstance().requestOutControl(BabyApplication.getInstance());
+        TempOutControlManager.getInstance().requestOutControl(Constants.MainInstance.getContext());
     }
 
     private void requestParentSettingAppLimit() {
-        StudentControllerRepository.getInstance().requestOtherTimeModel(BabyApplication.getInstance(), this.onResultBack);
+        StudentControllerRepository.getInstance().requestOtherTimeModel(Constants.MainInstance.getContext(), this.onResultBack);
     }
 
     private int getControllerWay(Context context) {
@@ -274,15 +275,15 @@ public class StudentMainController {
     }
 
     private void executeTeacherOrder() {
-        StudentControllerRepository.getInstance().requestTeacherModel(BabyApplication.getInstance(), this.onResultBack);
+        StudentControllerRepository.getInstance().requestTeacherModel(Constants.MainInstance.getContext(), this.onResultBack);
     }
 
     private void executePrentOfHoliday() {
-        StudentControllerRepository.getInstance().requestParentHolidayModel(BabyApplication.getInstance(), this.onResultBack);
+        StudentControllerRepository.getInstance().requestParentHolidayModel(Constants.MainInstance.getContext(), this.onResultBack);
     }
 
     private void executePrentOfSchool() {
-        StudentControllerRepository.getInstance().requestParentSchoolModel(BabyApplication.getInstance(), this.onResultBack);
+        StudentControllerRepository.getInstance().requestParentSchoolModel(Constants.MainInstance.getContext(), this.onResultBack);
     }
 
     private void checkWeekControlTime(int controlModel) {
@@ -376,7 +377,7 @@ public class StudentMainController {
 
     public void requestMainControl() {
         ILog.d("-----requestMainControl---", "requestMainControl");
-        UserInfoManager.getInstance().refreshUserInfo(BabyApplication.getInstance(), () -> requstWeekControlTime(BabyApplication.getInstance()));
+        UserInfoManager.getInstance().refreshUserInfo(Constants.MainInstance.getContext(), () -> requstWeekControlTime(Constants.MainInstance.getContext()));
     }
 
     public void requestSystemBlackAndWhiteApp() {

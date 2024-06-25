@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
 
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.StudentMainController;
 import com.niu.protect.tools.ILog;
 

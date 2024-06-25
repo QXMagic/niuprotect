@@ -7,7 +7,7 @@ import android.os.Process;
 import com.baidu.mapapi.model.LatLng;
 import com.niu.protect.BabyApplication;
 import com.niu.protect.map.MapConstants;
-import com.niu.protect.map.model.CurrentLocation;
+import com.niu.protect.model.CurrentLocation;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;

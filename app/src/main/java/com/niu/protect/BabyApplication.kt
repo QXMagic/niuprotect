@@ -10,7 +10,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.os.Build
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import androidx.multidex.MultiDex
@@ -27,11 +26,10 @@ import com.baidu.trace.model.OnCustomAttributeListener
 import com.baidu.trace.model.ProcessOption
 import com.niu.protect.accessibility.auto.bean.PageInfoModel
 import com.niu.protect.accessibility.auto.device.info.DeviceAccessiFactory
-import com.niu.protect.lib.Constants
-import com.niu.protect.lib.IGlobalInstance
+import com.niu.protect.core.Constants
+import com.niu.protect.core.IGlobalInstance
 import com.niu.protect.manager.KeepAliveManger
 import com.niu.protect.map.maputil.CommonUtil
-import com.niu.protect.map.model.ItemInfo
 import com.niu.protect.network.NetCheckUtil
 import com.niu.protect.third.bugly.BuglyTools
 import com.niu.protect.third.umeng.UMengManager

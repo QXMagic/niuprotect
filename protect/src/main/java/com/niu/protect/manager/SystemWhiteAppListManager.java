@@ -3,21 +3,25 @@ package com.niu.protect.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+
 import com.google.gson.Gson;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.SystemWhiteAppModel;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.SharedPreUtil;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONObject;
 
-import atmp.consts.Constants;
+
 
 public class SystemWhiteAppListManager {
     private static final String TAG = "SystemWhiteAppListManager";

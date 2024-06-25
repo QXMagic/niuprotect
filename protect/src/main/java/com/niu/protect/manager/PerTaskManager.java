@@ -19,9 +19,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.niu.protect.BuildConfig;
 import com.niu.protect.R;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.AppInfo;
 import com.niu.protect.model.OtherTimeInfo;
 import com.niu.protect.model.UserInfo;
@@ -31,7 +30,6 @@ import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.repository.ApkInfoRepository;
 import com.niu.protect.service.FloatingService;
-import com.niu.protect.stomon.StoToolManager;
 import com.niu.protect.tools.EventUtils;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
@@ -65,7 +63,7 @@ public class PerTaskManager {
             long timea = System.currentTimeMillis();
             long etime = userInfo.getExpireTimeStamp();
             if (timea > etime) {
-                StoToolManager.getInstance(context).cleanAppBlack();
+                Constants.GlobalInstance.cleanAppBlack();
             }
             if (msg.what == 1) {
                 makeBlackApp();
@@ -114,7 +112,7 @@ public class PerTaskManager {
         }).start();
         registerNotificationChannel();
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.context, "com.github.103style.SampleService");
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        mBuilder.setSmallIcon(R.mipmap.ico);
         mBuilder.setContentTitle(Constants.APP_NAME);
         mBuilder.setContentText("正在守护");
         if (Build.VERSION.SDK_INT < 24) {
@@ -344,7 +342,7 @@ public class PerTaskManager {
             List<String> list = new ArrayList<>();
             list.clear();
             if (!userInfo.isBindTeacher() && !userInfo.isBindParent()) {
-                StoToolManager.getInstance(this.context).setAppBlack(list);
+                Constants.GlobalInstance.setAppBlack(list);
                 checkPer();
                 return;
             }
@@ -388,7 +386,7 @@ public class PerTaskManager {
                     break;
                 }
                 String appInfo3 = it.next();
-                if (appInfo3.equals(BuildConfig.APPLICATION_ID)) {
+                if (appInfo3.equals(Constants.APPLICATION_ID)) {
                     list.remove(appInfo3);
                     break;
                 }

@@ -3,6 +3,9 @@
 buildscript {
     ext {
         agp_version = '7.4.2'
+        kotlin_version = '1.1.1' // 使用你需要的Kotlin版本
+
+
     }
     repositories {
         mavenCentral()
@@ -20,6 +23,9 @@ buildscript {
         maven { url 'https://repo1.maven.org/maven2/' }
         maven { url 'https://developer.huawei.com/repo/'}
 
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 

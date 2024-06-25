@@ -1,19 +1,21 @@
 package com.niu.protect.repository;
 
 import android.util.Log;
-import com.niu.protect.BabyApplication;
+
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.UploadLocationInfo;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
-import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import atmp.consts.Constants;
+import java.util.List;
+
 
 public class LocationInfoRepository extends BaseRepository {
     public static LocationInfoRepository instance;
@@ -37,7 +39,7 @@ public class LocationInfoRepository extends BaseRepository {
     }
 
     public void uploadLoacationInfo(List<UploadLocationInfo> infos, final UploadCallBack callBack) {
-        String token = Tools.getToken(BabyApplication.getInstance());
+        String token = Tools.getToken(Constants.MainInstance.getContext());
         if (token == null) {
             return;
         }
@@ -60,7 +62,7 @@ public class LocationInfoRepository extends BaseRepository {
             e2.printStackTrace();
         }
         Log.i(Constants.MESSAGE_LOCAL, alist.toString());
-        NetTools.getInstance().postAsynJSONHttp(BabyApplication.getInstance(), StudentBaseUrl.traceGatherRecords_saveGatherRecords, object2, new ResultCallBackListener() {
+        NetTools.getInstance().postAsynJSONHttp(Constants.MainInstance.getContext(), StudentBaseUrl.traceGatherRecords_saveGatherRecords, object2, new ResultCallBackListener() {
             @Override
             public void onResponse(JSONObject msg) {
                 if (msg != null) {

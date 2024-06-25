@@ -2,7 +2,7 @@ package com.niu.protect.model;
 
 import com.baidu.platform.comapi.map.MapBundleKey;
 import com.google.gson.annotations.SerializedName;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 
 import java.util.List;
 

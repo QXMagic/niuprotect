@@ -1,7 +1,8 @@
 package com.niu.protect.manager;
 
 import android.content.Context;
-import com.niu.protect.BabyApplication;
+
+import com.niu.protect.core.Constants;
 import com.niu.protect.tools.SharedPreUtil;
 import com.tencent.mmkv.MMKV;
 public class SharedPreManager {
@@ -42,19 +43,19 @@ public class SharedPreManager {
         int times = getCustomSendTimes();
         if (remenberDay == day) {
             int times2 = times + 1;
-            SharedPreUtil.setParam(BabyApplication.getInstance(), KEY_CUSTOM_MSG_TIMES, Integer.valueOf(times2));
+            SharedPreUtil.setParam(Constants.MainInstance.getContext(), KEY_CUSTOM_MSG_TIMES, Integer.valueOf(times2));
             return times2 >= 10;
         }
-        SharedPreUtil.setParam(BabyApplication.getInstance(), KEY_CUSTOM_MSG_TODAY, Integer.valueOf(day));
-        SharedPreUtil.setParam(BabyApplication.getInstance(), KEY_CUSTOM_MSG_TIMES, 1);
+        SharedPreUtil.setParam(Constants.MainInstance.getContext(), KEY_CUSTOM_MSG_TODAY, Integer.valueOf(day));
+        SharedPreUtil.setParam(Constants.MainInstance.getContext(), KEY_CUSTOM_MSG_TIMES, 1);
         return false;
     }
 
     public static int getCustomSendTimes() {
-        return ((Integer) SharedPreUtil.getParam(BabyApplication.getInstance(), KEY_CUSTOM_MSG_TIMES, 0)).intValue();
+        return ((Integer) SharedPreUtil.getParam(Constants.MainInstance.getContext(), KEY_CUSTOM_MSG_TIMES, 0)).intValue();
     }
 
     private static int getCustomDay() {
-        return ((Integer) SharedPreUtil.getParam(BabyApplication.getInstance(), KEY_CUSTOM_MSG_TODAY, 0)).intValue();
+        return ((Integer) SharedPreUtil.getParam(Constants.MainInstance.getContext(), KEY_CUSTOM_MSG_TODAY, 0)).intValue();
     }
 }

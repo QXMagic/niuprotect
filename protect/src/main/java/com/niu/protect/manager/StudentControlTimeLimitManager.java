@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.model.ParentLimiteTimeModel;
 import com.niu.protect.model.ParentLimteTimeByAppModel;
 import com.niu.protect.model.TeacherLimiteTimeModel;

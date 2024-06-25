@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
-import com.niu.protect.broadcastReceiver.DeviceReceiver;
 public class MineDevicePolicyManager {
     private static MineDevicePolicyManager mDeviceMethod;
     private ComponentName componentName;
@@ -15,14 +14,21 @@ public class MineDevicePolicyManager {
     private MineDevicePolicyManager(Context context) {
         this.mContext = context;
         this.devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        this.componentName = new ComponentName(context, DeviceReceiver.class);
+
     }
 
     public static MineDevicePolicyManager getInstance(Context context) {
+        return getInstance(context,null);
+    }
+    public static MineDevicePolicyManager getInstance(Context context,Class cls) {
         if (mDeviceMethod == null) {
+            if(cls==null){
+                return null;
+            }
             synchronized (MineDevicePolicyManager.class) {
                 if (mDeviceMethod == null) {
                     mDeviceMethod = new MineDevicePolicyManager(context);
+                    mDeviceMethod.componentName = new ComponentName(context, Class.class);
                 }
             }
         }

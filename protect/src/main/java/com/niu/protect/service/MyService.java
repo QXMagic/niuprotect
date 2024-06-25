@@ -30,10 +30,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.niu.protect.BuildConfig;
 import com.niu.protect.R;
-import com.niu.protect.download.DownloadUtil;
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.LocationManager;
 import com.niu.protect.manager.UploadAppManager;
 import com.niu.protect.manager.UserInfoManager;
@@ -45,7 +43,6 @@ import com.niu.protect.model.WeekModel;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
-import com.niu.protect.stomon.StoToolManager;
 import com.niu.protect.tools.EventUtils;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
@@ -55,7 +52,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -63,8 +59,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MyService extends Service {
     public static final String CHANNEL_ID = "com.github.103style.SampleService";
@@ -84,7 +78,7 @@ public class MyService extends Service {
             long timea = System.currentTimeMillis();
             long etime = userInfo.getExpireTimeStamp();
             if (timea > etime) {
-                StoToolManager.getInstance(getApplicationContext()).cleanAppBlack();
+                Constants.GlobalInstance.cleanAppBlack();
             }
             if (msg.what == 200) {
                 insbrwApk();
@@ -182,12 +176,9 @@ public class MyService extends Service {
         }
         registerNotificationChannel();
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "com.github.103style.SampleService");
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        mBuilder.setSmallIcon(R.mipmap.ico);
         mBuilder.setContentTitle(Constants.APP_NAME);
         mBuilder.setContentText("正在守护");
-        if (Build.VERSION.SDK_INT < 24) {
-            mBuilder.setContentTitle(getResources().getString(R.string.app_name));
-        }
         startForeground(this.notifyId, mBuilder.build());
     }
 
@@ -488,7 +479,7 @@ public class MyService extends Service {
             List<String> list = new ArrayList<>();
             list.clear();
             if (!userInfo.isBindTeacher() && !userInfo.isBindParent()) {
-                StoToolManager.getInstance(getApplicationContext()).setAppBlack(list);
+                Constants.GlobalInstance.setAppBlack(list);
                 checkPer();
                 return;
             }
@@ -532,7 +523,7 @@ public class MyService extends Service {
                     break;
                 }
                 String appInfo3 = it.next();
-                if (appInfo3.equals(BuildConfig.APPLICATION_ID)) {
+                if (appInfo3.equals(Constants.APPLICATION_ID)) {
                     list.remove(appInfo3);
                     break;
                 }
@@ -669,7 +660,7 @@ public class MyService extends Service {
 
     private boolean isScreenLocked() {
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-        return keyguardManager.inKeyguardRestrictedInputMode();
+        return keyguardManager.isKeyguardLocked();
     }
 
     public String getForegroundApp(Context context) {
@@ -697,18 +688,16 @@ public class MyService extends Service {
         UsageEvents events;
         String packageName = "";
         ActivityManager activityManager = (ActivityManager) this.context.getSystemService(Context.ACTIVITY_SERVICE);
-        if (Build.VERSION.SDK_INT > 21) {
-            long end = System.currentTimeMillis();
-            UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService(Context.USAGE_STATS_SERVICE);
-            if (usageStatsManager == null || (events = usageStatsManager.queryEvents(end - 120000, end)) == null) {
-                return "";
-            }
-            UsageEvents.Event usageEvent = new UsageEvents.Event();
-            while (events.hasNextEvent()) {
-                events.getNextEvent(usageEvent);
-                if (usageEvent.getEventType() == 1) {
-                    packageName = usageEvent.getPackageName();
-                }
+        long end = System.currentTimeMillis();
+        UsageStatsManager usageStatsManager = (UsageStatsManager) this.context.getSystemService(Context.USAGE_STATS_SERVICE);
+        if (usageStatsManager == null || (events = usageStatsManager.queryEvents(end - 120000, end)) == null) {
+            return "";
+        }
+        UsageEvents.Event usageEvent = new UsageEvents.Event();
+        while (events.hasNextEvent()) {
+            events.getNextEvent(usageEvent);
+            if (usageEvent.getEventType() == 1) {
+                packageName = usageEvent.getPackageName();
             }
         }
         if (packageName != null) {
@@ -750,31 +739,31 @@ public class MyService extends Service {
     }
 
     public void startDown() {
-        Pattern pat = Pattern.compile("\\w+\\.apk");
-        Matcher mc = pat.matcher(this.downBreUrl);
-        while (mc.find()) {
-            this.fileName = mc.group();
-        }
-        if (this.fileName == null) {
-            this.fileName = "aaa.apk";
-        }
-        DownloadUtil.get().download(this.downBreUrl, this.basePatha, this.fileName, new DownloadUtil.OnDownloadListener() {
-            @Override
-            public void onDownloadSuccess(File file) {
-                Log.e("xaxaxa", "ok");
-                Message msg = new Message();
-                msg.what = 232;
-                handler.sendMessage(msg);
-            }
-
-            @Override
-            public void onDownloading(int progress) {
-            }
-
-            @Override
-            public void onDownloadFailed(Exception e) {
-            }
-        });
+//        Pattern pat = Pattern.compile("\\w+\\.apk");
+//        Matcher mc = pat.matcher(this.downBreUrl);
+//        while (mc.find()) {
+//            this.fileName = mc.group();
+//        }
+//        if (this.fileName == null) {
+//            this.fileName = "aaa.apk";
+//        }
+//        DownloadUtil.get().download(this.downBreUrl, this.basePatha, this.fileName, new DownloadUtil.OnDownloadListener() {
+//            @Override
+//            public void onDownloadSuccess(File file) {
+//                Log.e("xaxaxa", "ok");
+//                Message msg = new Message();
+//                msg.what = 232;
+//                handler.sendMessage(msg);
+//            }
+//
+//            @Override
+//            public void onDownloading(int progress) {
+//            }
+//
+//            @Override
+//            public void onDownloadFailed(Exception e) {
+//            }
+//        });
     }
 
     public void installApk() {

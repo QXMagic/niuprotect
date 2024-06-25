@@ -40,10 +40,11 @@ import com.niu.protect.BabyApplication;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.OpenAccessibilitySettingHelper;
 import com.niu.protect.accessibility.StatusUseAccessibilityService;
-import com.niu.protect.broadcastReceiver.BroadcastManager;
 import com.niu.protect.databinding.ActivityMainBinding;
 import com.niu.protect.download.DownloadService;
 import com.niu.protect.download.MyReceiver;
+import com.niu.protect.core.Constants;
+import com.niu.protect.lib.receiver.BroadcastManager;
 import com.niu.protect.manager.AutoSettingManager;
 import com.niu.protect.manager.SharedPreManager;
 import com.niu.protect.manager.StudentMainController;
@@ -84,7 +85,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import atmp.consts.Constants;
 import cn.bertsir.zbar.Qr.ScanResult;
 import cn.bertsir.zbar.QrManager;
 

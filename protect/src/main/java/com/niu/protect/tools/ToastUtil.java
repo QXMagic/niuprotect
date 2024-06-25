@@ -2,7 +2,7 @@ package com.niu.protect.tools;
 
 import android.widget.Toast;
 
-import com.niu.protect.lib.Constants;
+import com.niu.protect.core.Constants;
 
 public class ToastUtil {
     public static void show(String msg) {
