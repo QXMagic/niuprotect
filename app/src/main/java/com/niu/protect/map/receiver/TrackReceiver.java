@@ -4,9 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
-import com.baidu.trace.model.StatusCodes;
 
-import atmp.consts.Constants;
+import com.baidu.trace.model.StatusCodes;
+import com.niu.protect.core.Constants;
+
 
 public class TrackReceiver extends BroadcastReceiver {
     private PowerManager.WakeLock wakeLock;

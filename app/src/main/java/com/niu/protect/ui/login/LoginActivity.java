@@ -18,8 +18,10 @@ import com.google.gson.Gson;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
+import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.device.SystemDeviceInfo;
 import com.niu.protect.action.MyOnClickListener;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.model.UserInfo;
 import com.niu.protect.network.NetTools;
@@ -39,9 +41,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import atmp.consts.Constants;
-import com.niu.protect.R;
 public class LoginActivity extends BaseActivity {
     private static final int READ_WRITE_SDCARD_PERMISSION_REQUEST_CODE = 0;
     String[] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.ACCESS_FINE_LOCATION"};

@@ -11,12 +11,11 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import atmp.consts.Constants
 import com.niu.protect.BuildConfig
 import com.niu.protect.Constant
 import com.niu.protect.accessibility.auto.app.AppActivityTool
 import com.niu.protect.accessibility.auto.service.BaseAccessibility
-import com.niu.protect.action.MessageEvent
+import com.niu.protect.core.Constants
 import com.niu.protect.lib.receiver.BroadcastManager
 import com.niu.protect.manager.AutoSettingManager
 import com.niu.protect.manager.KeepAliveManger
@@ -526,7 +525,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
-    fun onMessageEvent(event: com.niu.protect.action.MessageEvent?) {
+    fun onMessageEvent(event:Message?) {
         Log.d("---", "-----")
         clickMenu()
     }

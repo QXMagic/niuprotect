@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+
 import com.baidu.trace.LBSTraceClient;
 import com.baidu.trace.Trace;
 import com.baidu.trace.api.entity.LocRequest;
@@ -20,14 +21,14 @@ import com.baidu.trace.model.BaseRequest;
 import com.baidu.trace.model.OnCustomAttributeListener;
 import com.baidu.trace.model.ProcessOption;
 import com.niu.protect.BabyApplication;
-
-import atmp.consts.Constants;
 import com.niu.protect.R;
+import com.niu.protect.core.Constants;
 import com.niu.protect.map.maputil.CommonUtil;
 import com.niu.protect.model.ItemInfo;
 import com.niu.protect.network.NetCheckUtil;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.ui.map.TracingActivity;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;

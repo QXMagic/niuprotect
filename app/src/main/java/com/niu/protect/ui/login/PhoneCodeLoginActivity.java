@@ -15,6 +15,7 @@ import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.niu.protect.Constant;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.device.SystemDeviceInfo;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.model.BaseModel;
 import com.niu.protect.model.UserInfo;
@@ -28,6 +29,7 @@ import com.niu.protect.tools.JumpActivityTools;
 import com.niu.protect.tools.ToastUtil;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
+import com.niu.protect.ui.main.MainActivity;
 import com.niu.protect.ui.webview.OneWebActivity;
 
 import org.json.JSONException;
@@ -36,7 +38,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import atmp.consts.Constants;
 public class PhoneCodeLoginActivity extends BaseActivity {
     private Button btnGetCode;
     CheckBox ckPrivate;
@@ -158,7 +159,7 @@ public class PhoneCodeLoginActivity extends BaseActivity {
                         UserInfoManager.getInstance().saveUser(_context, data);
                         Tools.saveToken(_context, userModel.getToken());
                         Tools.saveUserName(_context, phonetxt.getText().toString());
-                        JumpActivityTools.jumpToMainActivity(PhoneCodeLoginActivity.this, userModel);
+                        JumpActivityTools.jumpToMainActivity(PhoneCodeLoginActivity.this, MainActivity.class, userModel);
                         finish();
                     } catch (JSONException e) {
                         e.printStackTrace();

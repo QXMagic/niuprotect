@@ -29,7 +29,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import atmp.consts.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.R;
 
 public class FloatWindowSmallView extends LinearLayout {

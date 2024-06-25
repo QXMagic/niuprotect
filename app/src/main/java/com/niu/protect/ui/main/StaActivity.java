@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import atmp.consts.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.R;
 public class StaActivity extends BaseActivity {
     int allTime;

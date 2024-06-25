@@ -11,11 +11,11 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import com.baidu.platform.comapi.map.MapBundleKey;
+import com.niu.protect.core.Constants;
 
 import java.lang.reflect.Method;
 import java.util.List;
 
-import atmp.consts.Constants;
 
 public class SettingsCompat {
     private static final String HUAWEI_PACKAGE = "com.huawei.systemmanager";

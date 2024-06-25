@@ -41,7 +41,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import atmp.consts.Constants;
+import com.niu.protect.core.Constants;
 import com.niu.protect.R;
 public class MineActivity extends BaseActivity {
     TextView loginoutbtn;

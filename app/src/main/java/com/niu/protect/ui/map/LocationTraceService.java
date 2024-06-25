@@ -191,7 +191,7 @@ public class LocationTraceService extends Service {
     }
 
     private void addPermission(List<String> permissionsList, String permission) {
-        if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
             permissionsList.add(permission);
         }
     }

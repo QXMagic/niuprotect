@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.niu.protect.R;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.model.UserInfo;
 import com.niu.protect.network.NetTools;
@@ -28,9 +30,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import atmp.consts.Constants;
-import com.niu.protect.R;
 public class RegActivity extends BaseActivity {
     TextView codebtn;
     EditText codetxt;

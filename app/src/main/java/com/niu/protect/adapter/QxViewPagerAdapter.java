@@ -11,7 +11,6 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import atmp.consts.AgooConstants;
 import com.niu.protect.R;
-import com.niu.protect.action.QxOnClickListener;
 import com.niu.protect.model.QxInfo;
 import com.niu.protect.tools.RomUtil;
 import java.util.ArrayList;

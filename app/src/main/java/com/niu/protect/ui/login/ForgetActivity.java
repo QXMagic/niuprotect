@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.niu.protect.R;
+import com.niu.protect.core.Constants;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
@@ -21,9 +23,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import atmp.consts.Constants;
-import com.niu.protect.R;
 public class ForgetActivity extends BaseActivity {
     TextView codebtn;
     EditText codetxt;
