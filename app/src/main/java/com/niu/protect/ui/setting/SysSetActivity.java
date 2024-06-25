@@ -7,11 +7,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import cn.bertsir.zbar.Qr.ScanResult;
-import cn.bertsir.zbar.QrConfig;
-import cn.bertsir.zbar.QrManager;
+
 import com.niu.protect.R;
-import com.niu.protect.action.MyOnClickListener;
+import com.niu.protect.core.MyOnClickListener;
 import com.niu.protect.model.UserInfo;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
@@ -19,9 +17,15 @@ import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
+
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONObject;
+
+import cn.bertsir.zbar.Qr.ScanResult;
+import cn.bertsir.zbar.QrConfig;
+import cn.bertsir.zbar.QrManager;
 public class SysSetActivity extends BaseActivity {
     UserInfo userInfo;
 

@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.niu.protect.action.MyOnClickListener;
 
 import com.niu.protect.R;
+import com.niu.protect.core.MyOnClickListener;
 
 
 public class NavigationBar extends LinearLayout {

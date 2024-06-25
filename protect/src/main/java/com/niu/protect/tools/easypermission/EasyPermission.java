@@ -154,7 +154,7 @@ public class EasyPermission implements NextAction {
             pollPermission();
             return;
         }
-        int i = fun1.$SwitchMap$com$yiou$babyprotect$tools$easypermission$NextActionType[next.ordinal()];
+        int i = fun1.arr[next.ordinal()];
         if (i == 1) {
             pollPermission();
         } else if (i == 2) {
@@ -166,21 +166,21 @@ public class EasyPermission implements NextAction {
     }
 
     static class fun1 {
-        static final int[] $SwitchMap$com$yiou$babyprotect$tools$easypermission$NextActionType;
+        static final int[] arr;
 
         static {
             int[] iArr = new int[NextActionType.values().length];
-            $SwitchMap$com$yiou$babyprotect$tools$easypermission$NextActionType = iArr;
+            arr = iArr;
             try {
                 iArr[NextActionType.NEXT.ordinal()] = 1;
             } catch (NoSuchFieldError e) {
             }
             try {
-                $SwitchMap$com$yiou$babyprotect$tools$easypermission$NextActionType[NextActionType.IGNORE.ordinal()] = 2;
+                arr[NextActionType.IGNORE.ordinal()] = 2;
             } catch (NoSuchFieldError e2) {
             }
             try {
-                $SwitchMap$com$yiou$babyprotect$tools$easypermission$NextActionType[NextActionType.STOP.ordinal()] = 3;
+                arr[NextActionType.STOP.ordinal()] = 3;
             } catch (NoSuchFieldError e3) {
             }
         }

@@ -20,8 +20,8 @@ import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.device.SystemDeviceInfo;
-import com.niu.protect.action.MyOnClickListener;
 import com.niu.protect.core.Constants;
+import com.niu.protect.core.MyOnClickListener;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.model.UserInfo;
 import com.niu.protect.network.NetTools;
@@ -33,6 +33,7 @@ import com.niu.protect.tools.InputCheckUtil;
 import com.niu.protect.tools.JumpActivityTools;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
+import com.niu.protect.ui.main.MainActivity;
 import com.niu.protect.ui.webview.OneWebActivity;
 
 import org.json.JSONException;
@@ -61,12 +62,9 @@ public class LoginActivity extends BaseActivity {
         this.pwdtxt = (EditText) findViewById(R.id.pwdtxt);
         this.phonetxt.setText(Tools.getUsername(this._context));
         this.pwdtxt.setText(Tools.getPwd(this._context));
-        showRightText("注册", new MyOnClickListener() {
-            @Override
-            public void onClick(View btn) {
-                Intent intent = new Intent(getApplication(), RegActivity.class);
-                startActivity(intent);
-            }
+        showRightText("注册", (MyOnClickListener) btn -> {
+            Intent intent = new Intent(getApplication(), RegActivity.class);
+            startActivity(intent);
         });
         TextView fortegbtn = (TextView) findViewById(R.id.fortegbtn);
         fortegbtn.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +137,7 @@ public class LoginActivity extends BaseActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            JumpActivityTools.jumpToMainActivity(LoginActivity.this, userModel);
+                            JumpActivityTools.jumpToMainActivity(LoginActivity.this, MainActivity.class, userModel);
                             finish();
                         }
                     } catch (JSONException e) {

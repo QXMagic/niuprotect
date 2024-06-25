@@ -40,7 +40,7 @@ public class FloatingService extends Service {
     private void showFloatingWindow() {
         this.msgReceiver = new MsgReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.yiou.floatingService.RECEIVER");
+        intentFilter.addAction("com.niu.protect.floatingService.RECEIVER");
         registerReceiver(this.msgReceiver, intentFilter);
         if (Settings.canDrawOverlays(this)) {
             this.mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);

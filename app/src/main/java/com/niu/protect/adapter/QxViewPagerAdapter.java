@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
-import atmp.consts.AgooConstants;
 import com.niu.protect.R;
+import com.niu.protect.core.QxOnClickListener;
 import com.niu.protect.model.QxInfo;
 import com.niu.protect.tools.RomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import atmp.consts.AgooConstants;
 public class QxViewPagerAdapter extends PagerAdapter implements View.OnClickListener {
     Context mContext;
     QxOnClickListener qxOnClickListener;

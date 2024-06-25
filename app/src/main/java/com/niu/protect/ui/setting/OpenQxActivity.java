@@ -21,7 +21,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import androidx.viewpager.widget.ViewPager;
+
 import com.baidu.platform.comapi.map.NodeType;
 import com.google.gson.Gson;
 import com.hjq.permissions.OnPermissionCallback;
@@ -30,9 +32,9 @@ import com.hjq.permissions.XXPermissions;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.OpenAccessibilitySettingHelper;
 import com.niu.protect.accessibility.StatusUseAccessibilityService;
-import com.niu.protect.action.MessageEvent;
-import com.niu.protect.action.QxOnClickListener;
 import com.niu.protect.adapter.QxViewPagerAdapter;
+import com.niu.protect.core.MessageEvent;
+import com.niu.protect.core.QxOnClickListener;
 import com.niu.protect.lib.receiver.DeviceReceiver;
 import com.niu.protect.manager.AutoSettingManager;
 import com.niu.protect.manager.UserProtectManager;
@@ -44,9 +46,11 @@ import com.niu.protect.tools.RomUtil;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
 import com.niu.protect.widget.MyViewPager;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.greenrobot.eventbus.EventBus;
 public class OpenQxActivity extends BaseActivity {
     public static int OVERLAY_PERMISSION_REQ_CODE = NodeType.E_STREET_POI;
     private static final String TAG = "TestFloatWinActivity";
@@ -186,76 +190,71 @@ public class OpenQxActivity extends BaseActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        this.mAdapter.setQxOnClickListener(new QxOnClickListener() {
-            @Override
-            public void onClick(int pos) {
-                setPosition = pos;
-                if (pos == 0) {
-                    localAction();
-                } else if (pos == 1) {
-                    openLock();
-                } else if (pos != 2) {
-                    if (pos == 3) {
-                        Tools.saveAutoSet(OpenQxActivity.this, 1);
-                        xfkAction();
-                    } else if (pos == 4) {
-                        closeTasklock();
-                    }
-                } else if (!isIgnoringBatteryOptimizations()) {
-                    requestIgnoreBatteryOptimizations();
-                } else {
-                    nextAction();
+        this.mAdapter.setQxOnClickListener((QxOnClickListener) pos -> {
+            setPosition = pos;
+            if (pos == 0) {
+                localAction();
+            } else if (pos == 1) {
+                openLock();
+            } else if (pos != 2) {
+                if (pos == 3) {
+                    Tools.saveAutoSet(OpenQxActivity.this, 1);
+                    xfkAction();
+                } else if (pos == 4) {
+                    closeTasklock();
                 }
-                if (pos == 5) {
-                    Tools.saveStep10(OpenQxActivity.this, -3);
-                    Intent batterySaver = new Intent();
-                    batterySaver.setComponent(new ComponentName("com.iqoo.powersaving", "com.iqoo.powersaving.PowerSavingManagerActivity"));
-                    startActivity(batterySaver);
-                } else if (pos == 6) {
-                    askForPermission();
-                } else if (pos == 7) {
-                    if (Tools.getStep8(OpenQxActivity.this) == -1) {
-                        new AlertDialog.Builder(OpenQxActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Tools.saveStep8(OpenQxActivity.this, 0);
-                                Intent intent = new Intent("android.settings.USAGE_ACCESS_SETTINGS");
-                                _context.startActivity(intent);
-                            }
-                        }).show();
-                        return;
-                    }
-                    _context.startActivity(new Intent("android.settings.USAGE_ACCESS_SETTINGS"));
-                } else if (pos == 8) {
-                    if (Tools.getStep9(OpenQxActivity.this) == -1) {
-                        new AlertDialog.Builder(OpenQxActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Tools.saveStep9(OpenQxActivity.this, 0);
-                                Intent intent = new Intent();
-                                intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                                intent.addCategory("android.intent.category.DEFAULT");
-                                intent.setData(Uri.parse("package:" + getPackageName()));
-                                startActivity(intent);
-                            }
-                        }).show();
-                        return;
-                    }
-                    Intent intent = new Intent();
-                    intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.addCategory("android.intent.category.DEFAULT");
-                    intent.setData(Uri.parse("package:" + getPackageName()));
-                    startActivity(intent);
-                } else if (pos == 9) {
-                    UserProtectManager.getInstance().setProtect(1);
-                    Tools.saveAutoSet(OpenQxActivity.this, 0);
-                    Tools.saveQxSet(_context, 1);
-                    Intent backHome = new Intent("android.intent.action.MAIN");
-                    backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    backHome.addCategory("android.intent.category.HOME");
-                    startActivity(backHome);
-                    finish();
+            } else if (!isIgnoringBatteryOptimizations()) {
+                requestIgnoreBatteryOptimizations();
+            } else {
+                nextAction();
+            }
+            if (pos == 5) {
+                Tools.saveStep10(OpenQxActivity.this, -3);
+                Intent batterySaver = new Intent();
+                batterySaver.setComponent(new ComponentName("com.iqoo.powersaving", "com.iqoo.powersaving.PowerSavingManagerActivity"));
+                startActivity(batterySaver);
+            } else if (pos == 6) {
+                askForPermission();
+            } else if (pos == 7) {
+                if (Tools.getStep8(OpenQxActivity.this) == -1) {
+                    new AlertDialog.Builder(OpenQxActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Tools.saveStep8(OpenQxActivity.this, 0);
+                            Intent intent = new Intent("android.settings.USAGE_ACCESS_SETTINGS");
+                            _context.startActivity(intent);
+                        }
+                    }).show();
                 }
+                _context.startActivity(new Intent("android.settings.USAGE_ACCESS_SETTINGS"));
+            } else if (pos == 8) {
+                if (Tools.getStep9(OpenQxActivity.this) == -1) {
+                    new AlertDialog.Builder(OpenQxActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Tools.saveStep9(OpenQxActivity.this, 0);
+                            Intent intent = new Intent();
+                            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                            intent.addCategory("android.intent.category.DEFAULT");
+                            intent.setData(Uri.parse("package:" + getPackageName()));
+                            startActivity(intent);
+                        }
+                    }).show();
+                }
+                Intent intent = new Intent();
+                intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivity(intent);
+            } else if (pos == 9) {
+                UserProtectManager.getInstance().setProtect(1);
+                Tools.saveAutoSet(OpenQxActivity.this, 0);
+                Tools.saveQxSet(_context, 1);
+                Intent backHome = new Intent("android.intent.action.MAIN");
+                backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                backHome.addCategory("android.intent.category.HOME");
+                startActivity(backHome);
+                finish();
             }
         });
     }

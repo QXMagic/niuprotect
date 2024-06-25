@@ -21,7 +21,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import androidx.viewpager.widget.ViewPager;
+
 import com.baidu.platform.comapi.map.NodeType;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
@@ -29,7 +31,6 @@ import com.hjq.permissions.XXPermissions;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.OpenAccessibilitySettingHelper;
 import com.niu.protect.accessibility.StatusUseAccessibilityService;
-import com.niu.protect.action.QxOnClickListener;
 import com.niu.protect.adapter.QxViewPagerAdapter;
 import com.niu.protect.lib.receiver.DeviceReceiver;
 import com.niu.protect.manager.UserProtectManager;
@@ -38,6 +39,7 @@ import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
 import com.niu.protect.widget.MyViewPager;
+
 import java.util.ArrayList;
 import java.util.List;
 public class OpenQxOppoActivity extends BaseActivity {
@@ -138,105 +140,102 @@ public class OpenQxOppoActivity extends BaseActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        this.mAdapter.setQxOnClickListener(new QxOnClickListener() {
-            @Override
-            public void onClick(int pos) {
-                if (pos == 0) {
-                    localAction();
-                } else if (pos == 1) {
-                    openLock();
-                } else if (pos == 2) {
-                    Tools.saveAutoSet(OpenQxOppoActivity.this, 1);
-                    xfkAction();
-                } else if (pos == 3) {
-                    Tools.saveStep10(OpenQxOppoActivity.this, -3);
-                    Intent intent = new Intent("android.settings.SETTINGS");
-                    _context.startActivity(intent);
-                } else if (pos == 4) {
-                    if (!isIgnoringBatteryOptimizations()) {
-                        requestIgnoreBatteryOptimizations();
-                    } else {
-                        nextAction();
-                    }
-                } else if (pos == 5) {
-                    if (Tools.getStep5(OpenQxOppoActivity.this) == -1) {
-                        new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Tools.saveStep5(OpenQxOppoActivity.this, 0);
-                                OPPO();
-                            }
-                        }).show();
-                    } else {
-                        OPPO();
-                    }
-                } else if (pos == 6) {
-                    if (Tools.getStep6(OpenQxOppoActivity.this) == -1) {
-                        new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Tools.saveStep6(OpenQxOppoActivity.this, 0);
-                                int version = Build.VERSION.SDK_INT;
-                                if (version == 28) {
-                                    OPPO();
-                                    return;
-                                }
-                                Intent intent2 = getpManager();
-                                if (intent2 != null) {
-                                    intent2.putExtra("type", "110");
-                                    _context.startActivity(intent2);
-                                }
-                            }
-                        }).show();
-                        return;
-                    }
-                    int version = Build.VERSION.SDK_INT;
-                    if (version == 28) {
-                        OPPO();
-                        return;
-                    }
-                    Intent intent2 = getpManager();
-                    if (intent2 != null) {
-                        intent2.putExtra("type", "110");
-                        _context.startActivity(intent2);
-                    }
-                } else if (pos == 7) {
-                    askForPermission();
-                } else if (pos == 8) {
-                    if (Tools.getStep8(OpenQxOppoActivity.this) == -1) {
-                        new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Tools.saveStep8(OpenQxOppoActivity.this, 0);
-                                Intent intent3 = new Intent("android.settings.USAGE_ACCESS_SETTINGS");
-                                _context.startActivity(intent3);
-                            }
-                        }).show();
-                        return;
-                    }
-                    _context.startActivity(new Intent("android.settings.USAGE_ACCESS_SETTINGS"));
-                } else if (pos == 9) {
-                    if (Tools.getStep9(OpenQxOppoActivity.this) == -1) {
-                        new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Tools.saveStep9(OpenQxOppoActivity.this, 0);
-                                OPPO();
-                            }
-                        }).show();
-                    } else {
-                        OPPO();
-                    }
-                } else if (pos == 10) {
-                    UserProtectManager.getInstance().setProtect(1);
-                    Tools.saveAutoSet(OpenQxOppoActivity.this, 0);
-                    Tools.saveQxSet(_context, 1);
-                    Intent backHome = new Intent("android.intent.action.MAIN");
-                    backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    backHome.addCategory("android.intent.category.HOME");
-                    startActivity(backHome);
-                    finish();
+        this.mAdapter.setQxOnClickListener(pos -> {
+            if (pos == 0) {
+                localAction();
+            } else if (pos == 1) {
+                openLock();
+            } else if (pos == 2) {
+                Tools.saveAutoSet(OpenQxOppoActivity.this, 1);
+                xfkAction();
+            } else if (pos == 3) {
+                Tools.saveStep10(OpenQxOppoActivity.this, -3);
+                Intent intent = new Intent("android.settings.SETTINGS");
+                _context.startActivity(intent);
+            } else if (pos == 4) {
+                if (!isIgnoringBatteryOptimizations()) {
+                    requestIgnoreBatteryOptimizations();
+                } else {
+                    nextAction();
                 }
+            } else if (pos == 5) {
+                if (Tools.getStep5(OpenQxOppoActivity.this) == -1) {
+                    new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Tools.saveStep5(OpenQxOppoActivity.this, 0);
+                            OPPO();
+                        }
+                    }).show();
+                } else {
+                    OPPO();
+                }
+            } else if (pos == 6) {
+                if (Tools.getStep6(OpenQxOppoActivity.this) == -1) {
+                    new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Tools.saveStep6(OpenQxOppoActivity.this, 0);
+                            int version = Build.VERSION.SDK_INT;
+                            if (version == 28) {
+                                OPPO();
+                                return;
+                            }
+                            Intent intent2 = getpManager();
+                            if (intent2 != null) {
+                                intent2.putExtra("type", "110");
+                                _context.startActivity(intent2);
+                            }
+                        }
+                    }).show();
+                    return;
+                }
+                int version = Build.VERSION.SDK_INT;
+                if (version == 28) {
+                    OPPO();
+                    return;
+                }
+                Intent intent2 = getpManager();
+                if (intent2 != null) {
+                    intent2.putExtra("type", "110");
+                    _context.startActivity(intent2);
+                }
+            } else if (pos == 7) {
+                askForPermission();
+            } else if (pos == 8) {
+                if (Tools.getStep8(OpenQxOppoActivity.this) == -1) {
+                    new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Tools.saveStep8(OpenQxOppoActivity.this, 0);
+                            Intent intent3 = new Intent("android.settings.USAGE_ACCESS_SETTINGS");
+                            _context.startActivity(intent3);
+                        }
+                    }).show();
+                    return;
+                }
+                _context.startActivity(new Intent("android.settings.USAGE_ACCESS_SETTINGS"));
+            } else if (pos == 9) {
+                if (Tools.getStep9(OpenQxOppoActivity.this) == -1) {
+                    new AlertDialog.Builder(OpenQxOppoActivity.this).setTitle("提示").setMessage("自动设置，请勿操作").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Tools.saveStep9(OpenQxOppoActivity.this, 0);
+                            OPPO();
+                        }
+                    }).show();
+                } else {
+                    OPPO();
+                }
+            } else if (pos == 10) {
+                UserProtectManager.getInstance().setProtect(1);
+                Tools.saveAutoSet(OpenQxOppoActivity.this, 0);
+                Tools.saveQxSet(_context, 1);
+                Intent backHome = new Intent("android.intent.action.MAIN");
+                backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                backHome.addCategory("android.intent.category.HOME");
+                startActivity(backHome);
+                finish();
             }
         });
     }

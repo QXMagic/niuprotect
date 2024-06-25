@@ -22,6 +22,7 @@ import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.niu.protect.R;
 import com.niu.protect.adapter.DeskTopGridViewBaseAdapter;
 import com.niu.protect.adapter.GridViewAdapter;
 import com.niu.protect.adapter.ViewPagerAdapter;
@@ -36,8 +37,6 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.niu.protect.R;
-
 public class DesktopActivity extends BaseActivity {
     public static int item_grid_num = 24;
     public static int number_columns = 4;
@@ -47,7 +46,7 @@ public class DesktopActivity extends BaseActivity {
     private List<GridView> gridList = new ArrayList();
     JSONArray blackApp = new JSONArray();
     List<AppInfo> appInfos = new ArrayList();
-    private Intent intent = new Intent("com.yiou.floatingService.RECEIVER");
+    private Intent intent = new Intent("com.niu.protect.floatingService.RECEIVER");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

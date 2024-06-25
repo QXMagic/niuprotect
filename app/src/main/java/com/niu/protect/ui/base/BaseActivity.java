@@ -14,15 +14,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.niu.protect.action.MyOnClickListener;
+import com.niu.protect.R;
+import com.niu.protect.core.MyOnClickListener;
 import com.niu.protect.ui.NavigationBar;
 import com.zyao89.view.zloading.ZLoadingDialog;
 import com.zyao89.view.zloading.Z_TYPE;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.niu.protect.R;
 public class BaseActivity extends AppCompatActivity {
     public Context _context;
     public NavigationBar bar;
