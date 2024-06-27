@@ -30,7 +30,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.niu.protect.R;
+import com.niu.protect.lib.R;
 import com.niu.protect.core.Constants;
 import com.niu.protect.manager.LocationManager;
 import com.niu.protect.manager.UploadAppManager;

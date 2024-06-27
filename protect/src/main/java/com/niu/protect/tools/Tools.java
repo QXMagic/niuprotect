@@ -696,7 +696,7 @@ public class Tools {
         editor.commit();
     }
 
-    public static boolean getOneUse(Context context) {
+    public static boolean firstStart(Context context) {
         SharedPreferences sp = context.getSharedPreferences("wanplus", 0);
         boolean isUse = sp.getBoolean("OneUse", false);
         return isUse;

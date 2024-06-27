@@ -10,7 +10,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import com.niu.protect.R;
+import com.niu.protect.lib.R;
 import com.niu.protect.core.Constants;
 import com.niu.protect.service.FloatingService;
 public class MineNotificationManager {

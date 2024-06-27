@@ -33,7 +33,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 public class NetTools {
 //    public static final MediaType FORM_CONTENT_TYPE = MediaType.parse(AbstractBceClient.DEFAULT_CONTENT_TYPE);
-    private static final String TAG = "netTools";
+    private static final String TAG = NetTools.class.getName();
     static NetTools netTools;
     ResultCallBackListener netListener;
     Request request;
@@ -154,7 +154,7 @@ public class NetTools {
                     e.printStackTrace();
                 }
                 handler.sendMessage(msg);
-                Log.i(NetTools.TAG, "error");
+                Log.i(NetTools.TAG, "error:" + e.getMessage());
             }
 
             @Override
@@ -263,7 +263,7 @@ public class NetTools {
                     msg.what = -2;
                 }
                 handler.sendMessage(msg);
-                Log.i(NetTools.TAG, "error");
+                Log.i(NetTools.TAG, "error" + e.getMessage());
             }
 
             @Override

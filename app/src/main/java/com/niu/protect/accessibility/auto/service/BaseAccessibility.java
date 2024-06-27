@@ -256,7 +256,7 @@ public abstract class BaseAccessibility extends BaseAutoSettingTools {
         sb.append("eventType= share=");
         sb.append(SharedPreManager.getAutoSettingFinish());
         ILog.d(str, sb.toString());
-        if (eventType == 32 && !this.stop && AutoSettingManager.getInstance().isNeedAutoSetting()) {
+        if (eventType == 32 && !this.stop && AutoSettingManager.INSTANCE.isNeedAutoSetting()) {
             PageInfoModel pageInfoModel = getStepInfo(this.mVivoInfos, this.step);
             ILog.d(TAG, "step" + this.step);
             if (pageInfoModel != null && pageInfoModel.getPageTagInfo() != null && findText(pageInfoModel.getPageTagInfo(), 0) && event.getPackageName() != null && !event.getPackageName().toString().contains("launcher")) {

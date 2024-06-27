@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.niu.protect"
+    namespace = "com.niu.protect.lib"
     compileSdk = 34
 
     defaultConfig {

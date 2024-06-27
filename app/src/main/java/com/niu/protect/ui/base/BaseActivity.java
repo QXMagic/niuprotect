@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     int REQUEST_CODE = 201;
     public String imagePath = "";
     private AtomicInteger progressDialogCount = new AtomicInteger(0);
-    ZLoadingDialog dialog = new ZLoadingDialog(this, R.style.loading_dialog);
+    ZLoadingDialog dialog = new ZLoadingDialog(this, com.niu.protect.lib.R.style.loading_dialog);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -153,7 +153,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void showLoadDialog(String text) {
         if (this.dialog == null) {
-            this.dialog = new ZLoadingDialog(this, R.style.loading_dialog);
+            this.dialog = new ZLoadingDialog(this, com.niu.protect.lib.R.style.loading_dialog);
         }
         String hintText = TextUtils.isEmpty(text) ? "加载中...." : text;
         this.dialog.setLoadingBuilder(Z_TYPE.ROTATE_CIRCLE).setLoadingColor(-12303292).setHintText(hintText).setCanceledOnTouchOutside(true).setHintTextSize(14.0f).setHintTextColor(-12303292).setDurationTime(0.5d).show();

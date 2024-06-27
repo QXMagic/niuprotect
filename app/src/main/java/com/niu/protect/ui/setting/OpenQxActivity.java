@@ -83,7 +83,7 @@ public class OpenQxActivity extends BaseActivity {
             }
         });
         UserProtectManager.getInstance().setProtect(-2);
-        AutoSettingManager.getInstance().setAutoSettingFinish(this, 0);
+        AutoSettingManager.INSTANCE.setAutoSettingFinish(0);
         initViews();
         getLayoutInflater();
         LayoutInflater lf = LayoutInflater.from(this);

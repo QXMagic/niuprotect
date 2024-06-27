@@ -63,6 +63,10 @@ class OpenAccessibilitySettingHelper {
                     mContext.applicationContext.contentResolver,
                     "accessibility_enabled"
                 )
+                val accessibilityManager =
+                    mContext.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+                val isEnabled = accessibilityManager.isEnabled
+                Log.i(TAG, "accessibilityManager isEnabled:$isEnabled")
             } catch (e: SettingNotFoundException) {
                 Log.e(
                     TAG,

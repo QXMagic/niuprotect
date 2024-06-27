@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.niu.protect.BabyApplication;
+import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.bean.CheckBoxModel;
 import com.niu.protect.accessibility.auto.bean.PageInfoModel;
 import com.niu.protect.adapter.PremCollectionAdapter;
@@ -30,8 +31,6 @@ import com.niu.protect.ui.main.MainActivity;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.niu.protect.R;
 public class PermCollectActivity extends BaseActivity {
     ActivityPermCollectBinding binding;
     int mLocation;
@@ -79,7 +78,7 @@ public class PermCollectActivity extends BaseActivity {
             public void onItemClick(int position, int location) {
                 mPosition = position;
                 mLocation = location;
-                AutoSettingManager.getInstance().setAutoSettingFinish(PermCollectActivity.this, 1);
+                AutoSettingManager.INSTANCE.setAutoSettingFinish(AutoSettingManager.AUTO_SETTING_HAND);
             }
         });
     }
@@ -88,7 +87,7 @@ public class PermCollectActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         loadData();
-        if (!AutoSettingManager.getInstance().isNeedAutoSetting() && this.mPosition != -1) {
+        if (!AutoSettingManager.INSTANCE.isNeedAutoSetting() && this.mPosition != -1) {
             showAutoSetting();
         }
         checkAllQxSetted();
@@ -143,7 +142,7 @@ public class PermCollectActivity extends BaseActivity {
                     permisstionSettingRepository.setPermissionStep(permCollectActivity, permCollectActivity.upStepPermisstionStepBeans, null);
                     PermisstionSettingRepository.getInstance().setPermissionResult(PermCollectActivity.this, null);
                     Tools.saveQxSet(_context, 1);
-                    AutoSettingManager.getInstance().setAutoSettingFinish(PermCollectActivity.this, 3);
+                    AutoSettingManager.INSTANCE.setAutoSettingFinish(AutoSettingManager.AUTO_SETTING_FINISH);
                     Intent intent = new Intent(PermCollectActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

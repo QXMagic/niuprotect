@@ -1,7 +1,7 @@
 package com.niu.protect.repository;
 
 import android.content.Context;
-import com.niu.protect.R;
+import com.niu.protect.lib.R;
 import com.zyao89.view.zloading.ZLoadingDialog;
 import com.zyao89.view.zloading.Z_TYPE;
 public abstract class BaseRepository {

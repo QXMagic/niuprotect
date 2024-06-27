@@ -19,7 +19,7 @@ import com.niu.protect.tools.ILog;
 import java.util.ArrayList;
 import java.util.List;
 public abstract class BaseAutoSettingTools extends AccessibilityService {
-    protected static final String TAG = BaseAutoSettingTools.class.getName();
+    protected static final String TAG = "BaseAutoSettingTools";
     protected AccessibilityNodeInfo remenberUpNodeInfo;
     ArrayList<AccessibilityNodeInfo> roots = new ArrayList<>();
 
@@ -28,18 +28,14 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
             return;
         }
         if (root.getChildCount() == 0) {
-            if (!root.getPackageName().equals("com.android.systemui") && root != null) {
-                String str = TAG;
-                Log.i(str, "控件名称:" + ((Object) root.getClassName()));
-                String str2 = TAG;
-                Log.i(str2, "控件中的值：" + ((Object) root.getText()));
-                String str3 = TAG;
-                Log.i(str3, "控件的ID:" + root.getViewIdResourceName());
-                String str4 = TAG;
-                Log.i(str4, "点击是否出现弹窗:" + root.getViewIdResourceName());
+            if (!root.getPackageName().equals("com.android.systemui")) {
+                Log.i(TAG, "控件名称:" + ((Object) root.getClassName()));
+                Log.i(TAG, "控件中的值：" + ((Object) root.getText()));
+                Log.i(TAG, "控件的ID:" + root.getViewIdResourceName());
+                Log.i(TAG, "点击是否出现弹窗:" + root.getViewIdResourceName());
                 this.roots.add(root);
             }
-        } else if (Build.VERSION.SDK_INT >= 21) {
+        } else {
             for (int i = 0; i < root.getChildCount(); i++) {
                 if (root.getChild(i) != null) {
                     getRootInfo(root.getChild(i));
@@ -337,10 +333,8 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
             List<AccessibilityNodeInfo> item = rootInActiveWindow.findAccessibilityNodeInfosByText(text);
             List<AccessibilityNodeInfo> list = rootInActiveWindow.findAccessibilityNodeInfosByViewId(listId);
             if (item == null || item.size() == 0) {
-                String str = TAG;
-                Log.d(str, "不存在 " + text);
-                String str2 = TAG;
-                Log.d(str2, "不存在 " + list.size());
+                Log.d(TAG, "不存在 " + text);
+                Log.d(TAG, "不存在 " + list.size());
                 if (list != null && list.size() > 0) {
                     try {
                         Thread.sleep(200L);
@@ -348,18 +342,15 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
                         e.printStackTrace();
                     }
                     list.get(0).performAction(4096);
-                    String str3 = TAG;
-                    Log.d(str3, "---- [ " + text + " ] 滚动查找中 ----");
+                    Log.d(TAG, "---- [ " + text + " ] 滚动查找中 ----");
                 }
             } else {
-                String str4 = TAG;
-                Log.d(str4, "存在 " + text);
+                Log.d(TAG, "存在 " + text);
                 AccessibilityNodeInfo clickableItem = item.get(0);
                 if (clickableItem.isEnabled() && clickableItem.isClickable()) {
                     for (int i = 0; i < num; i++) {
                         boolean success = clickableItem.performAction(16);
-                        String str5 = TAG;
-                        Log.d(str5, "点击: " + text);
+                        Log.d(TAG, "点击: " + text);
                         if (success) {
                             return true;
                         }
@@ -368,8 +359,7 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
                     AccessibilityNodeInfo parent = clickableItem.getParent();
                     if (parent.isEnabled() && parent.isClickable() && 0 < num) {
                         parent.performAction(16);
-                        String str6 = TAG;
-                        Log.d(str6, "点击parent: " + text);
+                        Log.d(TAG, "点击parent: " + text);
                         return true;
                     }
                 }
@@ -381,7 +371,7 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
     public static boolean findRecycleViewScrollClick(AccessibilityService service, String text, String listId, int num, int stepFlagIndex) {
         AccessibilityNodeInfo rootInActiveWindow;
         AccessibilityNodeInfo info;
-        if (Build.VERSION.SDK_INT >= 18 && (rootInActiveWindow = service.getRootInActiveWindow()) != null) {
+        if ((rootInActiveWindow = service.getRootInActiveWindow()) != null) {
             List<AccessibilityNodeInfo> item = rootInActiveWindow.findAccessibilityNodeInfosByText(text);
             List<AccessibilityNodeInfo> list = rootInActiveWindow.findAccessibilityNodeInfosByViewId(listId);
             if (item == null || item.size() == 0) {
@@ -469,8 +459,7 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
                         boolean isOpen6 = info.getText().toString().equals("开启");
                         OppoDeviceInfo.StepSixOverlayWindows.STATUS_CLICKED = isOpen6;
                     }
-                    String str2 = TAG;
-                    ILog.d(str2, "自动启动" + info.getText().toString().equals("开启"));
+                    ILog.d(TAG, "自动启动" + info.getText().toString().equals("开启"));
                     return;
                 }
                 return;
@@ -481,8 +470,7 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
                 return;
             }
         }
-        String str3 = TAG;
-        ILog.d(str3, "checkBox " + text + "----" + info.getChildCount());
+        ILog.d(TAG, "checkBox " + text + "----" + info.getChildCount());
         if (info.getChildCount() >= 2) {
             for (int i = 0; i < info.getChildCount(); i++) {
                 if (info.getChild(i) != null) {
@@ -525,10 +513,7 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
             return false;
         }
         List<AccessibilityNodeInfo> list2 = nodeInfo.findAccessibilityNodeInfosByText(key);
-        if (list2.size() <= 0) {
-            return false;
-        }
-        return true;
+        return list2.size()>0;
     }
 
     protected boolean checkBackId(String key, AccessibilityNodeInfo nodeInfo) {
@@ -536,9 +521,6 @@ public abstract class BaseAutoSettingTools extends AccessibilityService {
             return false;
         }
         List<AccessibilityNodeInfo> list2 = nodeInfo.findAccessibilityNodeInfosByViewId(key);
-        if (list2.size() <= 0) {
-            return false;
-        }
-        return true;
+        return list2.size()>0;
     }
 }

@@ -139,7 +139,7 @@
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
-            <meta-data android:name="android.accessibilityservice" android:resource="@xml/student_accessibility" android:value="" />
+            <meta-data android:name="android.accessibility-service" android:resource="@xml/student_accessibility" android:value="" />
         </service>
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.FloatingService" android:process=":live" />
 

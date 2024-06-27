@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.niu.protect.BuildConfig;
+import com.niu.protect.R;
 import com.niu.protect.adapter.UseAppAdapter;
 import com.niu.protect.model.AppInfo;
 import com.niu.protect.model.UsePackageInfo;
@@ -31,8 +32,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.niu.protect.R;
 public class UseAppActivity extends BaseActivity {
     private static final int MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS = 1101;
     List<AppInfo> alist;

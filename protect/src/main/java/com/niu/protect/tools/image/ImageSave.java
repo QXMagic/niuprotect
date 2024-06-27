@@ -51,7 +51,7 @@ public class ImageSave {
     }
 
     public static void delFile() {
-        String dir = Constants.MainInstance.getCacheDir().getAbsolutePath() + "/babyprotect/Pic/";
+        String dir = Constants.MainInstance.getCacheDir().getAbsolutePath() + "/Pic/";
         File fileDir = new File(dir);
         deleteDirWihtFile(fileDir);
     }

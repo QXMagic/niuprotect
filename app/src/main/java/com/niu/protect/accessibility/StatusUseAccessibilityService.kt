@@ -115,7 +115,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         val str4 = this.TAG
         ILog.d(str4, "eventType classname:" + event.className as Any?)
         val z =
-            UserProtectManager.getInstance().protectStatus != -2 && AutoSettingManager.getInstance().isSettingFinish
+            UserProtectManager.getInstance().protectStatus != -2 && AutoSettingManager.isSettingFinish
         isStartControl = z
         if (z) {
             if (event == null || TempOutControlManager.getInstance().getTempOutTime(this)) {
@@ -526,7 +526,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
     fun onMessageEvent(event:Message?) {
-        Log.d("---", "-----")
+        Log.d("---", "event -----")
         clickMenu()
     }
 
@@ -550,11 +550,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         )
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val now = Calendar.getInstance().timeInMillis
-        if (Build.VERSION.SDK_INT >= 19) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, now, pendingIntent)
-        } else {
-            alarmManager[AlarmManager.RTC_WAKEUP, now] = pendingIntent
-        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, now, pendingIntent)
     }
 
     companion object {

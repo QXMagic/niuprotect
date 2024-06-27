@@ -11,9 +11,12 @@ import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
+
 import androidx.core.app.NotificationCompat;
-import com.niu.protect.R;
+
 import com.niu.protect.backService.IMyAidlInterface;
+import com.niu.protect.lib.R;
+
 public class RemoteForegroundService extends Service {
     private Connection connection;
     private MyBinder myBinder;
