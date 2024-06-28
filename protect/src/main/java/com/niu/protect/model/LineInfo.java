@@ -34,10 +34,10 @@ public class LineInfo {
     }
 
     public double getDistance() {
-        double radLat1 = rad(this.latLng1.getLatLng().latitude);
-        double radLat2 = rad(this.latLng2.getLatLng().latitude);
+        double radLat1 = rad(this.latLng1.getLatitude());
+        double radLat2 = rad(this.latLng2.getLatitude());
         double a = radLat1 - radLat2;
-        double b = rad(this.latLng1.getLatLng().longitude) - rad(this.latLng2.getLatLng().longitude);
+        double b = rad(this.latLng1.getLongitude()) - rad(this.latLng2.getLongitude());
         double s = Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2.0d), 2.0d) + (Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2.0d), 2.0d)))) * 2.0d * EARTH_RADIUS;
         this.des = s;
         return s;

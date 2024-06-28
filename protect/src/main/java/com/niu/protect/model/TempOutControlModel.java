@@ -1,6 +1,9 @@
 package com.niu.protect.model;
 
 import com.google.gson.annotations.SerializedName;
+/**
+ * 临时解除管控
+ * */
 public class TempOutControlModel extends BaseModel {
     @SerializedName("data")
     private DataDTO data;

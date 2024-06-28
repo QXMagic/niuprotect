@@ -17,12 +17,12 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.Messenger;
 import android.os.Process;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -30,8 +30,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.niu.protect.lib.R;
 import com.niu.protect.core.Constants;
+import com.niu.protect.lib.R;
 import com.niu.protect.manager.LocationManager;
 import com.niu.protect.manager.UploadAppManager;
 import com.niu.protect.manager.UserInfoManager;
@@ -96,9 +96,11 @@ public class MyService extends Service {
     String basePatha = Environment.getExternalStorageDirectory().getAbsolutePath();
     String fileName = null;
 
+    private final Messenger mMessenger = new Messenger(handler);
+
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return mMessenger.getBinder();
     }
 
     @Override
@@ -197,16 +199,14 @@ public class MyService extends Service {
     }
 
     private void registerNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= 26) {
-            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel(CHANNEL_ID);
-            if (notificationChannel == null) {
-                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
-                channel.enableLights(false);
-                channel.setLightColor(Constants.CATEGORY_MASK);
-                channel.setLockscreenVisibility(1);
-                mNotificationManager.createNotificationChannel(channel);
-            }
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel notificationChannel = mNotificationManager.getNotificationChannel(CHANNEL_ID);
+        if (notificationChannel == null) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            channel.enableLights(false);
+            channel.setLightColor(Constants.CATEGORY_MASK);
+            channel.setLockscreenVisibility(1);
+            mNotificationManager.createNotificationChannel(channel);
         }
     }
 

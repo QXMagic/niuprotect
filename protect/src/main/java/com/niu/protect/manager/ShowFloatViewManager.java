@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import com.baidu.platform.comapi.map.NodeType;
 import com.niu.protect.tools.ILog;
 public class ShowFloatViewManager {
     public static final String ALARM_ACTION = "com.babyprotect.alarmAction";
@@ -32,13 +31,13 @@ public class ShowFloatViewManager {
         WindowManager.LayoutParams mParams = new WindowManager.LayoutParams(-2, -2, 0, 0, -2);
         mParams.x = 0;
         mParams.y = 0;
-        mParams.flags = 8;
+        mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         mParams.gravity = 51;
         Log.d("MainActivity", "sdk:" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= 26) {
             mParams.type = 2038;
         } else {
-            mParams.type = NodeType.E_STREET_CLICK_JUMP_MOVE;
+            mParams.type = 2002;
         }
         TextView textView = new TextView(context);
         this.mFloatingButton = textView;

@@ -1,6 +1,5 @@
 package com.niu.protect.model;
 
-import com.baidu.platform.comapi.map.MapBundleKey;
 import com.google.gson.annotations.SerializedName;
 import com.niu.protect.core.Constants;
 
@@ -42,7 +41,7 @@ public class ParentLimteTimeByAppModel extends BaseModel {
         private boolean isDisable;
         @SerializedName("isSystem")
         private boolean isSystem;
-        @SerializedName(MapBundleKey.OfflineMapKey.OFFLINE_CITYNAME)
+        @SerializedName("name")
         private String name;
         @SerializedName(Constants.KEY_PACKAGE_NAME)
         private String packageName;

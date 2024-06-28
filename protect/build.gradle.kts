@@ -42,9 +42,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("org.java-websocket:Java-WebSocket:1.5.6")
     implementation("com.google.code.gson:gson:2.8.9")
@@ -52,16 +49,11 @@ dependencies {
     implementation("org.greenrobot:eventbus:3.3.1")
     implementation("androidx.work:work-runtime:2.9.0")
 
-
-
 //    implementation(fileTree(dir: "libs", include: ["*.jar"]))
     implementation("com.github.crazyandcoder:citypicker:6.0.2")
 
     implementation("com.soundcloud.android:android-crop:1.0.1@aar")
-
-//    implementation("com.baidu.lbsyun:BaiduMapSDK_Panorama:2.9.0"
-    implementation("com.baidu.lbsyun:BaiduMapSDK_Location:9.3.7")
-    implementation("com.baidu.lbsyun:BaiduMapSDK_Map:7.5.4")
+    implementation("com.tencent.map.geolocation:TencentLocationSdk-openplatform:7.5.4.3")
 //    implementation("io.github.xiaofeidev:round:1.1.2"
 //    implementation("com.hjq:xxpermissions:9.0"
     implementation("com.github.getActivity:XXPermissions:18.63")

@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import androidx.core.view.ViewCompat;
 
-import com.baidu.location.BDLocation;
+
 import com.google.gson.Gson;
 import com.niu.protect.core.Constants;
 import com.niu.protect.model.AppInfo;
@@ -859,12 +859,12 @@ public class Tools {
         if (appName.toLowerCase().contains("输入法") || packageInfo.packageName.contains("com.xiaomi.cameratest") || packageInfo.packageName.contains("com.miui.contentextension") || packageInfo.packageName.contains("com.miui.qr") || packageInfo.packageName.contains("com.miui.fm") || packageInfo.packageName.contains("com.xiaomi.cameratools") || packageInfo.packageName.contains("com.miui.gallery") || packageInfo.packageName.contains("com.xiaomi.payment") || packageInfo.packageName.contains("com.miui.player") || packageInfo.packageName.contains("com.miui.video") || packageInfo.packageName.contains("com.xiaomi.market") || packageInfo.packageName.contains("com.xiaomi.misettings") || packageInfo.packageName.contains("com.miui.yellowpage")) {
             return true;
         }
-        return (packageInfo.packageName.equals(Constants.ANDROID) || packageInfo.packageName.contains("android.") || packageInfo.packageName.contains(".mi") || packageInfo.packageName.contains("miui") || packageInfo.packageName.contains("fido.") || packageInfo.packageName.contains("wapi.") || packageInfo.packageName.contains("xiaomi.") || packageInfo.packageName.contains("op01") || packageInfo.packageName.contains("sdk") || packageInfo.packageName.contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM) || appName.toLowerCase().contains("miui")) ? false : true;
+        return (packageInfo.packageName.equals(Constants.ANDROID) || packageInfo.packageName.contains("android.") || packageInfo.packageName.contains(".mi") || packageInfo.packageName.contains("miui") || packageInfo.packageName.contains("fido.") || packageInfo.packageName.contains("wapi.") || packageInfo.packageName.contains("xiaomi.") || packageInfo.packageName.contains("op01") || packageInfo.packageName.contains("sdk") || packageInfo.packageName.contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains("system") || appName.toLowerCase().contains("miui")) ? false : true;
     }
 
     public static boolean checkSysApp(PackageInfo packageInfo, Context context) {
         String appName = packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString();
-        return packageInfo.packageName.equals(Constants.ANDROID) || packageInfo.packageName.contains("android.") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM);
+        return packageInfo.packageName.equals(Constants.ANDROID) || packageInfo.packageName.contains("android.") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains("system");
     }
 
     public static boolean checkOkApp(UsePackageInfo packageInfo, Context context) {
@@ -872,7 +872,7 @@ public class Tools {
         if (appName.toLowerCase().contains("输入法") || packageInfo.getmPackageName().contains("com.xiaomi.cameratest") || packageInfo.getmPackageName().contains("com.miui.contentextension") || packageInfo.getmPackageName().contains("com.miui.qr") || packageInfo.getmPackageName().contains("com.miui.fm") || packageInfo.getmPackageName().contains("com.xiaomi.cameratools") || packageInfo.getmPackageName().contains("com.miui.gallery") || packageInfo.getmPackageName().contains("com.xiaomi.payment") || packageInfo.getmPackageName().contains("com.miui.player") || packageInfo.getmPackageName().contains("com.miui.video") || packageInfo.getmPackageName().contains("com.xiaomi.market") || packageInfo.getmPackageName().contains("com.xiaomi.misettings") || packageInfo.getmPackageName().contains("com.miui.yellowpage")) {
             return true;
         }
-        return (packageInfo.getmPackageName().equals(Constants.ANDROID) || packageInfo.getmPackageName().contains("android.") || packageInfo.getmPackageName().contains(".mi") || packageInfo.getmPackageName().contains("miui") || packageInfo.getmPackageName().contains("fido.") || packageInfo.getmPackageName().contains("wapi.") || packageInfo.getmPackageName().contains("xiaomi.") || packageInfo.getmPackageName().contains("op01") || packageInfo.getmPackageName().contains("sdk") || packageInfo.getmPackageName().contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains(BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM) || appName.toLowerCase().contains("miui")) ? false : true;
+        return (packageInfo.getmPackageName().equals(Constants.ANDROID) || packageInfo.getmPackageName().contains("android.") || packageInfo.getmPackageName().contains(".mi") || packageInfo.getmPackageName().contains("miui") || packageInfo.getmPackageName().contains("fido.") || packageInfo.getmPackageName().contains("wapi.") || packageInfo.getmPackageName().contains("xiaomi.") || packageInfo.getmPackageName().contains("op01") || packageInfo.getmPackageName().contains("sdk") || packageInfo.getmPackageName().contains("mediatek") || appName.toLowerCase().contains("service") || appName.toLowerCase().contains("sdk") || appName.toLowerCase().contains("com.") || appName.toLowerCase().contains("system") || appName.toLowerCase().contains("miui")) ? false : true;
     }
 
     public static void saveBlackUserApp(Context context, String msg) {

@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 
+import com.baidu.location.BDLocation;
 import com.baidu.trace.LBSTraceClient;
 import com.baidu.trace.Trace;
 import com.baidu.trace.api.entity.LocRequest;
@@ -51,6 +52,7 @@ public class TrackManager {
     public boolean isGatherStarted = false;
 
     private void initTrack(Context context) {
+        BDLocation.BDLOCATION_GNSS_PROVIDER_FROM_SYSTEM
         this.mContext = context;
         LBSTraceClient.setAgreePrivacy(context, true);
         if ("com.baidu.track:remote".equals(CommonUtil.getCurProcessName(this.mContext))) {

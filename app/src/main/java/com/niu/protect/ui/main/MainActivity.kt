@@ -394,7 +394,7 @@ class MainActivity : BaseActivity() {
             StudentMainController.getInstance().requstWeekControlTime(this@MainActivity)
             StudentMainController.getInstance().getUserWhiteApp()
             StudentMainController.getInstance().getXcxControl()
-        }, WorkRequest.MIN_BACKOFF_MILLIS)
+        }, 10000L)
         MineWorkerManager.getInstance().periodicWorkRequest(instance)
     }
 

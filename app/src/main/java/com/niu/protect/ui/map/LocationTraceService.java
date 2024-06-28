@@ -313,10 +313,8 @@ public class LocationTraceService extends Service {
                 alarmInfo.append(messageType == 3 ? "云端" : "本地");
                 alarmInfo.append("围栏：");
                 alarmInfo.append(alarmPushInfo.getFenceName());
-                if (Build.VERSION.SDK_INT > 16) {
-                    Notification notification = new Notification.Builder(trackApp).setContentTitle("定位中..").setContentText(alarmInfo.toString()).setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).build();
-                    notificationManager.notify(LocationTraceService.Fun$508(LocationTraceService.this), notification);
-                }
+                Notification notification = new Notification.Builder(trackApp).setContentTitle("定位中..").setContentText(alarmInfo.toString()).setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).build();
+                notificationManager.notify(LocationTraceService.Fun$508(LocationTraceService.this), notification);
             }
 
             @Override

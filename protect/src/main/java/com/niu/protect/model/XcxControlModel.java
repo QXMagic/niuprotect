@@ -1,7 +1,7 @@
 package com.niu.protect.model;
 
-import com.baidu.platform.comapi.map.MapBundleKey;
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 public class XcxControlModel extends BaseModel {
     @SerializedName("data")
@@ -24,7 +24,7 @@ public class XcxControlModel extends BaseModel {
         private String iconUrl;
         @SerializedName("id")
         private String id;
-        @SerializedName(MapBundleKey.OfflineMapKey.OFFLINE_CITYNAME)
+        @SerializedName("name")
         private String name;
         @SerializedName("packageName")
         private String packageName;

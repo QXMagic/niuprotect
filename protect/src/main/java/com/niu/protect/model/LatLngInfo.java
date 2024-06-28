@@ -1,19 +1,31 @@
 package com.niu.protect.model;
 
-import com.baidu.mapapi.model.LatLng;
 public class LatLngInfo {
     int index;
     boolean isdel;
-    LatLng latLng;
     Long localtime;
+    double longitude;
+    double latitude;
+//    altitude //海拔
+//            accuracy //精度
 
-    public LatLng getLatLng() {
-        return this.latLng;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLatLng(LatLng latLng) {
-        this.latLng = latLng;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
+
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
 
     public boolean isIsdel() {
         return this.isdel;

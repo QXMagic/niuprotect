@@ -4,16 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.google.gson.Gson;
 import com.niu.protect.model.UserBlackAppInfoModel;
 import com.niu.protect.network.NetTools;
-import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONObject;
 public class UserWhiteAppListManager {
     private static final String TAG = "UserWhiteAppListManager";
     private static UserWhiteAppListManager instance;
@@ -50,14 +50,11 @@ public class UserWhiteAppListManager {
 
     public void reqeustUserWhitelist(final Context context) {
         Map<String, String> parameters = new HashMap<>();
-        NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.USER_WHITE_APP_LIST, parameters, new ResultCallBackListener() {
-            @Override
-            public void onResponse(JSONObject msg) {
-                if (msg != null) {
-                    Log.i("getUserWhiteAppList", msg.toString());
-                    UserWhiteAppListManager.saveWhiteUserApp(context, msg.toString());
-                    mUserWhiteApps = null;
-                }
+        NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.USER_WHITE_APP_LIST, parameters, msg -> {
+            if (msg != null) {
+                Log.i("getUserWhiteAppList", msg.toString());
+                UserWhiteAppListManager.saveWhiteUserApp(context, msg.toString());
+                mUserWhiteApps = null;
             }
         });
     }

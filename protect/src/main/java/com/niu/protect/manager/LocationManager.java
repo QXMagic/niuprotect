@@ -2,11 +2,7 @@ package com.niu.protect.manager;
 
 import android.content.Context;
 import android.util.Log;
-import com.baidu.location.BDAbstractLocationListener;
-import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.model.LatLng;
+
 import com.niu.protect.model.LatLngInfo;
 import com.niu.protect.model.LineInfo;
 import com.niu.protect.network.NetTools;
@@ -14,16 +10,23 @@ import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.Tools;
-//import com.xiaomi.mipush.sdk.Constants;
+import com.tencent.map.geolocation.TencentLocation;
+import com.tencent.map.geolocation.TencentLocationListener;
+import com.tencent.map.geolocation.TencentLocationManager;
+import com.tencent.map.geolocation.TencentLocationManagerOptions;
+import com.tencent.map.geolocation.TencentLocationRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-public class LocationManager {
+public class LocationManager implements TencentLocationListener {
+    private final static String TAG = "location";
     private static LocationManager instance = new LocationManager();
     private Context context;
     String timeFormat;
@@ -38,9 +41,7 @@ public class LocationManager {
     double olongitude = 0.0d;
     LatLngInfo lastLatLng = null;
     public List<LatLngInfo> tmplatLngList = new ArrayList();
-    public LocationClient mLocationClient = null;
-    private MyLocationListener myListener = new MyLocationListener();
-
+    public TencentLocationManager mLocationManager = null;
     private LocationManager() {
     }
 
@@ -53,87 +54,71 @@ public class LocationManager {
             return;
         }
         this.context = context;
-        LocationClient.setAgreePrivacy(true);
-        try {
-            this.mLocationClient = new LocationClient(context);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        LocationClient locationClient = this.mLocationClient;
-        if (locationClient == null) {
-            Log.d("location", "mLocationClient is null");
+        TencentLocationManagerOptions.setKey("YVABZ-IFRWJ-XRNFB-XGSBW-VSM23-K2BSG");
+        mLocationManager = TencentLocationManager.getInstance(context);
+        TencentLocationRequest request = TencentLocationRequest.create();
+
+        request.setAllowGPS(true);
+        request.setRequestLevel(TencentLocationRequest.REQUEST_LEVEL_GEO);
+        request.setGpsFirst(true);
+        mLocationManager.requestLocationUpdates(request, this, context.getMainLooper());
+    }
+
+    @Override
+    public void onLocationChanged(TencentLocation location, int i, String s) {
+//        if (locationTimes < totalLocationTimes) {
+//            floorLocation(location);
+//        }
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        float radius = location.getAccuracy();
+        if (radius > 100.0f || location.getSpeed() > 100.0f) {
+            ILog.d(TAG, "location radus >100 Speed >100 type:" + location);
+            LocationManager locationManager = LocationManager.this;
+            locationManager.failLocationTimes = locationManager.failLocationTimes + 1;
+            if (failLocationTimes > 9) {
+                stopLocation();
+                return;
+            }
             return;
         }
-        locationClient.registerLocationListener(this.myListener);
-        LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
-        option.setCoorType("BD09ll");
-        option.setScanSpan(2000);
-        option.setOpenGps(true);
-        option.setOpenAutoNotifyMode();
-        option.setLocationNotify(true);
-        option.setIgnoreKillProcess(true);
-        option.SetIgnoreCacheException(false);
-        option.setEnableSimulateGps(false);
-        option.setNeedNewVersionRgc(true);
-        this.mLocationClient.setLocOption(option);
-        this.mLocationClient.start();
-    }
-
-    public class MyLocationListener extends BDAbstractLocationListener {
-        public MyLocationListener() {
-        }
-
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            if (locationTimes < totalLocationTimes) {
-                floorLocation(location);
-            }
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            float radius = location.getRadius();
-            if (radius > 100.0f || location.getSpeed() > 100.0f) {
-                ILog.d("location radus", "location radus >100 Speed >100 type:" + location.getLocTypeDescription());
-                LocationManager locationManager = LocationManager.this;
-                locationManager.failLocationTimes = locationManager.failLocationTimes + 1;
-                if (failLocationTimes > 9) {
-                    stopLocation();
-                    return;
-                }
-                return;
-            }
-            String strlat = latitude + "";
-            String strlon = longitude + "";
-            if (strlat.equals("4.9E-324") || strlon.equals("4.9E-324")) {
-                return;
-            }
-            LatLng latLng = new LatLng(latitude, longitude);
-            LatLngInfo latLngInfo = new LatLngInfo();
-            latLngInfo.setLocaltime(Long.valueOf(System.currentTimeMillis()));
-            latLngInfo.setLatLng(latLng);
-            latLngInfo.setIsdel(false);
-            latLngInfo.setIndex(locationTimes);
-            tmplatLngList.add(latLngInfo);
-            locationTimes++;
-            if (locationTimes >= totalLocationTimes) {
-                upLocalLine();
-                stopLocation();
-            }
+//        String strlat = latitude + "";
+//        String strlon = longitude + "";
+//        if (strlat.equals("4.9E-324") || strlon.equals("4.9E-324")) {
+//            return;
+//        }
+        LatLngInfo latLngInfo = new LatLngInfo();
+        latLngInfo.setLocaltime(System.currentTimeMillis());
+        latLngInfo.setLatitude(latitude);
+        latLngInfo.setLongitude(longitude);
+        latLngInfo.setIsdel(false);
+        latLngInfo.setIndex(locationTimes);
+        tmplatLngList.add(latLngInfo);
+        locationTimes++;
+        if (locationTimes >= totalLocationTimes) {
+            upLocalLine();
+            stopLocation();
         }
     }
+
+    @Override
+    public void onStatusUpdate(String s, int i, String s1) {
+
+    }
+
 
     public void stopLocation() {
         this.tmplatLngList.clear();
 //        this.mLocationClient.stopIndoorMode();
-        this.mLocationClient.stop();
-        this.mLocationClient = null;
+        this.mLocationManager.removeUpdates(this);
+        this.mLocationManager = null;
     }
 
-    public void floorLocation(BDLocation location) {
-        if (location.getFloor() != null) {
-//            this.mLocationClient.startIndoorMode();
-        }
-    }
+//    public void floorLocation(BDLocation location) {
+//        if (location.getFloor() != null) {
+////            this.mLocationClient.startIndoorMode();
+//        }
+//    }
 
     public void initMsg() {
         this.checkTime = 0L;
@@ -146,7 +131,8 @@ public class LocationManager {
     public LatLngInfo checkLocal() {
         TXTManager.writeTxtAdd("gps", "\r\n");
         for (LatLngInfo latLngInfo : this.latLngList) {
-            String mms = this.locationTimes + "------" + Tools.timeFormat(new Date(latLngInfo.getLocaltime().longValue()), "yyyy-MM-dd HH:mm:ss") + "-----------" + Tools.timeFormat(new Date(), "yyyy-MM-dd HH:mm:ss") + "-----" + latLngInfo.getLatLng().latitude +"-" + latLngInfo.getLatLng().longitude;
+            String mms = this.locationTimes + "------" + Tools.timeFormat(new Date(latLngInfo.getLocaltime().longValue()), "yyyy-MM-dd HH:mm:ss") + "-----------" + Tools.timeFormat(new Date(), "yyyy-MM-dd HH:mm:ss") + "-----"
+                    + latLngInfo.getLatitude() +"-" + latLngInfo.getLongitude();
             TXTManager.writeTxtAdd("gps", mms);
         }
         LatLngInfo aInfo = null;
@@ -154,7 +140,7 @@ public class LocationManager {
         for (LatLngInfo latLngInfo2 : this.latLngList) {
             if (aInfo == null) {
                 aInfo = latLngInfo2;
-            } else if (aInfo.getLatLng().latitude != latLngInfo2.getLatLng().latitude || aInfo.getLatLng().longitude != latLngInfo2.getLatLng().longitude) {
+            } else if (aInfo.getLatitude() != latLngInfo2.getLatitude() || aInfo.getLongitude() != latLngInfo2.getLongitude()) {
                 isSame = false;
                 break;
             }
@@ -228,8 +214,8 @@ public class LocationManager {
         for (LatLngInfo latLngInfo : this.tmplatLngList) {
             JSONObject object = new JSONObject();
             try {
-                object.put("latitude", String.format("%.6f", Double.valueOf(latLngInfo.getLatLng().latitude)));
-                object.put("longitude", String.format("%.6f", Double.valueOf(latLngInfo.getLatLng().longitude)));
+                object.put("latitude", String.format("%.6f", (latLngInfo.getLatitude())));
+                object.put("longitude", String.format("%.6f", (latLngInfo.getLongitude())));
                 object.put("timeStamp", latLngInfo.getLocaltime().longValue() / 1000);
             } catch (JSONException e) {
                 e.printStackTrace();
