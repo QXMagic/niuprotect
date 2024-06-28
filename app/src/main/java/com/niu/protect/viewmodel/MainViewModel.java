@@ -48,14 +48,11 @@ public class MainViewModel extends ViewModel {
     }
 
     public void requestBindNet(String msg) {
-        this.mainRepository.bindNet(this.mContext, msg, new ResultCallBackListener() {
-            @Override
-            public void onResponse(JSONObject msg2) {
-                if (msg2 != null) {
-                    bindNetInfo.postValue(msg2);
-                } else {
-                    ILog.d("--requestBindNet----", "requestBindNet null");
-                }
+        this.mainRepository.bindNet(this.mContext, msg, msg2 -> {
+            if (msg2 != null) {
+                bindNetInfo.postValue(msg2);
+            } else {
+                ILog.d("--requestBindNet----", "requestBindNet null");
             }
         });
     }

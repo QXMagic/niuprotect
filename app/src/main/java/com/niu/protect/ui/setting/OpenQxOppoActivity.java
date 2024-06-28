@@ -62,7 +62,7 @@ public class OpenQxOppoActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OpenQxOppoActivity.this, PermCollectActivity.class);
+                Intent intent = new Intent(OpenQxOppoActivity.this, PermissionCollectActivity.class);
                 startActivity(intent);
                 finish();
             }

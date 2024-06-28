@@ -113,19 +113,14 @@ class MainActivity : BaseActivity() {
     }
 
     private fun checkPermissionOfAutoSetting() {
-        var permission_on = isAccessibilitySettingsOn(
-            this,
-            StatusUseAccessibilityService::class.java.name
-        )
-        ILog.d(  TAG, "is access ability on ?$permission_on"       )
+        var permission =
+            isAccessibilitySettingsOn(this, StatusUseAccessibilityService::class.java.name)
+
         val autoFinished = AutoSettingManager.isSettingFinish
-        var accessSuccess = true
-        ILog.d(TAG, "is auto setting finished $autoFinished")
-        if (!permission_on && !isAccessibilitySettingsOnByService(this)
-        ) {
-            accessSuccess = false
-        }
+        var accessSuccess = permission || isAccessibilitySettingsOnByService(this)
+        ILog.d(TAG, "is access ability on ?$permission,running? $accessSuccess,is auto setting finished $autoFinished")
         if (!accessSuccess || !autoFinished) {
+            ILog.d(TAG, "go to setting")
             enterPermissionSetting()
         } else {
             checkPermission()
@@ -148,6 +143,7 @@ class MainActivity : BaseActivity() {
             if (jsonObject != null) {
                 try {
                     val data = jsonObject.getJSONObject("data").getString("content")
+                    //励志格言
                     val gytxt = findViewById<View>(R.id.gytxt) as TextView
                     gytxt.text = data
                 } catch (e: JSONException) {
@@ -230,10 +226,14 @@ class MainActivity : BaseActivity() {
     private fun enterPermissionSetting() {
         val userInfo = UserInfoManager.getInstance().getUserInfo(this)
         if (userInfo.isBindTeacher || userInfo.isBindParent) {
-            if (RomUtil.isOppo() || RomUtil.isVivo() || RomUtil.isEmui()) {
+            var isHw = RomUtil.isHuawei
+            if (RomUtil.isOppo || RomUtil.isVivo || isHw || RomUtil.isMiui) {
+                ILog.d(TAG, "enter permission setting $isHw")
                 val intent = Intent()
                 intent.setClass(_context, OpenQxActivity::class.java)
                 _context.startActivity(intent)
+            } else {
+                ILog.d(TAG, "not support device ,can't enter permission setting")
             }
         }
     }
@@ -246,7 +246,7 @@ class MainActivity : BaseActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
-    fun bindQRCode() {
+    private fun bindQRCode() {
         QRCodeUtil.bindQRCode(this) { result ->
             val resultContent = result.getContent()
             if (!TextUtils.isEmpty(resultContent)) {
@@ -287,23 +287,20 @@ class MainActivity : BaseActivity() {
 
     }
 
-    private fun checkBind(userInfo: UserInfo) {
-        if (userInfo.isBindTeacher || userInfo.isBindParent) {
-            checkPermissionOfAutoSetting()
-        }
-    }
 
     fun pushInit() {
         UMengManager.addAlias(this, mUserInfo)
     }
 
     private fun checkPermission() {
+        ILog.d(TAG, "check permission")
         var targetSdkVersion = 0
         try {
             val info = packageManager.getPackageInfo(packageName, 0)
             targetSdkVersion = info.applicationInfo.targetSdkVersion
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
+            ILog.d(TAG, "check permission error")
         }
         if (targetSdkVersion >= 23) {
             val isAllGranted = checkPermissionAllGranted(PermissionString)
@@ -352,6 +349,9 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    /**
+     * 每次切换屏幕都会走一次
+     *  */
     private fun getUserInfo(isFirstLoad: Boolean) {
         if (isFirstLoad) {
             isLoaded = true
@@ -368,8 +368,8 @@ class MainActivity : BaseActivity() {
                         mUserInfo = Gson().fromJson(data, UserInfo::class.java) as UserInfo
                         UserInfoManager.getInstance().saveUser(_context, data)
                         refUi(mUserInfo)
-                        checkBind(mUserInfo!!)
                         if (userInfo.isBindTeacher || userInfo.isBindParent) {
+                            checkPermissionOfAutoSetting()
                             requestControlInfo()
                         }
                     } catch (e: JSONException) {
@@ -381,8 +381,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun requestControlInfo() {
-        var isSettingOn = isAccessibilitySettingsOn(this, StatusUseAccessibilityService::class.java.name)
-        var isFirstLoad = AutoSettingManager.isSettingFinish
+        val isSettingOn =
+            isAccessibilitySettingsOn(this, StatusUseAccessibilityService::class.java.name)
+        val isFirstLoad = AutoSettingManager.isSettingFinish
         ILog.d(TAG, "is setting on? $isSettingOn,is setting finished? $isFirstLoad")
         if (!isSettingOn || !isFirstLoad) {
             ILog.d(TAG, "Controller is not On, Over")
@@ -412,19 +413,20 @@ class MainActivity : BaseActivity() {
         }
     private val isNoSwitch: Boolean
         get() {
-                val ts = System.currentTimeMillis()
-                val usageStatsManager =
-                    applicationContext.getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
-                val queryUsageStats = usageStatsManager.queryUsageStats(4, 0L, ts)
-                return !(queryUsageStats == null || queryUsageStats.isEmpty())
+            val ts = System.currentTimeMillis()
+            val usageStatsManager =
+                applicationContext.getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
+            val queryUsageStats = usageStatsManager.queryUsageStats(4, 0L, ts)
+            return !(queryUsageStats == null || queryUsageStats.isEmpty())
         }
 
     fun download(url: String?) {
 //        val myserviceIntent = Intent(this, DownloadWorker::class.java)
 //        myserviceIntent.data = Uri.parse(url)
 //        startService(myserviceIntent)
-        val data = Data.Builder().putString("url",url).build()
-        val workRequest = OneTimeWorkRequest.Builder(UploadAppWorker::class.java).setInputData(data).build()
+        val data = Data.Builder().putString("url", url).build()
+        val workRequest =
+            OneTimeWorkRequest.Builder(UploadAppWorker::class.java).setInputData(data).build()
         WorkManager.getInstance(_context).enqueue(workRequest)
     }
 

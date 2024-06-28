@@ -14,7 +14,7 @@ import android.util.Log
 import com.niu.protect.BabyApplication.Companion.instance
 import com.niu.protect.accessibility.auto.device.CustomOSUtils
 import com.niu.protect.ui.login.SplashActivity
-import com.niu.protect.ui.setting.PermCollectActivity
+import com.niu.protect.ui.setting.PermissionCollectActivity
 import java.util.Locale
 
 object OpenSettingApp {
@@ -220,7 +220,7 @@ object OpenSettingApp {
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-        val secondIntent = Intent(context, PermCollectActivity::class.java)
+        val secondIntent = Intent(context, PermissionCollectActivity::class.java)
         secondIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         val pendingIntent = PendingIntent.getActivity(context, 0, secondIntent,
             PendingIntent.FLAG_IMMUTABLE)

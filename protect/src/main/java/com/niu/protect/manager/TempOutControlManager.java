@@ -3,18 +3,18 @@ package com.niu.protect.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.niu.protect.model.TempOutControlModel;
 import com.niu.protect.network.NetTools;
-import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.SharedPreUtil;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONObject;
 public class TempOutControlManager {
     private static final String TAG = "TempOutControlManager";
     private static TempOutControlManager instance;
@@ -63,14 +63,11 @@ public class TempOutControlManager {
 
     public void requestOutControl(final Context context) {
         Map<String, String> parameters = new HashMap<>();
-        NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.GET_TEMPORARY_UNBINDINFO, parameters, new ResultCallBackListener() {
-            @Override
-            public void onResponse(JSONObject msg) {
-                if (msg != null) {
-                    ILog.d("white app", msg.toString());
-                    SharedPreUtil.setParam(context, SharedPreManager.KEY_TEMP_OUT_CONTROL, msg.toString());
-                    mTempOut = null;
-                }
+        NetTools.getInstance().getAsynHttp(context, StudentBaseUrl.GET_TEMPORARY_UNBINDINFO, parameters, msg -> {
+            if (msg != null) {
+                ILog.d("white app", msg.toString());
+                SharedPreUtil.setParam(context, SharedPreManager.KEY_TEMP_OUT_CONTROL, msg.toString());
+                mTempOut = null;
             }
         });
     }

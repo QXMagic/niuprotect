@@ -31,7 +31,7 @@ import com.niu.protect.ui.main.MainActivity;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-public class PermCollectActivity extends BaseActivity {
+public class PermissionCollectActivity extends BaseActivity {
     ActivityPermCollectBinding binding;
     int mLocation;
     PremCollectionAdapter mPremCollectionAdapter;
@@ -138,12 +138,12 @@ public class PermCollectActivity extends BaseActivity {
                     UserProtectManager.getInstance().setProtect(1);
                     upStepPermisstionStepBeans.addAll(permisstionStepBeans);
                     PermisstionSettingRepository permisstionSettingRepository = PermisstionSettingRepository.getInstance();
-                    PermCollectActivity permCollectActivity = PermCollectActivity.this;
-                    permisstionSettingRepository.setPermissionStep(permCollectActivity, permCollectActivity.upStepPermisstionStepBeans, null);
-                    PermisstionSettingRepository.getInstance().setPermissionResult(PermCollectActivity.this, null);
+                    PermissionCollectActivity permissionCollectActivity = PermissionCollectActivity.this;
+                    permisstionSettingRepository.setPermissionStep(permissionCollectActivity, permissionCollectActivity.upStepPermisstionStepBeans, null);
+                    PermisstionSettingRepository.getInstance().setPermissionResult(PermissionCollectActivity.this, null);
                     Tools.saveQxSet(_context, 1);
                     AutoSettingManager.INSTANCE.setAutoSettingFinish(AutoSettingManager.AUTO_SETTING_FINISH);
-                    Intent intent = new Intent(PermCollectActivity.this, MainActivity.class);
+                    Intent intent = new Intent(PermissionCollectActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }

@@ -70,7 +70,7 @@ public class QxViewPagerAdapter extends PagerAdapter implements View.OnClickList
             Resources resources = this.mContext.getResources();
             int imageResId = resources.getIdentifier("nav" + String.valueOf(position + 1), "mipmap", this.mContext.getPackageName());
             iv.setImageResource(imageResId);
-        } else if (RomUtil.isEmui() && position == 4) {
+        } else if (RomUtil.isHuawei() && position == 4) {
             Resources resources2 = this.mContext.getResources();
             int imageResId2 = resources2.getIdentifier(AgooConstants.MESSAGE_SYSTEM_SOURCE_HUAWEI + String.valueOf(position + 1), "mipmap", this.mContext.getPackageName());
             iv.setImageResource(imageResId2);

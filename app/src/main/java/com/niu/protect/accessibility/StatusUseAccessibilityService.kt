@@ -51,13 +51,13 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     var roomIsVivo = false
     var roomIsHuawei = false
     var roomIsOppo = false
-    private val TAG = javaClass.name
+    private val TAG = "AccessibilityService"
     private val appName = Constant.APP_NAME
     var backClickInfos =
         arrayOf("[Breeno]", "[卸载" + appName + "]", "卸载" + appName, "手机管家", "概览")
     var windowsChanges = arrayOf("[快捷中心,", "[卸载" + appName + "]", "卸载 " + appName, "概览")
     var blackPackageNames = arrayOf("com.huawei.intelligent")
-    var eventEditDesks: ArrayList<Any?> = ArrayList<Any?>()
+    var eventEditDesks: ArrayList<Any?> = ArrayList()
     var isStartControl = false
     var changeTime = System.currentTimeMillis()
     var packageNameLastTime = ""
@@ -79,9 +79,9 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         super.onCreate()
         EventBus.getDefault().register(this)
         BroadcastManager.registerShutDownReciver(this)
-        roomIsVivo = RomUtil.isVivo() || RomUtil.isOppo() || RomUtil.isFlyme()
-        roomIsHuawei = RomUtil.isEmui()
-        roomIsOppo = RomUtil.isOppo()
+        roomIsVivo = RomUtil.isVivo || RomUtil.isFlyme
+        roomIsHuawei = RomUtil.isHuawei
+        roomIsOppo = RomUtil.isOppo
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -424,11 +424,11 @@ class StatusUseAccessibilityService : BaseAccessibility() {
 
     override fun onServiceConnected() {
         super.onServiceConnected()
-        ILog.d("------------", "---onServiceConnected--------")
+        ILog.d(TAG, "---onServiceConnected--------")
         mService = this
         brand = SystemUtil.getDeviceBrand()
         val str = this.TAG
-        ILog.d(str, Tools.getAutoSet(this).toString() + "getAutoSet")
+        ILog.d(TAG, Tools.getAutoSet(this).toString() + "getAutoSet")
         try {
             Thread.sleep(500L)
         } catch (e: InterruptedException) {
@@ -453,22 +453,22 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     private fun gotoDefindSetting() {
-        ILog.d("RomUtil--", "" + RomUtil.isVivo())
-        if (RomUtil.isVivo()) {
+        ILog.d(TAG, "check rom " + RomUtil.isVivo)
+        if (RomUtil.isVivo) {
             val version = Build.VERSION.SDK_INT
             if (version >= 29) {
                 AppActivityTool.showNewSetActivy(this)
             } else {
                 AppActivityTool.showSetActivy(this)
             }
-        } else if (RomUtil.isOppo()) {
+        } else if (RomUtil.isOppo) {
             val version2 = Build.VERSION.SDK_INT
             if (version2 >= 30) {
                 AppActivityTool.showNewSetActivy(this)
             } else {
                 AppActivityTool.showSetActivy(this)
             }
-        } else if (RomUtil.isEmui()) {
+        } else if (RomUtil.isHuawei) {
             val version3 = Build.VERSION.SDK_INT
             if (version3 >= 30) {
                 AppActivityTool.showNewSetActivy(this)

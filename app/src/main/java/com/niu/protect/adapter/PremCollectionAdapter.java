@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.app.OpenSettingApp;
 import com.niu.protect.accessibility.auto.bean.CheckBoxModel;
 import com.niu.protect.accessibility.auto.bean.PageInfoModel;
@@ -17,7 +18,6 @@ import com.niu.protect.databinding.RcPermCollectionBinding;
 
 import java.util.List;
 
-import com.niu.protect.R;
 public class PremCollectionAdapter extends RecyclerView.Adapter<PremCollectionAdapter.ViewHolder> {
     RcPermCollectionBinding binding;
     private List<PageInfoModel> datas;

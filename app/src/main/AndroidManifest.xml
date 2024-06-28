@@ -116,6 +116,7 @@
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenAutoActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenSetActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenUseActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.PermissionCollectActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.main.StaActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.main.UserDesActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.mine.MineActivity" />

@@ -53,7 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class OpenQxActivity extends BaseActivity {
     public static int OVERLAY_PERMISSION_REQ_CODE = NodeType.E_STREET_POI;
-    private static final String TAG = "TestFloatWinActivity";
+    private static final String TAG = "OpenQxActivity";
     Button btn_enter_auto;
     private DevicePolicyManager dpm;
     private QxViewPagerAdapter mAdapter;
@@ -77,7 +77,7 @@ public class OpenQxActivity extends BaseActivity {
                 PermisstionSettingRepository permisstionSettingRepository = PermisstionSettingRepository.getInstance();
                 OpenQxActivity openQxActivity = OpenQxActivity.this;
                 permisstionSettingRepository.setPermissionStep(openQxActivity, openQxActivity.permisstionStepBeanList, null);
-                Intent intent = new Intent(OpenQxActivity.this, PermCollectActivity.class);
+                Intent intent = new Intent(OpenQxActivity.this, PermissionCollectActivity.class);
                 intent.putExtra("data", new Gson().toJson(permisstionStepBeanList));
                 startActivity(intent);
             }
