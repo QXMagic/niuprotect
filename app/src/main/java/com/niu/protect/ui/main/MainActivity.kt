@@ -400,6 +400,7 @@ class MainActivity : BaseActivity() {
 
     public override fun onResume() {
         super.onResume()
+        ILog.d(TAG, "---onResume-----")
         getUserInfo(!isLoaded)
     }
 
@@ -612,6 +613,7 @@ class MainActivity : BaseActivity() {
     }
 
     public override fun onDestroy() {
+        ILog.d(TAG, "---onDestroy-----")
         super.onDestroy()
         BroadcastManager.sendAccessibilityStop(this)
         WebSocketManager.getInstance().onDestroy()

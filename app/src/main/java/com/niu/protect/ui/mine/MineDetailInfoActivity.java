@@ -13,12 +13,13 @@ import android.widget.TextView;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.baidu.platform.comapi.map.MapBundleKey;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.niu.protect.R;
+import com.niu.protect.core.Constants;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.manager.UserInstallWhiteAppListManager;
 import com.niu.protect.model.JsonBean;
@@ -43,9 +44,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.niu.protect.core.Constants;
-import com.niu.protect.R;
 public class MineDetailInfoActivity extends BaseActivity {
     TextView addrTxt;
     TextView classTxt;
@@ -290,7 +288,7 @@ public class MineDetailInfoActivity extends BaseActivity {
 
     public void upMsg() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put(MapBundleKey.OfflineMapKey.OFFLINE_CITYNAME, this.userInfo.getName());
+        parameters.put("cityName", this.userInfo.getName());
         parameters.put("nickName", this.userInfo.getNickName());
         parameters.put("province", this.userInfo.getProvince());
         parameters.put("city", this.userInfo.getCity());

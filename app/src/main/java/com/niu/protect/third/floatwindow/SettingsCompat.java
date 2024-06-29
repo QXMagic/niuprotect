@@ -10,7 +10,6 @@ import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import com.baidu.platform.comapi.map.MapBundleKey;
 import com.niu.protect.core.Constants;
 
 import java.lang.reflect.Method;
@@ -218,7 +217,7 @@ public class SettingsCompat {
         if (Build.VERSION.SDK_INT >= 21) {
             Intent intent = new Intent("com.smartisanos.security.action.SWITCHED_PERMISSIONS_NEW");
             intent.setClassName("com.smartisanos.security", "com.smartisanos.security.SwitchedPermissions");
-            intent.putExtra(MapBundleKey.MapObjKey.OBJ_SL_INDEX, 17);
+            intent.putExtra("index", 17);
             return startSafely(context, intent);
         }
         Intent intent2 = new Intent("com.smartisanos.security.action.SWITCHED_PERMISSIONS");

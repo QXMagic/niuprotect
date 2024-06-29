@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.baidu.platform.comapi.map.NodeType;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
@@ -43,7 +42,7 @@ import com.niu.protect.widget.MyViewPager;
 import java.util.ArrayList;
 import java.util.List;
 public class OpenQxOppoActivity extends BaseActivity {
-    public static int OVERLAY_PERMISSION_REQ_CODE = NodeType.E_STREET_POI;
+    public static int OVERLAY_PERMISSION_REQ_CODE = 0;
     private static final String TAG = "TestFloatWinActivity";
     Button btn_enter_auto;
     private DevicePolicyManager dpm;
@@ -118,7 +117,7 @@ public class OpenQxOppoActivity extends BaseActivity {
         Intent intent = new Intent("android.app.action.ADD_DEVICE_ADMIN");
         intent.putExtra("android.app.extra.DEVICE_ADMIN", this.mDeviceAdminSample);
         intent.putExtra("android.app.extra.ADD_EXPLANATION", "开启后就可以使用锁屏功能了...");
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
     }
 
     private void initViews() {

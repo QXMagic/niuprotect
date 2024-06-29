@@ -309,5 +309,7 @@ class AppActivityTool {
             val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             manager.killBackgroundProcesses(packageName)
         }
+
+
     }
 }

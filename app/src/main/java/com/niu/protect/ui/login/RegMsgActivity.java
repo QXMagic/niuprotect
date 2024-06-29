@@ -8,8 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.core.view.ViewCompat;
-import com.baidu.platform.comapi.map.MapBundleKey;
+
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -25,12 +26,14 @@ import com.niu.protect.tools.Tools;
 import com.niu.protect.tools.data.GetJsonDataUtil;
 import com.niu.protect.ui.base.BaseActivity;
 import com.niu.protect.ui.main.MainActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONObject;
 public class RegMsgActivity extends BaseActivity {
     String classStr;
     TextView classTxt;
@@ -146,7 +149,7 @@ public class RegMsgActivity extends BaseActivity {
                 return;
             }
             Map<String, String> parameters = new HashMap<>();
-            parameters.put(MapBundleKey.OfflineMapKey.OFFLINE_CITYNAME, this.nickNameTxt.getText().toString());
+            parameters.put("cityName", this.nickNameTxt.getText().toString());
             parameters.put("nickName", this.nickNameTxt.getText().toString());
             parameters.put("province", this.local1Str);
             parameters.put("city", this.local2Str);
