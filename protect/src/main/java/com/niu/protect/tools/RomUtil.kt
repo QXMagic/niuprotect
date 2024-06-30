@@ -27,6 +27,7 @@ object RomUtil {
     @JvmStatic
     val isHuawei: Boolean
         get() = check(ROM_EMUI)
+    @JvmStatic
     val isMiui: Boolean
         get() = check(ROM_MIUI)
     @JvmStatic

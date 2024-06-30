@@ -1,7 +1,7 @@
 package com.niu.protect.repository;
 
 import android.content.Context;
-import android.util.Log;
+
 import com.niu.protect.manager.OnRequstResultCallBack;
 import com.niu.protect.manager.SharedPreManager;
 import com.niu.protect.manager.UserInfoManager;
@@ -11,10 +11,12 @@ import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.SharedPreUtil;
-import java.util.HashMap;
-import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 public class StudentControllerRepository extends BaseRepository {
     public static StudentControllerRepository instance;
 
@@ -124,7 +126,6 @@ public class StudentControllerRepository extends BaseRepository {
             @Override
             public void onResponse(JSONObject msg) {
                 if (msg != null) {
-                    Log.e("xaaa", msg.toString());
                     ILog.log(msg);
                     try {
                         msg.getString("data");

@@ -113,4 +113,11 @@ dependencies {
 //    implementation 'com.yuyh.easyadapter:library:latest.release'
     implementation("org.java-websocket:Java-WebSocket:1.5.6")
 
+
+    // if u use AndroidX, use the following
+    implementation 'com.blankj:utilcodex:1.31.1'
+    implementation 'org.litepal.guolindev:core:3.2.3'
+
+
+
 }

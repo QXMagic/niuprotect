@@ -97,7 +97,6 @@
         <meta-data android:name="com.huawei.hms.client.appid" android:value="appid=103691941" />
 
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name=".service.MyService" />
-        <service android:enabled="true" android:exported="false" android:foregroundServiceType="location" android:name="com.baidu.location.f" android:process=":remote" />
         <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niu.protect.ui.login.LoginActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.login.RegActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.login.ForgetActivity" />
@@ -124,7 +123,6 @@
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenQxActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenQxOppoActivity" />
         <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niu.protect.ui.setting.SysSetActivity" />
-        <activity android:exported="false" android:name="com.niu.protect.ui.main.ChildLineActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.login.PhoneCodeLoginActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.SchoolAdminActivity" />
         <receiver android:enabled="true" android:exported="true" android:name="com.niu.protect.lib.receiver.LiveReciver">
@@ -152,9 +150,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:exported="false" android:name="com.niu.protect.ui.map.TrackQueryActivity" />
-        <service android:enabled="true" android:exported="true" android:name="com.baidu.trace.LBSTraceService" android:process=":remote" />
-        <service android:exported="false" android:name="com.niu.protect.ui.map.LocationTraceService" />
         <service android:exported="false" android:name="com.niu.protect.service.ControllerWayService" />
         <receiver android:exported="false" android:name="com.niu.protect.lib.receiver.SystemReceiver">
             <intent-filter>

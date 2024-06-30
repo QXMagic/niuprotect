@@ -7,7 +7,7 @@ public class ILog {
 
     public static void log(Object obj) {
         if (obj != null) {
-            Log.i("babyprotect", obj.toString());
+            Log.i("ILOG", obj.toString());
         }
     }
 

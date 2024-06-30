@@ -119,7 +119,7 @@ class MainActivity : BaseActivity() {
         val autoFinished = AutoSettingManager.isSettingFinish
         var accessSuccess = permission || isAccessibilitySettingsOnByService(this)
         ILog.d(TAG, "is access ability on ?$permission,running? $accessSuccess,is auto setting finished $autoFinished")
-        if (!accessSuccess || !autoFinished) {
+        if (accessSuccess && !autoFinished) {
             ILog.d(TAG, "go to setting")
             enterPermissionSetting()
         } else {

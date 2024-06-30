@@ -57,7 +57,7 @@ class OpenQxActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_open_qx)
-        changeTitle("应用权限授权")
+        changeTitle(getString(R.string.permission_title))
         val button = findViewById<View>(R.id.btn_enter_auto) as Button
         btn_enter_auto = button
         button.setOnClickListener {
@@ -186,72 +186,74 @@ class OpenQxActivity : BaseActivity() {
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
-        mAdapter!!.setQxOnClickListener(QxOnClickListener { pos: Int ->
-            setPosition = pos
-            if (pos == 0) {
-                localAction()
-            } else if (pos == 1) {
-                openLock()
-            } else if (pos != 2) {
-                if (pos == 3) {
-                    Tools.saveAutoSet(this@OpenQxActivity, 1)
-                    xfkAction()
-                } else if (pos == 4) {
-                    closeTasklock()
+        mAdapter!!.setQxOnClickListener(object : QxOnClickListener {
+            override fun onClick(pos: Int) {
+                setPosition = pos
+                if (pos == 0) {
+                    localAction()
+                } else if (pos == 1) {
+                    openLock()
+                } else if (pos != 2) {
+                    if (pos == 3) {
+                        Tools.saveAutoSet(this@OpenQxActivity, 1)
+                        xfkAction()
+                    } else if (pos == 4) {
+                        closeTasklock()
+                    }
+                } else if (!isIgnoringBatteryOptimizations) {
+                    requestIgnoreBatteryOptimizations()
+                } else {
+                    nextAction()
                 }
-            } else if (!isIgnoringBatteryOptimizations) {
-                requestIgnoreBatteryOptimizations()
-            } else {
-                nextAction()
-            }
-            if (pos == 5) {
-                Tools.saveStep10(this@OpenQxActivity, -3)
-                val batterySaver = Intent()
-                batterySaver.component = ComponentName(
-                    "com.iqoo.powersaving",
-                    "com.iqoo.powersaving.PowerSavingManagerActivity"
-                )
-                startActivity(batterySaver)
-            } else if (pos == 6) {
-                askForPermission()
-            } else if (pos == 7) {
-                if (Tools.getStep8(this@OpenQxActivity) == -1) {
-                    AlertDialog.Builder(this@OpenQxActivity).setTitle("提示")
-                        .setMessage("自动设置，请勿操作")
-                        .setPositiveButton("确定") { dialogInterface, i ->
-                            Tools.saveStep8(this@OpenQxActivity, 0)
-                            val intent = Intent("android.settings.USAGE_ACCESS_SETTINGS")
-                            _context.startActivity(intent)
-                        }.show()
+                if (pos == 5) {
+                    Tools.saveStep10(this@OpenQxActivity, -3)
+                    val batterySaver = Intent()
+                    batterySaver.component = ComponentName(
+                        "com.iqoo.powersaving",
+                        "com.iqoo.powersaving.PowerSavingManagerActivity"
+                    )
+                    startActivity(batterySaver)
+                } else if (pos == 6) {
+                    askForPermission()
+                } else if (pos == 7) {
+                    if (Tools.getStep8(this@OpenQxActivity) == -1) {
+                        AlertDialog.Builder(this@OpenQxActivity).setTitle("提示")
+                            .setMessage("自动设置，请勿操作")
+                            .setPositiveButton("确定") { dialogInterface, i ->
+                                Tools.saveStep8(this@OpenQxActivity, 0)
+                                val intent = Intent("android.settings.USAGE_ACCESS_SETTINGS")
+                                _context.startActivity(intent)
+                            }.show()
+                    }
+                    _context.startActivity(Intent("android.settings.USAGE_ACCESS_SETTINGS"))
+                } else if (pos == 8) {
+                    if (Tools.getStep9(this@OpenQxActivity) == -1) {
+                        AlertDialog.Builder(this@OpenQxActivity).setTitle("提示")
+                            .setMessage("自动设置，请勿操作")
+                            .setPositiveButton("确定") { dialogInterface, i ->
+                                Tools.saveStep9(this@OpenQxActivity, 0)
+                                val intent = Intent()
+                                intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+                                intent.addCategory("android.intent.category.DEFAULT")
+                                intent.data = Uri.parse("package:$packageName")
+                                startActivity(intent)
+                            }.show()
+                    }
+                    val intent = Intent()
+                    intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+                    intent.addCategory("android.intent.category.DEFAULT")
+                    intent.data = Uri.parse("package:$packageName")
+                    startActivity(intent)
+                } else if (pos == 9) {
+                    UserProtectManager.getInstance().setProtect(1)
+                    Tools.saveAutoSet(this@OpenQxActivity, 0)
+                    Tools.saveQxSet(_context, 1)
+                    val backHome = Intent("android.intent.action.MAIN")
+                    backHome.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    backHome.addCategory("android.intent.category.HOME")
+                    startActivity(backHome)
+                    finish()
                 }
-                _context.startActivity(Intent("android.settings.USAGE_ACCESS_SETTINGS"))
-            } else if (pos == 8) {
-                if (Tools.getStep9(this@OpenQxActivity) == -1) {
-                    AlertDialog.Builder(this@OpenQxActivity).setTitle("提示")
-                        .setMessage("自动设置，请勿操作")
-                        .setPositiveButton("确定") { dialogInterface, i ->
-                            Tools.saveStep9(this@OpenQxActivity, 0)
-                            val intent = Intent()
-                            intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-                            intent.addCategory("android.intent.category.DEFAULT")
-                            intent.data = Uri.parse("package:$packageName")
-                            startActivity(intent)
-                        }.show()
-                }
-                val intent = Intent()
-                intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-                intent.addCategory("android.intent.category.DEFAULT")
-                intent.data = Uri.parse("package:$packageName")
-                startActivity(intent)
-            } else if (pos == 9) {
-                UserProtectManager.getInstance().setProtect(1)
-                Tools.saveAutoSet(this@OpenQxActivity, 0)
-                Tools.saveQxSet(_context, 1)
-                val backHome = Intent("android.intent.action.MAIN")
-                backHome.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                backHome.addCategory("android.intent.category.HOME")
-                startActivity(backHome)
-                finish()
             }
         } as QxOnClickListener?)
     }
