@@ -13,7 +13,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/testapp" />
             <option value="$PROJECT_DIR$/protect" />
+            <option value="$PROJECT_DIR$/testlib" />
           </set>
         </option>
       </GradleProjectSettings>

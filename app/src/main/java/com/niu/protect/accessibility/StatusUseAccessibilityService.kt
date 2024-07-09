@@ -480,36 +480,37 @@ class StatusUseAccessibilityService : BaseAccessibility() {
 
     private fun goBack() {
         ILog.d("goBack-------", "goBack")
-        performGlobalAction(1)
+        performGlobalAction(
+            GLOBAL_ACTION_BACK)
         try {
             Thread.sleep(50L)
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-        performGlobalAction(1)
+        performGlobalAction(GLOBAL_ACTION_BACK)
         try {
             Thread.sleep(100L)
         } catch (e2: InterruptedException) {
             e2.printStackTrace()
         }
-        performGlobalAction(1)
+        performGlobalAction(GLOBAL_ACTION_BACK)
         try {
             Thread.sleep(200L)
         } catch (e3: InterruptedException) {
             e3.printStackTrace()
         }
-        performGlobalAction(2)
+        performGlobalAction(GLOBAL_ACTION_HOME)
     }
 
     fun goBackHome() {
         Log.e("xxxxcser", "111112")
-        performGlobalAction(2)
+        performGlobalAction(GLOBAL_ACTION_HOME)
     }
 
     fun islock(): Boolean {
         val lct = Tools.getLocTask(this)
         if (lct == 1) {
-            performGlobalAction(3)
+            performGlobalAction(GLOBAL_ACTION_RECENTS)
             Tools.saveLocTask(this, 2)
             return true
         }
@@ -536,7 +537,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-        performGlobalAction(3)
+        performGlobalAction(GLOBAL_ACTION_RECENTS)
     }
 
     private fun startActivity() {

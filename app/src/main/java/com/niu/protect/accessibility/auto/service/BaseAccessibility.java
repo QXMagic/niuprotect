@@ -22,6 +22,7 @@ import com.niu.protect.manager.SharedPreManager;
 import com.niu.protect.tools.ILog;
 
 import java.util.List;
+
 public abstract class BaseAccessibility extends BaseAutoSettingTools {
     private static final int START_ACCESS = 2;
     protected static final String TAG = BaseAccessibility.class.getName();

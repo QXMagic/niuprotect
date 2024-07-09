@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "niuprotect"
 include ':app'
 include ':protect'
+include ':app:testapp'
+include ':testlib'

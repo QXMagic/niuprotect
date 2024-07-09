@@ -1,4 +1,4 @@
-package com.niu.protect.accessibility.auto.service;
+package im.niu.testapp.accessibility;
 
 import android.view.accessibility.AccessibilityEvent;
 import com.niu.protect.accessibility.auto.device.OppoDeviceInfo;
