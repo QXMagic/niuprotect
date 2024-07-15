@@ -1,0 +1,17 @@
+syntax="proto3";
+
+package im.niu.data;
+message Wrapper{
+	string name =1;
+	bytes data =2;
+}
+message UserInfo{
+	string id = 1;
+	string device = 2;
+	int32 version = 3;
+	string os = 4;	
+}
+message AppInfo{
+	string package = 1;
+	string name = 2;
+}

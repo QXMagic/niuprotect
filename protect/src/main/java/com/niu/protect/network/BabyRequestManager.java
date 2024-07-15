@@ -23,11 +23,11 @@ public class BabyRequestManager {
                 if (msg != null) {
                     BaseModel baseModel = (BaseModel) new Gson().fromJson(msg.toString(), tClass);
                     if (callBack != null) {
-                        if (baseModel.getStatus().equals("200")) {
+                        if (baseModel.status.equals("200")) {
                             callBack.onSuceess(baseModel);
                             return;
                         }
-                        baseModel.setStatus("-1");
+                        baseModel.status = "-1";
                         callBack.onError(baseModel);
                         return;
                     }

@@ -61,6 +61,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MyService extends Service {
+    private static final String TAG = MyService.class.getSimpleName();
     public static final String CHANNEL_ID = "com.github.103style.SampleService";
     public static final String CHANNEL_NAME = "com.github.103style";
     Context context;
@@ -107,13 +108,13 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         String processName = getProcessName(this);
-        Log.e("xxxxcser", "onCreate：" + processName);
+        Log.e(TAG, "onCreate：" + processName);
         this.context = this;
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, getClass());
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         long triggerAtTime = SystemClock.elapsedRealtime();
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime, 1000L, pendingIntent);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime, 10000L, pendingIntent);
         Intent floatWinIntent = new Intent(this, FloatingService.class);
         startService(floatWinIntent);
         new Thread(new Runnable() {
@@ -270,12 +271,12 @@ public class MyService extends Service {
             String packName = info.activityInfo.packageName;
             if (!packName.equals(context.getPackageName())) {
                 AppInfo mInfo = new AppInfo();
-                mInfo.setIco(info.activityInfo.applicationInfo.loadIcon(pm));
-                mInfo.setName(info.activityInfo.applicationInfo.loadLabel(pm).toString());
-                mInfo.setPackageName(packName);
+                mInfo.ico = info.activityInfo.applicationInfo.loadIcon(pm);
+                mInfo.name = info.activityInfo.applicationInfo.loadLabel(pm).toString();
+                mInfo.packageName = packName;
                 Intent launchIntent = new Intent();
                 launchIntent.setComponent(new ComponentName(packName, info.activityInfo.name));
-                mInfo.setIntent(launchIntent);
+                mInfo.intent = launchIntent;
                 list.add(mInfo);
             }
         }
@@ -285,9 +286,9 @@ public class MyService extends Service {
     public void upAppIcon() {
         List<AppInfo> mlist = getAppList(this);
         for (AppInfo packageInfo : mlist) {
-            Drawable drawable = packageInfo.getIco();
+            Drawable drawable = packageInfo.ico;
             Bitmap bitmap = ImageSave.drawableToBitmap(drawable);
-            String filename = packageInfo.getPackageName();
+            String filename = packageInfo.packageName;
             ImageSave.saveBitmap(this.context, bitmap, filename.replace(".", ""));
         }
         String fileStr = ImageSave.makeZip();
@@ -505,7 +506,7 @@ public class MyService extends Service {
             if (userInfo.isBindParent() && isvip) {
                 List<AppInfo> ulist = Tools.getBlackUserApp(this);
                 for (AppInfo appInfo : ulist) {
-                    list.add(appInfo.getPackageName());
+                    list.add(appInfo.packageName);
                     userInfo = userInfo;
                 }
                 Log.e("xxxzzz", ulist.size() + "");
@@ -513,7 +514,7 @@ public class MyService extends Service {
             if (isvip) {
                 List<AppInfo> slist = Tools.getBlackSysApp(this);
                 for (AppInfo appInfo2 : slist) {
-                    list.add(appInfo2.getPackageName());
+                    list.add(appInfo2.packageName);
                 }
                 Log.e("xxxzzz", slist.size() + "");
             }

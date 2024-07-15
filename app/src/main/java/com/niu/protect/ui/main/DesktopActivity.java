@@ -68,7 +68,7 @@ public class DesktopActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Tools.saveDeskTop(_context, 0);
-                UserProtectManager.getInstance().setProtect(-2);
+                UserProtectManager.getInstance().setProtect(UserProtectManager.STATUS_OUT_OFF_PROTECT);
                 intent.putExtra(NotificationCompat.CATEGORY_PROGRESS, 1);
                 DesktopActivity desktopActivity = DesktopActivity.this;
                 desktopActivity.sendBroadcast(desktopActivity.intent);
@@ -157,13 +157,13 @@ public class DesktopActivity extends BaseActivity {
             String packName = info.activityInfo.packageName;
             if (!packName.equals(context.getPackageName())) {
                 AppInfo mInfo = new AppInfo();
-                mInfo.setDefault(info.isDefault);
-                mInfo.setIco(getFullResIcon(info));
-                mInfo.setName(info.activityInfo.applicationInfo.loadLabel(pm).toString());
-                mInfo.setPackageName(packName);
+                mInfo.isDefault = info.isDefault;
+                mInfo.ico = getFullResIcon(info);
+                mInfo.name = info.activityInfo.applicationInfo.loadLabel(pm).toString();
+                mInfo.packageName = packName;
                 Intent launchIntent = new Intent();
                 launchIntent.setComponent(new ComponentName(packName, info.activityInfo.name));
-                mInfo.setIntent(launchIntent);
+                mInfo.intent = launchIntent;
                 list.add(mInfo);
             }
         }

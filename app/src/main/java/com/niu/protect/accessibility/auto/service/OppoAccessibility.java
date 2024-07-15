@@ -1,6 +1,7 @@
-package im.niu.testapp.accessibility;
+package com.niu.protect.accessibility.auto.service;
 
 import android.view.accessibility.AccessibilityEvent;
+
 import com.niu.protect.accessibility.auto.device.OppoDeviceInfo;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.ToastUtil;

@@ -20,8 +20,9 @@ import com.niu.protect.core.Constants
 import com.niu.protect.core.IGlobalInstance
 import com.niu.protect.manager.KeepAliveManger
 import com.niu.protect.third.bugly.BuglyTools
-import com.niu.protect.third.umeng.UMengManager
+//import com.niu.protect.third.umeng.UMengManager
 import com.niu.protect.tools.ILog
+import com.niu.protect.ui.main.MainActivity
 import com.tencent.mmkv.MMKV
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -46,12 +47,13 @@ class BabyApplication : Application(), IGlobalInstance {
     private var appChannel = "main"
     override fun onCreate() {
         super.onCreate()
+        ILog.d(TAG,"app start")
         MMKV.initialize(this)
         instance = this
         mContext = this
         Constants.MainInstance = this
         getAppChannel()
-        KeepAliveManger.getInstance().keepAliveByTowService(this)
+        KeepAliveManger.instance?.keepAliveByTowService(this)
         init()
         autoSettingSteps = DeviceAccessiFactory.createDeviceInfo(instance)
     }
@@ -76,8 +78,8 @@ class BabyApplication : Application(), IGlobalInstance {
     }
 
     private fun init() {
-        ILog.d("channel", appChannel)
-        UMengManager.preInit(this, appChannel)
+        ILog.d(TAG,"channel $appChannel")
+//        UMengManager.preInit(this, appChannel)
         BuglyTools.initBugly(applicationContext)
         androiodScreenProperty
     }
@@ -100,7 +102,7 @@ class BabyApplication : Application(), IGlobalInstance {
 
     private fun initNotification() {
 
-//        val notificationIntent = Intent(this, TracingActivity::class.java)
+        val notificationIntent = Intent(this, MainActivity::class.java)
         val icon = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
@@ -108,14 +110,14 @@ class BabyApplication : Application(), IGlobalInstance {
         notificationManager.createNotificationChannel(notificationChannel)
         val builder = Notification.Builder(this,"trace")
         builder
-//            .setContentIntent(
-//            PendingIntent.getActivity(
-//                this,
-//                0,
-//                notificationIntent,
-//                PendingIntent.FLAG_IMMUTABLE
-//            )
-//        )
+            .setContentIntent(
+            PendingIntent.getActivity(
+                this,
+                0,
+                notificationIntent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        )
             .setLargeIcon(icon).setContentTitle(Constant.APP_NAME).setSmallIcon(R.mipmap.ic_launcher)
             .setContentText("服务正在运行...").setWhen(
             System.currentTimeMillis()

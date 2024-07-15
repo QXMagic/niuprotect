@@ -52,7 +52,6 @@ import com.niu.protect.network.ResultCallBackListener
 import com.niu.protect.network.StudentBaseUrl
 import com.niu.protect.service.UploadAppWorker
 import com.niu.protect.service.UploadAppWorker.Companion.startActionBaz
-import com.niu.protect.third.umeng.UMengManager
 import com.niu.protect.tools.ILog
 import com.niu.protect.tools.QRCodeUtil
 import com.niu.protect.tools.RomUtil
@@ -99,7 +98,7 @@ class MainActivity : BaseActivity() {
         //net work 回调
         initObserve()
         mUserInfo = UserInfoManager.getInstance().getUserInfo(this)
-        WebSocketManager.getInstance().start()
+        WebSocketManager.instance.start()
         mainRunning = true
         uploadAllAPP()
     }
@@ -113,11 +112,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun checkPermissionOfAutoSetting() {
-        var permission =
+        val permission =
             isAccessibilitySettingsOn(this, StatusUseAccessibilityService::class.java.name)
 
         val autoFinished = AutoSettingManager.isSettingFinish
-        var accessSuccess = permission || isAccessibilitySettingsOnByService(this)
+        val accessSuccess = permission || isAccessibilitySettingsOnByService(this)
         ILog.d(TAG, "is access ability on ?$permission,running? $accessSuccess,is auto setting finished $autoFinished")
         if (accessSuccess && !autoFinished) {
             ILog.d(TAG, "go to setting")
@@ -226,7 +225,7 @@ class MainActivity : BaseActivity() {
     private fun enterPermissionSetting() {
         val userInfo = UserInfoManager.getInstance().getUserInfo(this)
         if (userInfo.isBindTeacher || userInfo.isBindParent) {
-            var isHw = RomUtil.isHuawei
+            val isHw = RomUtil.isHuawei
             if (RomUtil.isOppo || RomUtil.isVivo || isHw || RomUtil.isMiui) {
                 ILog.d(TAG, "enter permission setting $isHw")
                 val intent = Intent()
@@ -239,7 +238,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == 4 && event.action == 0) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
             moveTaskToBack(true)
             return true
         }
@@ -288,9 +287,6 @@ class MainActivity : BaseActivity() {
     }
 
 
-    fun pushInit() {
-        UMengManager.addAlias(this, mUserInfo)
-    }
 
     private fun checkPermission() {
         ILog.d(TAG, "check permission")
@@ -329,22 +325,16 @@ class MainActivity : BaseActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1) {
             var isAllGranted = true
-            val length = grantResults.size
-            var i = 0
-            while (true) {
-                if (i >= length) {
-                    break
-                }
-                val grant = grantResults[i]
-                if (grant == 0) {
-                    i++
-                } else {
+            for (grant in grantResults){
+                if(grant!=0){
                     isAllGranted = false
-                    break
+                    break;
                 }
             }
             if (isAllGranted) {
-                Log.e(NotificationCompat.CATEGORY_ERROR, "权限都授权了")
+                Log.e(TAG, "权限都授权了")
+            }else{
+
             }
         }
     }
@@ -352,14 +342,12 @@ class MainActivity : BaseActivity() {
     /**
      * 每次切换屏幕都会走一次
      *  */
-    private fun getUserInfo(isFirstLoad: Boolean) {
-        if (isFirstLoad) {
-            isLoaded = true
-        }
+    private fun getUserInfo() {
+        isLoaded = true
         val userInfo = UserInfoManager.getInstance().getUserInfo(this) ?: return
         val parameters: MutableMap<String, String> = HashMap()
         parameters["studentId"] = userInfo.id
-        NetTools.getInstance()
+        NetTools.instance
             .getAsynHttp(this, StudentBaseUrl.members_getMemberInfo, parameters) { msg ->
                 if (msg != null) {
                     ILog.log("getUserInfo --$msg")
@@ -401,7 +389,15 @@ class MainActivity : BaseActivity() {
     public override fun onResume() {
         super.onResume()
         ILog.d(TAG, "---onResume-----")
-        getUserInfo(!isLoaded)
+        if(isLoaded){
+            return
+        }
+        getUserInfo()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ILog.d(TAG,"---on Pause---")
     }
 
     private val isNoOption: Boolean
@@ -453,8 +449,8 @@ class MainActivity : BaseActivity() {
         val parameters: MutableMap<String, String> = HashMap()
         parameters["studentId"] = userInfo.id
         showLoad()
-        NetTools.getInstance()
-            .getAsynHttp(this, StudentBaseUrl.parents_statistic, parameters) { msg ->
+        NetTools.instance
+            .getAsynHttp(this, StudentBaseUrl.parents_statistic, parameters){ msg ->
                 dissLoad()
                 if (msg != null) {
                     ILog.log(msg)
@@ -498,7 +494,7 @@ class MainActivity : BaseActivity() {
         parameters["studentId"] = userInfo.id
         parameters["recordDate"] = Tools.timeFormat(Date(), "yyyy-MM-dd")
         showLoad()
-        NetTools.getInstance().getAsynHttp(
+        NetTools.instance.getAsynHttp(
             this,
             StudentBaseUrl.appUseRecords_appuserecord,
             parameters,
@@ -616,7 +612,7 @@ class MainActivity : BaseActivity() {
         ILog.d(TAG, "---onDestroy-----")
         super.onDestroy()
         BroadcastManager.sendAccessibilityStop(this)
-        WebSocketManager.getInstance().onDestroy()
+        WebSocketManager.instance.onDestroy()
     }
 
     companion object {

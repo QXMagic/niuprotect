@@ -1,6 +1,7 @@
-package im.niu.testapp.accessibility;
+package com.niu.protect.accessibility.auto.service;
 
 import android.view.accessibility.AccessibilityEvent;
+
 import com.niu.protect.accessibility.auto.device.OppoDeviceInfo;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.ToastUtil;
@@ -23,7 +24,7 @@ public class OppoAccessibility2 extends BaseAccessibility {
         ILog.d(TAG, "event-getClassName-" + ((Object) event.getClassName()));
         int eventType = event.getEventType();
         normalModeSleep(100L);
-        if (event.getEventType() == 32 && event.getPackageName() != null && event.getClassName() != null) {
+        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && event.getPackageName() != null && event.getClassName() != null) {
             String packageName = event.getPackageName().toString();
             String className = event.getClassName().toString();
             if (packageName.equals("com.jinli.accessibility") && className.equals("com.jinli.accessibility.MainActivity")) {

@@ -249,9 +249,9 @@ public class StudentMainController {
                 }
             }
             if (isVip) {
-                UserProtectManager.getInstance().setProtect(1);
+                UserProtectManager.getInstance().setProtect(UserProtectManager.STATUS_PROTECT);
             } else {
-                UserProtectManager.getInstance().setProtect(-1);
+                UserProtectManager.getInstance().setProtect(UserProtectManager.STATUS_NOT_VIP_PROTECT);
             }
         }
         return controllerWay;

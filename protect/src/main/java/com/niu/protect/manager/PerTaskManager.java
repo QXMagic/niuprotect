@@ -368,7 +368,7 @@ public class PerTaskManager {
             if (userInfo.isBindParent() && isvip) {
                 List<AppInfo> ulist = Tools.getBlackUserApp(this.context);
                 for (AppInfo appInfo : ulist) {
-                    list.add(appInfo.getPackageName());
+                    list.add(appInfo.packageName);
                     userInfo = userInfo;
                 }
                 Log.e("xxxzzz", ulist.size() + "");
@@ -376,7 +376,7 @@ public class PerTaskManager {
             if (isvip) {
                 List<AppInfo> slist = Tools.getBlackSysApp(this.context);
                 for (AppInfo appInfo2 : slist) {
-                    list.add(appInfo2.getPackageName());
+                    list.add(appInfo2.packageName);
                 }
                 Log.e("xxxzzz", slist.size() + "");
             }

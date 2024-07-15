@@ -88,17 +88,17 @@ public class UserDesAdapter extends BaseAdapter {
                 sb.append("");
                 ProgressBar probar = (ProgressBar) convertView2.findViewWithTag(sb.toString());
                 String userTime2 = userTime;
-                Picasso.get().load(StudentBaseUrl.BASE_URL + appInfo.getAppImage()).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).into(img1);
+                Picasso.get().load(StudentBaseUrl.BASE_URL + appInfo.appImage).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).into(img1);
                 probar.setMax(1440);
-                probar.setProgress(appInfo.getUseTime());
+                probar.setProgress(appInfo.useTime);
                 String timeStr = "";
-                int hour = appInfo.getUseTime() / 60;
-                int min = appInfo.getUseTime() % 60;
+                int hour = appInfo.useTime / 60;
+                int min = appInfo.useTime % 60;
                 if (hour > 0) {
                     timeStr = hour + "时";
                 }
                 String timeStr2 = timeStr + min + "分";
-                String timeStr3 = appInfo.getAppName();
+                String timeStr3 = appInfo.appName;
                 txt1.setText(timeStr3);
                 txt2.setText(timeStr2);
                 j++;

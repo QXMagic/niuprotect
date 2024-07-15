@@ -72,7 +72,7 @@ class OpenQxActivity : BaseActivity() {
             intent.putExtra("data", Gson().toJson(permisstionStepBeanList))
             startActivity(intent)
         }
-        UserProtectManager.getInstance().setProtect(-2)
+        UserProtectManager.getInstance().setProtect(UserProtectManager.STATUS_OUT_OFF_PROTECT)
         autoSettingFinish = 0
         initViews()
         layoutInflater
@@ -245,7 +245,7 @@ class OpenQxActivity : BaseActivity() {
                     intent.data = Uri.parse("package:$packageName")
                     startActivity(intent)
                 } else if (pos == 9) {
-                    UserProtectManager.getInstance().setProtect(1)
+                    UserProtectManager.getInstance().setProtect(UserProtectManager.STATUS_PROTECT)
                     Tools.saveAutoSet(this@OpenQxActivity, 0)
                     Tools.saveQxSet(_context, 1)
                     val backHome = Intent("android.intent.action.MAIN")
@@ -496,7 +496,7 @@ class OpenQxActivity : BaseActivity() {
                 qxInfo7!!.isok = -1
             } else if (Tools.getStep10(this) == -3) {
                 AlertDialog.Builder(this).setTitle("提示").setMessage("是否按要求设定")
-                    .setPositiveButton("确定") { dialogInterface, i ->
+                    .setPositiveButton("确定") { _, _ ->
                         Tools.saveStep10(this@OpenQxActivity, -1)
                         nextAction()
                     }
@@ -561,8 +561,7 @@ class OpenQxActivity : BaseActivity() {
 
     fun localAction() {
         XXPermissions.with(this).permission(
-            Permission.ACCESS_BACKGROUND_LOCATION,
-            "android.permission.ACCESS_FINE_LOCATION"
+            Permission.ACCESS_BACKGROUND_LOCATION,Permission.ACCESS_FINE_LOCATION
         ).request(object : OnPermissionCallback {
             override fun onGranted(permissions: List<String>, all: Boolean) {
                 nextAction()

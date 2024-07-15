@@ -6,6 +6,8 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.niu.protect.core.Constants;
+import com.niu.protect.manager.filters.IFilter;
+import com.niu.protect.model.AppData;
 import com.niu.protect.model.SystemWhiteAppModel;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
@@ -23,11 +25,11 @@ import java.util.Map;
 
 
 
-public class SystemWhiteAppListManager {
+public class SystemWhiteAppListManager implements IFilter {
     private static final String TAG = "SystemWhiteAppListManager";
     private static SystemWhiteAppListManager instance;
     private int remenberDayOfWeek = -1;
-    private List<SystemWhiteAppModel.DataDTO> systemWhiteApps;
+    private List<AppData> systemWhiteApps;
 
     private SystemWhiteAppListManager() {
     }
@@ -75,7 +77,7 @@ public class SystemWhiteAppListManager {
         return idStr;
     }
 
-    private List<SystemWhiteAppModel.DataDTO> getSystemWhiteApps(Context context, boolean isReflash) {
+    private List<AppData> getSystemWhiteApps(Context context, boolean isReflash) {
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(7) - 1;
         if (this.systemWhiteApps == null) {
@@ -92,18 +94,19 @@ public class SystemWhiteAppListManager {
         }
         StringBuilder sb2 = new StringBuilder();
         sb2.append("系統白名单------------");
-        List<SystemWhiteAppModel.DataDTO> list = this.systemWhiteApps;
+        List<AppData> list = this.systemWhiteApps;
         sb2.append(list != null ? list.size() : 0);
         ILog.d(TAG, sb2.toString());
         return this.systemWhiteApps;
     }
 
+    @Override
     public boolean systemWhiteApp(Context context, String packName) {
-        List<SystemWhiteAppModel.DataDTO> systemWhiteApps = getSystemWhiteApps(context, false);
+        List<AppData> systemWhiteApps = getSystemWhiteApps(context, false);
         if (systemWhiteApps != null) {
             int size = systemWhiteApps.size();
             for (int i = 0; i < size; i++) {
-                SystemWhiteAppModel.DataDTO dataDTO = systemWhiteApps.get(i);
+                AppData dataDTO = systemWhiteApps.get(i);
                 ILog.d("-getPackageName--", dataDTO.getPackageName());
                 if (dataDTO.getPackageName().trim().equals(packName)) {
                     ILog.d("White packageName", packName);
@@ -129,7 +132,7 @@ public class SystemWhiteAppListManager {
         });
     }
 
-    private List<SystemWhiteAppModel.DataDTO> getWhiteSysApp(Context context) {
+    private List<AppData> getWhiteSysApp(Context context) {
         SystemWhiteAppModel mSystemWhiteAppModel;
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_SYSTEM_WHITE_APP, "");

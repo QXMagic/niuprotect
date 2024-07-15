@@ -17,7 +17,7 @@ class UploadAppWorker(context: Context, workerParams: WorkerParameters) : Worker
             e.printStackTrace()
         }
         ImageSave.delFile()
-        UploadAppManager.getInstance(this.applicationContext).GetInstallAppList()
+        UploadAppManager.getInstance(this.applicationContext)?.GetInstallAppList()
         return Result.success()
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<accessibility-service android:description="@string/aotuset"
+<accessibility-service
+    android:description="@string/aotuset"
     android:accessibilityEventTypes="typeGestureDetectionEnd|typeNotificationStateChanged|typeTouchExplorationGestureEnd|typeTouchInteractionEnd|typeViewClicked|typeViewHoverExit|typeViewLongClicked|typeViewScrolled|typeViewTextChanged|typeWindowStateChanged"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:notificationTimeout="100"

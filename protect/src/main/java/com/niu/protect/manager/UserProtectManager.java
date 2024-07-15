@@ -10,7 +10,7 @@ public class UserProtectManager {
     public static final int STATUS_OUT_OFF_PROTECT = -2;
     public static final int STATUS_PROTECT = 1;
     private static UserProtectManager mUserProtectManager;
-    int protectStatus = -2;
+    int protectStatus = STATUS_OUT_OFF_PROTECT;
 
     private UserProtectManager() {
     }
@@ -25,7 +25,7 @@ public class UserProtectManager {
     }
 
     private int getProtectStatus(Context context) {
-        if (this.protectStatus == -2) {
+        if (this.protectStatus == STATUS_OUT_OFF_PROTECT) {
             this.protectStatus = Tools.getPertTop(context);
         }
         return this.protectStatus;
@@ -40,7 +40,7 @@ public class UserProtectManager {
     }
 
     public int getProtectStatus() {
-        if (this.protectStatus == -2) {
+        if (this.protectStatus == STATUS_OUT_OFF_PROTECT) {
             this.protectStatus = getProtectStatus(Constants.MainInstance.getContext());
             ILog.d("protectStatus--", this.protectStatus + "");
         }

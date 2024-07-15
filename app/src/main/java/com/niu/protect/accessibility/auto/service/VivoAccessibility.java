@@ -1,11 +1,12 @@
-package im.niu.testapp.accessibility;
+package com.niu.protect.accessibility.auto.service;
 
 import android.view.accessibility.AccessibilityEvent;
+
 import com.niu.protect.accessibility.auto.device.OppoDeviceInfo;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.ToastUtil;
 public class VivoAccessibility extends BaseAccessibility {
-    private static final String TAG = "OppoAccessibility.class";
+    private static final String TAG = "VivoAccessibility";
     private static final int waitTime = 100;
 
     @Override
@@ -14,14 +15,15 @@ public class VivoAccessibility extends BaseAccessibility {
     }
 
     private void oppoAccess(AccessibilityEvent event) {
-        ILog.d(TAG, "event--" + event.getEventType() + "--32");
+        int eventType = event.getEventType();
+        ILog.d(TAG, "event--" + eventType + "--32");
         StringBuilder sb = new StringBuilder();
         sb.append("event--");
         sb.append(event.getAction());
         ILog.d(TAG, sb.toString());
-        ILog.d(TAG, "event-getPackageName-" + ((Object) event.getPackageName()));
-        ILog.d(TAG, "event-getClassName-" + ((Object) event.getClassName()));
-        int eventType = event.getEventType();
+        ILog.d(TAG, "event-getPackageName-" + ( event.getPackageName()));
+        ILog.d(TAG, "event-getClassName-" + ( event.getClassName()));
+
         normalModeSleep(100L);
         if (event.getPackageName() != null && event.getClassName() != null) {
             String packageName = event.getPackageName().toString();

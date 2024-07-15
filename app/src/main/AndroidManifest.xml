@@ -33,18 +33,13 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.STOP_APP_SWITCHES"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="PACKAGE_USAGE_STATS" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
 
     <queries>
         <intent>
@@ -95,10 +90,10 @@
         <meta-data android:name="ScopedStorage" android:value="true" />
 
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name=".service.MyService" />
-        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niu.protect.ui.login.LoginActivity" />
-        <activity android:exported="false" android:name="com.niu.protect.ui.login.RegActivity" />
-        <activity android:exported="false" android:name="com.niu.protect.ui.login.ForgetActivity" />
-        <activity android:exported="false" android:name="com.niu.protect.ui.main.MainActivity" />
+        <activity android:excludeFromRecents="true" android:exported="false" android:name=".ui.login.LoginActivity" />
+        <activity android:exported="false" android:name=".ui.login.RegActivity" />
+        <activity android:exported="false" android:name=".ui.login.ForgetActivity" />
+        <activity android:exported="false" android:name=".ui.main.MainActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.main.QrScanActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.mine.MineDetailInfoActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.main.TeacherActivity" />
@@ -130,13 +125,13 @@
             </intent-filter>
         </receiver>
         <service android:enabled="true" android:exported="true" android:name="com.niu.protect.service.TestService" />
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.StudentControlWayService" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name=".service.StudentControlWayService" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <service android:exported="true" android:label="妞管家点击这里开启辅助服务" android:name="com.niu.protect.accessibility.StatusUseAccessibilityService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+        <service android:exported="true" android:label="@string/accessibility_desc" android:name="com.niu.protect.accessibility.StatusUseAccessibilityService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
-            <meta-data android:name="android.accessibility-service" android:resource="@xml/student_accessibility" android:value="" />
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/student_accessibility" android:value="" />
         </service>
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.FloatingService" android:process=":live" />
 
@@ -232,10 +227,6 @@
                 <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
             </intent-filter>
         </receiver>
-        <meta-data android:name="com.huawei.hms.client.service.name:opendevice" android:value="opendevice:5.1.1.303" />
-        <meta-data android:name="com.huawei.hms.min_api_level:opendevice:push" android:value="1" />
-        <meta-data android:name="com.huawei.hms.client.service.name:base" android:value="base:5.3.0.301" />
-        <meta-data android:name="com.huawei.hms.min_api_level:base:hmscore" android:value="1" />
         <meta-data android:name="availableLoaded" android:value="yes" />
     </application>
 

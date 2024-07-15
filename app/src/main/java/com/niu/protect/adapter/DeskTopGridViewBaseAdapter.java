@@ -50,8 +50,8 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
         } else {
             holder = (Holder) convertView.getTag();
         }
-        holder.ico.setImageDrawable(this.appInfos.get(position).getIco());
-        holder.Name.setText(this.appInfos.get(position).getName());
+        holder.ico.setImageDrawable(this.appInfos.get(position).ico);
+        holder.Name.setText(this.appInfos.get(position).name);
         return convertView;
     }
 

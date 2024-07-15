@@ -299,15 +299,15 @@ public class UseTimeDataManager {
             String packName = info.activityInfo.applicationInfo.packageName;
             if (!packName.equals(context.getPackageName())) {
                 AppInfo mInfo = new AppInfo();
-                mInfo.setIco(info.loadIcon(pm));
+                mInfo.ico = info.loadIcon(pm);
                 try {
                     CharSequence charSequenceLable = info.loadLabel(pm);
                     String label = charSequenceLable.toString();
-                    mInfo.setAppName(label);
-                    mInfo.setPackageName(packName);
+                    mInfo.appName = label;
+                    mInfo.packageName = packName;
                     Intent launchIntent = new Intent();
                     launchIntent.setComponent(new ComponentName(packName, info.activityInfo.name));
-                    mInfo.setIntent(launchIntent);
+                    mInfo.intent = launchIntent;
                     list.add(mInfo);
                 } catch (Resources.NotFoundException e) {
                 }

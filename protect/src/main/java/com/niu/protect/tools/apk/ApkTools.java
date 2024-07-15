@@ -51,13 +51,13 @@ public class ApkTools {
             String packName = info.activityInfo.packageName;
             if (!packName.equals(context.getPackageName())) {
                 AppInfo mInfo = new AppInfo();
-                mInfo.setIco(info.loadIcon(pm));
+                mInfo.ico = info.loadIcon(pm);
                 ILog.d("packName==", packName);
-                mInfo.setName(info.loadLabel(pm).toString());
-                mInfo.setPackageName(packName);
+                mInfo.name = info.loadLabel(pm).toString();
+                mInfo.packageName = packName;
                 Intent launchIntent = new Intent();
                 launchIntent.setComponent(new ComponentName(packName, info.activityInfo.name));
-                mInfo.setIntent(launchIntent);
+                mInfo.intent = launchIntent;
                 list.add(mInfo);
             }
         }
@@ -78,10 +78,10 @@ public class ApkTools {
         if (applicationInfo == null) {
             return null;
         }
-        mAppInfo.setAppName(applicationInfo.loadLabel(pkm).toString());
-        mAppInfo.setPackageName(applicationInfo.packageName);
-        mAppInfo.setIco(applicationInfo.loadIcon(pkm));
-        mAppInfo.setType(2);
+        mAppInfo.appName = applicationInfo.loadLabel(pkm).toString();
+        mAppInfo.packageName = applicationInfo.packageName;
+        mAppInfo.ico = applicationInfo.loadIcon(pkm);
+        mAppInfo.type = 2;
         return mAppInfo;
     }
 }

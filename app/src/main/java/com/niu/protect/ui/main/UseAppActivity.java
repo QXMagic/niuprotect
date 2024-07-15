@@ -181,7 +181,7 @@ public class UseAppActivity extends BaseActivity {
     * */
     public boolean checkApp(String appName) {
         for(AppInfo info:alist){
-            if(info.getPackageName().equals(appName)){
+            if(info.packageName.equals(appName)){
                 return true;
             }
             if(appName.equals(BuildConfig.APPLICATION_ID)){
@@ -206,12 +206,12 @@ public class UseAppActivity extends BaseActivity {
             String packName = info.activityInfo.packageName;
             if (!packName.equals(context.getPackageName())) {
                 AppInfo mInfo = new AppInfo();
-                mInfo.setIco(info.activityInfo.applicationInfo.loadIcon(pm));
-                mInfo.setName(info.activityInfo.applicationInfo.loadLabel(pm).toString());
-                mInfo.setPackageName(packName);
+                mInfo.ico = info.activityInfo.applicationInfo.loadIcon(pm);
+                mInfo.name = info.activityInfo.applicationInfo.loadLabel(pm).toString();
+                mInfo.packageName = packName;
                 Intent launchIntent = new Intent();
                 launchIntent.setComponent(new ComponentName(packName, info.activityInfo.name));
-                mInfo.setIntent(launchIntent);
+                mInfo.intent = launchIntent;
                 list.add(mInfo);
             }
         }

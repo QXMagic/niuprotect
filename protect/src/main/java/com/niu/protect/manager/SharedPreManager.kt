@@ -35,7 +35,7 @@ object SharedPreManager {
     val autoSettingFinish: Int
         get() {
             val kv = MMKV.defaultMMKV()
-            return kv.decodeInt(KEY_AUTO_SETTING_FINISH, 0)
+            return kv.decodeInt(KEY_AUTO_SETTING_FINISH, AutoSettingManager.AUTO_SETTING_NOT_SET)
         }
 
     fun saveCustomSendTimes(day: Int): Boolean {

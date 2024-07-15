@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.niu.protect.BabyApplication.Companion.instance
 import com.niu.protect.R
 import com.niu.protect.manager.UserInfoManager
-import com.niu.protect.third.umeng.UMengManager
 import com.niu.protect.tools.ILog
 import com.niu.protect.tools.Tools
 import com.niu.protect.ui.main.MainActivity
@@ -25,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
         getAppChannel()
         Handler(Looper.getMainLooper()).postDelayed({
             enterHomeActivity()
-            UMengManager.initUmeng(instance, appChannel)
+//            UMengManager.initUmeng(instance, appChannel)
         }, 2000L)
     }
 

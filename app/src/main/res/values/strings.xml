@@ -1,26 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="acceleration">实际加速度：</string>
+<!--  <string name="acceleration">实际加速度：</string>-->
   <string name="accept_btn">同意</string>
-  <string name="actual_speed">实际行驶速度：</string>
-  <string name="alarm_condition">围栏报警条件</string>
-  <string name="alarm_info">历史报警信息</string>
-  <string name="alarm_push_title">百度鹰眼报警推送</string>
-  <string name="all_cancel">取消</string>
-  <string name="all_coord_type">坐标类型:</string>
-  <string name="all_fence_monitor_status">围栏监控类型</string>
-  <string name="all_fence_operate">围栏操作</string>
-  <string name="all_images">所有图片</string>
+<!--  <string name="actual_speed">实际行驶速度：</string>-->
+<!--  <string name="alarm_condition">围栏报警条件</string>-->
+<!--  <string name="alarm_info">历史报警信息</string>-->
+<!--  <string name="alarm_push_title">百度鹰眼报警推送</string>-->
+<!--  <string name="all_cancel">取消</string>-->
+<!--  <string name="all_coord_type">坐标类型:</string>-->
+<!--  <string name="all_fence_monitor_status">围栏监控类型</string>-->
+<!--  <string name="all_fence_operate">围栏操作</string>-->
+<!--  <string name="all_images">所有图片</string>-->
   <string name="all_supplement_model">里程补偿方式:</string>
   <string name="all_sure">确定</string>
   <string name="androidx_startup">androidx.startup</string>
-  <string name="aotuset">自动化设置</string>
-  <string name="app_name">妞管家</string>
-  <string name="asc">升序</string>
+    <string name="aotuset">开启管控,一切尽在掌握中</string>
+    <string name="accessibility_desc">妞管家点击这里开启辅助服务</string>
+
+        <string name="app_name">妞管家</string>
+    <string name="asc">升序</string>
   <string name="background_privacy_desc">根据相关监管要求，在静默状态下或在后台运行时，如非服务所必需或无合理应用场景，不得收集用户信息。 开发者需遵循以上监管要求，仅在必需和合理的应用场景时进行静默状态和后台运行时的信息采集。</string>
   <string name="base_title">BaseActivity</string>
   <string name="battery_saving">低功耗定位模式，仅使用网络定位</string>
-  <string name="bd09ll">百度经纬度坐标</string>
   <string name="blue">蓝色</string>
   <string name="bos_desc">上传、下载图片，生成水印图片</string>
   <string name="bos_title">图片服务</string>
@@ -258,7 +259,7 @@
   <string name="upsdk_getting_message_fail_prompt_toast">Unable to retrieve information. Please try again later.</string>
   <string name="upsdk_mobile_dld_warn">"You're currently connected to a mobile network. Downloading now will use %1$s of data."</string>
   <string name="upsdk_no_available_network_prompt_toast">No Internet connection. Please check your network settings.</string>
-  <string name="upsdk_ota_app_name">App</string>
+  <string name="upsdk_ota_app_name">im.niu.corelib.App</string>
   <string name="upsdk_ota_cancel">Later</string>
   <string name="upsdk_ota_force_cancel_new">Exit</string>
   <string name="upsdk_ota_notify_updatebtn">Update</string>

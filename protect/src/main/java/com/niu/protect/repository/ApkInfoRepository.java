@@ -68,10 +68,10 @@ public class ApkInfoRepository extends BaseRepository {
             @Override
             public void run() {
                 for (AppInfo packageInfo : mlist) {
-                    Drawable drawable = packageInfo.getIco();
+                    Drawable drawable = packageInfo.ico;
                     if (drawable != null) {
                         Bitmap bitmap = ImageSave.drawableToBitmap(drawable);
-                        String filename = packageInfo.getPackageName();
+                        String filename = packageInfo.packageName;
                         ImageSave.saveIconBitmap(Constants.MainInstance.getContext(),  bitmap, filename.replace(".", ""));
                     }
                 }
@@ -89,10 +89,10 @@ public class ApkInfoRepository extends BaseRepository {
             return;
         }
         for (AppInfo packageInfo : mlist) {
-            Drawable drawable = packageInfo.getIco();
+            Drawable drawable = packageInfo.ico;
             if (drawable != null) {
                 Bitmap bitmap = ImageSave.drawableToBitmap(drawable);
-                String filename = packageInfo.getPackageName();
+                String filename = packageInfo.packageName;
                 ImageSave.saveIconBitmap(Constants.MainInstance.getContext(),  bitmap, filename.replace(".", ""));
             } else {
                 ILog.d("uploadIcon", "drawable is null");

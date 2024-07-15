@@ -64,8 +64,8 @@ public class GridViewAdapter extends BaseAdapter implements AdapterView.OnItemCl
             mHolder = (ViewHolder) itemView.getTag();
         }
         AppInfo appInfo = this.dataList.get(i);
-        mHolder.iv_img.setImageDrawable(appInfo.getIco());
-        mHolder.tv_text.setText(appInfo.getName());
+        mHolder.iv_img.setImageDrawable(appInfo.ico);
+        mHolder.tv_text.setText(appInfo.name);
         return itemView;
     }
 
@@ -88,15 +88,15 @@ public class GridViewAdapter extends BaseAdapter implements AdapterView.OnItemCl
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (!appInfo.getPackageName().equals(pagename)) {
+            if (!appInfo.packageName.equals(pagename)) {
                 continue;
             } else {
                 AlertDialog.Builder title = new AlertDialog.Builder(this._context).setTitle("提示");
-                title.setMessage(appInfo.getName() + " 已经被禁用").setPositiveButton("确定", (DialogInterface.OnClickListener) null).show();
+                title.setMessage(appInfo.name + " 已经被禁用").setPositiveButton("确定", (DialogInterface.OnClickListener) null).show();
                 return;
             }
         }
-        Intent intent = this._context.getPackageManager().getLaunchIntentForPackage(appInfo.getPackageName());
+        Intent intent = this._context.getPackageManager().getLaunchIntentForPackage(appInfo.packageName);
         if (intent != null) {
             intent.putExtra("type", "110");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

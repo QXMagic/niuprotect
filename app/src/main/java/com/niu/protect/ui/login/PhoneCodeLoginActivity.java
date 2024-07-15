@@ -115,7 +115,7 @@ public class PhoneCodeLoginActivity extends BaseActivity {
                     if (msg != null) {
                         ToastUtils.showLongToast(_context, "发送验证码成功");
                         BaseModel bean = (BaseModel) new Gson().fromJson(msg.toString(),  BaseModel.class);
-                        if (bean.getStatus().equals("200")) {
+                        if (bean.status.equals("200")) {
                             codeStart();
                         }
                     }

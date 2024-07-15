@@ -55,7 +55,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     private val appName = Constant.APP_NAME
     var backClickInfos =
         arrayOf("[Breeno]", "[卸载" + appName + "]", "卸载" + appName, "手机管家", "概览")
-    var windowsChanges = arrayOf("[快捷中心,", "[卸载" + appName + "]", "卸载 " + appName, "概览")
+    var banWindows = arrayOf("[快捷中心,", "[卸载" + appName + "]", "卸载 " + appName, "概览")
     var blackPackageNames = arrayOf("com.huawei.intelligent")
     var eventEditDesks: ArrayList<Any?> = ArrayList()
     var isStartControl = false
@@ -91,7 +91,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: EventScreenOnOrOff?) {
         var info: AccessibilityNodeInfo
-        ILog.d("onMessageEvent--", "onMessageEvent  isStartControl:" + isStartControl)
+        ILog.d("onMessageEvent--", "onMessageEvent  isStartControl: + $isStartControl")
         rootInActiveWindow.also { info=it }
         if (isStartControl && rootInActiveWindow!=null) {
             info = rootInActiveWindow
@@ -103,22 +103,14 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
-        val str = this.TAG
-        ILog.d(str, "eventType:" + event.eventType + "--roomIsVivo---" + roomIsVivo)
-        val str2 = this.TAG
-        val sb = StringBuilder()
-        sb.append("eventType text:")
-        sb.append(event.text)
-        ILog.d(str2, sb.toString())
-        val str3 = this.TAG
-        ILog.d(str3, "eventType getPackageName:" + event.packageName as Any)
-        val str4 = this.TAG
-        ILog.d(str4, "eventType classname:" + event.className as Any?)
-        val z =
-            UserProtectManager.getInstance().protectStatus != -2 && AutoSettingManager.isSettingFinish
-        isStartControl = z
-        if (z) {
-            if (event == null || TempOutControlManager.getInstance().getTempOutTime(this)) {
+        ILog.d(TAG, "eventType:$event.eventType  --roomIsVivo--- $roomIsVivo")
+        ILog.d(TAG, "eventType text:$event.text")
+        ILog.d(TAG, "eventType getPackageName:" + event.packageName as Any)
+        ILog.d(TAG, "eventType classname:" + event.className as Any?)
+        isStartControl =
+            UserProtectManager.getInstance().protectStatus != UserProtectManager.STATUS_OUT_OFF_PROTECT && AutoSettingManager.isSettingFinish
+        if (isStartControl) {
+            if (TempOutControlManager.getInstance().getTempOutTime(this)) {
                 return
             }
             luncherEvent(event)
@@ -138,19 +130,22 @@ class StatusUseAccessibilityService : BaseAccessibility() {
             className = event.className.toString()
         }
         val packagetName = event.packageName.toString()
-        if (eventType == 1 || eventType == 32 || eventType == 4096) {
-            WebSocketManager.getInstance().reconnect()
+        if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED
+            || eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+            || eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
+//            if (eventType == 1 || eventType == 32 || eventType == 4096) {
+            WebSocketManager.instance.reconnect()
             if (packagetName == "com.coloros.oppoguardelf" || packagetName.contains("com.huawei.systemmanager.power")) {
                 goBack()
                 return
             }
-            if (eventType == 32 && !TextUtils.isEmpty(packagetName)) {
+            if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && !TextUtils.isEmpty(packagetName)) {
                 if (roomIsVivo && packagetName == "com.vivo.upslide" && event.text.size == 0) {
                     return
                 }
-                ILog.d("sendMessage", "packageName:$packagetName")
-                val webSocketManager = WebSocketManager.getInstance()
-                webSocketManager.sendEventMessage(eventType.toString() + "", packagetName)
+                ILog.d(TAG, "packageName:$packagetName")
+                val webSocketManager = WebSocketManager.instance
+                webSocketManager.sendEventMessage(eventType.toString()  , packagetName)
             }
             if (roomIsVivo) {
                 if (packagetName == "com.android.launcher" && eventType == 4096 && event.text.size == 0 && className == "androidx.recyclerview.widget.RecyclerView") {
@@ -168,7 +163,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
             ) {
                 return
             }
-            if (event.text != null && packagetName == "com.hihonor.systemmanager" && event.text.toString()
+            if (packagetName == "com.hihonor.systemmanager" && event.text.toString()
                     .contains("应用锁")
             ) {
                 return
@@ -179,17 +174,17 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                 return
             }
         }
-        if (eventType == 2 && packagetName.contains("launcher") && event.text.toString().contains(
+        if (eventType == AccessibilityEvent.TYPE_VIEW_LONG_CLICKED && packagetName.contains("launcher") && event.text.toString().contains(
                 appName
             )
         ) {
             ILog.d(this.TAG, "长按防止卸载返回 goBack()---")
             goBack()
-        } else if (packagetName == "com.ss.android.ugc.aweme" && eventType == 4096) {
+        } else if (packagetName == "com.ss.android.ugc.aweme" && eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
             checkBalckAppAndUseTime(packagetName)
         } else {
             if (roomIsVivo) {
-                if (packagetName.contains("launcher") && eventType == 32) {
+                if (packagetName.contains("launcher") && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                     if (findById(
                             "com.oppo.launcher:id/btn_remove",
                             0
@@ -207,7 +202,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                             return
                         }
                         return
-                    } else if (event.text != null && !TextUtils.isEmpty(event.text.toString())) {
+                    } else if (!TextUtils.isEmpty(event.text.toString())) {
                         val text = event.text.toString()
                         if (text.contains("最近用过的应用")) {
                             ILog.d(this.TAG, "最近用过的应用--")
@@ -230,8 +225,8 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                     return
                 }
             }
-            if (eventType == 1) {
-                if (event.text != null && roomIsVivo && event.text.toString().contains("交互池")) {
+            if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED) {
+                if (roomIsVivo && event.text.toString().contains("交互池")) {
                     ILog.d(this.TAG, "交互池--")
                     return
                 }
@@ -259,7 +254,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                     return
                 }
             }
-            if (packagetName == "com.android.settings" && eventType == 32) {
+            if (packagetName == "com.android.settings" && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                 val eventTexts = event.text
                 val eventText = eventTexts.toString()
                 val str = this.TAG
@@ -288,16 +283,11 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                 gotoDefindSetting()
                 return
             }
-            if (eventType == 32) {
-                var i2 = 0
-                while (true) {
-                    if (i2 >= windowsChanges.size) {
-                        break
-                    } else if (!event.text.toString().contains(windowsChanges[i2])) {
-                        i2++
-                    } else {
-                        goBack()
-                        break
+            if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+                val txt = event.text.toString()
+                for (ban:String in banWindows){
+                    if(txt.contains(ban)){
+                        goBack();
                     }
                 }
                 if (packagetName == "com.oplus.battery") {
@@ -315,7 +305,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                     remenberTIme = System.currentTimeMillis()
                 }
                 if (packageNameLastTime != packagetName) {
-                    UploadAppManager.getInstance(this).upNewInstallAPP(packagetName)
+                    UploadAppManager.getInstance(this)?.upNewInstallAPP(packagetName)
                 }
                 checkBalckAppAndUseTime(packagetName)
                 changeTime = System.currentTimeMillis()
@@ -336,13 +326,13 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     fun checkBalckAppAndUseTime(packageName: String?) {
         if (packageName != null) {
             if (packageName != BuildConfig.APPLICATION_ID && packageName != "com.oplus.wirelesssettings" && packageName != "com.android.launcher.Launcher") {
-                if (UserWhiteAppListManager.getInstance().userWhiteApp(this, packageName)) {
+                if (UserWhiteAppListManager.getInstance().isWhiteApp(this, packageName)) {
                     return
                 }
                 if (SystemWhiteAppListManager.getInstance().systemWhiteApp(this, packageName)) {
                     return
                 }
-                if (SystemBlackAppListManager.getInstance().systemBlackApp(this, packageName)) {
+                if (SystemBlackAppListManager.getInstance().systemWhiteApp(this, packageName)) {
                     goBack()
                     return
                 } else if ((packageName.contains("com.oppo") || packageName.contains("com.android") || packageName.contains(
@@ -413,13 +403,11 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         }
         val isCannotUseApp = StudentMainController.getInstance().appCanUse(packageName)
         if (isCannotUseApp) {
-            val str2 = this.TAG
-            ILog.d(str2, "can't use---$packageName")
+            ILog.d(TAG, "can't use---$packageName")
             goBack()
             return
         }
-        val str3 = this.TAG
-        ILog.d(str3, "can use---$packageName")
+        ILog.d(TAG, "can use---$packageName")
     }
 
     override fun onServiceConnected() {
@@ -427,7 +415,6 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         ILog.d(TAG, "---onServiceConnected--------")
         mService = this
         brand = SystemUtil.getDeviceBrand()
-        val str = this.TAG
         ILog.d(TAG, Tools.getAutoSet(this).toString() + "getAutoSet")
         try {
             Thread.sleep(500L)
@@ -441,7 +428,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         ControllerStatusRepository.getInstance().requestControlStatus(this, 1)
         BroadcastManager.sendAccessibilityStart(this)
         isConnect = true
-        KeepAliveManger.getInstance().keepAliveByTowService(this)
+        KeepAliveManger.instance?.keepAliveByTowService(this)
     }
 
     override fun onInterrupt() {
@@ -449,7 +436,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         isStartControl = false
         isConnect = false
         ControllerStatusRepository.getInstance().requestControlStatus(this, 0)
-        ILog.d("--onInterrupt-----", "-------onInterrupt---------")
+        ILog.d(TAG, "-------onInterrupt---------")
     }
 
     private fun gotoDefindSetting() {
@@ -479,7 +466,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     private fun goBack() {
-        ILog.d("goBack-------", "goBack")
+        ILog.d(TAG, "goBack")
         performGlobalAction(
             GLOBAL_ACTION_BACK)
         try {
@@ -503,7 +490,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     fun goBackHome() {
-        Log.e("xxxxcser", "111112")
+        Log.e(TAG, "111112")
         performGlobalAction(GLOBAL_ACTION_HOME)
     }
 
@@ -520,14 +507,14 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     override fun onDestroy() {
         super.onDestroy()
         mService = null
-        ILog.d("--onDestroy-----", "----------------")
+        ILog.d(TAG, "----------------")
         EventBus.getDefault().unregister(this)
         BroadcastManager.unRegisterShutDownReciver(this)
     }
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
     fun onMessageEvent(event:Message?) {
-        Log.d("---", "event -----")
+        Log.d(TAG, "event -----")
         clickMenu()
     }
 

@@ -4,21 +4,26 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.google.gson.Gson;
+import com.niu.protect.manager.filters.IFilter;
+import com.niu.protect.model.AppData;
 import com.niu.protect.model.UserBlackAppInfoModel;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONObject;
-public class UserBlackAppListManager {
+public class UserBlackAppListManager implements IFilter {
     private static final String TAG = "UserBlackAppListManager";
     private static UserBlackAppListManager instance;
-    private List<UserBlackAppInfoModel.DataDTO> mUserBalckApps;
+    private List<AppData> mUserBalckApps;
 
     private UserBlackAppListManager() {
     }
@@ -64,14 +69,14 @@ public class UserBlackAppListManager {
         idStr.add("com.oppo.launcher:id/btn_remove");
         return idStr;
     }
-
-    public boolean userBlackApp(Context context, String packname) {
-        List<UserBlackAppInfoModel.DataDTO> userBlackApps = getmUserBalckApps(context);
+    @Override
+    public boolean systemWhiteApp(Context context, String packName) {
+        List<AppData> userBlackApps = getmUserBalckApps(context);
         if (userBlackApps != null && userBlackApps.size() > 0) {
             int size = userBlackApps.size();
             for (int i = 0; i < size; i++) {
-                UserBlackAppInfoModel.DataDTO dataDTO = userBlackApps.get(i);
-                if (dataDTO.getPackageName().equals(packname)) {
+                AppData dataDTO = userBlackApps.get(i);
+                if (dataDTO.getPackageName().equals(packName)) {
                     return true;
                 }
             }
@@ -105,26 +110,28 @@ public class UserBlackAppListManager {
         editor.commit();
     }
 
-    private List<UserBlackAppInfoModel.DataDTO> getSaveBlackUserApp(Context context) {
+    private List<AppData> getSaveBlackUserApp(Context context) {
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_USER_BLACK_APP, "");
         if (!TextUtils.isEmpty(userMsg)) {
             UserBlackAppInfoModel userBlackAppInfoModel = (UserBlackAppInfoModel) new Gson().fromJson(userMsg, UserBlackAppInfoModel.class);
-            List<UserBlackAppInfoModel.DataDTO> appInfos = userBlackAppInfoModel.getData();
+            List<AppData> appInfos = userBlackAppInfoModel.getData();
             return appInfos;
         }
         return null;
     }
 
-    private List<UserBlackAppInfoModel.DataDTO> getmUserBalckApps(Context context) {
+    private List<AppData> getmUserBalckApps(Context context) {
         if (this.mUserBalckApps == null) {
             this.mUserBalckApps = getSaveBlackUserApp(context);
         }
         StringBuilder sb = new StringBuilder();
         sb.append("用户APP黑名单------------");
-        List<UserBlackAppInfoModel.DataDTO> list = this.mUserBalckApps;
+        List<AppData> list = this.mUserBalckApps;
         sb.append(list != null ? list.size() : 0);
         ILog.d(TAG, sb.toString());
         return this.mUserBalckApps;
     }
+
+
 }

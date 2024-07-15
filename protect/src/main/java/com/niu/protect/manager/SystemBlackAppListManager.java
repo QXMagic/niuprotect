@@ -3,24 +3,29 @@ package com.niu.protect.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+
 import com.google.gson.Gson;
+import com.niu.protect.manager.filters.IFilter;
+import com.niu.protect.model.AppData;
 import com.niu.protect.model.SystemBlackAppModel;
 import com.niu.protect.network.NetTools;
 import com.niu.protect.network.ResultCallBackListener;
 import com.niu.protect.network.StudentBaseUrl;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.SharedPreUtil;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONObject;
-public class SystemBlackAppListManager {
+public class SystemBlackAppListManager implements IFilter {
     private static final String TAG = "SystemBlackAppListManager";
     private static SystemBlackAppListManager instance;
     private int remenberDayOfWeek = -1;
-    private List<SystemBlackAppModel.DataDTO> systemBlackApps;
+    private List<AppData> systemBlackApps;
 
     private SystemBlackAppListManager() {
     }
@@ -68,7 +73,7 @@ public class SystemBlackAppListManager {
         return idStr;
     }
 
-    private List<SystemBlackAppModel.DataDTO> getSystemBlackApps(Context context) {
+    private List<AppData> getSystemBlackApps(Context context) {
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(7) - 1;
         if (this.systemBlackApps == null) {
@@ -81,18 +86,19 @@ public class SystemBlackAppListManager {
         }
         StringBuilder sb = new StringBuilder();
         sb.append("系統黑名单------------");
-        List<SystemBlackAppModel.DataDTO> list = this.systemBlackApps;
+        List<AppData> list = this.systemBlackApps;
         sb.append(list != null ? list.size() : 0);
         ILog.d(TAG, sb.toString());
         return this.systemBlackApps;
     }
 
-    public boolean systemBlackApp(Context context, String packName) {
-        List<SystemBlackAppModel.DataDTO> systemBlackApps = getSystemBlackApps(context);
+    @Override
+    public boolean systemWhiteApp(Context context, String packName) {
+        List<AppData> systemBlackApps = getSystemBlackApps(context);
         if (systemBlackApps != null) {
             int size = systemBlackApps.size();
             for (int i = 0; i < size; i++) {
-                SystemBlackAppModel.DataDTO dataDTO = systemBlackApps.get(i);
+                AppData dataDTO = systemBlackApps.get(i);
                 if (dataDTO.getPackageName().equals(packName)) {
                     ILog.d("black packageName", packName);
                     return true;
@@ -118,7 +124,7 @@ public class SystemBlackAppListManager {
         });
     }
 
-    private List<SystemBlackAppModel.DataDTO> getBlackSysApp(Context context) {
+    private List<AppData> getBlackSysApp(Context context) {
         SystemBlackAppModel mSystemBlackAppModel;
         SharedPreferences sp = context.getSharedPreferences(SharedPreManager.SP_NAME, 0);
         String userMsg = sp.getString(SharedPreManager.KEY_SYSTEM_BLACK_APP, "");
@@ -128,4 +134,6 @@ public class SystemBlackAppListManager {
         }
         return null;
     }
+
+
 }

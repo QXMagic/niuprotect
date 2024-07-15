@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -79,18 +78,6 @@ public class LocalForegroundService extends Service {
     }
 
     public void startService() {
-        if (Build.VERSION.SDK_INT < 26) {
-            if (Build.VERSION.SDK_INT >= 18) {
-                startForeground(10, new Notification());
-                startService(new Intent(this, CancelNotificationService.class));
-                return;
-            } else if (Build.VERSION.SDK_INT < 18) {
-                startForeground(10, new Notification());
-                return;
-            } else {
-                return;
-            }
-        }
         NotificationChannel channel = new NotificationChannel("service", "service", NotificationManager.IMPORTANCE_NONE);
         channel.setLightColor(-16776961);
         channel.setLockscreenVisibility(0);

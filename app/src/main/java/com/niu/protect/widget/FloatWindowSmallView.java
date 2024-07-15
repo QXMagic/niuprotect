@@ -97,15 +97,15 @@ public class FloatWindowSmallView extends LinearLayout {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    if (!appInfo.getPackageName().equals(pagename)) {
+                    if (!appInfo.packageName.equals(pagename)) {
                         continue;
                     } else {
                         AlertDialog.Builder title = new AlertDialog.Builder(_context).setTitle("提示");
-                        title.setMessage(appInfo.getName() + " 已经被禁用").setPositiveButton("确定", (DialogInterface.OnClickListener) null).show();
+                        title.setMessage(appInfo.name + " 已经被禁用").setPositiveButton("确定", (DialogInterface.OnClickListener) null).show();
                         return;
                     }
                 }
-                Intent intent = _context.getPackageManager().getLaunchIntentForPackage(appInfo.getPackageName());
+                Intent intent = _context.getPackageManager().getLaunchIntentForPackage(appInfo.packageName);
                 if (intent != null) {
                     intent.putExtra("type", "110");
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -126,12 +126,12 @@ public class FloatWindowSmallView extends LinearLayout {
             String packName = info.activityInfo.packageName;
             if (!packName.equals(context.getPackageName())) {
                 AppInfo mInfo = new AppInfo();
-                mInfo.setIco(info.activityInfo.applicationInfo.loadIcon(pm));
-                mInfo.setName(info.activityInfo.applicationInfo.loadLabel(pm).toString());
-                mInfo.setPackageName(packName);
+                mInfo.ico = info.activityInfo.applicationInfo.loadIcon(pm);
+                mInfo.name = info.activityInfo.applicationInfo.loadLabel(pm).toString();
+                mInfo.packageName = packName;
                 Intent launchIntent = new Intent();
                 launchIntent.setComponent(new ComponentName(packName, info.activityInfo.name));
-                mInfo.setIntent(launchIntent);
+                mInfo.intent = launchIntent;
                 list.add(mInfo);
             }
         }
