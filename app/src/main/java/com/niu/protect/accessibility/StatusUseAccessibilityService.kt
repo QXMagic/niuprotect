@@ -326,7 +326,7 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     fun checkBalckAppAndUseTime(packageName: String?) {
         if (packageName != null) {
             if (packageName != BuildConfig.APPLICATION_ID && packageName != "com.oplus.wirelesssettings" && packageName != "com.android.launcher.Launcher") {
-                if (UserWhiteAppListManager.getInstance().isWhiteApp(this, packageName)) {
+                if (UserWhiteAppListManager.instance?.isWhiteApp(this, packageName) == true) {
                     return
                 }
                 if (SystemWhiteAppListManager.getInstance().systemWhiteApp(this, packageName)) {

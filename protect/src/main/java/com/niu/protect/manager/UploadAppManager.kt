@@ -191,7 +191,7 @@ class UploadAppManager private constructor(private val context: Context) {
             try {
                 val `object` = JSONObject()
                 `object`.put(Constants.KEY_PACKAGE_NAMES, delarray)
-                NetTools.getInstance()
+                NetTools.instance
                     .postAsynJSONHttp(context, StudentBaseUrl.apps_batchdelete, `object`) { msg ->
                         if (msg != null) {
                             Log.i("baby", msg.toString())
@@ -248,19 +248,19 @@ class UploadAppManager private constructor(private val context: Context) {
         }
         val listData = Base64Utils.encodeToString(jlist.toString()).replace("\n", "")
         Log.i("baby", listData)
-        val parameters: MutableMap<String, String> = HashMap()
+        val parameters: Map<String, String> = HashMap()
         Log.i("baby", Base64Utils.decodeToString(listData))
-        parameters["listData"] = listData
+//        parameters["listData"] = listData
         url = if (isFirstTime) {
             StudentBaseUrl.apps_batchAddApp_first
         } else {
             StudentBaseUrl.apps_batchAddApp
         }
-        NetTools.getInstance().postAsynHttp(context, url, parameters) { msg ->
-            if (msg != null) {
-                Log.i("baby", msg.toString())
-            }
-        }
+//        NetTools.instance.postAsynHttp(context, url, parameters) { msg ->
+//            if (msg != null) {
+//                Log.i("baby", msg.toString())
+//            }
+//        }
     }
 
     fun upNewInstallAPP(packageName: String): Boolean {

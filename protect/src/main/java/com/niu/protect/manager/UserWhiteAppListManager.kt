@@ -30,7 +30,7 @@ class UserWhiteAppListManager private constructor() {
 
     fun reqeustUserWhitelist(context: Context) {
         val parameters: Map<String, String> = HashMap()
-        NetTools.getInstance().getAsynHttp(
+        NetTools.instance.getAsynHttp(
             context,
             StudentBaseUrl.USER_WHITE_APP_LIST,
             parameters

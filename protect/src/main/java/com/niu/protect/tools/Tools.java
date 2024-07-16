@@ -19,6 +19,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+
 import android.widget.Toast;
 
 import androidx.core.view.ViewCompat;

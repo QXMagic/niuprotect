@@ -62,7 +62,6 @@ dependencies {
     implementation("com.zyao89:zloading:1.2.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.squareup.picasso:picasso:2.71828")
-    implementation( "org.greenrobot:eventbus:3.3.1")
     implementation("com.tencent:mmkv:1.3.7")
 
     implementation("cn.bingoogolapple:bga-qrcodecore:1.1.9")

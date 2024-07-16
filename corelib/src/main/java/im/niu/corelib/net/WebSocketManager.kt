@@ -12,11 +12,9 @@ class WebSocketManager {
     private val TAG:String = "WebSocket"
     private var client:WebSClient
     private var enable = false
+    private var uri:URI;
 
     fun isEnable():Boolean{
-        if(!enable){
-            client.connect()
-        }
         return enable
     }
 
@@ -46,9 +44,10 @@ class WebSocketManager {
     }
 
     fun reconnect(){
-        if(client.isOpen){
-            client.close()
+        if(client.isOpen && enable){
+            return
         }
+        client = WebSClient(uri)
         client.connect()
     }
 
@@ -59,7 +58,8 @@ class WebSocketManager {
             uuid = UUID.randomUUID().toString()
             kv.putString("uuid",uuid)
         }
-        client = WebSClient(URI("ws://$ip:$port/monitor/$uuid"))
+        uri = URI("ws://$ip:$port/monitor/$uuid")
+        client = WebSClient(uri)
         client.connect()
     }
 

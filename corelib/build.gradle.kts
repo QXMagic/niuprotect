@@ -10,7 +10,6 @@ android {
     defaultConfig {
         minSdk = 28
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -40,4 +39,8 @@ dependencies {
     implementation("com.tencent:mmkv:1.3.7")
     implementation("org.java-websocket:Java-WebSocket:1.5.6")
     implementation("com.google.protobuf:protobuf-java:4.27.2")
+    implementation("org.greenrobot:eventbus:3.3.1")
+    implementation("androidx.work:work-runtime:2.9.0")
+    implementation("com.github.getActivity:XXPermissions:18.63")
+    implementation("com.google.code.gson:gson:2.11.0")
 }
