@@ -15,3 +15,18 @@ message AppInfo{
 	string package = 1;
 	string name = 2;
 }
+message Ping{
+	int32 screen = 1;//屏幕
+	int32 battery = 2;//电量
+}
+message AppUseInfo{
+	string packageName = 1;
+	int64 firstTimeStamp = 2;
+	int64 lastTimeStamp = 3;
+	int64 lastTimeUsed = 4;
+	int64 totalTimeInForeground = 5;
+	int64 totalTimeVisible = 6;
+}
+message AppUseInfoList{
+	repeated AppUseInfo appUseInfo = 1;
+}

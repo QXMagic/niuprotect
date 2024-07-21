@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0euserinfo.proto\x12\x0bim.niu.data\"%\n\x07Wrapper\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"C\n\x08UserInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x64\x65vice\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x05\x12\n\n\x02os\x18\x04 \x01(\t\"(\n\x07\x41ppInfo\x12\x0f\n\x07package\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\tb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0euserinfo.proto\x12\x0bim.niu.data\"%\n\x07Wrapper\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"C\n\x08UserInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x64\x65vice\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x05\x12\n\n\x02os\x18\x04 \x01(\t\"(\n\x07\x41ppInfo\x12\x0f\n\x07package\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\'\n\x04Ping\x12\x0e\n\x06screen\x18\x01 \x01(\x05\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\x05\"\x9f\x01\n\nAppUseInfo\x12\x13\n\x0bpackageName\x18\x01 \x01(\t\x12\x16\n\x0e\x66irstTimeStamp\x18\x02 \x01(\x03\x12\x15\n\rlastTimeStamp\x18\x03 \x01(\x03\x12\x14\n\x0clastTimeUsed\x18\x04 \x01(\x03\x12\x1d\n\x15totalTimeInForeground\x18\x05 \x01(\x03\x12\x18\n\x10totalTimeVisible\x18\x06 \x01(\x03\"=\n\x0e\x41ppUseInfoList\x12+\n\nappUseInfo\x18\x01 \x03(\x0b\x32\x17.im.niu.data.AppUseInfob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -37,4 +37,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_USERINFO']._serialized_end=137
   _globals['_APPINFO']._serialized_start=139
   _globals['_APPINFO']._serialized_end=179
+  _globals['_PING']._serialized_start=181
+  _globals['_PING']._serialized_end=220
+  _globals['_APPUSEINFO']._serialized_start=223
+  _globals['_APPUSEINFO']._serialized_end=382
+  _globals['_APPUSEINFOLIST']._serialized_start=384
+  _globals['_APPUSEINFOLIST']._serialized_end=445
 # @@protoc_insertion_point(module_scope)

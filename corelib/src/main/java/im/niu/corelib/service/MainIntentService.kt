@@ -4,7 +4,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
-import android.os.Binder
+import android.content.pm.ServiceInfo
+import android.os.BatteryManager
+import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
@@ -12,8 +14,16 @@ import android.os.Message
 import android.os.Messenger
 import androidx.core.app.NotificationCompat
 import im.niu.corelib.App
+import im.niu.corelib.Constants
 import im.niu.corelib.R
+import im.niu.corelib.events.EventType
+import im.niu.corelib.events.MessageEvent
 import im.niu.corelib.utils.ILog
+import im.niu.data.Userinfo
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+
 
 const val CHANNEL_ID = "main_service_chanel_id"
 const val CHANNEL_NAME = "Main_Chanel"
@@ -38,7 +48,7 @@ class MainIntentService : Service() {
         }
     }
 
-    private val tag: String = "MainIntentService"
+    private val tag: String = "MainService"
     private val notifyId: Int = 101
     private lateinit var handler:MyHandler
     private lateinit var mMessenger: Messenger
@@ -49,11 +59,13 @@ class MainIntentService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        ILog.d(tag,"MainIntentService onStartCommand")
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        ILog.e(tag,"main service destroy")
         try {
             handler.removeCallbacksAndMessages(null)
         }catch (e: Exception){
@@ -64,6 +76,7 @@ class MainIntentService : Service() {
     override fun onCreate() {
         super.onCreate()
         ILog.d(tag,"MainIntentService onCreate")
+        EventBus.getDefault().register(this)
         handler = MyHandler(baseContext.mainLooper)
         mMessenger = Messenger(handler)
         try {
@@ -79,14 +92,24 @@ class MainIntentService : Service() {
         }catch (e: Exception){
             e.printStackTrace()
         }
-
+        keepNetworkAlive();
         registerNotificationChannel()
         val mBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
         mBuilder.setSmallIcon(R.mipmap.ico)
-        mBuilder.setContentTitle(App.APP_NAME)
+        mBuilder.setContentTitle(Constants.APP_NAME)
         mBuilder.setContentText("正在守护")
-        startForeground(this.notifyId, mBuilder.build())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(this.notifyId, mBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
+        }else{
+            startForeground(this.notifyId, mBuilder.build())
+        }
+    }
 
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    fun onEvent(event: MessageEvent) {
+        if(event.type == EventType.TIME_LIMIT){
+
+        }
     }
 
     private fun registerNotificationChannel() {
@@ -103,6 +126,65 @@ class MainIntentService : Service() {
             channel.lockscreenVisibility = 1
             mNotificationManager.createNotificationChannel(channel)
         }
+    }
+
+    private fun keepNetworkAlive() {
+        Thread {
+            while (true) {
+                App.appManager.pushAppList(applicationContext)
+                sendScreenMsg()
+                getAppStates()
+                try {
+                    Thread.sleep(1000 * 30 )
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }
+        }.start()
+    }
+
+
+
+    open fun sendScreenMsg() {
+        val manager = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager
+        val battery = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+
+        var ping = Userinfo.Ping.newBuilder().setBattery(battery).setScreen(1).build()
+        App.webSocketManager.sendMessage(ping)
+
+    }
+
+    fun getAppStates(){
+//        val usm = getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
+//        val time = System.currentTimeMillis()
+//        val appList =
+//            usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, NiuUtil.timeToDayStart(time), time)
+//        var applist = Userinfo.AppUseInfoList.newBuilder()
+//        if (appList != null && appList.size > 0) {
+//            for (usageStats in appList) {
+//                // 使用usageStats.getPackageName()获取包名
+//                // 使用usageStats.getTotalTimeInForeground()获取前台总时间
+//               if(usageStats.totalTimeInForeground== 0L){
+//                   continue
+//               }
+//                Log.d(
+//                    "AppUsage",
+//                    "Package: " + usageStats.packageName + "\tForeground Time: " + usageStats.totalTimeInForeground
+//                )
+//                var appUserINfo = Userinfo.AppUseInfo.newBuilder()
+//                    .setFirstTimeStamp(usageStats.firstTimeStamp)
+//                    .setLastTimeStamp(usageStats.lastTimeStamp)
+//                    .setPackageName(usageStats.packageName)
+//                    .setTotalTimeInForeground(usageStats.totalTimeInForeground)
+//                    .setLastTimeUsed(usageStats.lastTimeUsed)
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//                    appUserINfo.totalTimeVisible = usageStats.totalTimeVisible
+//                }
+//                applist.addAppUseInfo(appUserINfo.build())
+//            }
+//            App.webSocketManager.sendMessage(applist.build())
+//        }
+        App.appManager.pushUsageEvent(applicationContext)
     }
 
 }

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -12,10 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.START_FOREGROUND_SERVICES_FROM_BACKGROUND"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.BATTERY_STATS"
-        tools:ignore="ProtectedPermissions" />
-
-
     <application>
         <receiver
             android:name=".receiver.AppReceiver"
@@ -64,7 +65,7 @@
             android:name=".service.MainIntentService"
             android:exported="true"
             android:foregroundServiceType="location"
-            android:permission="FOREGROUND_SERVICE_LOCATION"> <!-- e -->
+            android:permission="FOREGROUND_SERVICE_LOCATION">
         </service>
         <service android:enabled="true" android:exported="true" android:name=".service.KeepLiveJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>

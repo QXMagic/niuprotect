@@ -14,9 +14,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/corelib" />
+            <option value="$PROJECT_DIR$/manage" />
             <option value="$PROJECT_DIR$/protect" />
-            <option value="$PROJECT_DIR$/test" />
             <option value="$PROJECT_DIR$/testlib" />
+            <option value="$PROJECT_DIR$/testlib/test" />
           </set>
         </option>
       </GradleProjectSettings>

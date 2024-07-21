@@ -127,13 +127,16 @@
         <service android:enabled="true" android:exported="true" android:name="com.niu.protect.service.TestService" />
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name=".service.StudentControlWayService" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <service android:exported="true" android:label="@string/accessibility_desc" android:name="com.niu.protect.accessibility.StatusUseAccessibilityService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+        <service android:exported="true" android:label="@string/accessibility_desc"
+            android:name="com.niu.protect.accessibility.StatusUseAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
             <meta-data android:name="android.accessibilityservice" android:resource="@xml/student_accessibility" android:value="" />
         </service>
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.service.FloatingService" android:process=":live" />
+        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location"
+            android:name="com.niu.protect.service.FloatingService" android:process=":live" />
 
         <receiver android:enabled="true" android:exported="true" android:name="com.niu.protect.lib.receiver.AppInstallReceiver">
             <intent-filter>
@@ -159,9 +162,14 @@
         </receiver>
         <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.LocalForegroundService" />
         <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.LocalForegroundService$CancelNotificationService" />
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.keepalive.RemoteForegroundService" android:process=":remote" />
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="location" android:name="com.niu.protect.keepalive.RemoteForegroundService$CancelNotificationService" android:process=":remote" />
-        <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.KeepAliveJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:enabled="true" android:exported="true"
+            android:foregroundServiceType="location" android:name="com.niu.protect.keepalive.RemoteForegroundService"
+            android:process=":remote" />
+        <service android:enabled="true" android:exported="true"
+            android:foregroundServiceType="location" android:name="com.niu.protect.keepalive.RemoteForegroundService$CancelNotificationService"
+            android:process=":remote" />
+        <service android:enabled="true" android:exported="true" android:name="com.niu.protect.keepalive.KeepAliveJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citylist.CityListSelectActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citythreelist.ProvinceActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />
         <activity android:exported="false" android:name="com.lljjcoder.style.citythreelist.CityActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing|stateUnchanged" />

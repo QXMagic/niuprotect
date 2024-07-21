@@ -18,11 +18,10 @@ class MessageWraper:IMessage {
     }
 
     override fun flush(sender: IMessageSender) {
-        ILog.d(TAG,"type is $type")
         if(data!=null){
-            var arr = Userinfo.Wrapper.newBuilder().setName(data!!.descriptorForType.name).setData(data!!.toByteString()).build().toByteArray()
-//            var arr = data!!.toByteArray()
-            ILog.d(TAG,arr.toString())
+            var byteArr = data!!.toByteString()
+            var arr = Userinfo.Wrapper.newBuilder().setName(data!!.descriptorForType.name).setData(byteArr).build().toByteArray()
+            ILog.d(TAG,data!!.descriptorForType.name+",size:=>"+byteArr.size())
             sender.send(arr)
         }
     }

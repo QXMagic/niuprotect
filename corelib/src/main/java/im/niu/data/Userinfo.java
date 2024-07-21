@@ -1491,16 +1491,16 @@ public final class Userinfo {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string package = 1;</code>
-     * @return The package.
+     * <code>string packageName = 1;</code>
+     * @return The packageName.
      */
-    java.lang.String getPackage();
+    java.lang.String getPackageName();
     /**
-     * <code>string package = 1;</code>
-     * @return The bytes for package.
+     * <code>string packageName = 1;</code>
+     * @return The bytes for packageName.
      */
     com.google.protobuf.ByteString
-        getPackageBytes();
+        getPackageNameBytes();
 
     /**
      * <code>string name = 2;</code>
@@ -1513,6 +1513,30 @@ public final class Userinfo {
      */
     com.google.protobuf.ByteString
         getNameBytes();
+
+    /**
+     * <code>int32 type = 3;</code>
+     * @return The type.
+     */
+    int getType();
+
+    /**
+     * <code>string appName = 4;</code>
+     * @return The appName.
+     */
+    java.lang.String getAppName();
+    /**
+     * <code>string appName = 4;</code>
+     * @return The bytes for appName.
+     */
+    com.google.protobuf.ByteString
+        getAppNameBytes();
+
+    /**
+     * <code>bytes icon = 5;</code>
+     * @return The icon.
+     */
+    com.google.protobuf.ByteString getIcon();
   }
   /**
    * Protobuf type {@code im.niu.data.AppInfo}
@@ -1536,8 +1560,10 @@ public final class Userinfo {
       super(builder);
     }
     private AppInfo() {
-      package_ = "";
+      packageName_ = "";
       name_ = "";
+      appName_ = "";
+      icon_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -1553,39 +1579,39 @@ public final class Userinfo {
               im.niu.data.Userinfo.AppInfo.class, im.niu.data.Userinfo.AppInfo.Builder.class);
     }
 
-    public static final int PACKAGE_FIELD_NUMBER = 1;
+    public static final int PACKAGENAME_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object package_ = "";
+    private volatile java.lang.Object packageName_ = "";
     /**
-     * <code>string package = 1;</code>
-     * @return The package.
+     * <code>string packageName = 1;</code>
+     * @return The packageName.
      */
     @java.lang.Override
-    public java.lang.String getPackage() {
-      java.lang.Object ref = package_;
+    public java.lang.String getPackageName() {
+      java.lang.Object ref = packageName_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        package_ = s;
+        packageName_ = s;
         return s;
       }
     }
     /**
-     * <code>string package = 1;</code>
-     * @return The bytes for package.
+     * <code>string packageName = 1;</code>
+     * @return The bytes for packageName.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getPackageBytes() {
-      java.lang.Object ref = package_;
+        getPackageNameBytes() {
+      java.lang.Object ref = packageName_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        package_ = b;
+        packageName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1631,6 +1657,67 @@ public final class Userinfo {
       }
     }
 
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_ = 0;
+    /**
+     * <code>int32 type = 3;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public int getType() {
+      return type_;
+    }
+
+    public static final int APPNAME_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object appName_ = "";
+    /**
+     * <code>string appName = 4;</code>
+     * @return The appName.
+     */
+    @java.lang.Override
+    public java.lang.String getAppName() {
+      java.lang.Object ref = appName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        appName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string appName = 4;</code>
+     * @return The bytes for appName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAppNameBytes() {
+      java.lang.Object ref = appName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        appName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ICON_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString icon_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes icon = 5;</code>
+     * @return The icon.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getIcon() {
+      return icon_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1645,11 +1732,20 @@ public final class Userinfo {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(package_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, package_);
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, packageName_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 2, name_);
+      }
+      if (type_ != 0) {
+        output.writeInt32(3, type_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(appName_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, appName_);
+      }
+      if (!icon_.isEmpty()) {
+        output.writeBytes(5, icon_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1660,11 +1756,22 @@ public final class Userinfo {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(package_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, package_);
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, packageName_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(2, name_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, type_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(appName_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, appName_);
+      }
+      if (!icon_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, icon_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1681,10 +1788,16 @@ public final class Userinfo {
       }
       im.niu.data.Userinfo.AppInfo other = (im.niu.data.Userinfo.AppInfo) obj;
 
-      if (!getPackage()
-          .equals(other.getPackage())) return false;
+      if (!getPackageName()
+          .equals(other.getPackageName())) return false;
       if (!getName()
           .equals(other.getName())) return false;
+      if (getType()
+          != other.getType()) return false;
+      if (!getAppName()
+          .equals(other.getAppName())) return false;
+      if (!getIcon()
+          .equals(other.getIcon())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1696,10 +1809,16 @@ public final class Userinfo {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PACKAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getPackage().hashCode();
+      hash = (37 * hash) + PACKAGENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPackageName().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (37 * hash) + APPNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getAppName().hashCode();
+      hash = (37 * hash) + ICON_FIELD_NUMBER;
+      hash = (53 * hash) + getIcon().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1831,8 +1950,11 @@ public final class Userinfo {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        package_ = "";
+        packageName_ = "";
         name_ = "";
+        type_ = 0;
+        appName_ = "";
+        icon_ = com.google.protobuf.ByteString.EMPTY;
         return this;
       }
 
@@ -1867,10 +1989,19 @@ public final class Userinfo {
       private void buildPartial0(im.niu.data.Userinfo.AppInfo result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.package_ = package_;
+          result.packageName_ = packageName_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.appName_ = appName_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.icon_ = icon_;
         }
       }
 
@@ -1886,8 +2017,8 @@ public final class Userinfo {
 
       public Builder mergeFrom(im.niu.data.Userinfo.AppInfo other) {
         if (other == im.niu.data.Userinfo.AppInfo.getDefaultInstance()) return this;
-        if (!other.getPackage().isEmpty()) {
-          package_ = other.package_;
+        if (!other.getPackageName().isEmpty()) {
+          packageName_ = other.packageName_;
           bitField0_ |= 0x00000001;
           onChanged();
         }
@@ -1895,6 +2026,17 @@ public final class Userinfo {
           name_ = other.name_;
           bitField0_ |= 0x00000002;
           onChanged();
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (!other.getAppName().isEmpty()) {
+          appName_ = other.appName_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (other.getIcon() != com.google.protobuf.ByteString.EMPTY) {
+          setIcon(other.getIcon());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1923,7 +2065,7 @@ public final class Userinfo {
                 done = true;
                 break;
               case 10: {
-                package_ = input.readStringRequireUtf8();
+                packageName_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
@@ -1932,6 +2074,21 @@ public final class Userinfo {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 24: {
+                type_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                appName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                icon_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1949,73 +2106,73 @@ public final class Userinfo {
       }
       private int bitField0_;
 
-      private java.lang.Object package_ = "";
+      private java.lang.Object packageName_ = "";
       /**
-       * <code>string package = 1;</code>
-       * @return The package.
+       * <code>string packageName = 1;</code>
+       * @return The packageName.
        */
-      public java.lang.String getPackage() {
-        java.lang.Object ref = package_;
+      public java.lang.String getPackageName() {
+        java.lang.Object ref = packageName_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          package_ = s;
+          packageName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string package = 1;</code>
-       * @return The bytes for package.
+       * <code>string packageName = 1;</code>
+       * @return The bytes for packageName.
        */
       public com.google.protobuf.ByteString
-          getPackageBytes() {
-        java.lang.Object ref = package_;
+          getPackageNameBytes() {
+        java.lang.Object ref = packageName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          package_ = b;
+          packageName_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string package = 1;</code>
-       * @param value The package to set.
+       * <code>string packageName = 1;</code>
+       * @param value The packageName to set.
        * @return This builder for chaining.
        */
-      public Builder setPackage(
+      public Builder setPackageName(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        package_ = value;
+        packageName_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>string package = 1;</code>
+       * <code>string packageName = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPackage() {
-        package_ = getDefaultInstance().getPackage();
+      public Builder clearPackageName() {
+        packageName_ = getDefaultInstance().getPackageName();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
-       * <code>string package = 1;</code>
-       * @param value The bytes for package to set.
+       * <code>string packageName = 1;</code>
+       * @param value The bytes for packageName to set.
        * @return This builder for chaining.
        */
-      public Builder setPackageBytes(
+      public Builder setPackageNameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        package_ = value;
+        packageName_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
@@ -2093,6 +2250,142 @@ public final class Userinfo {
         return this;
       }
 
+      private int type_ ;
+      /**
+       * <code>int32 type = 3;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>int32 type = 3;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+
+        type_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 type = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object appName_ = "";
+      /**
+       * <code>string appName = 4;</code>
+       * @return The appName.
+       */
+      public java.lang.String getAppName() {
+        java.lang.Object ref = appName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          appName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string appName = 4;</code>
+       * @return The bytes for appName.
+       */
+      public com.google.protobuf.ByteString
+          getAppNameBytes() {
+        java.lang.Object ref = appName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          appName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string appName = 4;</code>
+       * @param value The appName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAppName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        appName_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string appName = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAppName() {
+        appName_ = getDefaultInstance().getAppName();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string appName = 4;</code>
+       * @param value The bytes for appName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAppNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        appName_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString icon_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes icon = 5;</code>
+       * @return The icon.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getIcon() {
+        return icon_;
+      }
+      /**
+       * <code>bytes icon = 5;</code>
+       * @param value The icon to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIcon(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        icon_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes icon = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIcon() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        icon_ = getDefaultInstance().getIcon();
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:im.niu.data.AppInfo)
     }
 
@@ -2144,6 +2437,5982 @@ public final class Userinfo {
 
   }
 
+  public interface PingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.Ping)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 屏幕
+     * </pre>
+     *
+     * <code>int32 screen = 1;</code>
+     * @return The screen.
+     */
+    int getScreen();
+
+    /**
+     * <pre>
+     * 电量
+     * </pre>
+     *
+     * <code>int32 battery = 2;</code>
+     * @return The battery.
+     */
+    int getBattery();
+  }
+  /**
+   * Protobuf type {@code im.niu.data.Ping}
+   */
+  public static final class Ping extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.Ping)
+      PingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        Ping.class.getName());
+    }
+    // Use Ping.newBuilder() to construct.
+    private Ping(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Ping() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_Ping_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_Ping_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.Ping.class, im.niu.data.Userinfo.Ping.Builder.class);
+    }
+
+    public static final int SCREEN_FIELD_NUMBER = 1;
+    private int screen_ = 0;
+    /**
+     * <pre>
+     * 屏幕
+     * </pre>
+     *
+     * <code>int32 screen = 1;</code>
+     * @return The screen.
+     */
+    @java.lang.Override
+    public int getScreen() {
+      return screen_;
+    }
+
+    public static final int BATTERY_FIELD_NUMBER = 2;
+    private int battery_ = 0;
+    /**
+     * <pre>
+     * 电量
+     * </pre>
+     *
+     * <code>int32 battery = 2;</code>
+     * @return The battery.
+     */
+    @java.lang.Override
+    public int getBattery() {
+      return battery_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (screen_ != 0) {
+        output.writeInt32(1, screen_);
+      }
+      if (battery_ != 0) {
+        output.writeInt32(2, battery_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (screen_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, screen_);
+      }
+      if (battery_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, battery_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.Ping)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.Ping other = (im.niu.data.Userinfo.Ping) obj;
+
+      if (getScreen()
+          != other.getScreen()) return false;
+      if (getBattery()
+          != other.getBattery()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SCREEN_FIELD_NUMBER;
+      hash = (53 * hash) + getScreen();
+      hash = (37 * hash) + BATTERY_FIELD_NUMBER;
+      hash = (53 * hash) + getBattery();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.Ping parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.Ping parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.Ping parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.Ping prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.Ping}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.Ping)
+        im.niu.data.Userinfo.PingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_Ping_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_Ping_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.Ping.class, im.niu.data.Userinfo.Ping.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.Ping.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        screen_ = 0;
+        battery_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_Ping_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.Ping getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.Ping.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.Ping build() {
+        im.niu.data.Userinfo.Ping result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.Ping buildPartial() {
+        im.niu.data.Userinfo.Ping result = new im.niu.data.Userinfo.Ping(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.Ping result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.screen_ = screen_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.battery_ = battery_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.Ping) {
+          return mergeFrom((im.niu.data.Userinfo.Ping)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.Ping other) {
+        if (other == im.niu.data.Userinfo.Ping.getDefaultInstance()) return this;
+        if (other.getScreen() != 0) {
+          setScreen(other.getScreen());
+        }
+        if (other.getBattery() != 0) {
+          setBattery(other.getBattery());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                screen_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                battery_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int screen_ ;
+      /**
+       * <pre>
+       * 屏幕
+       * </pre>
+       *
+       * <code>int32 screen = 1;</code>
+       * @return The screen.
+       */
+      @java.lang.Override
+      public int getScreen() {
+        return screen_;
+      }
+      /**
+       * <pre>
+       * 屏幕
+       * </pre>
+       *
+       * <code>int32 screen = 1;</code>
+       * @param value The screen to set.
+       * @return This builder for chaining.
+       */
+      public Builder setScreen(int value) {
+
+        screen_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 屏幕
+       * </pre>
+       *
+       * <code>int32 screen = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearScreen() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        screen_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int battery_ ;
+      /**
+       * <pre>
+       * 电量
+       * </pre>
+       *
+       * <code>int32 battery = 2;</code>
+       * @return The battery.
+       */
+      @java.lang.Override
+      public int getBattery() {
+        return battery_;
+      }
+      /**
+       * <pre>
+       * 电量
+       * </pre>
+       *
+       * <code>int32 battery = 2;</code>
+       * @param value The battery to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBattery(int value) {
+
+        battery_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 电量
+       * </pre>
+       *
+       * <code>int32 battery = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBattery() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        battery_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.Ping)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.Ping)
+    private static final im.niu.data.Userinfo.Ping DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.Ping();
+    }
+
+    public static im.niu.data.Userinfo.Ping getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Ping>
+        PARSER = new com.google.protobuf.AbstractParser<Ping>() {
+      @java.lang.Override
+      public Ping parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Ping> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Ping> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.Ping getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AppUseInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.AppUseInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string packageName = 1;</code>
+     * @return The packageName.
+     */
+    java.lang.String getPackageName();
+    /**
+     * <code>string packageName = 1;</code>
+     * @return The bytes for packageName.
+     */
+    com.google.protobuf.ByteString
+        getPackageNameBytes();
+
+    /**
+     * <code>int64 firstTimeStamp = 2;</code>
+     * @return The firstTimeStamp.
+     */
+    long getFirstTimeStamp();
+
+    /**
+     * <code>int64 lastTimeStamp = 3;</code>
+     * @return The lastTimeStamp.
+     */
+    long getLastTimeStamp();
+
+    /**
+     * <code>int64 lastTimeUsed = 4;</code>
+     * @return The lastTimeUsed.
+     */
+    long getLastTimeUsed();
+
+    /**
+     * <code>int64 totalTimeInForeground = 5;</code>
+     * @return The totalTimeInForeground.
+     */
+    long getTotalTimeInForeground();
+
+    /**
+     * <code>int64 totalTimeVisible = 6;</code>
+     * @return The totalTimeVisible.
+     */
+    long getTotalTimeVisible();
+  }
+  /**
+   * Protobuf type {@code im.niu.data.AppUseInfo}
+   */
+  public static final class AppUseInfo extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.AppUseInfo)
+      AppUseInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        AppUseInfo.class.getName());
+    }
+    // Use AppUseInfo.newBuilder() to construct.
+    private AppUseInfo(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private AppUseInfo() {
+      packageName_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.AppUseInfo.class, im.niu.data.Userinfo.AppUseInfo.Builder.class);
+    }
+
+    public static final int PACKAGENAME_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object packageName_ = "";
+    /**
+     * <code>string packageName = 1;</code>
+     * @return The packageName.
+     */
+    @java.lang.Override
+    public java.lang.String getPackageName() {
+      java.lang.Object ref = packageName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        packageName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string packageName = 1;</code>
+     * @return The bytes for packageName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPackageNameBytes() {
+      java.lang.Object ref = packageName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        packageName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FIRSTTIMESTAMP_FIELD_NUMBER = 2;
+    private long firstTimeStamp_ = 0L;
+    /**
+     * <code>int64 firstTimeStamp = 2;</code>
+     * @return The firstTimeStamp.
+     */
+    @java.lang.Override
+    public long getFirstTimeStamp() {
+      return firstTimeStamp_;
+    }
+
+    public static final int LASTTIMESTAMP_FIELD_NUMBER = 3;
+    private long lastTimeStamp_ = 0L;
+    /**
+     * <code>int64 lastTimeStamp = 3;</code>
+     * @return The lastTimeStamp.
+     */
+    @java.lang.Override
+    public long getLastTimeStamp() {
+      return lastTimeStamp_;
+    }
+
+    public static final int LASTTIMEUSED_FIELD_NUMBER = 4;
+    private long lastTimeUsed_ = 0L;
+    /**
+     * <code>int64 lastTimeUsed = 4;</code>
+     * @return The lastTimeUsed.
+     */
+    @java.lang.Override
+    public long getLastTimeUsed() {
+      return lastTimeUsed_;
+    }
+
+    public static final int TOTALTIMEINFOREGROUND_FIELD_NUMBER = 5;
+    private long totalTimeInForeground_ = 0L;
+    /**
+     * <code>int64 totalTimeInForeground = 5;</code>
+     * @return The totalTimeInForeground.
+     */
+    @java.lang.Override
+    public long getTotalTimeInForeground() {
+      return totalTimeInForeground_;
+    }
+
+    public static final int TOTALTIMEVISIBLE_FIELD_NUMBER = 6;
+    private long totalTimeVisible_ = 0L;
+    /**
+     * <code>int64 totalTimeVisible = 6;</code>
+     * @return The totalTimeVisible.
+     */
+    @java.lang.Override
+    public long getTotalTimeVisible() {
+      return totalTimeVisible_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, packageName_);
+      }
+      if (firstTimeStamp_ != 0L) {
+        output.writeInt64(2, firstTimeStamp_);
+      }
+      if (lastTimeStamp_ != 0L) {
+        output.writeInt64(3, lastTimeStamp_);
+      }
+      if (lastTimeUsed_ != 0L) {
+        output.writeInt64(4, lastTimeUsed_);
+      }
+      if (totalTimeInForeground_ != 0L) {
+        output.writeInt64(5, totalTimeInForeground_);
+      }
+      if (totalTimeVisible_ != 0L) {
+        output.writeInt64(6, totalTimeVisible_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, packageName_);
+      }
+      if (firstTimeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, firstTimeStamp_);
+      }
+      if (lastTimeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, lastTimeStamp_);
+      }
+      if (lastTimeUsed_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, lastTimeUsed_);
+      }
+      if (totalTimeInForeground_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, totalTimeInForeground_);
+      }
+      if (totalTimeVisible_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, totalTimeVisible_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.AppUseInfo)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.AppUseInfo other = (im.niu.data.Userinfo.AppUseInfo) obj;
+
+      if (!getPackageName()
+          .equals(other.getPackageName())) return false;
+      if (getFirstTimeStamp()
+          != other.getFirstTimeStamp()) return false;
+      if (getLastTimeStamp()
+          != other.getLastTimeStamp()) return false;
+      if (getLastTimeUsed()
+          != other.getLastTimeUsed()) return false;
+      if (getTotalTimeInForeground()
+          != other.getTotalTimeInForeground()) return false;
+      if (getTotalTimeVisible()
+          != other.getTotalTimeVisible()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PACKAGENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPackageName().hashCode();
+      hash = (37 * hash) + FIRSTTIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFirstTimeStamp());
+      hash = (37 * hash) + LASTTIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLastTimeStamp());
+      hash = (37 * hash) + LASTTIMEUSED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLastTimeUsed());
+      hash = (37 * hash) + TOTALTIMEINFOREGROUND_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTotalTimeInForeground());
+      hash = (37 * hash) + TOTALTIMEVISIBLE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTotalTimeVisible());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.AppUseInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.AppUseInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.AppUseInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.AppUseInfo)
+        im.niu.data.Userinfo.AppUseInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.AppUseInfo.class, im.niu.data.Userinfo.AppUseInfo.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.AppUseInfo.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        packageName_ = "";
+        firstTimeStamp_ = 0L;
+        lastTimeStamp_ = 0L;
+        lastTimeUsed_ = 0L;
+        totalTimeInForeground_ = 0L;
+        totalTimeVisible_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfo_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppUseInfo getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.AppUseInfo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppUseInfo build() {
+        im.niu.data.Userinfo.AppUseInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppUseInfo buildPartial() {
+        im.niu.data.Userinfo.AppUseInfo result = new im.niu.data.Userinfo.AppUseInfo(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.AppUseInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.packageName_ = packageName_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.firstTimeStamp_ = firstTimeStamp_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.lastTimeStamp_ = lastTimeStamp_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.lastTimeUsed_ = lastTimeUsed_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.totalTimeInForeground_ = totalTimeInForeground_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.totalTimeVisible_ = totalTimeVisible_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.AppUseInfo) {
+          return mergeFrom((im.niu.data.Userinfo.AppUseInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.AppUseInfo other) {
+        if (other == im.niu.data.Userinfo.AppUseInfo.getDefaultInstance()) return this;
+        if (!other.getPackageName().isEmpty()) {
+          packageName_ = other.packageName_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (other.getFirstTimeStamp() != 0L) {
+          setFirstTimeStamp(other.getFirstTimeStamp());
+        }
+        if (other.getLastTimeStamp() != 0L) {
+          setLastTimeStamp(other.getLastTimeStamp());
+        }
+        if (other.getLastTimeUsed() != 0L) {
+          setLastTimeUsed(other.getLastTimeUsed());
+        }
+        if (other.getTotalTimeInForeground() != 0L) {
+          setTotalTimeInForeground(other.getTotalTimeInForeground());
+        }
+        if (other.getTotalTimeVisible() != 0L) {
+          setTotalTimeVisible(other.getTotalTimeVisible());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                packageName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                firstTimeStamp_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                lastTimeStamp_ = input.readInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                lastTimeUsed_ = input.readInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                totalTimeInForeground_ = input.readInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                totalTimeVisible_ = input.readInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object packageName_ = "";
+      /**
+       * <code>string packageName = 1;</code>
+       * @return The packageName.
+       */
+      public java.lang.String getPackageName() {
+        java.lang.Object ref = packageName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          packageName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string packageName = 1;</code>
+       * @return The bytes for packageName.
+       */
+      public com.google.protobuf.ByteString
+          getPackageNameBytes() {
+        java.lang.Object ref = packageName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          packageName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string packageName = 1;</code>
+       * @param value The packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        packageName_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string packageName = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPackageName() {
+        packageName_ = getDefaultInstance().getPackageName();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string packageName = 1;</code>
+       * @param value The bytes for packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        packageName_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private long firstTimeStamp_ ;
+      /**
+       * <code>int64 firstTimeStamp = 2;</code>
+       * @return The firstTimeStamp.
+       */
+      @java.lang.Override
+      public long getFirstTimeStamp() {
+        return firstTimeStamp_;
+      }
+      /**
+       * <code>int64 firstTimeStamp = 2;</code>
+       * @param value The firstTimeStamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFirstTimeStamp(long value) {
+
+        firstTimeStamp_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 firstTimeStamp = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFirstTimeStamp() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        firstTimeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long lastTimeStamp_ ;
+      /**
+       * <code>int64 lastTimeStamp = 3;</code>
+       * @return The lastTimeStamp.
+       */
+      @java.lang.Override
+      public long getLastTimeStamp() {
+        return lastTimeStamp_;
+      }
+      /**
+       * <code>int64 lastTimeStamp = 3;</code>
+       * @param value The lastTimeStamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastTimeStamp(long value) {
+
+        lastTimeStamp_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 lastTimeStamp = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastTimeStamp() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        lastTimeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long lastTimeUsed_ ;
+      /**
+       * <code>int64 lastTimeUsed = 4;</code>
+       * @return The lastTimeUsed.
+       */
+      @java.lang.Override
+      public long getLastTimeUsed() {
+        return lastTimeUsed_;
+      }
+      /**
+       * <code>int64 lastTimeUsed = 4;</code>
+       * @param value The lastTimeUsed to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastTimeUsed(long value) {
+
+        lastTimeUsed_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 lastTimeUsed = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastTimeUsed() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        lastTimeUsed_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long totalTimeInForeground_ ;
+      /**
+       * <code>int64 totalTimeInForeground = 5;</code>
+       * @return The totalTimeInForeground.
+       */
+      @java.lang.Override
+      public long getTotalTimeInForeground() {
+        return totalTimeInForeground_;
+      }
+      /**
+       * <code>int64 totalTimeInForeground = 5;</code>
+       * @param value The totalTimeInForeground to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTotalTimeInForeground(long value) {
+
+        totalTimeInForeground_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 totalTimeInForeground = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTotalTimeInForeground() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        totalTimeInForeground_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long totalTimeVisible_ ;
+      /**
+       * <code>int64 totalTimeVisible = 6;</code>
+       * @return The totalTimeVisible.
+       */
+      @java.lang.Override
+      public long getTotalTimeVisible() {
+        return totalTimeVisible_;
+      }
+      /**
+       * <code>int64 totalTimeVisible = 6;</code>
+       * @param value The totalTimeVisible to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTotalTimeVisible(long value) {
+
+        totalTimeVisible_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 totalTimeVisible = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTotalTimeVisible() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        totalTimeVisible_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.AppUseInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.AppUseInfo)
+    private static final im.niu.data.Userinfo.AppUseInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.AppUseInfo();
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AppUseInfo>
+        PARSER = new com.google.protobuf.AbstractParser<AppUseInfo>() {
+      @java.lang.Override
+      public AppUseInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<AppUseInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AppUseInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.AppUseInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AppUseInfoListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.AppUseInfoList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    java.util.List<im.niu.data.Userinfo.AppUseInfo> 
+        getAppUseInfoList();
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    im.niu.data.Userinfo.AppUseInfo getAppUseInfo(int index);
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    int getAppUseInfoCount();
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    java.util.List<? extends im.niu.data.Userinfo.AppUseInfoOrBuilder> 
+        getAppUseInfoOrBuilderList();
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    im.niu.data.Userinfo.AppUseInfoOrBuilder getAppUseInfoOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code im.niu.data.AppUseInfoList}
+   */
+  public static final class AppUseInfoList extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.AppUseInfoList)
+      AppUseInfoListOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        AppUseInfoList.class.getName());
+    }
+    // Use AppUseInfoList.newBuilder() to construct.
+    private AppUseInfoList(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private AppUseInfoList() {
+      appUseInfo_ = java.util.Collections.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfoList_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfoList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.AppUseInfoList.class, im.niu.data.Userinfo.AppUseInfoList.Builder.class);
+    }
+
+    public static final int APPUSEINFO_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<im.niu.data.Userinfo.AppUseInfo> appUseInfo_;
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<im.niu.data.Userinfo.AppUseInfo> getAppUseInfoList() {
+      return appUseInfo_;
+    }
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends im.niu.data.Userinfo.AppUseInfoOrBuilder> 
+        getAppUseInfoOrBuilderList() {
+      return appUseInfo_;
+    }
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    @java.lang.Override
+    public int getAppUseInfoCount() {
+      return appUseInfo_.size();
+    }
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    @java.lang.Override
+    public im.niu.data.Userinfo.AppUseInfo getAppUseInfo(int index) {
+      return appUseInfo_.get(index);
+    }
+    /**
+     * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+     */
+    @java.lang.Override
+    public im.niu.data.Userinfo.AppUseInfoOrBuilder getAppUseInfoOrBuilder(
+        int index) {
+      return appUseInfo_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < appUseInfo_.size(); i++) {
+        output.writeMessage(1, appUseInfo_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < appUseInfo_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, appUseInfo_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.AppUseInfoList)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.AppUseInfoList other = (im.niu.data.Userinfo.AppUseInfoList) obj;
+
+      if (!getAppUseInfoList()
+          .equals(other.getAppUseInfoList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getAppUseInfoCount() > 0) {
+        hash = (37 * hash) + APPUSEINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getAppUseInfoList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfoList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfoList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.AppUseInfoList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.AppUseInfoList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.AppUseInfoList}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.AppUseInfoList)
+        im.niu.data.Userinfo.AppUseInfoListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfoList_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfoList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.AppUseInfoList.class, im.niu.data.Userinfo.AppUseInfoList.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.AppUseInfoList.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (appUseInfoBuilder_ == null) {
+          appUseInfo_ = java.util.Collections.emptyList();
+        } else {
+          appUseInfo_ = null;
+          appUseInfoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppUseInfoList_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppUseInfoList getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.AppUseInfoList.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppUseInfoList build() {
+        im.niu.data.Userinfo.AppUseInfoList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppUseInfoList buildPartial() {
+        im.niu.data.Userinfo.AppUseInfoList result = new im.niu.data.Userinfo.AppUseInfoList(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(im.niu.data.Userinfo.AppUseInfoList result) {
+        if (appUseInfoBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            appUseInfo_ = java.util.Collections.unmodifiableList(appUseInfo_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.appUseInfo_ = appUseInfo_;
+        } else {
+          result.appUseInfo_ = appUseInfoBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.AppUseInfoList result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.AppUseInfoList) {
+          return mergeFrom((im.niu.data.Userinfo.AppUseInfoList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.AppUseInfoList other) {
+        if (other == im.niu.data.Userinfo.AppUseInfoList.getDefaultInstance()) return this;
+        if (appUseInfoBuilder_ == null) {
+          if (!other.appUseInfo_.isEmpty()) {
+            if (appUseInfo_.isEmpty()) {
+              appUseInfo_ = other.appUseInfo_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureAppUseInfoIsMutable();
+              appUseInfo_.addAll(other.appUseInfo_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.appUseInfo_.isEmpty()) {
+            if (appUseInfoBuilder_.isEmpty()) {
+              appUseInfoBuilder_.dispose();
+              appUseInfoBuilder_ = null;
+              appUseInfo_ = other.appUseInfo_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              appUseInfoBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAppUseInfoFieldBuilder() : null;
+            } else {
+              appUseInfoBuilder_.addAllMessages(other.appUseInfo_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                im.niu.data.Userinfo.AppUseInfo m =
+                    input.readMessage(
+                        im.niu.data.Userinfo.AppUseInfo.parser(),
+                        extensionRegistry);
+                if (appUseInfoBuilder_ == null) {
+                  ensureAppUseInfoIsMutable();
+                  appUseInfo_.add(m);
+                } else {
+                  appUseInfoBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<im.niu.data.Userinfo.AppUseInfo> appUseInfo_ =
+        java.util.Collections.emptyList();
+      private void ensureAppUseInfoIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          appUseInfo_ = new java.util.ArrayList<im.niu.data.Userinfo.AppUseInfo>(appUseInfo_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          im.niu.data.Userinfo.AppUseInfo, im.niu.data.Userinfo.AppUseInfo.Builder, im.niu.data.Userinfo.AppUseInfoOrBuilder> appUseInfoBuilder_;
+
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public java.util.List<im.niu.data.Userinfo.AppUseInfo> getAppUseInfoList() {
+        if (appUseInfoBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(appUseInfo_);
+        } else {
+          return appUseInfoBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public int getAppUseInfoCount() {
+        if (appUseInfoBuilder_ == null) {
+          return appUseInfo_.size();
+        } else {
+          return appUseInfoBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public im.niu.data.Userinfo.AppUseInfo getAppUseInfo(int index) {
+        if (appUseInfoBuilder_ == null) {
+          return appUseInfo_.get(index);
+        } else {
+          return appUseInfoBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder setAppUseInfo(
+          int index, im.niu.data.Userinfo.AppUseInfo value) {
+        if (appUseInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.set(index, value);
+          onChanged();
+        } else {
+          appUseInfoBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder setAppUseInfo(
+          int index, im.niu.data.Userinfo.AppUseInfo.Builder builderForValue) {
+        if (appUseInfoBuilder_ == null) {
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          appUseInfoBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder addAppUseInfo(im.niu.data.Userinfo.AppUseInfo value) {
+        if (appUseInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.add(value);
+          onChanged();
+        } else {
+          appUseInfoBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder addAppUseInfo(
+          int index, im.niu.data.Userinfo.AppUseInfo value) {
+        if (appUseInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.add(index, value);
+          onChanged();
+        } else {
+          appUseInfoBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder addAppUseInfo(
+          im.niu.data.Userinfo.AppUseInfo.Builder builderForValue) {
+        if (appUseInfoBuilder_ == null) {
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.add(builderForValue.build());
+          onChanged();
+        } else {
+          appUseInfoBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder addAppUseInfo(
+          int index, im.niu.data.Userinfo.AppUseInfo.Builder builderForValue) {
+        if (appUseInfoBuilder_ == null) {
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          appUseInfoBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder addAllAppUseInfo(
+          java.lang.Iterable<? extends im.niu.data.Userinfo.AppUseInfo> values) {
+        if (appUseInfoBuilder_ == null) {
+          ensureAppUseInfoIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, appUseInfo_);
+          onChanged();
+        } else {
+          appUseInfoBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder clearAppUseInfo() {
+        if (appUseInfoBuilder_ == null) {
+          appUseInfo_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          appUseInfoBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public Builder removeAppUseInfo(int index) {
+        if (appUseInfoBuilder_ == null) {
+          ensureAppUseInfoIsMutable();
+          appUseInfo_.remove(index);
+          onChanged();
+        } else {
+          appUseInfoBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public im.niu.data.Userinfo.AppUseInfo.Builder getAppUseInfoBuilder(
+          int index) {
+        return getAppUseInfoFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public im.niu.data.Userinfo.AppUseInfoOrBuilder getAppUseInfoOrBuilder(
+          int index) {
+        if (appUseInfoBuilder_ == null) {
+          return appUseInfo_.get(index);  } else {
+          return appUseInfoBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public java.util.List<? extends im.niu.data.Userinfo.AppUseInfoOrBuilder> 
+           getAppUseInfoOrBuilderList() {
+        if (appUseInfoBuilder_ != null) {
+          return appUseInfoBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(appUseInfo_);
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public im.niu.data.Userinfo.AppUseInfo.Builder addAppUseInfoBuilder() {
+        return getAppUseInfoFieldBuilder().addBuilder(
+            im.niu.data.Userinfo.AppUseInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public im.niu.data.Userinfo.AppUseInfo.Builder addAppUseInfoBuilder(
+          int index) {
+        return getAppUseInfoFieldBuilder().addBuilder(
+            index, im.niu.data.Userinfo.AppUseInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .im.niu.data.AppUseInfo appUseInfo = 1;</code>
+       */
+      public java.util.List<im.niu.data.Userinfo.AppUseInfo.Builder> 
+           getAppUseInfoBuilderList() {
+        return getAppUseInfoFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          im.niu.data.Userinfo.AppUseInfo, im.niu.data.Userinfo.AppUseInfo.Builder, im.niu.data.Userinfo.AppUseInfoOrBuilder> 
+          getAppUseInfoFieldBuilder() {
+        if (appUseInfoBuilder_ == null) {
+          appUseInfoBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              im.niu.data.Userinfo.AppUseInfo, im.niu.data.Userinfo.AppUseInfo.Builder, im.niu.data.Userinfo.AppUseInfoOrBuilder>(
+                  appUseInfo_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          appUseInfo_ = null;
+        }
+        return appUseInfoBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.AppUseInfoList)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.AppUseInfoList)
+    private static final im.niu.data.Userinfo.AppUseInfoList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.AppUseInfoList();
+    }
+
+    public static im.niu.data.Userinfo.AppUseInfoList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AppUseInfoList>
+        PARSER = new com.google.protobuf.AbstractParser<AppUseInfoList>() {
+      @java.lang.Override
+      public AppUseInfoList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<AppUseInfoList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AppUseInfoList> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.AppUseInfoList getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UsageEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.UsageEvent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 eventType = 1;</code>
+     * @return The eventType.
+     */
+    int getEventType();
+
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The packageName.
+     */
+    java.lang.String getPackageName();
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The bytes for packageName.
+     */
+    com.google.protobuf.ByteString
+        getPackageNameBytes();
+
+    /**
+     * <code>int64 timeStamp = 3;</code>
+     * @return The timeStamp.
+     */
+    long getTimeStamp();
+
+    /**
+     * <code>string className = 4;</code>
+     * @return The className.
+     */
+    java.lang.String getClassName();
+    /**
+     * <code>string className = 4;</code>
+     * @return The bytes for className.
+     */
+    com.google.protobuf.ByteString
+        getClassNameBytes();
+  }
+  /**
+   * Protobuf type {@code im.niu.data.UsageEvent}
+   */
+  public static final class UsageEvent extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.UsageEvent)
+      UsageEventOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        UsageEvent.class.getName());
+    }
+    // Use UsageEvent.newBuilder() to construct.
+    private UsageEvent(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private UsageEvent() {
+      packageName_ = "";
+      className_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEvent_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEvent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.UsageEvent.class, im.niu.data.Userinfo.UsageEvent.Builder.class);
+    }
+
+    public static final int EVENTTYPE_FIELD_NUMBER = 1;
+    private int eventType_ = 0;
+    /**
+     * <code>int32 eventType = 1;</code>
+     * @return The eventType.
+     */
+    @java.lang.Override
+    public int getEventType() {
+      return eventType_;
+    }
+
+    public static final int PACKAGENAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object packageName_ = "";
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The packageName.
+     */
+    @java.lang.Override
+    public java.lang.String getPackageName() {
+      java.lang.Object ref = packageName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        packageName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The bytes for packageName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPackageNameBytes() {
+      java.lang.Object ref = packageName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        packageName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 3;
+    private long timeStamp_ = 0L;
+    /**
+     * <code>int64 timeStamp = 3;</code>
+     * @return The timeStamp.
+     */
+    @java.lang.Override
+    public long getTimeStamp() {
+      return timeStamp_;
+    }
+
+    public static final int CLASSNAME_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object className_ = "";
+    /**
+     * <code>string className = 4;</code>
+     * @return The className.
+     */
+    @java.lang.Override
+    public java.lang.String getClassName() {
+      java.lang.Object ref = className_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        className_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string className = 4;</code>
+     * @return The bytes for className.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getClassNameBytes() {
+      java.lang.Object ref = className_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        className_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (eventType_ != 0) {
+        output.writeInt32(1, eventType_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, packageName_);
+      }
+      if (timeStamp_ != 0L) {
+        output.writeInt64(3, timeStamp_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(className_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, className_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (eventType_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, eventType_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, packageName_);
+      }
+      if (timeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, timeStamp_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(className_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, className_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.UsageEvent)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.UsageEvent other = (im.niu.data.Userinfo.UsageEvent) obj;
+
+      if (getEventType()
+          != other.getEventType()) return false;
+      if (!getPackageName()
+          .equals(other.getPackageName())) return false;
+      if (getTimeStamp()
+          != other.getTimeStamp()) return false;
+      if (!getClassName()
+          .equals(other.getClassName())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + EVENTTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getEventType();
+      hash = (37 * hash) + PACKAGENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPackageName().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStamp());
+      hash = (37 * hash) + CLASSNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getClassName().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.UsageEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.UsageEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.UsageEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.UsageEvent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.UsageEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.UsageEvent)
+        im.niu.data.Userinfo.UsageEventOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEvent_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEvent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.UsageEvent.class, im.niu.data.Userinfo.UsageEvent.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.UsageEvent.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        eventType_ = 0;
+        packageName_ = "";
+        timeStamp_ = 0L;
+        className_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEvent_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.UsageEvent getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.UsageEvent.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.UsageEvent build() {
+        im.niu.data.Userinfo.UsageEvent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.UsageEvent buildPartial() {
+        im.niu.data.Userinfo.UsageEvent result = new im.niu.data.Userinfo.UsageEvent(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.UsageEvent result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.eventType_ = eventType_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.packageName_ = packageName_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.timeStamp_ = timeStamp_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.className_ = className_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.UsageEvent) {
+          return mergeFrom((im.niu.data.Userinfo.UsageEvent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.UsageEvent other) {
+        if (other == im.niu.data.Userinfo.UsageEvent.getDefaultInstance()) return this;
+        if (other.getEventType() != 0) {
+          setEventType(other.getEventType());
+        }
+        if (!other.getPackageName().isEmpty()) {
+          packageName_ = other.packageName_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getTimeStamp() != 0L) {
+          setTimeStamp(other.getTimeStamp());
+        }
+        if (!other.getClassName().isEmpty()) {
+          className_ = other.className_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                eventType_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                packageName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                timeStamp_ = input.readInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                className_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int eventType_ ;
+      /**
+       * <code>int32 eventType = 1;</code>
+       * @return The eventType.
+       */
+      @java.lang.Override
+      public int getEventType() {
+        return eventType_;
+      }
+      /**
+       * <code>int32 eventType = 1;</code>
+       * @param value The eventType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEventType(int value) {
+
+        eventType_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 eventType = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEventType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        eventType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object packageName_ = "";
+      /**
+       * <code>string packageName = 2;</code>
+       * @return The packageName.
+       */
+      public java.lang.String getPackageName() {
+        java.lang.Object ref = packageName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          packageName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @return The bytes for packageName.
+       */
+      public com.google.protobuf.ByteString
+          getPackageNameBytes() {
+        java.lang.Object ref = packageName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          packageName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @param value The packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        packageName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPackageName() {
+        packageName_ = getDefaultInstance().getPackageName();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @param value The bytes for packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        packageName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private long timeStamp_ ;
+      /**
+       * <code>int64 timeStamp = 3;</code>
+       * @return The timeStamp.
+       */
+      @java.lang.Override
+      public long getTimeStamp() {
+        return timeStamp_;
+      }
+      /**
+       * <code>int64 timeStamp = 3;</code>
+       * @param value The timeStamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeStamp(long value) {
+
+        timeStamp_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 timeStamp = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeStamp() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        timeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object className_ = "";
+      /**
+       * <code>string className = 4;</code>
+       * @return The className.
+       */
+      public java.lang.String getClassName() {
+        java.lang.Object ref = className_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          className_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string className = 4;</code>
+       * @return The bytes for className.
+       */
+      public com.google.protobuf.ByteString
+          getClassNameBytes() {
+        java.lang.Object ref = className_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          className_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string className = 4;</code>
+       * @param value The className to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClassName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        className_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string className = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClassName() {
+        className_ = getDefaultInstance().getClassName();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string className = 4;</code>
+       * @param value The bytes for className to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClassNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        className_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.UsageEvent)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.UsageEvent)
+    private static final im.niu.data.Userinfo.UsageEvent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.UsageEvent();
+    }
+
+    public static im.niu.data.Userinfo.UsageEvent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UsageEvent>
+        PARSER = new com.google.protobuf.AbstractParser<UsageEvent>() {
+      @java.lang.Override
+      public UsageEvent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<UsageEvent> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UsageEvent> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.UsageEvent getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UsageEventListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.UsageEventList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    java.util.List<im.niu.data.Userinfo.UsageEvent> 
+        getUsageEventList();
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    im.niu.data.Userinfo.UsageEvent getUsageEvent(int index);
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    int getUsageEventCount();
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    java.util.List<? extends im.niu.data.Userinfo.UsageEventOrBuilder> 
+        getUsageEventOrBuilderList();
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    im.niu.data.Userinfo.UsageEventOrBuilder getUsageEventOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code im.niu.data.UsageEventList}
+   */
+  public static final class UsageEventList extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.UsageEventList)
+      UsageEventListOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        UsageEventList.class.getName());
+    }
+    // Use UsageEventList.newBuilder() to construct.
+    private UsageEventList(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private UsageEventList() {
+      usageEvent_ = java.util.Collections.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEventList_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEventList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.UsageEventList.class, im.niu.data.Userinfo.UsageEventList.Builder.class);
+    }
+
+    public static final int USAGEEVENT_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<im.niu.data.Userinfo.UsageEvent> usageEvent_;
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<im.niu.data.Userinfo.UsageEvent> getUsageEventList() {
+      return usageEvent_;
+    }
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends im.niu.data.Userinfo.UsageEventOrBuilder> 
+        getUsageEventOrBuilderList() {
+      return usageEvent_;
+    }
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    @java.lang.Override
+    public int getUsageEventCount() {
+      return usageEvent_.size();
+    }
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    @java.lang.Override
+    public im.niu.data.Userinfo.UsageEvent getUsageEvent(int index) {
+      return usageEvent_.get(index);
+    }
+    /**
+     * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+     */
+    @java.lang.Override
+    public im.niu.data.Userinfo.UsageEventOrBuilder getUsageEventOrBuilder(
+        int index) {
+      return usageEvent_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < usageEvent_.size(); i++) {
+        output.writeMessage(1, usageEvent_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < usageEvent_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, usageEvent_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.UsageEventList)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.UsageEventList other = (im.niu.data.Userinfo.UsageEventList) obj;
+
+      if (!getUsageEventList()
+          .equals(other.getUsageEventList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getUsageEventCount() > 0) {
+        hash = (37 * hash) + USAGEEVENT_FIELD_NUMBER;
+        hash = (53 * hash) + getUsageEventList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.UsageEventList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.UsageEventList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.UsageEventList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.UsageEventList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.UsageEventList}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.UsageEventList)
+        im.niu.data.Userinfo.UsageEventListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEventList_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEventList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.UsageEventList.class, im.niu.data.Userinfo.UsageEventList.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.UsageEventList.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (usageEventBuilder_ == null) {
+          usageEvent_ = java.util.Collections.emptyList();
+        } else {
+          usageEvent_ = null;
+          usageEventBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_UsageEventList_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.UsageEventList getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.UsageEventList.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.UsageEventList build() {
+        im.niu.data.Userinfo.UsageEventList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.UsageEventList buildPartial() {
+        im.niu.data.Userinfo.UsageEventList result = new im.niu.data.Userinfo.UsageEventList(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(im.niu.data.Userinfo.UsageEventList result) {
+        if (usageEventBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            usageEvent_ = java.util.Collections.unmodifiableList(usageEvent_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.usageEvent_ = usageEvent_;
+        } else {
+          result.usageEvent_ = usageEventBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.UsageEventList result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.UsageEventList) {
+          return mergeFrom((im.niu.data.Userinfo.UsageEventList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.UsageEventList other) {
+        if (other == im.niu.data.Userinfo.UsageEventList.getDefaultInstance()) return this;
+        if (usageEventBuilder_ == null) {
+          if (!other.usageEvent_.isEmpty()) {
+            if (usageEvent_.isEmpty()) {
+              usageEvent_ = other.usageEvent_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureUsageEventIsMutable();
+              usageEvent_.addAll(other.usageEvent_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.usageEvent_.isEmpty()) {
+            if (usageEventBuilder_.isEmpty()) {
+              usageEventBuilder_.dispose();
+              usageEventBuilder_ = null;
+              usageEvent_ = other.usageEvent_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              usageEventBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getUsageEventFieldBuilder() : null;
+            } else {
+              usageEventBuilder_.addAllMessages(other.usageEvent_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                im.niu.data.Userinfo.UsageEvent m =
+                    input.readMessage(
+                        im.niu.data.Userinfo.UsageEvent.parser(),
+                        extensionRegistry);
+                if (usageEventBuilder_ == null) {
+                  ensureUsageEventIsMutable();
+                  usageEvent_.add(m);
+                } else {
+                  usageEventBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<im.niu.data.Userinfo.UsageEvent> usageEvent_ =
+        java.util.Collections.emptyList();
+      private void ensureUsageEventIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          usageEvent_ = new java.util.ArrayList<im.niu.data.Userinfo.UsageEvent>(usageEvent_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          im.niu.data.Userinfo.UsageEvent, im.niu.data.Userinfo.UsageEvent.Builder, im.niu.data.Userinfo.UsageEventOrBuilder> usageEventBuilder_;
+
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public java.util.List<im.niu.data.Userinfo.UsageEvent> getUsageEventList() {
+        if (usageEventBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(usageEvent_);
+        } else {
+          return usageEventBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public int getUsageEventCount() {
+        if (usageEventBuilder_ == null) {
+          return usageEvent_.size();
+        } else {
+          return usageEventBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public im.niu.data.Userinfo.UsageEvent getUsageEvent(int index) {
+        if (usageEventBuilder_ == null) {
+          return usageEvent_.get(index);
+        } else {
+          return usageEventBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder setUsageEvent(
+          int index, im.niu.data.Userinfo.UsageEvent value) {
+        if (usageEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUsageEventIsMutable();
+          usageEvent_.set(index, value);
+          onChanged();
+        } else {
+          usageEventBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder setUsageEvent(
+          int index, im.niu.data.Userinfo.UsageEvent.Builder builderForValue) {
+        if (usageEventBuilder_ == null) {
+          ensureUsageEventIsMutable();
+          usageEvent_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          usageEventBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder addUsageEvent(im.niu.data.Userinfo.UsageEvent value) {
+        if (usageEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUsageEventIsMutable();
+          usageEvent_.add(value);
+          onChanged();
+        } else {
+          usageEventBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder addUsageEvent(
+          int index, im.niu.data.Userinfo.UsageEvent value) {
+        if (usageEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUsageEventIsMutable();
+          usageEvent_.add(index, value);
+          onChanged();
+        } else {
+          usageEventBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder addUsageEvent(
+          im.niu.data.Userinfo.UsageEvent.Builder builderForValue) {
+        if (usageEventBuilder_ == null) {
+          ensureUsageEventIsMutable();
+          usageEvent_.add(builderForValue.build());
+          onChanged();
+        } else {
+          usageEventBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder addUsageEvent(
+          int index, im.niu.data.Userinfo.UsageEvent.Builder builderForValue) {
+        if (usageEventBuilder_ == null) {
+          ensureUsageEventIsMutable();
+          usageEvent_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          usageEventBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder addAllUsageEvent(
+          java.lang.Iterable<? extends im.niu.data.Userinfo.UsageEvent> values) {
+        if (usageEventBuilder_ == null) {
+          ensureUsageEventIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, usageEvent_);
+          onChanged();
+        } else {
+          usageEventBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder clearUsageEvent() {
+        if (usageEventBuilder_ == null) {
+          usageEvent_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          usageEventBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public Builder removeUsageEvent(int index) {
+        if (usageEventBuilder_ == null) {
+          ensureUsageEventIsMutable();
+          usageEvent_.remove(index);
+          onChanged();
+        } else {
+          usageEventBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public im.niu.data.Userinfo.UsageEvent.Builder getUsageEventBuilder(
+          int index) {
+        return getUsageEventFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public im.niu.data.Userinfo.UsageEventOrBuilder getUsageEventOrBuilder(
+          int index) {
+        if (usageEventBuilder_ == null) {
+          return usageEvent_.get(index);  } else {
+          return usageEventBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public java.util.List<? extends im.niu.data.Userinfo.UsageEventOrBuilder> 
+           getUsageEventOrBuilderList() {
+        if (usageEventBuilder_ != null) {
+          return usageEventBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(usageEvent_);
+        }
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public im.niu.data.Userinfo.UsageEvent.Builder addUsageEventBuilder() {
+        return getUsageEventFieldBuilder().addBuilder(
+            im.niu.data.Userinfo.UsageEvent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public im.niu.data.Userinfo.UsageEvent.Builder addUsageEventBuilder(
+          int index) {
+        return getUsageEventFieldBuilder().addBuilder(
+            index, im.niu.data.Userinfo.UsageEvent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .im.niu.data.UsageEvent usageEvent = 1;</code>
+       */
+      public java.util.List<im.niu.data.Userinfo.UsageEvent.Builder> 
+           getUsageEventBuilderList() {
+        return getUsageEventFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          im.niu.data.Userinfo.UsageEvent, im.niu.data.Userinfo.UsageEvent.Builder, im.niu.data.Userinfo.UsageEventOrBuilder> 
+          getUsageEventFieldBuilder() {
+        if (usageEventBuilder_ == null) {
+          usageEventBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              im.niu.data.Userinfo.UsageEvent, im.niu.data.Userinfo.UsageEvent.Builder, im.niu.data.Userinfo.UsageEventOrBuilder>(
+                  usageEvent_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          usageEvent_ = null;
+        }
+        return usageEventBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.UsageEventList)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.UsageEventList)
+    private static final im.niu.data.Userinfo.UsageEventList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.UsageEventList();
+    }
+
+    public static im.niu.data.Userinfo.UsageEventList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UsageEventList>
+        PARSER = new com.google.protobuf.AbstractParser<UsageEventList>() {
+      @java.lang.Override
+      public UsageEventList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<UsageEventList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UsageEventList> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.UsageEventList getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AppSettingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.AppSetting)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 id = 1;</code>
+     * @return The id.
+     */
+    long getId();
+
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The packageName.
+     */
+    java.lang.String getPackageName();
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The bytes for packageName.
+     */
+    com.google.protobuf.ByteString
+        getPackageNameBytes();
+
+    /**
+     * <code>int32 type = 3;</code>
+     * @return The type.
+     */
+    int getType();
+
+    /**
+     * <pre>
+     * 版本号,用于同步客户端数据
+     * </pre>
+     *
+     * <code>int32 version = 4;</code>
+     * @return The version.
+     */
+    int getVersion();
+
+    /**
+     * <code>optional uint32 timeLimit = 5;</code>
+     * @return Whether the timeLimit field is set.
+     */
+    boolean hasTimeLimit();
+    /**
+     * <code>optional uint32 timeLimit = 5;</code>
+     * @return The timeLimit.
+     */
+    int getTimeLimit();
+  }
+  /**
+   * Protobuf type {@code im.niu.data.AppSetting}
+   */
+  public static final class AppSetting extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.AppSetting)
+      AppSettingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        AppSetting.class.getName());
+    }
+    // Use AppSetting.newBuilder() to construct.
+    private AppSetting(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private AppSetting() {
+      packageName_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_AppSetting_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_AppSetting_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.AppSetting.class, im.niu.data.Userinfo.AppSetting.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private long id_ = 0L;
+    /**
+     * <code>uint64 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public long getId() {
+      return id_;
+    }
+
+    public static final int PACKAGENAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object packageName_ = "";
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The packageName.
+     */
+    @java.lang.Override
+    public java.lang.String getPackageName() {
+      java.lang.Object ref = packageName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        packageName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string packageName = 2;</code>
+     * @return The bytes for packageName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPackageNameBytes() {
+      java.lang.Object ref = packageName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        packageName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_ = 0;
+    /**
+     * <code>int32 type = 3;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public int getType() {
+      return type_;
+    }
+
+    public static final int VERSION_FIELD_NUMBER = 4;
+    private int version_ = 0;
+    /**
+     * <pre>
+     * 版本号,用于同步客户端数据
+     * </pre>
+     *
+     * <code>int32 version = 4;</code>
+     * @return The version.
+     */
+    @java.lang.Override
+    public int getVersion() {
+      return version_;
+    }
+
+    public static final int TIMELIMIT_FIELD_NUMBER = 5;
+    private int timeLimit_ = 0;
+    /**
+     * <code>optional uint32 timeLimit = 5;</code>
+     * @return Whether the timeLimit field is set.
+     */
+    @java.lang.Override
+    public boolean hasTimeLimit() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional uint32 timeLimit = 5;</code>
+     * @return The timeLimit.
+     */
+    @java.lang.Override
+    public int getTimeLimit() {
+      return timeLimit_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0L) {
+        output.writeUInt64(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, packageName_);
+      }
+      if (type_ != 0) {
+        output.writeInt32(3, type_);
+      }
+      if (version_ != 0) {
+        output.writeInt32(4, version_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeUInt32(5, timeLimit_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(packageName_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, packageName_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, type_);
+      }
+      if (version_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, version_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, timeLimit_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.AppSetting)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.AppSetting other = (im.niu.data.Userinfo.AppSetting) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (!getPackageName()
+          .equals(other.getPackageName())) return false;
+      if (getType()
+          != other.getType()) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
+      if (hasTimeLimit() != other.hasTimeLimit()) return false;
+      if (hasTimeLimit()) {
+        if (getTimeLimit()
+            != other.getTimeLimit()) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + PACKAGENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPackageName().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getVersion();
+      if (hasTimeLimit()) {
+        hash = (37 * hash) + TIMELIMIT_FIELD_NUMBER;
+        hash = (53 * hash) + getTimeLimit();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.AppSetting parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.AppSetting parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.AppSetting parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.AppSetting prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.AppSetting}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.AppSetting)
+        im.niu.data.Userinfo.AppSettingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppSetting_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppSetting_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.AppSetting.class, im.niu.data.Userinfo.AppSetting.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.AppSetting.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        id_ = 0L;
+        packageName_ = "";
+        type_ = 0;
+        version_ = 0;
+        timeLimit_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_AppSetting_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppSetting getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.AppSetting.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppSetting build() {
+        im.niu.data.Userinfo.AppSetting result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.AppSetting buildPartial() {
+        im.niu.data.Userinfo.AppSetting result = new im.niu.data.Userinfo.AppSetting(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.AppSetting result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.packageName_ = packageName_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.version_ = version_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.timeLimit_ = timeLimit_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.AppSetting) {
+          return mergeFrom((im.niu.data.Userinfo.AppSetting)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.AppSetting other) {
+        if (other == im.niu.data.Userinfo.AppSetting.getDefaultInstance()) return this;
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (!other.getPackageName().isEmpty()) {
+          packageName_ = other.packageName_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (other.getVersion() != 0) {
+          setVersion(other.getVersion());
+        }
+        if (other.hasTimeLimit()) {
+          setTimeLimit(other.getTimeLimit());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                id_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                packageName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                type_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                version_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                timeLimit_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private long id_ ;
+      /**
+       * <code>uint64 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <code>uint64 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(long value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object packageName_ = "";
+      /**
+       * <code>string packageName = 2;</code>
+       * @return The packageName.
+       */
+      public java.lang.String getPackageName() {
+        java.lang.Object ref = packageName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          packageName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @return The bytes for packageName.
+       */
+      public com.google.protobuf.ByteString
+          getPackageNameBytes() {
+        java.lang.Object ref = packageName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          packageName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @param value The packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        packageName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPackageName() {
+        packageName_ = getDefaultInstance().getPackageName();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string packageName = 2;</code>
+       * @param value The bytes for packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        packageName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <code>int32 type = 3;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>int32 type = 3;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+
+        type_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 type = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int version_ ;
+      /**
+       * <pre>
+       * 版本号,用于同步客户端数据
+       * </pre>
+       *
+       * <code>int32 version = 4;</code>
+       * @return The version.
+       */
+      @java.lang.Override
+      public int getVersion() {
+        return version_;
+      }
+      /**
+       * <pre>
+       * 版本号,用于同步客户端数据
+       * </pre>
+       *
+       * <code>int32 version = 4;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVersion(int value) {
+
+        version_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 版本号,用于同步客户端数据
+       * </pre>
+       *
+       * <code>int32 version = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVersion() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        version_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int timeLimit_ ;
+      /**
+       * <code>optional uint32 timeLimit = 5;</code>
+       * @return Whether the timeLimit field is set.
+       */
+      @java.lang.Override
+      public boolean hasTimeLimit() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <code>optional uint32 timeLimit = 5;</code>
+       * @return The timeLimit.
+       */
+      @java.lang.Override
+      public int getTimeLimit() {
+        return timeLimit_;
+      }
+      /**
+       * <code>optional uint32 timeLimit = 5;</code>
+       * @param value The timeLimit to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeLimit(int value) {
+
+        timeLimit_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 timeLimit = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeLimit() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        timeLimit_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.AppSetting)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.AppSetting)
+    private static final im.niu.data.Userinfo.AppSetting DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.AppSetting();
+    }
+
+    public static im.niu.data.Userinfo.AppSetting getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AppSetting>
+        PARSER = new com.google.protobuf.AbstractParser<AppSetting>() {
+      @java.lang.Override
+      public AppSetting parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<AppSetting> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AppSetting> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.AppSetting getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TimeLimitOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.TimeLimit)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 id = 1;</code>
+     * @return The id.
+     */
+    long getId();
+
+    /**
+     * <code>int32 type = 2;</code>
+     * @return The type.
+     */
+    int getType();
+
+    /**
+     * <code>uint64 timeStart = 3;</code>
+     * @return The timeStart.
+     */
+    long getTimeStart();
+
+    /**
+     * <code>uint64 timeEnd = 4;</code>
+     * @return The timeEnd.
+     */
+    long getTimeEnd();
+
+    /**
+     * <code>uint32 limit = 5;</code>
+     * @return The limit.
+     */
+    int getLimit();
+
+    /**
+     * <code>int32 day = 6;</code>
+     * @return The day.
+     */
+    int getDay();
+
+    /**
+     * <code>int32 version = 7;</code>
+     * @return The version.
+     */
+    int getVersion();
+  }
+  /**
+   * Protobuf type {@code im.niu.data.TimeLimit}
+   */
+  public static final class TimeLimit extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.TimeLimit)
+      TimeLimitOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        TimeLimit.class.getName());
+    }
+    // Use TimeLimit.newBuilder() to construct.
+    private TimeLimit(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private TimeLimit() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_TimeLimit_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_TimeLimit_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.TimeLimit.class, im.niu.data.Userinfo.TimeLimit.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private long id_ = 0L;
+    /**
+     * <code>uint64 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public long getId() {
+      return id_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_ = 0;
+    /**
+     * <code>int32 type = 2;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public int getType() {
+      return type_;
+    }
+
+    public static final int TIMESTART_FIELD_NUMBER = 3;
+    private long timeStart_ = 0L;
+    /**
+     * <code>uint64 timeStart = 3;</code>
+     * @return The timeStart.
+     */
+    @java.lang.Override
+    public long getTimeStart() {
+      return timeStart_;
+    }
+
+    public static final int TIMEEND_FIELD_NUMBER = 4;
+    private long timeEnd_ = 0L;
+    /**
+     * <code>uint64 timeEnd = 4;</code>
+     * @return The timeEnd.
+     */
+    @java.lang.Override
+    public long getTimeEnd() {
+      return timeEnd_;
+    }
+
+    public static final int LIMIT_FIELD_NUMBER = 5;
+    private int limit_ = 0;
+    /**
+     * <code>uint32 limit = 5;</code>
+     * @return The limit.
+     */
+    @java.lang.Override
+    public int getLimit() {
+      return limit_;
+    }
+
+    public static final int DAY_FIELD_NUMBER = 6;
+    private int day_ = 0;
+    /**
+     * <code>int32 day = 6;</code>
+     * @return The day.
+     */
+    @java.lang.Override
+    public int getDay() {
+      return day_;
+    }
+
+    public static final int VERSION_FIELD_NUMBER = 7;
+    private int version_ = 0;
+    /**
+     * <code>int32 version = 7;</code>
+     * @return The version.
+     */
+    @java.lang.Override
+    public int getVersion() {
+      return version_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0L) {
+        output.writeUInt64(1, id_);
+      }
+      if (type_ != 0) {
+        output.writeInt32(2, type_);
+      }
+      if (timeStart_ != 0L) {
+        output.writeUInt64(3, timeStart_);
+      }
+      if (timeEnd_ != 0L) {
+        output.writeUInt64(4, timeEnd_);
+      }
+      if (limit_ != 0) {
+        output.writeUInt32(5, limit_);
+      }
+      if (day_ != 0) {
+        output.writeInt32(6, day_);
+      }
+      if (version_ != 0) {
+        output.writeInt32(7, version_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, id_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, type_);
+      }
+      if (timeStart_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, timeStart_);
+      }
+      if (timeEnd_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(4, timeEnd_);
+      }
+      if (limit_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, limit_);
+      }
+      if (day_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, day_);
+      }
+      if (version_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, version_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.TimeLimit)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.TimeLimit other = (im.niu.data.Userinfo.TimeLimit) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (getType()
+          != other.getType()) return false;
+      if (getTimeStart()
+          != other.getTimeStart()) return false;
+      if (getTimeEnd()
+          != other.getTimeEnd()) return false;
+      if (getLimit()
+          != other.getLimit()) return false;
+      if (getDay()
+          != other.getDay()) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (37 * hash) + TIMESTART_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStart());
+      hash = (37 * hash) + TIMEEND_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeEnd());
+      hash = (37 * hash) + LIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getLimit();
+      hash = (37 * hash) + DAY_FIELD_NUMBER;
+      hash = (53 * hash) + getDay();
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getVersion();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.TimeLimit parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.TimeLimit parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.TimeLimit parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.TimeLimit prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code im.niu.data.TimeLimit}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.TimeLimit)
+        im.niu.data.Userinfo.TimeLimitOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_TimeLimit_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_TimeLimit_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.TimeLimit.class, im.niu.data.Userinfo.TimeLimit.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.TimeLimit.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        id_ = 0L;
+        type_ = 0;
+        timeStart_ = 0L;
+        timeEnd_ = 0L;
+        limit_ = 0;
+        day_ = 0;
+        version_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_TimeLimit_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.TimeLimit getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.TimeLimit.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.TimeLimit build() {
+        im.niu.data.Userinfo.TimeLimit result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.TimeLimit buildPartial() {
+        im.niu.data.Userinfo.TimeLimit result = new im.niu.data.Userinfo.TimeLimit(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.TimeLimit result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.timeStart_ = timeStart_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.timeEnd_ = timeEnd_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.limit_ = limit_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.day_ = day_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.version_ = version_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.TimeLimit) {
+          return mergeFrom((im.niu.data.Userinfo.TimeLimit)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.TimeLimit other) {
+        if (other == im.niu.data.Userinfo.TimeLimit.getDefaultInstance()) return this;
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (other.getTimeStart() != 0L) {
+          setTimeStart(other.getTimeStart());
+        }
+        if (other.getTimeEnd() != 0L) {
+          setTimeEnd(other.getTimeEnd());
+        }
+        if (other.getLimit() != 0) {
+          setLimit(other.getLimit());
+        }
+        if (other.getDay() != 0) {
+          setDay(other.getDay());
+        }
+        if (other.getVersion() != 0) {
+          setVersion(other.getVersion());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                id_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                type_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                timeStart_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                timeEnd_ = input.readUInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                limit_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                day_ = input.readInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              case 56: {
+                version_ = input.readInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private long id_ ;
+      /**
+       * <code>uint64 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <code>uint64 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(long value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <code>int32 type = 2;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>int32 type = 2;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+
+        type_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 type = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long timeStart_ ;
+      /**
+       * <code>uint64 timeStart = 3;</code>
+       * @return The timeStart.
+       */
+      @java.lang.Override
+      public long getTimeStart() {
+        return timeStart_;
+      }
+      /**
+       * <code>uint64 timeStart = 3;</code>
+       * @param value The timeStart to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeStart(long value) {
+
+        timeStart_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 timeStart = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeStart() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        timeStart_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long timeEnd_ ;
+      /**
+       * <code>uint64 timeEnd = 4;</code>
+       * @return The timeEnd.
+       */
+      @java.lang.Override
+      public long getTimeEnd() {
+        return timeEnd_;
+      }
+      /**
+       * <code>uint64 timeEnd = 4;</code>
+       * @param value The timeEnd to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeEnd(long value) {
+
+        timeEnd_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 timeEnd = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeEnd() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        timeEnd_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int limit_ ;
+      /**
+       * <code>uint32 limit = 5;</code>
+       * @return The limit.
+       */
+      @java.lang.Override
+      public int getLimit() {
+        return limit_;
+      }
+      /**
+       * <code>uint32 limit = 5;</code>
+       * @param value The limit to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLimit(int value) {
+
+        limit_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 limit = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLimit() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        limit_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int day_ ;
+      /**
+       * <code>int32 day = 6;</code>
+       * @return The day.
+       */
+      @java.lang.Override
+      public int getDay() {
+        return day_;
+      }
+      /**
+       * <code>int32 day = 6;</code>
+       * @param value The day to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDay(int value) {
+
+        day_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 day = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDay() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        day_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int version_ ;
+      /**
+       * <code>int32 version = 7;</code>
+       * @return The version.
+       */
+      @java.lang.Override
+      public int getVersion() {
+        return version_;
+      }
+      /**
+       * <code>int32 version = 7;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVersion(int value) {
+
+        version_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 version = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVersion() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        version_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.TimeLimit)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.TimeLimit)
+    private static final im.niu.data.Userinfo.TimeLimit DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.TimeLimit();
+    }
+
+    public static im.niu.data.Userinfo.TimeLimit getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TimeLimit>
+        PARSER = new com.google.protobuf.AbstractParser<TimeLimit>() {
+      @java.lang.Override
+      public TimeLimit parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TimeLimit> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TimeLimit> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.TimeLimit getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SyncDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.SyncData)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 同步数据类型
+     * </pre>
+     *
+     * <code>int32 type = 1;</code>
+     * @return The type.
+     */
+    int getType();
+
+    /**
+     * <pre>
+     * 版本号
+     * </pre>
+     *
+     * <code>uint32 version = 2;</code>
+     * @return The version.
+     */
+    int getVersion();
+  }
+  /**
+   * <pre>
+   * 同步数据指令
+   * </pre>
+   *
+   * Protobuf type {@code im.niu.data.SyncData}
+   */
+  public static final class SyncData extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.SyncData)
+      SyncDataOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        SyncData.class.getName());
+    }
+    // Use SyncData.newBuilder() to construct.
+    private SyncData(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SyncData() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_SyncData_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_SyncData_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.SyncData.class, im.niu.data.Userinfo.SyncData.Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_ = 0;
+    /**
+     * <pre>
+     * 同步数据类型
+     * </pre>
+     *
+     * <code>int32 type = 1;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public int getType() {
+      return type_;
+    }
+
+    public static final int VERSION_FIELD_NUMBER = 2;
+    private int version_ = 0;
+    /**
+     * <pre>
+     * 版本号
+     * </pre>
+     *
+     * <code>uint32 version = 2;</code>
+     * @return The version.
+     */
+    @java.lang.Override
+    public int getVersion() {
+      return version_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != 0) {
+        output.writeInt32(1, type_);
+      }
+      if (version_ != 0) {
+        output.writeUInt32(2, version_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, type_);
+      }
+      if (version_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, version_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.SyncData)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.SyncData other = (im.niu.data.Userinfo.SyncData) obj;
+
+      if (getType()
+          != other.getType()) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getVersion();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.SyncData parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.SyncData parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.SyncData parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.SyncData prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 同步数据指令
+     * </pre>
+     *
+     * Protobuf type {@code im.niu.data.SyncData}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.SyncData)
+        im.niu.data.Userinfo.SyncDataOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_SyncData_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_SyncData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.SyncData.class, im.niu.data.Userinfo.SyncData.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.SyncData.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        type_ = 0;
+        version_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_SyncData_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.SyncData getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.SyncData.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.SyncData build() {
+        im.niu.data.Userinfo.SyncData result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.SyncData buildPartial() {
+        im.niu.data.Userinfo.SyncData result = new im.niu.data.Userinfo.SyncData(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.SyncData result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.version_ = version_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.SyncData) {
+          return mergeFrom((im.niu.data.Userinfo.SyncData)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.SyncData other) {
+        if (other == im.niu.data.Userinfo.SyncData.getDefaultInstance()) return this;
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (other.getVersion() != 0) {
+          setVersion(other.getVersion());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                type_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                version_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int type_ ;
+      /**
+       * <pre>
+       * 同步数据类型
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       * 同步数据类型
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+
+        type_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 同步数据类型
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int version_ ;
+      /**
+       * <pre>
+       * 版本号
+       * </pre>
+       *
+       * <code>uint32 version = 2;</code>
+       * @return The version.
+       */
+      @java.lang.Override
+      public int getVersion() {
+        return version_;
+      }
+      /**
+       * <pre>
+       * 版本号
+       * </pre>
+       *
+       * <code>uint32 version = 2;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVersion(int value) {
+
+        version_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 版本号
+       * </pre>
+       *
+       * <code>uint32 version = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVersion() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        version_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.SyncData)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.SyncData)
+    private static final im.niu.data.Userinfo.SyncData DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.SyncData();
+    }
+
+    public static im.niu.data.Userinfo.SyncData getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SyncData>
+        PARSER = new com.google.protobuf.AbstractParser<SyncData>() {
+      @java.lang.Override
+      public SyncData parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SyncData> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SyncData> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.SyncData getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_im_niu_data_Wrapper_descriptor;
   private static final 
@@ -2159,6 +8428,46 @@ public final class Userinfo {
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_im_niu_data_AppInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_Ping_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_Ping_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_AppUseInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_AppUseInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_AppUseInfoList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_AppUseInfoList_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_UsageEvent_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_UsageEvent_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_UsageEventList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_UsageEventList_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_AppSetting_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_AppSetting_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_TimeLimit_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_TimeLimit_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_SyncData_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_SyncData_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2171,8 +8480,27 @@ public final class Userinfo {
       "\n\024proto/userinfo.proto\022\013im.niu.data\"%\n\007W" +
       "rapper\022\014\n\004name\030\001 \001(\t\022\014\n\004data\030\002 \001(\014\"C\n\010Us" +
       "erInfo\022\n\n\002id\030\001 \001(\t\022\016\n\006device\030\002 \001(\t\022\017\n\007ve" +
-      "rsion\030\003 \001(\005\022\n\n\002os\030\004 \001(\t\"(\n\007AppInfo\022\017\n\007pa" +
-      "ckage\030\001 \001(\t\022\014\n\004name\030\002 \001(\tb\006proto3"
+      "rsion\030\003 \001(\005\022\n\n\002os\030\004 \001(\t\"Y\n\007AppInfo\022\023\n\013pa" +
+      "ckageName\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004type\030\003 " +
+      "\001(\005\022\017\n\007appName\030\004 \001(\t\022\014\n\004icon\030\005 \001(\014\"\'\n\004Pi" +
+      "ng\022\016\n\006screen\030\001 \001(\005\022\017\n\007battery\030\002 \001(\005\"\237\001\n\n" +
+      "AppUseInfo\022\023\n\013packageName\030\001 \001(\t\022\026\n\016first" +
+      "TimeStamp\030\002 \001(\003\022\025\n\rlastTimeStamp\030\003 \001(\003\022\024" +
+      "\n\014lastTimeUsed\030\004 \001(\003\022\035\n\025totalTimeInForeg" +
+      "round\030\005 \001(\003\022\030\n\020totalTimeVisible\030\006 \001(\003\"=\n" +
+      "\016AppUseInfoList\022+\n\nappUseInfo\030\001 \003(\0132\027.im" +
+      ".niu.data.AppUseInfo\"Z\n\nUsageEvent\022\021\n\tev" +
+      "entType\030\001 \001(\005\022\023\n\013packageName\030\002 \001(\t\022\021\n\tti" +
+      "meStamp\030\003 \001(\003\022\021\n\tclassName\030\004 \001(\t\"=\n\016Usag" +
+      "eEventList\022+\n\nusageEvent\030\001 \003(\0132\027.im.niu." +
+      "data.UsageEvent\"r\n\nAppSetting\022\n\n\002id\030\001 \001(" +
+      "\004\022\023\n\013packageName\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\017\n\007" +
+      "version\030\004 \001(\005\022\026\n\ttimeLimit\030\005 \001(\rH\000\210\001\001B\014\n" +
+      "\n_timeLimit\"v\n\tTimeLimit\022\n\n\002id\030\001 \001(\004\022\014\n\004" +
+      "type\030\002 \001(\005\022\021\n\ttimeStart\030\003 \001(\004\022\017\n\007timeEnd" +
+      "\030\004 \001(\004\022\r\n\005limit\030\005 \001(\r\022\013\n\003day\030\006 \001(\005\022\017\n\007ve" +
+      "rsion\030\007 \001(\005\")\n\010SyncData\022\014\n\004type\030\001 \001(\005\022\017\n" +
+      "\007version\030\002 \001(\rb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2195,7 +8523,55 @@ public final class Userinfo {
     internal_static_im_niu_data_AppInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_im_niu_data_AppInfo_descriptor,
-        new java.lang.String[] { "Package", "Name", });
+        new java.lang.String[] { "PackageName", "Name", "Type", "AppName", "Icon", });
+    internal_static_im_niu_data_Ping_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_im_niu_data_Ping_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_Ping_descriptor,
+        new java.lang.String[] { "Screen", "Battery", });
+    internal_static_im_niu_data_AppUseInfo_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_im_niu_data_AppUseInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_AppUseInfo_descriptor,
+        new java.lang.String[] { "PackageName", "FirstTimeStamp", "LastTimeStamp", "LastTimeUsed", "TotalTimeInForeground", "TotalTimeVisible", });
+    internal_static_im_niu_data_AppUseInfoList_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_im_niu_data_AppUseInfoList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_AppUseInfoList_descriptor,
+        new java.lang.String[] { "AppUseInfo", });
+    internal_static_im_niu_data_UsageEvent_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_im_niu_data_UsageEvent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_UsageEvent_descriptor,
+        new java.lang.String[] { "EventType", "PackageName", "TimeStamp", "ClassName", });
+    internal_static_im_niu_data_UsageEventList_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_im_niu_data_UsageEventList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_UsageEventList_descriptor,
+        new java.lang.String[] { "UsageEvent", });
+    internal_static_im_niu_data_AppSetting_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_im_niu_data_AppSetting_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_AppSetting_descriptor,
+        new java.lang.String[] { "Id", "PackageName", "Type", "Version", "TimeLimit", });
+    internal_static_im_niu_data_TimeLimit_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_im_niu_data_TimeLimit_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_TimeLimit_descriptor,
+        new java.lang.String[] { "Id", "Type", "TimeStart", "TimeEnd", "Limit", "Day", "Version", });
+    internal_static_im_niu_data_SyncData_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_im_niu_data_SyncData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_SyncData_descriptor,
+        new java.lang.String[] { "Type", "Version", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

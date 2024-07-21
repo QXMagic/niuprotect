@@ -22,4 +22,9 @@ object ILog {
             Log.e(tag, msg!!)
         }
     }
+    fun i(tag: String?, msg: String?) {
+        if (!TextUtils.isEmpty(msg)) {
+            Log.i(tag, msg!!)
+        }
+    }
 }
