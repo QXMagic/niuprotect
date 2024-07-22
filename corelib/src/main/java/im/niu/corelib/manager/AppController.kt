@@ -22,7 +22,7 @@ class AppController {
             when(item.type){
                 AppSetting.TYPE_WHITE -> whiteList.add(item)
                 AppSetting.TYPE_BLACK -> blackList.add(item)
-                AppSetting.TYPE_TIME_RANGE -> timeRangeList.add(item)
+                AppSetting.TYPE_TIME -> timeRangeList.add(item)
             }
         }
     }
@@ -32,7 +32,7 @@ class AppController {
         when(setting.type){
             AppSetting.TYPE_WHITE -> whiteList.add(setting)
             AppSetting.TYPE_BLACK -> blackList.add(setting)
-            AppSetting.TYPE_TIME_RANGE -> timeRangeList.add(setting)
+            AppSetting.TYPE_TIME -> timeRangeList.add(setting)
             AppSetting.TYPE_DELETE -> {
                 setting.delete()
             }
@@ -44,7 +44,7 @@ class AppController {
         when(setting.type){
             AppSetting.TYPE_WHITE -> whiteList.remove(setting)
             AppSetting.TYPE_BLACK -> blackList.remove(setting)
-            AppSetting.TYPE_TIME_RANGE -> timeRangeList.remove(setting)
+            AppSetting.TYPE_TIME -> timeRangeList.remove(setting)
         }
     }
 }

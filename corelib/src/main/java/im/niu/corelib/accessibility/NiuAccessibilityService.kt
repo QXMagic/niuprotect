@@ -78,21 +78,20 @@ class NiuAccessibilityService : AccessibilityService() {
     private fun luncherEvent(event: AccessibilityEvent) {
         val eventType = event.eventType
         var className = ""
-        if (event.packageName == null) {
-            return
+
+        if(TextUtils.isEmpty(event.packageName)){
+            ILog.e(TAG,"event type is Empty type:$eventType")
         }
         if (event.className != null) {
             className = event.className.toString()
         }
         val packagetName = event.packageName.toString()
+
         if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED
             || eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
             || eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
+
 //            if (eventType == 1 || eventType == 32 || eventType == 4096) {
-            if (packagetName == "com.coloros.oppoguardelf" || packagetName.contains("com.huawei.systemmanager.power")) {
-                goBack()
-                return
-            }
 //            if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && !TextUtils.isEmpty(packagetName)) {
 //                if (roomIsVivo && packagetName == "com.vivo.upslide" && event.text.size == 0) {
 //                    return

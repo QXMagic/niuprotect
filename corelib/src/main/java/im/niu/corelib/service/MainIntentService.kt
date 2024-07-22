@@ -5,6 +5,11 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.net.ConnectivityManager
+import android.net.ConnectivityManager.NetworkCallback
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Handler
@@ -12,6 +17,7 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.Message
 import android.os.Messenger
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import im.niu.corelib.App
 import im.niu.corelib.Constants
@@ -92,7 +98,7 @@ class MainIntentService : Service() {
         }catch (e: Exception){
             e.printStackTrace()
         }
-        keepNetworkAlive();
+
         registerNotificationChannel()
         val mBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
         mBuilder.setSmallIcon(R.mipmap.ico)
@@ -103,6 +109,7 @@ class MainIntentService : Service() {
         }else{
             startForeground(this.notifyId, mBuilder.build())
         }
+        keepNetworkAlive();
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
@@ -143,7 +150,26 @@ class MainIntentService : Service() {
         }.start()
     }
 
+    private fun network(){
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val builder = NetworkRequest.Builder()
+        builder.addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        val networkRequest = builder.build()
 
+        connectivityManager.registerNetworkCallback(networkRequest, object : NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                // 网络变得可用
+                Log.d("NetworkCallback", "Network available")
+            }
+
+            override fun onLost(network: Network) {
+                super.onLost(network)
+                // 网络变得不可用
+                Log.d("NetworkCallback", "Network lost")
+            } // 可以添加更多回调方法以响应不同类型的网络变化
+        })
+    }
 
     open fun sendScreenMsg() {
         val manager = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager

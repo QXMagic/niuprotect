@@ -17,10 +17,14 @@ object ILog {
             Log.d(tag, msg!!)
         }
     }
-    fun e(tag: String?, msg: String?) {
+    fun e(tag: String?, msg: String) {
         if (!TextUtils.isEmpty(msg)) {
-            Log.e(tag, msg!!)
+            Log.e(tag, msg)
         }
+    }
+
+    fun e(tag:String, msg:String, throwable: Throwable?){
+        Log.e(tag, msg, throwable)
     }
     fun i(tag: String?, msg: String?) {
         if (!TextUtils.isEmpty(msg)) {

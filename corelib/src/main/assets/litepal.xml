@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="NiuManager" />
-    <version value="3" />
+    <version value="4" />
     <list>
         <mapping class="im.niu.corelib.data.AppInfo" />
         <mapping class="im.niu.corelib.data.AppSetting" />

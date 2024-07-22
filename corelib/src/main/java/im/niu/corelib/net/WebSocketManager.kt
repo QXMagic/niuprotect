@@ -4,7 +4,9 @@ import android.os.Handler
 import android.os.Looper
 import com.google.protobuf.Message
 import com.tencent.mmkv.MMKV
+import im.niu.corelib.data.AppSetting
 import im.niu.corelib.data.TimeSetting
+import im.niu.corelib.net.handle.AppSettingHandle
 import im.niu.corelib.net.handle.IMessageHandle
 import im.niu.corelib.net.handle.TimeLimitHandle
 import im.niu.corelib.utils.ILog
@@ -33,7 +35,9 @@ class WebSocketManager {
             uuid = UUID.randomUUID().toString()
             kv.putString("uuid",uuid)
         }
-        var msgHandle = TimeLimitHandle()
+        var msgHandle:IMessageHandle = TimeLimitHandle()
+        handerMap[msgHandle.getMessageName()] = msgHandle
+        msgHandle = AppSettingHandle()
         handerMap[msgHandle.getMessageName()] = msgHandle
         connecting = true
         uri = URI("ws://$ip:$port/monitor/$uuid")
@@ -64,6 +68,8 @@ class WebSocketManager {
             ILog.i(TAG,"rec msg type:${wrapper.name} ")
             if(handerMap.containsKey(wrapper.name)){
                 handerMap[wrapper.name]?.onMessage(wrapper.data)
+            }else{
+                ILog.e(TAG,"rec msg type:${wrapper.name} not found")
             }
         }
         override fun onMessage(msg: String) {
@@ -136,21 +142,29 @@ class WebSocketManager {
             delayTime += 2000
         }
     }
-
+    private var syncing = false
     fun syncData() {
+        if(syncing){
+            return
+        }
         Thread {
+            syncing = true
             while (true) {
                 Thread.sleep(1000)
                 if (client.isOpen) {
-                    val msg = MessageWraper()
                     var setting = LitePal.select("version").order("version desc").find(TimeSetting::class.java)
                     var version = if(setting.isEmpty())0 else setting[0].version
                     var data = Userinfo.SyncData.newBuilder().setType(1).setVersion(version).build()
-                    msg.data = data
-                    msg.flush(client)
+                    sendMessage(data)
+                    Thread.sleep(1000)
+                    var asetting = LitePal.select("version").order("version desc").find(AppSetting::class.java)
+                    version = if(asetting.isEmpty())0 else asetting[0].version
+                    data = Userinfo.SyncData.newBuilder().setType(2).setVersion(version).build()
+                    sendMessage(data)
                     break
                 }
             }
+            syncing=false
         }.start()
     }
 }

@@ -7,6 +7,7 @@ import android.app.job.JobService
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import im.niu.corelib.utils.ILog
 import im.niu.corelib.utils.NiuUtil
 
@@ -21,7 +22,11 @@ class KeepLiveJobService : JobService() {
             NiuUtil.isServiceRunning(this,MainIntentService::class.java.name
             )
         if (!isLocalServiceRunning) {
-            startService(Intent(this, MainIntentService::class.java))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForegroundService(Intent(this, MainIntentService::class.java))
+            } else {
+                startService(Intent(this, MainIntentService::class.java))
+            }
         }
         return false
     }

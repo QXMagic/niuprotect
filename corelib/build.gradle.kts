@@ -43,4 +43,5 @@ dependencies {
     implementation("com.github.getActivity:XXPermissions:20.0")
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("org.litepal.guolindev:core:3.2.3")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }

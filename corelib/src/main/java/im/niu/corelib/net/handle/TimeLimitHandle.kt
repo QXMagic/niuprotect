@@ -28,9 +28,10 @@ class TimeLimitHandle : IMessageHandle{
             data.version = setting.version
             val old = LitePal.find(TimeSetting::class.java,data.id)
             if(old!=null){
-                data.update(data.id)
                 if(type == TimeSetting.TYPE_DELETE){
                     LitePal.delete(TimeSetting::class.java,data.id)
+                }else{
+                    data.update(data.id)
                 }
             }else {
                 data.save()

@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                         return
                     }
                     ILog.d(Tag,"获取录音和日历权限成功")
+                    checkPermission()
                 }
 
                 override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
@@ -101,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             startService(Intent(this, MainIntentService::class.java))
         }
         KeepLiveJobService.startJob(this)
+        finish()
     }
 
     class SettingsFragment() : PreferenceFragmentCompat() {
