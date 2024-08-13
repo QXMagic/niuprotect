@@ -4,10 +4,10 @@ import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
+import im.niu.corelib.App
 import im.niu.corelib.Constants
 import im.niu.corelib.events.MessageEvent
 import im.niu.corelib.manager.BroadcastManager
-import im.niu.corelib.receiver.MainReceiver
 import im.niu.corelib.utils.ILog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -19,7 +19,6 @@ class NiuAccessibilityService : AccessibilityService() {
     private val TAG = "NiuAccess"
     private var backClickInfos =
         arrayOf("[Breeno]", "[卸载" + Constants.APP_NAME + "]", "卸载" + Constants.APP_NAME, "手机管家", "概览")
-        private var banWindows = arrayOf("[快捷中心,", "[卸载" + Constants.APP_NAME + "]", "卸载 " + Constants.APP_NAME, "概览")
     /**
      * Callback for [android.view.accessibility.AccessibilityEvent]s.
      *
@@ -29,11 +28,6 @@ class NiuAccessibilityService : AccessibilityService() {
      */
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
         ILog.i(TAG, "--eventType---:$event.eventType")
-        ILog.d(TAG, "--eventType text--:$event.text")
-        ILog.d(TAG, "--eventType getPackageName--:" + event.packageName)
-        ILog.d(TAG, "--eventType classname--:" + event.className)
-
-
         luncherEvent(event)
     }
 
@@ -81,11 +75,20 @@ class NiuAccessibilityService : AccessibilityService() {
 
         if(TextUtils.isEmpty(event.packageName)){
             ILog.e(TAG,"event type is Empty type:$eventType")
+            return
         }
         if (event.className != null) {
             className = event.className.toString()
         }
         val packagetName = event.packageName.toString()
+        val text = event.text.toString()
+        if (eventType == AccessibilityEvent.TYPE_VIEW_LONG_CLICKED
+                && packagetName.contains("launcher")
+                && text.contains(Constants.APP_NAME)
+        ) {
+            ILog.d(this.TAG, "长按防止卸载返回 goBack()---")
+            goBack()
+        }
 
         if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED
             || eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
@@ -108,32 +111,21 @@ class NiuAccessibilityService : AccessibilityService() {
 //                    goBack()
 //                }
 //            }
-            if (packagetName == Constants.ANDROID || packagetName.contains("input") || packagetName.contains("UniHomeLauncher") || packagetName.contains("password") || packagetName.contains(
-                    "keyboard"
-                ) || packagetName.contains("sogouoem") || packagetName == Constants.APPLICATION_ID || packagetName == "com.android.launcher" || packagetName == "com.android.mms" || packagetName == "com.android.systemUi"
-            ) {
-                return
-            }
-            if (packagetName == "com.hihonor.systemmanager" && event.text.toString()
-                    .contains("应用锁")
-            ) {
-                return
-            }
-            if (packagetName == "com.coloros.assistantscreen" || packagetName == "com.vivo.hiboard" || packagetName == "com.huawei.intelligent") {
-                ILog.d(this.TAG, "负一屏幕返回 goBack()---")
-                goBack()
-                return
-            }
+
+//            if (packagetName == "com.hihonor.systemmanager" && event.text.toString()
+//                    .contains("应用锁")
+//            ) {
+//                return
+//            }
+//            if (packagetName == "com.coloros.assistantscreen" || packagetName == "com.vivo.hiboard" || packagetName == "com.huawei.intelligent") {
+//                ILog.d(this.TAG, "负一屏幕返回 goBack()---")
+//                goBack()
+//                return
+//            }
         }
-        if (eventType == AccessibilityEvent.TYPE_VIEW_LONG_CLICKED && packagetName.contains("launcher") && event.text.toString().contains(
-                Constants.APP_NAME
-            )
-        ) {
-            ILog.d(this.TAG, "长按防止卸载返回 goBack()---")
-            goBack()
-        } else if (packagetName == "com.ss.android.ugc.aweme" && eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
+        if (packagetName == "com.ss.android.ugc.aweme" && eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
             //刷抖音?
-            checkBalckAppAndUseTime(packagetName)
+            checkCanUse(packagetName)
         } else {
 //            if (roomIsVivo) {
 //                if (packagetName.contains("launcher") && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
@@ -182,18 +174,14 @@ class NiuAccessibilityService : AccessibilityService() {
 //                    ILog.d(this.TAG, "交互池--")
 //                    return
 //                }
-                if (packagetName.contains("com.android") || packagetName.contains("com.bbk") || packagetName.contains(
-                        "com.huawei"
-                    )
+                if (packagetName.contains("com.android")
+                    || packagetName.contains("com.bbk")
+                    || packagetName.contains("com.huawei")
                 ) {
-                    var i = 0
-                    while (true) {
-                        if (i >= backClickInfos.size) {
-                            break
-                        } else if (!event.text.toString().contains(backClickInfos[i])) {
-                            i++
-                        } else {
-                            ILog.d(this.TAG, "返回关键字--")
+
+                    for(bk in backClickInfos){
+                        if(text.contains(bk)){
+                            ILog.d(this.TAG, " $packagetName 返回,危险关键字--> $bk")
                             goBack()
                             break
                         }
@@ -207,18 +195,18 @@ class NiuAccessibilityService : AccessibilityService() {
 //                }
             }
             if (packagetName == "com.android.settings" && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-                val eventTexts = event.text
-                val eventText = eventTexts.toString()
-                val str = this.TAG
                 ILog.d(
-                    str,
-                    "Setting info$eventTexts---packagetName---$packagetName--className-$className"
+                    this.TAG,
+                    "Setting info className-$className, text: $text"
                 )
-                if (eventText.contains("移动") || eventText.contains("蓝牙") || eventText.contains("WLAN") || eventText.contains(
-                        "通话"
-                    ) || eventText.contains("网络详情") || eventText.contains("输入密码") || eventText.contains(
-                        "加密"
-                    ) || eventText.contains("•")
+                if (text.contains("移动")
+                    || text.contains("蓝牙")
+                    || text.contains("WLAN")
+                    || text.contains("通话")
+                    || text.contains("网络详情")
+                    || text.contains("输入密码")
+                    || text.contains("加密")
+                    || text.contains("•")
                 ) {
                     return
                 }
@@ -235,34 +223,26 @@ class NiuAccessibilityService : AccessibilityService() {
 //                gotoDefindSetting()
                 return
             }
-            if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-                val txt = event.text.toString()
-                for (ban:String in banWindows){
-                    if(txt.contains(ban)){
-                        goBack();
+
+            if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED
+                || eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED
+                || eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+                || eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
+
+                if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
+                    val nowTime = System.currentTimeMillis()
+                    if (nowTime - remenberTIme < 4000) {
+                        remenberTIme = System.currentTimeMillis()
                         return
                     }
+                    remenberTIme = System.currentTimeMillis()
                 }
-                if (packagetName == "com.oplus.battery") {
-                    goBack()
-                    return
-                }
-            }
-//            if (eventType == 1 || eventType == 32 || eventType == 4096 || eventType == 2048) {
-//                if (eventType == 2048) {
-//                    val nowTime = System.currentTimeMillis()
-//                    if (nowTime - remenberTIme < 4000) {
-//                        remenberTIme = System.currentTimeMillis()
-//                        return
-//                    }
-//                    remenberTIme = System.currentTimeMillis()
-//                }
-//                if (packageNameLastTime != packagetName) {
+                if (packageNameLastTime != packagetName) {
 //                    UploadAppManager.getInstance(this)?.upNewInstallAPP(packagetName)
-//                }
-//                checkBalckAppAndUseTime(packagetName)
+                }
+                checkBalckAppAndUseTime(packagetName,event)
 //                changeTime = System.currentTimeMillis()
-//                packageNameLastTime = packagetName
+                packageNameLastTime = packagetName
 //                if (packagetName != "com.tencent.mm" || event.className == null) {
 //                    return
 //                }
@@ -271,10 +251,11 @@ class NiuAccessibilityService : AccessibilityService() {
 //                if (isLimit) {
 //                    goBack()
 //                }
-//            }
+            }
         }
     }
-
+    var packageNameLastTime = ""
+    var remenberTIme = 0L
 
     private fun goBack() {
         ILog.d(TAG, "goBack")
@@ -302,53 +283,59 @@ class NiuAccessibilityService : AccessibilityService() {
 
 
     @Synchronized
-    fun checkBalckAppAndUseTime(packageName: String?) {
-        if (packageName != null) {
-            if (packageName != Constants.APPLICATION_ID && packageName != "com.oplus.wirelesssettings" && packageName != "com.android.launcher.Launcher") {
-//                if (UserWhiteAppListManager.instance?.isWhiteApp(this, packageName) == true) {
-//                    return
-//                }
-//                if (SystemWhiteAppListManager.getInstance().systemWhiteApp(this, packageName)) {
-//                    return
-//                }
-//                if (SystemBlackAppListManager.getInstance().systemWhiteApp(this, packageName)) {
-//                    goBack()
-//                    return
-//                } else
-                    if ((packageName.contains("com.oppo") || packageName.contains("com.android") || packageName.contains(
-                        "coloros"
-                    ) || packageName.contains("com.bbk") || packageName == Constants.APPLICATION_ID || packageName == "com.baidu.input_vivo" || packageName.contains(
-                        "contacts"
-                    ) || packageName.contains("deskclock") || packageName.contains("camera") || packageName.contains(
-                        "com.vivo"
-                    ) || packageName.contains("com.huawei") || packageName.contains("launcher") || packageName.contains(
-                        "com.hihonor"
-                    ) || packageName.contains("com.jiankong.jia")) && !packageName.lowercase(
-                        Locale.getDefault()
-                    ).contains("browser") && !packageName.lowercase(Locale.getDefault())
-                        .contains("video") && !packageName.lowercase(
-                        Locale.getDefault()
-                    ).contains("music") && !packageName.lowercase(Locale.getDefault())
-                        .contains("store") && !packageName.lowercase(
-                        Locale.getDefault()
-                    ).contains("chrome") && !packageName.lowercase(Locale.getDefault())
-                        .contains("market") && !packageName.lowercase(
-                        Locale.getDefault()
-                    ).contains("community") && !packageName.lowercase(Locale.getDefault())
-                        .contains("phonemanager") && !packageName.lowercase(
-                        Locale.getDefault()
-                    ).contains("minigamecenter") && !packageName.lowercase(
-                        Locale.getDefault()
-                    ).contains("hwvplayer")
-                ) {
-                    return
-                } else {
-                    checkCanUse(packageName)
-                }
-            }
+    fun checkBalckAppAndUseTime(packageName: String,event: AccessibilityEvent) {
+        if(App.appLimit.isForbid(packageName,event)){
+            goBack()
             return
         }
-        ILog.d(this.TAG, "method   checkBalckAppAndUseTime package is null ")
+        if (!App.appLimit.isAllow(packageName,event)) {
+            return
+        }
+        if ((packageName.startsWith("com.oppo")
+                    || packageName.startsWith("com.android")
+                    || packageName.contains("coloros.")
+                    || packageName.contains("com.bbk")
+                    || packageName.startsWith("com.baidu.input")
+                    || packageName.contains("contacts")
+                    || packageName.contains("deskclock")
+                    || packageName.contains("camera")
+                    || packageName.startsWith("com.vivo")
+                    || packageName.startsWith("com.huawei")
+                    || packageName.contains("launcher")
+                    || packageName.startsWith("com.hihonor")
+                    || packageName.startsWith("com.jiankong.jia")
+                )
+            && !packageName.lowercase(Locale.getDefault()
+            ).contains("browser")
+            && !packageName.lowercase(Locale.getDefault())
+                .contains("video")
+            && !packageName.lowercase(
+                Locale.getDefault()
+            ).contains("music")
+            && !packageName.lowercase(Locale.getDefault())
+                .contains("store")
+            && !packageName.lowercase(
+                Locale.getDefault()
+            ).contains("chrome")
+            && !packageName.lowercase(Locale.getDefault())
+                .contains("market")
+            && !packageName.lowercase(
+                Locale.getDefault()
+            ).contains("community")
+            && !packageName.lowercase(Locale.getDefault())
+                .contains("phonemanager")
+            && !packageName.lowercase(
+                Locale.getDefault()
+            ).contains("minigamecenter")
+            && !packageName.lowercase(
+                Locale.getDefault()
+            ).contains("hwvplayer")
+        ) {
+            return
+        } else {
+            checkCanUse(packageName)
+        }
+
     }
 
     private fun checkCanUse(packageName: String) {

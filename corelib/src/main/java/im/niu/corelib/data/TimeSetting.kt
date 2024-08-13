@@ -4,9 +4,16 @@ import org.litepal.annotation.Column
 import org.litepal.crud.LitePalSupport
 
 class TimeSetting : LitePalSupport() {
+    fun isInRange(now: Long): Boolean {
+        if(now in startTime until endTime){
+            return true
+        }
+        return false
+    }
+
     @Column(unique = true, nullable = false)
     var id:Long=0
-    var packageName: String?=null
+//    var packageName: String?=null
     var type:Int = 0
     var timeLimit:Int = 0
     var version:Int = 0

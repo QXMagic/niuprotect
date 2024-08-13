@@ -20,7 +20,7 @@ class App : Application(){
         LitePal.getDatabase();
         webSocketManager = WebSocketManager("192.168.31.31", 9090)
         appManager = AppDataManager(context)
-        appLimit = AppLimitManager(context)
+        appLimit = AppLimitManager()
         webSocketManager.syncData()
     }
     companion object {

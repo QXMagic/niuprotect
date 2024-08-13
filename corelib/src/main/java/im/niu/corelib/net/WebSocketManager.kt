@@ -19,7 +19,7 @@ import java.net.URI
 import java.nio.ByteBuffer
 import java.util.UUID
 
-class WebSocketManager {
+class WebSocketManager(ip: String, port: Int) {
     private val TAG:String = "WebSocket"
     private var client:WebSClient
     private var enable = false
@@ -27,23 +27,6 @@ class WebSocketManager {
     private var uri:URI;
     private var delayTime:Long = 5000L;
     private var handerMap:HashMap<String,IMessageHandle> = HashMap()
-
-    constructor(ip:String,port:Int){
-        val kv = MMKV.defaultMMKV();
-        var uuid = kv.getString("uuid","");
-        if(uuid.isNullOrBlank()){
-            uuid = UUID.randomUUID().toString()
-            kv.putString("uuid",uuid)
-        }
-        var msgHandle:IMessageHandle = TimeLimitHandle()
-        handerMap[msgHandle.getMessageName()] = msgHandle
-        msgHandle = AppSettingHandle()
-        handerMap[msgHandle.getMessageName()] = msgHandle
-        connecting = true
-        uri = URI("ws://$ip:$port/monitor/$uuid")
-        client = WebSClient(uri)
-        client.connect()
-    }
 
     fun isEnable():Boolean{
         return enable
@@ -115,8 +98,13 @@ class WebSocketManager {
     private fun sendMessage(msg:IMessage):Boolean{
         ILog.e(TAG, "send msg--${msg.type()}")
         if(enable && client.isOpen){
-            msg.flush(client)
-            return true
+            return try {
+                msg.flush(client)
+                true
+            }catch (e:Exception){
+                ILog.e(TAG,"send msg error",e)
+                false
+            }
         }else{
             ILog.e(TAG,"socket is closed $enable , open?${client.isOpen}")
             reconnect()
@@ -152,12 +140,12 @@ class WebSocketManager {
             while (true) {
                 Thread.sleep(1000)
                 if (client.isOpen) {
-                    var setting = LitePal.select("version").order("version desc").find(TimeSetting::class.java)
+                    val setting = LitePal.select("version").order("version desc").find(TimeSetting::class.java)
                     var version = if(setting.isEmpty())0 else setting[0].version
                     var data = Userinfo.SyncData.newBuilder().setType(1).setVersion(version).build()
                     sendMessage(data)
                     Thread.sleep(1000)
-                    var asetting = LitePal.select("version").order("version desc").find(AppSetting::class.java)
+                    val asetting = LitePal.select("version").order("version desc").find(AppSetting::class.java)
                     version = if(asetting.isEmpty())0 else asetting[0].version
                     data = Userinfo.SyncData.newBuilder().setType(2).setVersion(version).build()
                     sendMessage(data)
@@ -166,6 +154,23 @@ class WebSocketManager {
             }
             syncing=false
         }.start()
+    }
+
+    init {
+        val kv = MMKV.defaultMMKV()
+        var uuid = kv.getString("uuid","")
+        if(uuid.isNullOrBlank()){
+            uuid = UUID.randomUUID().toString()
+            kv.putString("uuid",uuid)
+        }
+        var msgHandle:IMessageHandle = TimeLimitHandle()
+        handerMap[msgHandle.getMessageName()] = msgHandle
+        msgHandle = AppSettingHandle()
+        handerMap[msgHandle.getMessageName()] = msgHandle
+        connecting = true
+        uri = URI("ws://$ip:$port/monitor/$uuid")
+        client = WebSClient(uri)
+        client.connect()
     }
 }
 

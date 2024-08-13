@@ -5,6 +5,7 @@ import android.os.Looper
 import com.google.protobuf.ByteString
 import im.niu.corelib.data.TimeSetting
 import im.niu.corelib.events.RefreshDataEvent
+import im.niu.corelib.utils.ILog
 import im.niu.data.Userinfo
 import org.greenrobot.eventbus.EventBus
 import org.litepal.LitePal
@@ -50,6 +51,7 @@ class TimeLimitHandle : IMessageHandle{
     }
 
     private fun postEvent(){
+        ILog.d("EventBus","event bus post event")
         postIdx++
         if(postIdx==dataIdx){
             EventBus.getDefault().post(RefreshDataEvent())

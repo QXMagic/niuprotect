@@ -24,8 +24,11 @@
 
     <application>
         <activity
+            android:name=".ui.AlertActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.BootActivity"
-            android:exported="true" />
+            android:exported="false" />
 
         <receiver
             android:name=".receiver.BootReceiver"

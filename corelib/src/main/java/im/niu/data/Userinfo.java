@@ -6180,15 +6180,15 @@ public final class Userinfo {
     int getVersion();
 
     /**
-     * <code>optional uint32 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 5;</code>
      * @return Whether the timeLimit field is set.
      */
     boolean hasTimeLimit();
     /**
-     * <code>optional uint32 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 5;</code>
      * @return The timeLimit.
      */
-    int getTimeLimit();
+    long getTimeLimit();
   }
   /**
    * Protobuf type {@code im.niu.data.AppSetting}
@@ -6306,9 +6306,9 @@ public final class Userinfo {
     }
 
     public static final int TIMELIMIT_FIELD_NUMBER = 5;
-    private int timeLimit_ = 0;
+    private long timeLimit_ = 0L;
     /**
-     * <code>optional uint32 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 5;</code>
      * @return Whether the timeLimit field is set.
      */
     @java.lang.Override
@@ -6316,11 +6316,11 @@ public final class Userinfo {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>optional uint32 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 5;</code>
      * @return The timeLimit.
      */
     @java.lang.Override
-    public int getTimeLimit() {
+    public long getTimeLimit() {
       return timeLimit_;
     }
 
@@ -6351,7 +6351,7 @@ public final class Userinfo {
         output.writeInt32(4, version_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeUInt32(5, timeLimit_);
+        output.writeUInt64(5, timeLimit_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6379,7 +6379,7 @@ public final class Userinfo {
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, timeLimit_);
+          .computeUInt64Size(5, timeLimit_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -6431,7 +6431,8 @@ public final class Userinfo {
       hash = (53 * hash) + getVersion();
       if (hasTimeLimit()) {
         hash = (37 * hash) + TIMELIMIT_FIELD_NUMBER;
-        hash = (53 * hash) + getTimeLimit();
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getTimeLimit());
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -6568,7 +6569,7 @@ public final class Userinfo {
         packageName_ = "";
         type_ = 0;
         version_ = 0;
-        timeLimit_ = 0;
+        timeLimit_ = 0L;
         return this;
       }
 
@@ -6698,7 +6699,7 @@ public final class Userinfo {
                 break;
               } // case 32
               case 40: {
-                timeLimit_ = input.readUInt32();
+                timeLimit_ = input.readUInt64();
                 bitField0_ |= 0x00000010;
                 break;
               } // case 40
@@ -6899,9 +6900,9 @@ public final class Userinfo {
         return this;
       }
 
-      private int timeLimit_ ;
+      private long timeLimit_ ;
       /**
-       * <code>optional uint32 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 5;</code>
        * @return Whether the timeLimit field is set.
        */
       @java.lang.Override
@@ -6909,19 +6910,19 @@ public final class Userinfo {
         return ((bitField0_ & 0x00000010) != 0);
       }
       /**
-       * <code>optional uint32 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 5;</code>
        * @return The timeLimit.
        */
       @java.lang.Override
-      public int getTimeLimit() {
+      public long getTimeLimit() {
         return timeLimit_;
       }
       /**
-       * <code>optional uint32 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 5;</code>
        * @param value The timeLimit to set.
        * @return This builder for chaining.
        */
-      public Builder setTimeLimit(int value) {
+      public Builder setTimeLimit(long value) {
 
         timeLimit_ = value;
         bitField0_ |= 0x00000010;
@@ -6929,12 +6930,12 @@ public final class Userinfo {
         return this;
       }
       /**
-       * <code>optional uint32 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearTimeLimit() {
         bitField0_ = (bitField0_ & ~0x00000010);
-        timeLimit_ = 0;
+        timeLimit_ = 0L;
         onChanged();
         return this;
       }
@@ -8495,7 +8496,7 @@ public final class Userinfo {
       "eEventList\022+\n\nusageEvent\030\001 \003(\0132\027.im.niu." +
       "data.UsageEvent\"r\n\nAppSetting\022\n\n\002id\030\001 \001(" +
       "\004\022\023\n\013packageName\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\017\n\007" +
-      "version\030\004 \001(\005\022\026\n\ttimeLimit\030\005 \001(\rH\000\210\001\001B\014\n" +
+      "version\030\004 \001(\005\022\026\n\ttimeLimit\030\005 \001(\004H\000\210\001\001B\014\n" +
       "\n_timeLimit\"v\n\tTimeLimit\022\n\n\002id\030\001 \001(\004\022\014\n\004" +
       "type\030\002 \001(\005\022\021\n\ttimeStart\030\003 \001(\004\022\017\n\007timeEnd" +
       "\030\004 \001(\004\022\r\n\005limit\030\005 \001(\r\022\013\n\003day\030\006 \001(\005\022\017\n\007ve" +

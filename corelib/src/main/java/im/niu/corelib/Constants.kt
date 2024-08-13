@@ -30,7 +30,7 @@ object Constants {
      const val MESSAGE_SYSTEM_SOURCE_OPPO = "oppo"
      const val MESSAGE_SYSTEM_SOURCE_VIVO = "vivo"
      const val MESSAGE_SYSTEM_SOURCE_MEIZU = "meizu"
-     const val ANDROID = "android"
+//     const val ANDROID = "android"
      const val KEY_HTTP_CODE = "code"
      const val ACCEPT_TIME_SEPARATOR_SP = ":"
      const val KEY_USER_ID = "id"

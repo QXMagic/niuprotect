@@ -1,5 +1,6 @@
 package im.niu.corelib.os
 
+import android.view.accessibility.AccessibilityEvent
 import im.niu.corelib.utils.ILog
 import im.niu.corelib.utils.RomUtil
 
@@ -18,6 +19,14 @@ abstract class OperateSystem {
     }
 
     abstract fun onSettingAppFilter()
+
+    open fun isAllow(packageName: String,event: AccessibilityEvent):Boolean{
+        return false
+    }
+
+    open fun isForbid(packageName: String,event: AccessibilityEvent):Boolean{
+        return false
+    }
 
     companion object {
         private var os: OperateSystem? = null

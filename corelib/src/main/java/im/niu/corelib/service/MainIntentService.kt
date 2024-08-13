@@ -168,6 +168,10 @@ class MainIntentService : Service() {
                 // 网络变得不可用
                 Log.d("NetworkCallback", "Network lost")
             } // 可以添加更多回调方法以响应不同类型的网络变化
+
+            override fun onUnavailable() {
+                super.onUnavailable()
+            }
         })
     }
 

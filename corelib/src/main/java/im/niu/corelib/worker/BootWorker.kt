@@ -7,11 +7,15 @@ import androidx.work.WorkerParameters
 import im.niu.corelib.service.MainIntentService
 import im.niu.corelib.ui.BootActivity
 import im.niu.corelib.utils.ILog
+import im.niu.corelib.utils.NiuUtil
 
 class BootWorker(context: Context, workerParams: WorkerParameters) :
 CoroutineWorker(context, workerParams)  {
     override suspend fun doWork(): Result {
         ILog.d("BootWorker","to start Boot Activity")
+        if(NiuUtil.isServiceRunning(applicationContext,MainIntentService::class.java.name)){
+            return Result.success()
+        }
         var context = applicationContext
         val serviceIntent = Intent(context, BootActivity::class.java)
         serviceIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK

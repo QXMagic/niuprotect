@@ -11,6 +11,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
+import im.niu.corelib.accessibility.AccessibilitySettingHelper
 import im.niu.corelib.service.KeepLiveJobService
 import im.niu.corelib.service.MainIntentService
 import im.niu.corelib.utils.ILog
@@ -102,7 +103,11 @@ class MainActivity : AppCompatActivity() {
             startService(Intent(this, MainIntentService::class.java))
         }
         KeepLiveJobService.startJob(this)
-        finish()
+        if(!AccessibilitySettingHelper.isAccessibilitySettingsOnByService(this)){
+            AccessibilitySettingHelper.openAccessibility(this)
+        }else {
+            finish()
+        }
     }
 
     class SettingsFragment() : PreferenceFragmentCompat() {

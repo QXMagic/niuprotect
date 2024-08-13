@@ -53,7 +53,6 @@ class AppDataManager() {
 
     }
 
-
     fun pushUsageEvent(mContext:Context){
         val now = System.currentTimeMillis()
         val mEventList = getEventList(mContext)
@@ -113,7 +112,6 @@ class AppDataManager() {
 
                 var result = LitePal.where("packageName=?",app.packageName).find<AppInfo>()
                 if(result.isNotEmpty()){
-                    ILog.d(TAG,"is saved app,"+app.packageName)
                     continue
                 }
                 ILog.d(TAG,"installed app:"+app.name+","+app.loadLabel(pm).toString())

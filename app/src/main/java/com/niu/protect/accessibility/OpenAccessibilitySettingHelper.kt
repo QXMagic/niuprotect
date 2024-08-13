@@ -1,8 +1,11 @@
 package com.niu.protect.accessibility
 
+import android.R
 import android.app.ActivityManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
 import android.text.TextUtils.SimpleStringSplitter
@@ -10,6 +13,7 @@ import android.util.Log
 import android.view.accessibility.AccessibilityManager
 import com.niu.protect.Constant
 import com.niu.protect.tools.ILog
+
 
 class OpenAccessibilitySettingHelper {
     private fun openAccessibility(context: Context) {
@@ -28,6 +32,7 @@ class OpenAccessibilitySettingHelper {
             context.startActivity(intent)
         }
 
+
         @JvmStatic
         fun isAccessibilitySettingsOn(context: Context?, className: String): Boolean {
             if (context == null) {
@@ -38,7 +43,7 @@ class OpenAccessibilitySettingHelper {
                 context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                     ?: return false
             val runningServices = activityManager.getRunningServices(100)
-            if (runningServices.size < 0) {
+            if (runningServices.size < 1) {
                 ILog.d(Constant.TAG_DEBUG_1, "running service is empty")
                 return false
             }

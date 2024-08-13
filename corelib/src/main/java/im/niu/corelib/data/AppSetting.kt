@@ -8,7 +8,7 @@ class AppSetting : LitePalSupport() {
     var id:Long=0
     var packageName: String?=null
     var type:Int = 0
-    var timeLimit:Int = 0;
+    var timeLimit:Long = 0;
     var version:Int = 0;
     @Column(ignore = true)
     var timeSetting:TimeSetting?=null
