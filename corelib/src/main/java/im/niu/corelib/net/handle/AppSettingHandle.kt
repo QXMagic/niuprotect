@@ -5,11 +5,9 @@ import im.niu.corelib.data.AppSetting
 import im.niu.corelib.data.TimeSetting
 import im.niu.corelib.events.RefreshDataEvent
 import im.niu.data.Userinfo
-import org.greenrobot.eventbus.EventBus
 import org.litepal.LitePal
-import org.litepal.extension.delete
 
-class AppSettingHandle : IMessageHandle{
+class AppSettingHandle : MessageHandle(){
     override fun onMessage(bytes: ByteString?) {
         if(bytes!=null){
             val setting = Userinfo.AppSetting.parseFrom(bytes)
@@ -23,6 +21,8 @@ class AppSettingHandle : IMessageHandle{
             data.timeLimit = timeLimit
             data.type = type
             data.version = version
+            data.timeStart = setting.timeStart
+            data.timeEnd = setting.timeEnd
             val old = LitePal.find(AppSetting::class.java,data.id)
             if(old!=null){
                 if(type == TimeSetting.TYPE_DELETE){
@@ -33,7 +33,7 @@ class AppSettingHandle : IMessageHandle{
             }else {
                 data.save()
             }
-            EventBus.getDefault().post(RefreshDataEvent())
+            delayEvent(RefreshDataEvent())
         }
     }
 

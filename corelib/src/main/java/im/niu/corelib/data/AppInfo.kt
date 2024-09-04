@@ -14,5 +14,5 @@ class AppInfo:LitePalSupport (){
     var name: String? = null
     @Column(index = true, unique = true)
     var packageName: String? = null
-    var type = 0
+    var category = 0
 }

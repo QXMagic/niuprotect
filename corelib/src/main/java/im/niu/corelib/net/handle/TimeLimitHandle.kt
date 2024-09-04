@@ -1,18 +1,12 @@
 package im.niu.corelib.net.handle
 
-import android.os.Handler
-import android.os.Looper
 import com.google.protobuf.ByteString
 import im.niu.corelib.data.TimeSetting
 import im.niu.corelib.events.RefreshDataEvent
-import im.niu.corelib.utils.ILog
 import im.niu.data.Userinfo
-import org.greenrobot.eventbus.EventBus
 import org.litepal.LitePal
 
-class TimeLimitHandle : IMessageHandle{
-    private var postIdx=0
-    private var dataIdx = 0
+class TimeLimitHandle : MessageHandle() {
     override fun onMessage(bytes: ByteString?) {
         if(bytes!=null){
             val setting = Userinfo.TimeLimit.parseFrom(bytes)
@@ -37,12 +31,7 @@ class TimeLimitHandle : IMessageHandle{
             }else {
                 data.save()
             }
-            val handler = Handler(Looper.getMainLooper())
-            val runnable = Runnable {
-                postEvent()
-            }
-            dataIdx += 1
-            handler.postDelayed(runnable, 1000)
+            delayEvent(RefreshDataEvent())
         }
     }
 
@@ -50,11 +39,4 @@ class TimeLimitHandle : IMessageHandle{
         return Userinfo.TimeLimit.getDescriptor().fullName
     }
 
-    private fun postEvent(){
-        ILog.d("EventBus","event bus post event")
-        postIdx++
-        if(postIdx==dataIdx){
-            EventBus.getDefault().post(RefreshDataEvent())
-        }
-    }
 }

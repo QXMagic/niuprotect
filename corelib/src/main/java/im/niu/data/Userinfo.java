@@ -1515,10 +1515,10 @@ public final class Userinfo {
         getNameBytes();
 
     /**
-     * <code>int32 type = 3;</code>
-     * @return The type.
+     * <code>int32 category = 3;</code>
+     * @return The category.
      */
-    int getType();
+    int getCategory();
 
     /**
      * <code>string appName = 4;</code>
@@ -1537,6 +1537,30 @@ public final class Userinfo {
      * @return The icon.
      */
     com.google.protobuf.ByteString getIcon();
+
+    /**
+     * <code>int32 version = 6;</code>
+     * @return The version.
+     */
+    int getVersion();
+
+    /**
+     * <code>int32 type = 7;</code>
+     * @return The type.
+     */
+    int getType();
+
+    /**
+     * <code>int32 timeStart = 8;</code>
+     * @return The timeStart.
+     */
+    int getTimeStart();
+
+    /**
+     * <code>int32 timeEnd = 9;</code>
+     * @return The timeEnd.
+     */
+    int getTimeEnd();
   }
   /**
    * Protobuf type {@code im.niu.data.AppInfo}
@@ -1657,15 +1681,15 @@ public final class Userinfo {
       }
     }
 
-    public static final int TYPE_FIELD_NUMBER = 3;
-    private int type_ = 0;
+    public static final int CATEGORY_FIELD_NUMBER = 3;
+    private int category_ = 0;
     /**
-     * <code>int32 type = 3;</code>
-     * @return The type.
+     * <code>int32 category = 3;</code>
+     * @return The category.
      */
     @java.lang.Override
-    public int getType() {
-      return type_;
+    public int getCategory() {
+      return category_;
     }
 
     public static final int APPNAME_FIELD_NUMBER = 4;
@@ -1718,6 +1742,50 @@ public final class Userinfo {
       return icon_;
     }
 
+    public static final int VERSION_FIELD_NUMBER = 6;
+    private int version_ = 0;
+    /**
+     * <code>int32 version = 6;</code>
+     * @return The version.
+     */
+    @java.lang.Override
+    public int getVersion() {
+      return version_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 7;
+    private int type_ = 0;
+    /**
+     * <code>int32 type = 7;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public int getType() {
+      return type_;
+    }
+
+    public static final int TIMESTART_FIELD_NUMBER = 8;
+    private int timeStart_ = 0;
+    /**
+     * <code>int32 timeStart = 8;</code>
+     * @return The timeStart.
+     */
+    @java.lang.Override
+    public int getTimeStart() {
+      return timeStart_;
+    }
+
+    public static final int TIMEEND_FIELD_NUMBER = 9;
+    private int timeEnd_ = 0;
+    /**
+     * <code>int32 timeEnd = 9;</code>
+     * @return The timeEnd.
+     */
+    @java.lang.Override
+    public int getTimeEnd() {
+      return timeEnd_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1738,14 +1806,26 @@ public final class Userinfo {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 2, name_);
       }
-      if (type_ != 0) {
-        output.writeInt32(3, type_);
+      if (category_ != 0) {
+        output.writeInt32(3, category_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(appName_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 4, appName_);
       }
       if (!icon_.isEmpty()) {
         output.writeBytes(5, icon_);
+      }
+      if (version_ != 0) {
+        output.writeInt32(6, version_);
+      }
+      if (type_ != 0) {
+        output.writeInt32(7, type_);
+      }
+      if (timeStart_ != 0) {
+        output.writeInt32(8, timeStart_);
+      }
+      if (timeEnd_ != 0) {
+        output.writeInt32(9, timeEnd_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1762,9 +1842,9 @@ public final class Userinfo {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(2, name_);
       }
-      if (type_ != 0) {
+      if (category_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, type_);
+          .computeInt32Size(3, category_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(appName_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(4, appName_);
@@ -1772,6 +1852,22 @@ public final class Userinfo {
       if (!icon_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, icon_);
+      }
+      if (version_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, version_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, type_);
+      }
+      if (timeStart_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, timeStart_);
+      }
+      if (timeEnd_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, timeEnd_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1792,12 +1888,20 @@ public final class Userinfo {
           .equals(other.getPackageName())) return false;
       if (!getName()
           .equals(other.getName())) return false;
-      if (getType()
-          != other.getType()) return false;
+      if (getCategory()
+          != other.getCategory()) return false;
       if (!getAppName()
           .equals(other.getAppName())) return false;
       if (!getIcon()
           .equals(other.getIcon())) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
+      if (getType()
+          != other.getType()) return false;
+      if (getTimeStart()
+          != other.getTimeStart()) return false;
+      if (getTimeEnd()
+          != other.getTimeEnd()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1813,12 +1917,20 @@ public final class Userinfo {
       hash = (53 * hash) + getPackageName().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType();
+      hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
+      hash = (53 * hash) + getCategory();
       hash = (37 * hash) + APPNAME_FIELD_NUMBER;
       hash = (53 * hash) + getAppName().hashCode();
       hash = (37 * hash) + ICON_FIELD_NUMBER;
       hash = (53 * hash) + getIcon().hashCode();
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getVersion();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (37 * hash) + TIMESTART_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeStart();
+      hash = (37 * hash) + TIMEEND_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeEnd();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1952,9 +2064,13 @@ public final class Userinfo {
         bitField0_ = 0;
         packageName_ = "";
         name_ = "";
-        type_ = 0;
+        category_ = 0;
         appName_ = "";
         icon_ = com.google.protobuf.ByteString.EMPTY;
+        version_ = 0;
+        type_ = 0;
+        timeStart_ = 0;
+        timeEnd_ = 0;
         return this;
       }
 
@@ -1995,13 +2111,25 @@ public final class Userinfo {
           result.name_ = name_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.type_ = type_;
+          result.category_ = category_;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.appName_ = appName_;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.icon_ = icon_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.version_ = version_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.timeStart_ = timeStart_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.timeEnd_ = timeEnd_;
         }
       }
 
@@ -2027,8 +2155,8 @@ public final class Userinfo {
           bitField0_ |= 0x00000002;
           onChanged();
         }
-        if (other.getType() != 0) {
-          setType(other.getType());
+        if (other.getCategory() != 0) {
+          setCategory(other.getCategory());
         }
         if (!other.getAppName().isEmpty()) {
           appName_ = other.appName_;
@@ -2037,6 +2165,18 @@ public final class Userinfo {
         }
         if (other.getIcon() != com.google.protobuf.ByteString.EMPTY) {
           setIcon(other.getIcon());
+        }
+        if (other.getVersion() != 0) {
+          setVersion(other.getVersion());
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (other.getTimeStart() != 0) {
+          setTimeStart(other.getTimeStart());
+        }
+        if (other.getTimeEnd() != 0) {
+          setTimeEnd(other.getTimeEnd());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -2075,7 +2215,7 @@ public final class Userinfo {
                 break;
               } // case 18
               case 24: {
-                type_ = input.readInt32();
+                category_ = input.readInt32();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
@@ -2089,6 +2229,26 @@ public final class Userinfo {
                 bitField0_ |= 0x00000010;
                 break;
               } // case 42
+              case 48: {
+                version_ = input.readInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              case 56: {
+                type_ = input.readInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              case 64: {
+                timeStart_ = input.readInt32();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
+              case 72: {
+                timeEnd_ = input.readInt32();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 72
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2250,34 +2410,34 @@ public final class Userinfo {
         return this;
       }
 
-      private int type_ ;
+      private int category_ ;
       /**
-       * <code>int32 type = 3;</code>
-       * @return The type.
+       * <code>int32 category = 3;</code>
+       * @return The category.
        */
       @java.lang.Override
-      public int getType() {
-        return type_;
+      public int getCategory() {
+        return category_;
       }
       /**
-       * <code>int32 type = 3;</code>
-       * @param value The type to set.
+       * <code>int32 category = 3;</code>
+       * @param value The category to set.
        * @return This builder for chaining.
        */
-      public Builder setType(int value) {
+      public Builder setCategory(int value) {
 
-        type_ = value;
+        category_ = value;
         bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 type = 3;</code>
+       * <code>int32 category = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearType() {
+      public Builder clearCategory() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        type_ = 0;
+        category_ = 0;
         onChanged();
         return this;
       }
@@ -2382,6 +2542,134 @@ public final class Userinfo {
       public Builder clearIcon() {
         bitField0_ = (bitField0_ & ~0x00000010);
         icon_ = getDefaultInstance().getIcon();
+        onChanged();
+        return this;
+      }
+
+      private int version_ ;
+      /**
+       * <code>int32 version = 6;</code>
+       * @return The version.
+       */
+      @java.lang.Override
+      public int getVersion() {
+        return version_;
+      }
+      /**
+       * <code>int32 version = 6;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVersion(int value) {
+
+        version_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 version = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVersion() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        version_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <code>int32 type = 7;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>int32 type = 7;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+
+        type_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 type = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int timeStart_ ;
+      /**
+       * <code>int32 timeStart = 8;</code>
+       * @return The timeStart.
+       */
+      @java.lang.Override
+      public int getTimeStart() {
+        return timeStart_;
+      }
+      /**
+       * <code>int32 timeStart = 8;</code>
+       * @param value The timeStart to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeStart(int value) {
+
+        timeStart_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 timeStart = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeStart() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        timeStart_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int timeEnd_ ;
+      /**
+       * <code>int32 timeEnd = 9;</code>
+       * @return The timeEnd.
+       */
+      @java.lang.Override
+      public int getTimeEnd() {
+        return timeEnd_;
+      }
+      /**
+       * <code>int32 timeEnd = 9;</code>
+       * @param value The timeEnd to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeEnd(int value) {
+
+        timeEnd_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 timeEnd = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeEnd() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        timeEnd_ = 0;
         onChanged();
         return this;
       }
@@ -6180,12 +6468,24 @@ public final class Userinfo {
     int getVersion();
 
     /**
-     * <code>optional uint64 timeLimit = 5;</code>
+     * <code>int32 timeStart = 5;</code>
+     * @return The timeStart.
+     */
+    int getTimeStart();
+
+    /**
+     * <code>int32 timeEnd = 6;</code>
+     * @return The timeEnd.
+     */
+    int getTimeEnd();
+
+    /**
+     * <code>optional uint64 timeLimit = 7;</code>
      * @return Whether the timeLimit field is set.
      */
     boolean hasTimeLimit();
     /**
-     * <code>optional uint64 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 7;</code>
      * @return The timeLimit.
      */
     long getTimeLimit();
@@ -6305,10 +6605,32 @@ public final class Userinfo {
       return version_;
     }
 
-    public static final int TIMELIMIT_FIELD_NUMBER = 5;
+    public static final int TIMESTART_FIELD_NUMBER = 5;
+    private int timeStart_ = 0;
+    /**
+     * <code>int32 timeStart = 5;</code>
+     * @return The timeStart.
+     */
+    @java.lang.Override
+    public int getTimeStart() {
+      return timeStart_;
+    }
+
+    public static final int TIMEEND_FIELD_NUMBER = 6;
+    private int timeEnd_ = 0;
+    /**
+     * <code>int32 timeEnd = 6;</code>
+     * @return The timeEnd.
+     */
+    @java.lang.Override
+    public int getTimeEnd() {
+      return timeEnd_;
+    }
+
+    public static final int TIMELIMIT_FIELD_NUMBER = 7;
     private long timeLimit_ = 0L;
     /**
-     * <code>optional uint64 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 7;</code>
      * @return Whether the timeLimit field is set.
      */
     @java.lang.Override
@@ -6316,7 +6638,7 @@ public final class Userinfo {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>optional uint64 timeLimit = 5;</code>
+     * <code>optional uint64 timeLimit = 7;</code>
      * @return The timeLimit.
      */
     @java.lang.Override
@@ -6350,8 +6672,14 @@ public final class Userinfo {
       if (version_ != 0) {
         output.writeInt32(4, version_);
       }
+      if (timeStart_ != 0) {
+        output.writeInt32(5, timeStart_);
+      }
+      if (timeEnd_ != 0) {
+        output.writeInt32(6, timeEnd_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeUInt64(5, timeLimit_);
+        output.writeUInt64(7, timeLimit_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6377,9 +6705,17 @@ public final class Userinfo {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, version_);
       }
+      if (timeStart_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, timeStart_);
+      }
+      if (timeEnd_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, timeEnd_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(5, timeLimit_);
+          .computeUInt64Size(7, timeLimit_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -6404,6 +6740,10 @@ public final class Userinfo {
           != other.getType()) return false;
       if (getVersion()
           != other.getVersion()) return false;
+      if (getTimeStart()
+          != other.getTimeStart()) return false;
+      if (getTimeEnd()
+          != other.getTimeEnd()) return false;
       if (hasTimeLimit() != other.hasTimeLimit()) return false;
       if (hasTimeLimit()) {
         if (getTimeLimit()
@@ -6429,6 +6769,10 @@ public final class Userinfo {
       hash = (53 * hash) + getType();
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
       hash = (53 * hash) + getVersion();
+      hash = (37 * hash) + TIMESTART_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeStart();
+      hash = (37 * hash) + TIMEEND_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeEnd();
       if (hasTimeLimit()) {
         hash = (37 * hash) + TIMELIMIT_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
@@ -6569,6 +6913,8 @@ public final class Userinfo {
         packageName_ = "";
         type_ = 0;
         version_ = 0;
+        timeStart_ = 0;
+        timeEnd_ = 0;
         timeLimit_ = 0L;
         return this;
       }
@@ -6615,8 +6961,14 @@ public final class Userinfo {
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.version_ = version_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.timeStart_ = timeStart_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.timeEnd_ = timeEnd_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000040) != 0)) {
           result.timeLimit_ = timeLimit_;
           to_bitField0_ |= 0x00000001;
         }
@@ -6648,6 +7000,12 @@ public final class Userinfo {
         }
         if (other.getVersion() != 0) {
           setVersion(other.getVersion());
+        }
+        if (other.getTimeStart() != 0) {
+          setTimeStart(other.getTimeStart());
+        }
+        if (other.getTimeEnd() != 0) {
+          setTimeEnd(other.getTimeEnd());
         }
         if (other.hasTimeLimit()) {
           setTimeLimit(other.getTimeLimit());
@@ -6699,10 +7057,20 @@ public final class Userinfo {
                 break;
               } // case 32
               case 40: {
-                timeLimit_ = input.readUInt64();
+                timeStart_ = input.readInt32();
                 bitField0_ |= 0x00000010;
                 break;
               } // case 40
+              case 48: {
+                timeEnd_ = input.readInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              case 56: {
+                timeLimit_ = input.readUInt64();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6900,17 +7268,81 @@ public final class Userinfo {
         return this;
       }
 
+      private int timeStart_ ;
+      /**
+       * <code>int32 timeStart = 5;</code>
+       * @return The timeStart.
+       */
+      @java.lang.Override
+      public int getTimeStart() {
+        return timeStart_;
+      }
+      /**
+       * <code>int32 timeStart = 5;</code>
+       * @param value The timeStart to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeStart(int value) {
+
+        timeStart_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 timeStart = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeStart() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        timeStart_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int timeEnd_ ;
+      /**
+       * <code>int32 timeEnd = 6;</code>
+       * @return The timeEnd.
+       */
+      @java.lang.Override
+      public int getTimeEnd() {
+        return timeEnd_;
+      }
+      /**
+       * <code>int32 timeEnd = 6;</code>
+       * @param value The timeEnd to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeEnd(int value) {
+
+        timeEnd_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 timeEnd = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeEnd() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        timeEnd_ = 0;
+        onChanged();
+        return this;
+      }
+
       private long timeLimit_ ;
       /**
-       * <code>optional uint64 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 7;</code>
        * @return Whether the timeLimit field is set.
        */
       @java.lang.Override
       public boolean hasTimeLimit() {
-        return ((bitField0_ & 0x00000010) != 0);
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
-       * <code>optional uint64 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 7;</code>
        * @return The timeLimit.
        */
       @java.lang.Override
@@ -6918,23 +7350,23 @@ public final class Userinfo {
         return timeLimit_;
       }
       /**
-       * <code>optional uint64 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 7;</code>
        * @param value The timeLimit to set.
        * @return This builder for chaining.
        */
       public Builder setTimeLimit(long value) {
 
         timeLimit_ = value;
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint64 timeLimit = 5;</code>
+       * <code>optional uint64 timeLimit = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearTimeLimit() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000040);
         timeLimit_ = 0L;
         onChanged();
         return this;
@@ -8481,27 +8913,30 @@ public final class Userinfo {
       "\n\024proto/userinfo.proto\022\013im.niu.data\"%\n\007W" +
       "rapper\022\014\n\004name\030\001 \001(\t\022\014\n\004data\030\002 \001(\014\"C\n\010Us" +
       "erInfo\022\n\n\002id\030\001 \001(\t\022\016\n\006device\030\002 \001(\t\022\017\n\007ve" +
-      "rsion\030\003 \001(\005\022\n\n\002os\030\004 \001(\t\"Y\n\007AppInfo\022\023\n\013pa" +
-      "ckageName\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004type\030\003 " +
-      "\001(\005\022\017\n\007appName\030\004 \001(\t\022\014\n\004icon\030\005 \001(\014\"\'\n\004Pi" +
-      "ng\022\016\n\006screen\030\001 \001(\005\022\017\n\007battery\030\002 \001(\005\"\237\001\n\n" +
-      "AppUseInfo\022\023\n\013packageName\030\001 \001(\t\022\026\n\016first" +
-      "TimeStamp\030\002 \001(\003\022\025\n\rlastTimeStamp\030\003 \001(\003\022\024" +
-      "\n\014lastTimeUsed\030\004 \001(\003\022\035\n\025totalTimeInForeg" +
-      "round\030\005 \001(\003\022\030\n\020totalTimeVisible\030\006 \001(\003\"=\n" +
-      "\016AppUseInfoList\022+\n\nappUseInfo\030\001 \003(\0132\027.im" +
-      ".niu.data.AppUseInfo\"Z\n\nUsageEvent\022\021\n\tev" +
-      "entType\030\001 \001(\005\022\023\n\013packageName\030\002 \001(\t\022\021\n\tti" +
-      "meStamp\030\003 \001(\003\022\021\n\tclassName\030\004 \001(\t\"=\n\016Usag" +
-      "eEventList\022+\n\nusageEvent\030\001 \003(\0132\027.im.niu." +
-      "data.UsageEvent\"r\n\nAppSetting\022\n\n\002id\030\001 \001(" +
-      "\004\022\023\n\013packageName\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\017\n\007" +
-      "version\030\004 \001(\005\022\026\n\ttimeLimit\030\005 \001(\004H\000\210\001\001B\014\n" +
-      "\n_timeLimit\"v\n\tTimeLimit\022\n\n\002id\030\001 \001(\004\022\014\n\004" +
-      "type\030\002 \001(\005\022\021\n\ttimeStart\030\003 \001(\004\022\017\n\007timeEnd" +
-      "\030\004 \001(\004\022\r\n\005limit\030\005 \001(\r\022\013\n\003day\030\006 \001(\005\022\017\n\007ve" +
-      "rsion\030\007 \001(\005\")\n\010SyncData\022\014\n\004type\030\001 \001(\005\022\017\n" +
-      "\007version\030\002 \001(\rb\006proto3"
+      "rsion\030\003 \001(\005\022\n\n\002os\030\004 \001(\t\"\240\001\n\007AppInfo\022\023\n\013p" +
+      "ackageName\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010catego" +
+      "ry\030\003 \001(\005\022\017\n\007appName\030\004 \001(\t\022\014\n\004icon\030\005 \001(\014\022" +
+      "\017\n\007version\030\006 \001(\005\022\014\n\004type\030\007 \001(\005\022\021\n\ttimeSt" +
+      "art\030\010 \001(\005\022\017\n\007timeEnd\030\t \001(\005\"\'\n\004Ping\022\016\n\006sc" +
+      "reen\030\001 \001(\005\022\017\n\007battery\030\002 \001(\005\"\237\001\n\nAppUseIn" +
+      "fo\022\023\n\013packageName\030\001 \001(\t\022\026\n\016firstTimeStam" +
+      "p\030\002 \001(\003\022\025\n\rlastTimeStamp\030\003 \001(\003\022\024\n\014lastTi" +
+      "meUsed\030\004 \001(\003\022\035\n\025totalTimeInForeground\030\005 " +
+      "\001(\003\022\030\n\020totalTimeVisible\030\006 \001(\003\"=\n\016AppUseI" +
+      "nfoList\022+\n\nappUseInfo\030\001 \003(\0132\027.im.niu.dat" +
+      "a.AppUseInfo\"Z\n\nUsageEvent\022\021\n\teventType\030" +
+      "\001 \001(\005\022\023\n\013packageName\030\002 \001(\t\022\021\n\ttimeStamp\030" +
+      "\003 \001(\003\022\021\n\tclassName\030\004 \001(\t\"=\n\016UsageEventLi" +
+      "st\022+\n\nusageEvent\030\001 \003(\0132\027.im.niu.data.Usa" +
+      "geEvent\"\226\001\n\nAppSetting\022\n\n\002id\030\001 \001(\004\022\023\n\013pa" +
+      "ckageName\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\017\n\007version" +
+      "\030\004 \001(\005\022\021\n\ttimeStart\030\005 \001(\005\022\017\n\007timeEnd\030\006 \001" +
+      "(\005\022\026\n\ttimeLimit\030\007 \001(\004H\000\210\001\001B\014\n\n_timeLimit" +
+      "\"v\n\tTimeLimit\022\n\n\002id\030\001 \001(\004\022\014\n\004type\030\002 \001(\005\022" +
+      "\021\n\ttimeStart\030\003 \001(\004\022\017\n\007timeEnd\030\004 \001(\004\022\r\n\005l" +
+      "imit\030\005 \001(\r\022\013\n\003day\030\006 \001(\005\022\017\n\007version\030\007 \001(\005" +
+      "\")\n\010SyncData\022\014\n\004type\030\001 \001(\005\022\017\n\007version\030\002 " +
+      "\001(\rb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8524,7 +8959,7 @@ public final class Userinfo {
     internal_static_im_niu_data_AppInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_im_niu_data_AppInfo_descriptor,
-        new java.lang.String[] { "PackageName", "Name", "Type", "AppName", "Icon", });
+        new java.lang.String[] { "PackageName", "Name", "Category", "AppName", "Icon", "Version", "Type", "TimeStart", "TimeEnd", });
     internal_static_im_niu_data_Ping_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_im_niu_data_Ping_fieldAccessorTable = new
@@ -8560,7 +8995,7 @@ public final class Userinfo {
     internal_static_im_niu_data_AppSetting_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_im_niu_data_AppSetting_descriptor,
-        new java.lang.String[] { "Id", "PackageName", "Type", "Version", "TimeLimit", });
+        new java.lang.String[] { "Id", "PackageName", "Type", "Version", "TimeStart", "TimeEnd", "TimeLimit", });
     internal_static_im_niu_data_TimeLimit_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_im_niu_data_TimeLimit_fieldAccessorTable = new

@@ -8,11 +8,11 @@ import im.niu.corelib.App
 import im.niu.corelib.Constants
 import im.niu.corelib.events.MessageEvent
 import im.niu.corelib.manager.BroadcastManager
+import im.niu.corelib.ui.BootActivity
 import im.niu.corelib.utils.ILog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.Locale
 
 class NiuAccessibilityService : AccessibilityService() {
 
@@ -80,14 +80,13 @@ class NiuAccessibilityService : AccessibilityService() {
         if (event.className != null) {
             className = event.className.toString()
         }
-        val packagetName = event.packageName.toString()
+        val packagetName = event.packageName.toString().lowercase()
         val text = event.text.toString()
         if (eventType == AccessibilityEvent.TYPE_VIEW_LONG_CLICKED
                 && packagetName.contains("launcher")
                 && text.contains(Constants.APP_NAME)
         ) {
-            ILog.d(this.TAG, "长按防止卸载返回 goBack()---")
-            goBack()
+            goBack("防止监管卸载返回")
         }
 
         if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED
@@ -117,16 +116,16 @@ class NiuAccessibilityService : AccessibilityService() {
 //            ) {
 //                return
 //            }
-//            if (packagetName == "com.coloros.assistantscreen" || packagetName == "com.vivo.hiboard" || packagetName == "com.huawei.intelligent") {
+            if (packagetName == "com.coloros.assistantscreen" || packagetName == "com.vivo.hiboard" || packagetName == "com.huawei.intelligent") {
 //                ILog.d(this.TAG, "负一屏幕返回 goBack()---")
-//                goBack()
-//                return
-//            }
+                goBack("负一屏幕返回")
+                return
+            }
         }
-        if (packagetName == "com.ss.android.ugc.aweme" && eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
-            //刷抖音?
-            checkCanUse(packagetName)
-        } else {
+//        if (packagetName == "com.ss.android.ugc.aweme" && eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
+//            //刷抖音?
+//            checkCanUse(packagetName)
+//        } else {
 //            if (roomIsVivo) {
 //                if (packagetName.contains("launcher") && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
 //                    if (findById(
@@ -181,19 +180,19 @@ class NiuAccessibilityService : AccessibilityService() {
 
                     for(bk in backClickInfos){
                         if(text.contains(bk)){
-                            ILog.d(this.TAG, " $packagetName 返回,危险关键字--> $bk")
-                            goBack()
+                            goBack("点击 $packagetName 返回,危险关键字--> $bk")
                             break
                         }
                     }
                 }
-//                if (packagetName.contains("com.oppo.launcher") && event.text.contains("清除")) {
-//                    val intent = Intent(this, MainActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//                    startActivity(intent)
-//                    return
-//                }
+                if (packagetName.contains("com.oppo.launcher") && event.text.contains("清除")) {
+                    val intent = Intent(this, BootActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    return
+                }
             }
+            //设置页面
             if (packagetName == "com.android.settings" && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                 ILog.d(
                     this.TAG,
@@ -228,17 +227,17 @@ class NiuAccessibilityService : AccessibilityService() {
                 || eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED
                 || eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
                 || eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
-
+                //不点击,光屏幕变化检测,4秒之后不检测
                 if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
                     val nowTime = System.currentTimeMillis()
                     if (nowTime - remenberTIme < 4000) {
-                        remenberTIme = System.currentTimeMillis()
+//                        remenberTIme = System.currentTimeMillis()
                         return
                     }
                     remenberTIme = System.currentTimeMillis()
                 }
                 if (packageNameLastTime != packagetName) {
-//                    UploadAppManager.getInstance(this)?.upNewInstallAPP(packagetName)
+                    ILog.d(TAG, "change app ,packageNameLastTime: $packageNameLastTime -> $packagetName")
                 }
                 checkBalckAppAndUseTime(packagetName,event)
 //                changeTime = System.currentTimeMillis()
@@ -251,16 +250,14 @@ class NiuAccessibilityService : AccessibilityService() {
 //                if (isLimit) {
 //                    goBack()
 //                }
-            }
         }
     }
     var packageNameLastTime = ""
     var remenberTIme = 0L
 
-    private fun goBack() {
-        ILog.d(TAG, "goBack")
-        performGlobalAction(
-            GLOBAL_ACTION_BACK)
+    private fun goBack(msg:String) {
+        ILog.d(TAG, "goBack, $msg")
+        performGlobalAction(GLOBAL_ACTION_BACK)
         try {
             Thread.sleep(50L)
         } catch (e: InterruptedException) {
@@ -285,12 +282,13 @@ class NiuAccessibilityService : AccessibilityService() {
     @Synchronized
     fun checkBalckAppAndUseTime(packageName: String,event: AccessibilityEvent) {
         if(App.appLimit.isForbid(packageName,event)){
-            goBack()
+            goBack("禁用 app $packageName")
             return
         }
         if (!App.appLimit.isAllow(packageName,event)) {
             return
         }
+        //系统APP
         if ((packageName.startsWith("com.oppo")
                     || packageName.startsWith("com.android")
                     || packageName.contains("coloros.")
@@ -303,77 +301,44 @@ class NiuAccessibilityService : AccessibilityService() {
                     || packageName.startsWith("com.huawei")
                     || packageName.contains("launcher")
                     || packageName.startsWith("com.hihonor")
-                    || packageName.startsWith("com.jiankong.jia")
                 )
-            && !packageName.lowercase(Locale.getDefault()
-            ).contains("browser")
-            && !packageName.lowercase(Locale.getDefault())
-                .contains("video")
-            && !packageName.lowercase(
-                Locale.getDefault()
-            ).contains("music")
-            && !packageName.lowercase(Locale.getDefault())
-                .contains("store")
-            && !packageName.lowercase(
-                Locale.getDefault()
-            ).contains("chrome")
-            && !packageName.lowercase(Locale.getDefault())
-                .contains("market")
-            && !packageName.lowercase(
-                Locale.getDefault()
-            ).contains("community")
-            && !packageName.lowercase(Locale.getDefault())
-                .contains("phonemanager")
-            && !packageName.lowercase(
-                Locale.getDefault()
-            ).contains("minigamecenter")
-            && !packageName.lowercase(
-                Locale.getDefault()
-            ).contains("hwvplayer")
+            && !packageName.contains("browser")
+            && !packageName.contains("video")
+            && !packageName.contains("music")
+            && !packageName.contains("store")
+            && !packageName.contains("chrome")
+            && !packageName.contains("market")
+            && !packageName.contains("community")
+            && !packageName.contains("phonemanager")
+            && !packageName.contains("minigamecenter")
+            && !packageName.contains("hwvplayer")
         ) {
             return
         } else {
-            checkCanUse(packageName)
-        }
-
-    }
-
-    private fun checkCanUse(packageName: String) {
-        val isCantNotUse = true//StudentMainController.getInstance().checkNotUseTime(this)
-        if (isCantNotUse) {
-            val str = this.TAG
-            ILog.d(str, "can't not use:$packageName")
-            if (packageName.lowercase(Locale.getDefault())
-                    .contains("browser") || packageName.lowercase(
-                    Locale.getDefault()
-                ).contains("video") || packageName.lowercase(Locale.getDefault())
-                    .contains("store") || packageName.lowercase(
-                    Locale.getDefault()
-                ).contains("music") || packageName.lowercase(Locale.getDefault())
-                    .contains("market") || packageName.lowercase(
-                    Locale.getDefault()
-                ).contains("community") || packageName.lowercase(Locale.getDefault())
-                    .contains("chrome") || packageName.uppercase(
-                    Locale.getDefault()
-                ).contains("hwvplayer")
-            ) {
-                goBack()
+            val isCantNotUse = true//StudentMainController.getInstance().checkNotUseTime(this)
+            if (isCantNotUse) {
+                //不在使用时间内, 系统APP 排除娱乐APP可以使用,其他APP不能用
+                if (packageName.contains("browser") ||
+                    packageName.contains("video") ||
+                    packageName.contains("store") ||
+                    packageName.contains("music") ||
+                    packageName.contains("market") ||
+                    packageName.contains("community") ||
+                    packageName.contains("chrome") ||
+                    packageName.contains("hwvplayer")
+                ) {
+                    goBack("$packageName:浏览器, 视频, 音乐, 浏览器等")
+                }
+                if (!packageName.contains("com.oppo") &&
+                    !packageName.contains("com.android") &&
+                    !packageName.contains("coloros") &&
+                    !packageName.contains("com.bbk") &&
+                    !packageName.contains("launcher")
+                ) {
+                    goBack("$packageName 不是系统APP")
+                    return
+                }
             }
-            if (!packageName.contains("com.oppo") && !packageName.contains("com.android") && !packageName.contains(
-                    "coloros"
-                ) && !packageName.contains("com.bbk") && !packageName.contains("launcher")
-            ) {
-                goBack()
-                return
-            }
-            return
         }
-        val isCannotUseApp = false//StudentMainController.getInstance().appCanUse(packageName)
-        if (isCannotUseApp) {
-            ILog.d(TAG, "can't use---$packageName")
-            goBack()
-            return
-        }
-        ILog.d(TAG, "can use---$packageName")
     }
 }

@@ -6,7 +6,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import com.google.protobuf.ByteString
@@ -111,6 +110,7 @@ class AppDataManager() {
                 }
 
                 var result = LitePal.where("packageName=?",app.packageName).find<AppInfo>()
+                //忽略已存在的
                 if(result.isNotEmpty()){
                     continue
                 }
@@ -119,10 +119,10 @@ class AppDataManager() {
                 appInfo.packageName = app.packageName
                 appInfo.appName = app.loadLabel(pm).toString()
                 appInfo.name = if (TextUtils.isEmpty(app.name)) app.packageName else app.name
-                appInfo.type = app.category
+                appInfo.category = app.category
                 appInfo.icon = app.loadIcon(pm)
 
-                var message = Userinfo.AppInfo.newBuilder().setAppName(appInfo.appName).setType(appInfo.type).setName(appInfo.name).setPackageName(appInfo.packageName);
+                var message = Userinfo.AppInfo.newBuilder().setAppName(appInfo.appName).setType(appInfo.category).setName(appInfo.name).setPackageName(appInfo.packageName);
                 val drawable: Drawable? = appInfo.icon
                 if (drawable != null) {
                     val bitmap: Bitmap = drawableToBitmap(drawable)

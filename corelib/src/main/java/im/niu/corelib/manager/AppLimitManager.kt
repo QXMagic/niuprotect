@@ -47,15 +47,15 @@ class AppLimitManager() {
 
         //系统白名单APP列表
         systemWhiteMap["android"] = "安卓"
-        systemWhiteMap["com.android.systemUi"] = "主界面"
+        systemWhiteMap["com.android.systemui"] = "主界面"
         systemWhiteMap["com.android.mms"] = "短信"
         systemWhiteMap["com.android.launcher"] = "启动器1"
-        systemWhiteMap["com.android.launcher.Launcher"] = "发射器2"
+        systemWhiteMap["com.android.launcher.launcher"] = "发射器2"
         systemWhiteMap["com.oplus.wirelesssettings "] = "无限网络设置"
 
 
 
-        systemWhiteText.add("UniHomeLauncher")
+        systemWhiteText.add("unihomelauncher")
         systemWhiteText.add("password")
         systemWhiteText.add("keyboard")
         systemWhiteText.add("sogouoem")
@@ -119,6 +119,7 @@ class AppLimitManager() {
         if (blackList.size > 0) {
             for (app in blackList) {
                 if (app.packageName == packageName) {
+                    ILog.i(TAG, "forbidden in black list: $packageName")
                     return true
                 }
             }
@@ -127,10 +128,12 @@ class AppLimitManager() {
             val txt = event.text.toString()
             for (ban:String in banWindows){
                 if(txt.contains(ban)){
+                    ILog.i(TAG, "contains ban word: $ban")
                     return true
                 }
             }
             if (packageName == "com.oplus.battery") {
+                ILog.i(TAG, "forbidden: packageName:com.oplus.battery")
                 return true
             }
         }
@@ -140,6 +143,7 @@ class AppLimitManager() {
                 if(app.timeSetting!!.isInRange(now)){
                     return false
                 }
+                ILog.i(TAG, "forbidden: $packageName not in allow time")
                 return true
             }
         }
