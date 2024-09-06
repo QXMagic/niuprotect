@@ -2,16 +2,14 @@ package im.niu.corelib.ui
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import im.niu.corelib.R
+import androidx.activity.ComponentActivity
 import im.niu.corelib.service.KeepLiveJobService
 import im.niu.corelib.service.MainIntentService
 
-class BootActivity : AppCompatActivity() {
+class BootActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_boot)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForegroundService(Intent(this, MainIntentService::class.java))

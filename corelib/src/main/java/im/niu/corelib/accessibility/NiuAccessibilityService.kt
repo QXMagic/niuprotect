@@ -3,20 +3,20 @@ package im.niu.corelib.accessibility
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.text.TextUtils
+import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
+import androidx.appcompat.app.AlertDialog
 import im.niu.corelib.App
 import im.niu.corelib.Constants
-import im.niu.corelib.events.MessageEvent
+import im.niu.corelib.R
 import im.niu.corelib.manager.BroadcastManager
 import im.niu.corelib.ui.BootActivity
 import im.niu.corelib.utils.ILog
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+
 
 class NiuAccessibilityService : AccessibilityService() {
 
-    private val TAG = "NiuAccess"
+    private val tag = "NiuAccess"
     private var backClickInfos =
         arrayOf("[Breeno]", "[卸载" + Constants.APP_NAME + "]", "卸载" + Constants.APP_NAME, "手机管家", "概览")
     /**
@@ -27,7 +27,7 @@ class NiuAccessibilityService : AccessibilityService() {
      * make a copy.
      */
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
-        ILog.i(TAG, "--eventType---:$event.eventType")
+        ILog.i(tag, "--eventType---:$event.eventType")
         luncherEvent(event)
     }
 
@@ -35,46 +35,44 @@ class NiuAccessibilityService : AccessibilityService() {
      * Callback for interrupting the accessibility feedback.
      */
     override fun onInterrupt() {
-        ILog.d(TAG,"onInterrupt")
+        ILog.d(tag,"onInterrupt")
     }
 
     override fun onCreate() {
         super.onCreate()
-        ILog.d(TAG,"onCreate")
-        EventBus.getDefault().register(this)
+        ILog.d(tag,"onCreate")
+//        EventBus.getDefault().register(this)
         BroadcastManager.register(this)
-
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        ILog.d(TAG,"onDestroy")
-        EventBus.getDefault().unregister(this)
+        ILog.d(tag,"onDestroy")
+//        EventBus.getDefault().unregister(this)
         BroadcastManager.unRegister(this)
     }
 
     override fun onServiceConnected() {
         super.onServiceConnected()
-        ILog.d(TAG,"onServiceConnected")
+        ILog.d(tag,"onServiceConnected")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        ILog.d(TAG,"onStartCommand")
+        ILog.d(tag,"onStartCommand")
         return super.onStartCommand(intent, flags, startId)
     }
 
-    @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    fun onMessageEvent(message: MessageEvent){
-
-    }
+//    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+//    fun onMessageEvent(message: MessageEvent){
+//
+//    }
 
     private fun luncherEvent(event: AccessibilityEvent) {
         val eventType = event.eventType
         var className = ""
 
         if(TextUtils.isEmpty(event.packageName)){
-            ILog.e(TAG,"event type is Empty type:$eventType")
+            ILog.e(tag,"event type is Empty type:$eventType")
             return
         }
         if (event.className != null) {
@@ -195,7 +193,7 @@ class NiuAccessibilityService : AccessibilityService() {
             //设置页面
             if (packagetName == "com.android.settings" && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                 ILog.d(
-                    this.TAG,
+                    this.tag,
                     "Setting info className-$className, text: $text"
                 )
                 if (text.contains("移动")
@@ -237,7 +235,7 @@ class NiuAccessibilityService : AccessibilityService() {
                     remenberTIme = System.currentTimeMillis()
                 }
                 if (packageNameLastTime != packagetName) {
-                    ILog.d(TAG, "change app ,packageNameLastTime: $packageNameLastTime -> $packagetName")
+                    ILog.d(tag, "change app ,packageNameLastTime: $packageNameLastTime -> $packagetName")
                 }
                 checkBalckAppAndUseTime(packagetName,event)
 //                changeTime = System.currentTimeMillis()
@@ -252,11 +250,11 @@ class NiuAccessibilityService : AccessibilityService() {
 //                }
         }
     }
-    var packageNameLastTime = ""
-    var remenberTIme = 0L
+    private var packageNameLastTime = ""
+    private var remenberTIme = 0L
 
     private fun goBack(msg:String) {
-        ILog.d(TAG, "goBack, $msg")
+        ILog.d(tag, "goBack, $msg")
         performGlobalAction(GLOBAL_ACTION_BACK)
         try {
             Thread.sleep(50L)
@@ -276,6 +274,7 @@ class NiuAccessibilityService : AccessibilityService() {
             e3.printStackTrace()
         }
         performGlobalAction(GLOBAL_ACTION_HOME)
+        justShowDialog(msg)
     }
 
 
@@ -341,4 +340,18 @@ class NiuAccessibilityService : AccessibilityService() {
             }
         }
     }
+
+    private fun justShowDialog(msg: String) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(applicationContext) //这里去获取上下文
+            .setIcon(R.mipmap.ico)
+            .setTitle("禁止操作")
+            .setMessage(msg)
+            .setPositiveButton("确定") { _, _ -> }
+        val dialog: AlertDialog = builder.create()
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.window?.setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY))
+        dialog.show() //最核心一就是展示
+    }
+
 }
