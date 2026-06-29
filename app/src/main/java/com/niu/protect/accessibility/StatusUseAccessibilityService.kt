@@ -13,6 +13,7 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import com.niu.protect.BuildConfig
 import com.niu.protect.Constant
+import com.niu.protect.homework.HomeworkLockManager
 import com.niu.protect.accessibility.auto.app.AppActivityTool
 import com.niu.protect.accessibility.auto.service.BaseAccessibility
 import com.niu.protect.core.Constants
@@ -103,6 +104,19 @@ class StatusUseAccessibilityService : BaseAccessibility() {
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
+        // 作业时间锁：作业未完成（CHECK/EARN/HOMEWORK阶段且家长已开启）时，
+        // 仅允许作业App与必要应用，其它一律踢出。独立于服务端管控状态生效。
+        if (HomeworkLockManager.isLockActive(this)) {
+            val et = event.eventType
+            if (et == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED ||
+                et == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+            ) {
+                if (HomeworkLockManager.shouldBlock(this, event.packageName?.toString())) {
+                    goBack()
+                    return
+                }
+            }
+        }
         ILog.d(TAG, "eventType:$event.eventType  --roomIsVivo--- $roomIsVivo")
         ILog.d(TAG, "eventType text:$event.text")
         ILog.d(TAG, "eventType getPackageName:" + event.packageName as Any)

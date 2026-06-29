@@ -292,6 +292,30 @@
                                     android:layout_marginTop="5.0dip"
                                     android:text="我的" />
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:id="@+id/homeworkBtn"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.0">
+
+                                <ImageView
+                                    android:layout_width="25.0dip"
+                                    android:layout_height="25.0dip"
+                                    android:src="@mipmap/p063"
+                                    android:layout_centerInParent="true" />
+
+                                <TextView
+                                    android:textSize="13.0sp"
+                                    android:textColor="#ff424242"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5.0dip"
+                                    android:text="作业管控" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
 

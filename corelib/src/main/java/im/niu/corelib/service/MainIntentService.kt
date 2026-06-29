@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback
 import android.net.Network
@@ -24,6 +25,7 @@ import im.niu.corelib.Constants
 import im.niu.corelib.R
 import im.niu.corelib.events.EventType
 import im.niu.corelib.events.MessageEvent
+import im.niu.corelib.manager.UpgradeManager
 import im.niu.corelib.utils.ILog
 import im.niu.data.Userinfo
 import org.greenrobot.eventbus.EventBus
@@ -98,6 +100,9 @@ class MainIntentService : Service() {
         }catch (e: Exception){
             e.printStackTrace()
         }
+
+        val up = UpgradeManager(this)
+        up.upgrade()
 
         registerNotificationChannel()
         val mBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -178,8 +183,13 @@ class MainIntentService : Service() {
     open fun sendScreenMsg() {
         val manager = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager
         val battery = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-
-        var ping = Userinfo.Ping.newBuilder().setBattery(battery).setScreen(1).build()
+        val location = (applicationContext.getSystemService(LOCATION_SERVICE)) as LocationManager
+        location.allProviders.forEach {
+            if (location.isProviderEnabled(it)) {
+                ILog.d(tag, "location provider $it enable")
+            }
+        }
+        val ping = Userinfo.Ping.newBuilder().setBattery(battery).setScreen(1).build()
         App.webSocketManager.sendMessage(ping)
 
     }

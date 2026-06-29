@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="accessibility_desc">妞管家,开启保护</string>
+    <string name="setting_accessibility_title">按照下述步骤开启无障碍服务</string>
+    <string name="setting_accessibility_button">我会了,开始设置</string>
     <string name="aotuset">掌控从此刻开始</string>
     <string name="title_activity_permission">PermissionActivity</string>
+    <string name="title_activity_access_setting">AccessSettingActivity</string>
 </resources>

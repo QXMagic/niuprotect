@@ -59,6 +59,7 @@ import com.niu.protect.tools.SharedPreUtil
 import com.niu.protect.tools.ToastUtil
 import com.niu.protect.tools.Tools
 import com.niu.protect.ui.base.BaseActivity
+import com.niu.protect.homework.HomeworkActivity
 import com.niu.protect.ui.mine.MineActivity
 import com.niu.protect.ui.setting.OpenQxActivity
 import com.niu.protect.viewmodel.MainViewModel
@@ -181,6 +182,11 @@ class MainActivity : BaseActivity() {
         binding!!.mybtn.setOnClickListener {
             val intent = Intent()
             intent.setClass(_context, MineActivity::class.java)
+            _context.startActivity(intent)
+        }
+        binding!!.homeworkBtn.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(_context, HomeworkActivity::class.java)
             _context.startActivity(intent)
         }
         binding!!.goTeacherBtn.setOnClickListener {

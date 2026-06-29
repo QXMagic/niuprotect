@@ -3,6 +3,7 @@ package im.niu.corelib.utils
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.text.TextUtils
 import android.util.Log
@@ -10,13 +11,14 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 
 class NiuUtil {
 
     companion object {
         private val TAG = "Util"
-        private fun _isServiceRunning(context: Context, serviceName: String): Boolean {
+        private fun serviceRunning(context: Context, serviceName: String): Boolean {
             if (TextUtils.isEmpty(serviceName)) {
                 return false
             }
@@ -46,15 +48,17 @@ class NiuUtil {
         }
 
         fun isServiceRunning(context: Context,serviceName:String):Boolean{
-            val run = _isServiceRunning(context,serviceName)
+            val run = serviceRunning(context,serviceName)
             ILog.d(TAG,"isServiceRunning:$run")
             if(run){
                 return true
             }
             val serviceIntent = Intent()
             serviceIntent.setPackage(context.packageName)
+            serviceIntent.type="*/*"
+            serviceIntent.action=Intent.ACTION_GET_CONTENT
             val resolveInfos: List<ResolveInfo> =
-                context.packageManager.queryIntentServices(serviceIntent, 0)
+                context.packageManager.queryIntentServices(serviceIntent,0)
             for (resolveInfo in resolveInfos) {
                 Log.d(TAG, "Intent service name: " + resolveInfo.serviceInfo)
                 if(serviceName == resolveInfo.serviceInfo.name){
@@ -67,12 +71,12 @@ class NiuUtil {
         }
 
         fun timeToDayStart(timest: Long): Long {
-            val format = SimpleDateFormat("yyyy-MM-dd")
+            val format = SimpleDateFormat("yyyy-MM-dd", Locale.SIMPLIFIED_CHINESE)
             var date = Date(timest)
             val dateStr = format.format(date)
             val dateStr2 = "$dateStr 00:00:00"
             val format2 =
-                SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.SIMPLIFIED_CHINESE)
             try {
                 date = format2.parse(dateStr2)
             } catch (e: ParseException) {
@@ -82,7 +86,7 @@ class NiuUtil {
             return date.time
         }
 
-        private val dateFormat = SimpleDateFormat("M-d-yyyy")
+        private val dateFormat = SimpleDateFormat("M-d-yyyy", Locale.SIMPLIFIED_CHINESE)
 
         const val DAY_IN_MILLIS = (24 * 60 * 60 * 1000).toLong()
         @JvmStatic
@@ -90,8 +94,7 @@ class NiuUtil {
          * 将时间戳转换为时间
          */
         fun stampToDate(stamp: String): String? {
-            //String to long
-            var time:Long = try {
+            val time:Long = try {
                 stamp.toLong()
             } catch (e: NumberFormatException) {
                 0L
@@ -101,7 +104,7 @@ class NiuUtil {
         @JvmStatic
         fun stampToDate(stamp: Long): String? {
             val res: String
-            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.SIMPLIFIED_CHINESE)
             val date = Date(stamp)
             res = simpleDateFormat.format(date)
             return res
@@ -116,7 +119,7 @@ class NiuUtil {
             cal.set(Calendar.SECOND, second)
             val todayStamp: Long = cal.getTimeInMillis()
             Log.i(
-                "Wingbu",
+                TAG,
                 " DateTransUtils-getTodayStartStamp()  获取当日" + hour + ":" + minute + ":" + second + "的时间戳 :" + todayStamp
             )
             return todayStamp
@@ -147,14 +150,10 @@ class NiuUtil {
         fun getDateString(dayNumber: Int): String {
             val time = System.currentTimeMillis() - dayNumber * DAY_IN_MILLIS
             Log.i(
-                "Wingbu",
+                TAG,
                 " DateTransUtils-getDateString()  获取查询的日期 :" + dateFormat.format(time)
             )
             return dateFormat.format(time)
         }
-
-
-
-
     }
 }

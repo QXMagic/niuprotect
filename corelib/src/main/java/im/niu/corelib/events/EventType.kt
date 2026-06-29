@@ -5,5 +5,6 @@ enum class EventType {
     APP_INFO,
     APP_USAGE,
     ONE_TIME_DETAILS,
-    TIME_LIMIT
+    TIME_LIMIT,
+    MSG_INSTALL_APK
 }

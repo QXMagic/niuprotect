@@ -24,15 +24,16 @@ class AccessibilitySettingHelper {
 
         @JvmStatic
         fun openAccessibility(context: Context) {
-            val accessibilityManager =
-                context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-            if (!accessibilityManager.isEnabled) {
+            ILog.d(TAG, "to openAccessibility")
+//            val accessibilityManager =
+//                context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+//            if (!accessibilityManager.isEnabled) {
                 if(RomUtil.isMiui){
                      try {
                          openAccessXiaoMi(context)
                          return
                      }catch (e: Throwable){
-
+                         ILog.e(TAG, "openAccessXiaoMi: " ,e)
                      }
                 }
                 try {
@@ -48,7 +49,7 @@ class AccessibilitySettingHelper {
                 } catch (e2: Throwable) {
                     Log.e(TAG, "jumpToSetting: " + e2.message)
                 }
-            }
+//            }
         }
 
         private fun openAccessXiaoMi(context: Context) {
@@ -61,7 +62,7 @@ class AccessibilitySettingHelper {
                 ComponentName(context.packageName, NiuAccessibilityService::class.java.name)
             val preferenceKey = context.packageName + "/" + NiuAccessibilityService::class.java.name
             bundle.putString("preference_key", preferenceKey)
-            ILog.d("Tools", preferenceKey)
+            ILog.d(TAG, preferenceKey)
             bundle.putBoolean("checked", false)
             bundle.putString("title", Constants.APP_NAME)
             bundle.putString("summary", context.getString(R.string.accessibility_desc))

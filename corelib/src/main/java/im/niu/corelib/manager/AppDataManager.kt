@@ -1,6 +1,7 @@
 package im.niu.corelib.manager
 
 import android.app.usage.UsageEvents
+import android.content.ContentValues
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -23,7 +24,9 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.litepal.LitePal
+import org.litepal.extension.deleteAll
 import org.litepal.extension.find
+import org.litepal.extension.update
 import java.io.ByteArrayOutputStream
 
 /**
@@ -97,11 +100,12 @@ class AppDataManager() {
 
 
     fun pushAppList(mContext:Context){
-        var pm = mContext.packageManager
-        var list =pm.getInstalledApplications(0)
+        val pm = mContext.packageManager
+        val list =pm.getInstalledApplications(0)
         Thread {
+            val version= System.currentTimeMillis()
             for (i in list.indices){
-                var app = list[i]
+                val app = list[i]
                 if(isSystemApp(mContext,app.packageName)){
                     continue
                 }
@@ -109,13 +113,16 @@ class AppDataManager() {
                     continue
                 }
 
-                var result = LitePal.where("packageName=?",app.packageName).find<AppInfo>()
+                val result = LitePal.where("packageName=?",app.packageName).find<AppInfo>()
                 //忽略已存在的
                 if(result.isNotEmpty()){
+                    val content = ContentValues()
+                    content.put("versionCode",version)
+                    LitePal.update(AppInfo::class.java,content, result.first().getId())
                     continue
                 }
                 ILog.d(TAG,"installed app:"+app.name+","+app.loadLabel(pm).toString())
-                var appInfo = AppInfo()
+                val appInfo = AppInfo()
                 appInfo.packageName = app.packageName
                 appInfo.appName = app.loadLabel(pm).toString()
                 appInfo.name = if (TextUtils.isEmpty(app.name)) app.packageName else app.name
@@ -126,11 +133,21 @@ class AppDataManager() {
                 val drawable: Drawable? = appInfo.icon
                 if (drawable != null) {
                     val bitmap: Bitmap = drawableToBitmap(drawable)
-                    var byteArray= bitmap2Bytes(bitmap)
+                    val byteArray= bitmap2Bytes(bitmap)
                     message = message.setIcon(ByteString.copyFrom(byteArray))
                 }
                 if(App.webSocketManager.sendMessage(message.build())){
                     appInfo.save()
+                }
+            }
+            val delete = LitePal.where("versionCode<?", version.toString()).find(AppInfo::class.java)
+            if (delete.isEmpty()){
+                var message = Userinfo.RemoveApp.newBuilder()
+                for (appInfo: AppInfo in delete){
+                    message = message.addPackageName(appInfo.packageName)
+                }
+                if(App.webSocketManager.sendMessage(message.build())){
+                    LitePal.deleteAll<AppInfo>("versionCode<?", version.toString())
                 }
             }
         }.start()

@@ -24,6 +24,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import im.niu.corelib.R
+import im.niu.corelib.manager.UpgradeManager
 import im.niu.corelib.ui.PermissionActivity.Companion.permissionItemList
 import im.niu.corelib.ui.ui.theme.NiuprotectTheme
 import im.niu.corelib.utils.ILog
@@ -88,6 +89,8 @@ class PermissionActivity : ComponentActivity() ,IUIClickAble{
         super.onCreate(savedInstanceState)
 
         refreshPermissionList()
+
+
     }
 
     private fun refreshPermissionList(){
@@ -178,9 +181,9 @@ class PermissionActivity : ComponentActivity() ,IUIClickAble{
                     id = "android.permission.ACCESS_FINE_LOCATION"
                     grpoup="location"
                 })
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                 permissionItemList.add(
-                    PermissionItem().apply {
+                    PermissionItem(false).apply {
                         name = "位置服务"
                         id = "android.permission.FOREGROUND_SERVICE_LOCATION"
                         grpoup = "location"

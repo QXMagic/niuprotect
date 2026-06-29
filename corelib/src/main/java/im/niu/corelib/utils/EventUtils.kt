@@ -36,8 +36,7 @@ object EventUtils {
         endTime: Long
     ): ArrayList<UsageEvents.Event> {
         val mEventList = ArrayList<UsageEvents.Event>()
-        Log.i(TAG, " EventUtils-getEventList()   Range start:" + dateFormat.format(startTime))
-        Log.i(TAG, " EventUtils-getEventList()   Range end:" + dateFormat.format(endTime))
+        Log.i(TAG, " Range start:" + dateFormat.format(startTime)  +" to "+ dateFormat.format(endTime))
         val mUsmManager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         val events = mUsmManager.queryEvents(startTime, endTime)
         while (events.hasNextEvent()) {

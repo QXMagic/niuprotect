@@ -10,7 +10,9 @@ import im.niu.corelib.App
 import im.niu.corelib.Constants
 import im.niu.corelib.R
 import im.niu.corelib.manager.BroadcastManager
+import im.niu.corelib.ui.AlertActivity
 import im.niu.corelib.ui.BootActivity
+import im.niu.corelib.ui.PermissionActivity
 import im.niu.corelib.utils.ILog
 
 
@@ -342,16 +344,22 @@ class NiuAccessibilityService : AccessibilityService() {
     }
 
     private fun justShowDialog(msg: String) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(applicationContext) //这里去获取上下文
-            .setIcon(R.mipmap.ico)
-            .setTitle("禁止操作")
-            .setMessage(msg)
-            .setPositiveButton("确定") { _, _ -> }
-        val dialog: AlertDialog = builder.create()
-        dialog.setCancelable(false)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.window?.setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY))
-        dialog.show() //最核心一就是展示
+
+//        val builder: AlertDialog.Builder = AlertDialog.Builder(applicationContext) //这里去获取上下文
+//            .setIcon(R.mipmap.ico)
+//            .setTitle("禁止操作")
+//            .setMessage(msg)
+//            .setPositiveButton("确定") { _, _ -> }
+//        val dialog: AlertDialog = builder.create()
+//        dialog.setCancelable(false)
+//        dialog.setCanceledOnTouchOutside(false)
+//        dialog.window?.setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY))
+//        dialog.show() //最核心一就是展示
+
+        val intent = Intent(this, AlertActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        return
     }
 
 }

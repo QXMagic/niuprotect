@@ -22,6 +22,12 @@
     <uses-permission android:name="WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 作业时间控制：前台计时服务 / 全屏闹钟 / 精确闹钟 / 唤醒锁 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_WALLPAPER_INTERNAL"
         tools:ignore="ProtectedPermissions" />
@@ -236,6 +242,35 @@
             </intent-filter>
         </receiver>
         <meta-data android:name="availableLoaded" android:value="yes" />
+
+        <!-- ===================== 作业时间控制模块 ===================== -->
+        <activity
+            android:name="com.niu.protect.homework.HomeworkActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.niu.protect.homework.AlarmAlertActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:taskAffinity=""
+            android:turnScreenOn="true" />
+        <service
+            android:name="com.niu.protect.homework.service.TimerService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="homework_timer" />
+        </service>
+        <receiver
+            android:name="com.niu.protect.homework.receiver.TimerAlarmReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <!-- =========================================================== -->
     </application>
 
 </manifest>

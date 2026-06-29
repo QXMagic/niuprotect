@@ -6,6 +6,7 @@ import org.litepal.annotation.Column
 import org.litepal.crud.LitePalSupport
 
 class AppInfo:LitePalSupport (){
+//    var id:Long = 0
     var appName: String? = null
     @Column(ignore = true)
     var icon: Drawable? = null
@@ -14,5 +15,10 @@ class AppInfo:LitePalSupport (){
     var name: String? = null
     @Column(index = true, unique = true)
     var packageName: String? = null
-    var category = 0
+    var category:Int = 0
+    var versionCode:Long = 0L
+
+    fun getId(): Long {
+        return baseObjId
+    }
 }

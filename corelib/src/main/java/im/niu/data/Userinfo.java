@@ -8846,6 +8846,590 @@ public final class Userinfo {
 
   }
 
+  public interface RemoveAppOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:im.niu.data.RemoveApp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @return A list containing the packageName.
+     */
+    java.util.List<java.lang.String>
+        getPackageNameList();
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @return The count of packageName.
+     */
+    int getPackageNameCount();
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @param index The index of the element to return.
+     * @return The packageName at the given index.
+     */
+    java.lang.String getPackageName(int index);
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the packageName at the given index.
+     */
+    com.google.protobuf.ByteString
+        getPackageNameBytes(int index);
+  }
+  /**
+   * <pre>
+   * 用户卸载的应用
+   * </pre>
+   *
+   * Protobuf type {@code im.niu.data.RemoveApp}
+   */
+  public static final class RemoveApp extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:im.niu.data.RemoveApp)
+      RemoveAppOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 27,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        RemoveApp.class.getName());
+    }
+    // Use RemoveApp.newBuilder() to construct.
+    private RemoveApp(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private RemoveApp() {
+      packageName_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_RemoveApp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return im.niu.data.Userinfo.internal_static_im_niu_data_RemoveApp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              im.niu.data.Userinfo.RemoveApp.class, im.niu.data.Userinfo.RemoveApp.Builder.class);
+    }
+
+    public static final int PACKAGENAME_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList packageName_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @return A list containing the packageName.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getPackageNameList() {
+      return packageName_;
+    }
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @return The count of packageName.
+     */
+    public int getPackageNameCount() {
+      return packageName_.size();
+    }
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @param index The index of the element to return.
+     * @return The packageName at the given index.
+     */
+    public java.lang.String getPackageName(int index) {
+      return packageName_.get(index);
+    }
+    /**
+     * <code>repeated string packageName = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the packageName at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getPackageNameBytes(int index) {
+      return packageName_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < packageName_.size(); i++) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, packageName_.getRaw(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < packageName_.size(); i++) {
+          dataSize += computeStringSizeNoTag(packageName_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getPackageNameList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof im.niu.data.Userinfo.RemoveApp)) {
+        return super.equals(obj);
+      }
+      im.niu.data.Userinfo.RemoveApp other = (im.niu.data.Userinfo.RemoveApp) obj;
+
+      if (!getPackageNameList()
+          .equals(other.getPackageNameList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getPackageNameCount() > 0) {
+        hash = (37 * hash) + PACKAGENAME_FIELD_NUMBER;
+        hash = (53 * hash) + getPackageNameList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static im.niu.data.Userinfo.RemoveApp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static im.niu.data.Userinfo.RemoveApp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static im.niu.data.Userinfo.RemoveApp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(im.niu.data.Userinfo.RemoveApp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 用户卸载的应用
+     * </pre>
+     *
+     * Protobuf type {@code im.niu.data.RemoveApp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:im.niu.data.RemoveApp)
+        im.niu.data.Userinfo.RemoveAppOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_RemoveApp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_RemoveApp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                im.niu.data.Userinfo.RemoveApp.class, im.niu.data.Userinfo.RemoveApp.Builder.class);
+      }
+
+      // Construct using im.niu.data.Userinfo.RemoveApp.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        packageName_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return im.niu.data.Userinfo.internal_static_im_niu_data_RemoveApp_descriptor;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.RemoveApp getDefaultInstanceForType() {
+        return im.niu.data.Userinfo.RemoveApp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.RemoveApp build() {
+        im.niu.data.Userinfo.RemoveApp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public im.niu.data.Userinfo.RemoveApp buildPartial() {
+        im.niu.data.Userinfo.RemoveApp result = new im.niu.data.Userinfo.RemoveApp(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(im.niu.data.Userinfo.RemoveApp result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          packageName_.makeImmutable();
+          result.packageName_ = packageName_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof im.niu.data.Userinfo.RemoveApp) {
+          return mergeFrom((im.niu.data.Userinfo.RemoveApp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(im.niu.data.Userinfo.RemoveApp other) {
+        if (other == im.niu.data.Userinfo.RemoveApp.getDefaultInstance()) return this;
+        if (!other.packageName_.isEmpty()) {
+          if (packageName_.isEmpty()) {
+            packageName_ = other.packageName_;
+            bitField0_ |= 0x00000001;
+          } else {
+            ensurePackageNameIsMutable();
+            packageName_.addAll(other.packageName_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensurePackageNameIsMutable();
+                packageName_.add(s);
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringArrayList packageName_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensurePackageNameIsMutable() {
+        if (!packageName_.isModifiable()) {
+          packageName_ = new com.google.protobuf.LazyStringArrayList(packageName_);
+        }
+        bitField0_ |= 0x00000001;
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @return A list containing the packageName.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getPackageNameList() {
+        packageName_.makeImmutable();
+        return packageName_;
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @return The count of packageName.
+       */
+      public int getPackageNameCount() {
+        return packageName_.size();
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @param index The index of the element to return.
+       * @return The packageName at the given index.
+       */
+      public java.lang.String getPackageName(int index) {
+        return packageName_.get(index);
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the packageName at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getPackageNameBytes(int index) {
+        return packageName_.getByteString(index);
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The packageName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPackageName(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensurePackageNameIsMutable();
+        packageName_.set(index, value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @param value The packageName to add.
+       * @return This builder for chaining.
+       */
+      public Builder addPackageName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensurePackageNameIsMutable();
+        packageName_.add(value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @param values The packageName to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllPackageName(
+          java.lang.Iterable<java.lang.String> values) {
+        ensurePackageNameIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, packageName_);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPackageName() {
+        packageName_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string packageName = 1;</code>
+       * @param value The bytes of the packageName to add.
+       * @return This builder for chaining.
+       */
+      public Builder addPackageNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensurePackageNameIsMutable();
+        packageName_.add(value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:im.niu.data.RemoveApp)
+    }
+
+    // @@protoc_insertion_point(class_scope:im.niu.data.RemoveApp)
+    private static final im.niu.data.Userinfo.RemoveApp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new im.niu.data.Userinfo.RemoveApp();
+    }
+
+    public static im.niu.data.Userinfo.RemoveApp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RemoveApp>
+        PARSER = new com.google.protobuf.AbstractParser<RemoveApp>() {
+      @java.lang.Override
+      public RemoveApp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<RemoveApp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RemoveApp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public im.niu.data.Userinfo.RemoveApp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_im_niu_data_Wrapper_descriptor;
   private static final 
@@ -8901,6 +9485,11 @@ public final class Userinfo {
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_im_niu_data_SyncData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_im_niu_data_RemoveApp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_im_niu_data_RemoveApp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8936,7 +9525,8 @@ public final class Userinfo {
       "\021\n\ttimeStart\030\003 \001(\004\022\017\n\007timeEnd\030\004 \001(\004\022\r\n\005l" +
       "imit\030\005 \001(\r\022\013\n\003day\030\006 \001(\005\022\017\n\007version\030\007 \001(\005" +
       "\")\n\010SyncData\022\014\n\004type\030\001 \001(\005\022\017\n\007version\030\002 " +
-      "\001(\rb\006proto3"
+      "\001(\r\" \n\tRemoveApp\022\023\n\013packageName\030\001 \003(\tb\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9008,6 +9598,12 @@ public final class Userinfo {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_im_niu_data_SyncData_descriptor,
         new java.lang.String[] { "Type", "Version", });
+    internal_static_im_niu_data_RemoveApp_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_im_niu_data_RemoveApp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_im_niu_data_RemoveApp_descriptor,
+        new java.lang.String[] { "PackageName", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

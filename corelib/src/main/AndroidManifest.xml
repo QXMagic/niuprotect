@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -31,6 +30,11 @@
         tools:ignore="ProtectedPermissions" />
 
     <application android:requestLegacyExternalStorage="true">
+        <activity
+            android:name=".ui.AccessSettingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_access_setting"
+            android:theme="@style/Theme.Niuprotect" />
         <activity
             android:name=".ui.PermissionActivity"
             android:exported="false"
