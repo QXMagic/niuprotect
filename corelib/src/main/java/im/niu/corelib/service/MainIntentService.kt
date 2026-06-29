@@ -180,7 +180,7 @@ class MainIntentService : Service() {
         })
     }
 
-    open fun sendScreenMsg() {
+    fun sendScreenMsg() {
         val manager = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager
         val battery = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
         val location = (applicationContext.getSystemService(LOCATION_SERVICE)) as LocationManager

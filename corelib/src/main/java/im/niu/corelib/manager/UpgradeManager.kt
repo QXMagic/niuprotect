@@ -32,7 +32,7 @@ class UpgradeManager(private val context: Context) {
     }
 
 
-    private fun getCurrentAppVersion(): String {
+    private fun getCurrentAppVersion(): String? {
         // 获取当前应用的版本号
         val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
         return packageInfo.versionName

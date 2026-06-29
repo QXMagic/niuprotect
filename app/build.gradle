@@ -1,15 +1,16 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.plugin.compose' // Kotlin 2.x Compose 编译器插件
+    id 'org.jetbrains.kotlin.plugin.compose' // Compose 编译器插件（AGP 9 内置 Kotlin）
 }
-apply plugin: 'kotlin-kapt' // 添加 kotlin-kapt 插件
 
 android {
     namespace 'com.niu.protect'
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.niu.protect"
+        minSdk 28
+        targetSdk 34
         versionCode 2
         versionName "1.1"
 
@@ -33,6 +34,7 @@ android {
 
     buildFeatures {
         compose true
+        buildConfig true
     }
     dataBinding {
         enabled = true
@@ -57,12 +59,12 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.compose.material:material-icons-core'
     // ===== 作业时间控制模块（Compose 入口 + ViewModel + 状态持久化）=====
-    implementation 'androidx.activity:activity-compose:1.9.3'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.7'
-    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.8.7'
-    implementation 'androidx.datastore:datastore-preferences:1.1.1'
+    implementation 'androidx.activity:activity-compose:1.13.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.11.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.11.0'
+    implementation 'androidx.datastore:datastore-preferences:1.2.1'
     implementation project(path: ':protect')
     androidTestImplementation platform('androidx.compose:compose-bom:2026.06.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
@@ -80,7 +82,6 @@ dependencies {
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.github.crazyandcoder:citypicker:6.0.2'
 
     implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
 
@@ -103,7 +104,6 @@ dependencies {
 //    implementation 'cn.bingoogolapple:bga-photopicker:2.0.2'
 //    implementation 'cn.bingoogolapple:bga-baseadapter:2.0.0@aar'
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
-    implementation 'com.github.crazyandcoder:citypicker:6.0.2'
 //
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.13'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.13'

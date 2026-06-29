@@ -1,11 +1,10 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
 }
 
 android {
     namespace = "com.niu.protect.lib"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 28
@@ -28,6 +27,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 
@@ -48,7 +50,6 @@ dependencies {
     implementation("androidx.work:work-runtime:2.11.2")
 
 //    implementation(fileTree(dir: "libs", include: ["*.jar"]))
-    implementation("com.github.crazyandcoder:citypicker:6.0.2")
 
     implementation("com.soundcloud.android:android-crop:1.0.1@aar")
     implementation("com.tencent.map.geolocation:TencentLocationSdk-openplatform:8.7.5.1")

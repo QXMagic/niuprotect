@@ -83,7 +83,7 @@ class UploadAppManager private constructor(private val context: Context) {
         val pm = context.packageManager
         val packages = pm.getInstalledPackages(0)
         for (packageInfo in packages) {
-            if (1 and packageInfo.applicationInfo.flags <= 0) {
+            if (1 and (packageInfo.applicationInfo?.flags ?: 0) <= 0) {
                 ILog.d("--packageInfo-", packageInfo.packageName)
                 try {
                     getAPPinfo(appInfos, whiteAppListManager, pm, packageInfo)
@@ -113,8 +113,8 @@ class UploadAppManager private constructor(private val context: Context) {
             return
         }
         var appName = ""
-        val icon = info.applicationInfo.loadIcon(pm)
-        val appNameChar = info.applicationInfo.loadLabel(pm)
+        val icon = info.applicationInfo?.loadIcon(pm)
+        val appNameChar = info.applicationInfo?.loadLabel(pm)
         if (appNameChar != null) {
             appName = appNameChar.toString()
         }
@@ -209,7 +209,7 @@ class UploadAppManager private constructor(private val context: Context) {
             val packages = pm.getInstalledPackages(0)
             val backpackages: MutableList<PackageInfo> = ArrayList()
             for (packageInfo in packages) {
-                if (packageInfo.applicationInfo.flags and 1 == 0) {
+                if ((packageInfo.applicationInfo?.flags ?: 0) and 1 == 0) {
                     backpackages.add(packageInfo)
                 } else if (Tools.checkOkApp(packageInfo, context)) {
                     Log.i("xxx", "add===" + packageInfo.packageName)

@@ -1,12 +1,11 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
     namespace = "im.niu.manage"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "im.niu.manage"

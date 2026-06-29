@@ -299,7 +299,7 @@ class MainActivity : BaseActivity() {
         var targetSdkVersion = 0
         try {
             val info = packageManager.getPackageInfo(packageName, 0)
-            targetSdkVersion = info.applicationInfo.targetSdkVersion
+            targetSdkVersion = info.applicationInfo?.targetSdkVersion ?: 0
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             ILog.d(TAG, "check permission error")

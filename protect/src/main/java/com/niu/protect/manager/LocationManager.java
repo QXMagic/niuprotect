@@ -60,7 +60,6 @@ public class LocationManager implements TencentLocationListener {
 
         request.setAllowGPS(true);
         request.setRequestLevel(TencentLocationRequest.REQUEST_LEVEL_GEO);
-        request.setGpsFirst(true);
         mLocationManager.requestLocationUpdates(request, this, context.getMainLooper());
     }
 

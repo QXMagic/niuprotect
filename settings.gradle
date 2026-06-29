@@ -23,5 +23,4 @@ rootProject.name = "niuprotect"
 include ':app'
 include ':protect'
 include ':corelib'
-include ':testlib:test'
 include ':manage'

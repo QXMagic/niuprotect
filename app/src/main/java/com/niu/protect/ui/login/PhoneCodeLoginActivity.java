@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.niu.protect.Constant;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.device.SystemDeviceInfo;
@@ -113,7 +112,7 @@ public class PhoneCodeLoginActivity extends BaseActivity {
                 public void onResponse(JSONObject msg) {
                     dissLoad();
                     if (msg != null) {
-                        ToastUtils.showLongToast(_context, "发送验证码成功");
+                        ToastUtil.show("发送验证码成功");
                         BaseModel bean = (BaseModel) new Gson().fromJson(msg.toString(),  BaseModel.class);
                         if (bean.status.equals("200")) {
                             codeStart();

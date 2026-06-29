@@ -31,7 +31,7 @@ object AppInfo {
 
     @Synchronized
     fun getVersionName(context: Context): String? {
-        var str: String
+        var str: String?
         synchronized(AppInfo::class.java) {
             str = try {
                 val packageManager = context.packageManager
