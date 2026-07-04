@@ -98,7 +98,9 @@ class WebSocketManager(ip: String, port: Int, deviceId: String = "", token: Stri
 
 
     private fun dispatchMessage(msg:String){
-
+        // 服务端管控变更通知：收到即重新同步 AppSetting/TimeLimit
+        ILog.d(TAG, "notify -> resync: $msg")
+        syncData()
     }
 
 
