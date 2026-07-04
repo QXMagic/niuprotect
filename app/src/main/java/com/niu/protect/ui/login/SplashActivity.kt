@@ -9,7 +9,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.niu.protect.BabyApplication.Companion.instance
 import com.niu.protect.R
-import com.niu.protect.manager.UserInfoManager
+import com.niu.protect.manager.DeviceIdManager
 import com.niu.protect.tools.ILog
 import com.niu.protect.tools.Tools
 import com.niu.protect.ui.main.MainActivity
@@ -29,19 +29,13 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun enterHomeActivity() {
-        val intent: Intent
         val isFirst = Tools.firstStart(this)
-        intent = if (isFirst) {
-            val userInfo = UserInfoManager.getInstance().getUserInfo(this)
-            if (userInfo != null) {
-                val token = Tools.getToken(this)
-                if (token != null) {
-                    Intent(this, MainActivity::class.java)
-                } else {
-                    Intent(this, PhoneCodeLoginActivity::class.java)
-                }
+        val intent = if (isFirst) {
+            // 已绑定(持有设备凭证)进主页，否则进绑定页
+            if (DeviceIdManager.getInstance().isBound) {
+                Intent(this, MainActivity::class.java)
             } else {
-                Intent(this, PhoneCodeLoginActivity::class.java)
+                Intent(this, BindActivity::class.java)
             }
         } else {
             Intent(this, YsActivity::class.java)

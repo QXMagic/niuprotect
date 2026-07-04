@@ -22,6 +22,7 @@ import androidx.core.app.NotificationCompat;
 import com.google.gson.Gson;
 import com.niu.protect.backService.IMyAidlInterface;
 import com.niu.protect.core.AppGlobal;
+import com.niu.protect.manager.DeviceIdManager;
 import com.niu.protect.manager.StudentMainController;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.manager.WebSocketManager;
@@ -138,7 +139,7 @@ public class LocalForegroundService extends Service {
                 ILog.d(TAG, "-uri---userInfo==null -");
                 return;
             }
-            String uri = StudentBaseUrl.WEBSOCKET_URI + userInfo.getId();
+            String uri = DeviceIdManager.getInstance().buildWebSocketUri();
             ILog.d(TAG, "-uri-" + uri);
             try {
                 WebSClient webSClient = new WebSClient(new URI(uri));

@@ -44,9 +44,8 @@ class WebSocketManager private constructor(){
 
     fun start() {
         mContext = Constants.MainInstance.getContext()
-        val userInfo: UserInfo = UserInfoManager.getInstance().getUserInfo(mContext)
-        userId = userInfo.id
-        val uri = StudentBaseUrl.WEBSOCKET_URI + userInfo.id
+        userId = DeviceIdManager.getInstance().deviceId
+        val uri = DeviceIdManager.getInstance().buildWebSocketUri()
         ILog.d(TAG, "-uri-$uri")
         try {
             val webSClient = WebSClient(URI(uri))
@@ -59,8 +58,7 @@ class WebSocketManager private constructor(){
     }
 
     private fun getUserId() {
-        val userInfo = UserInfoManager.getInstance().getUserInfo(mContext) ?: return
-        userId = userInfo.id
+        userId = DeviceIdManager.getInstance().deviceId
     }
 
     fun reconnect() {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:paddingTop="80dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="绑定家长账号"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#333333" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="请家长在管理面板生成绑定码，在此输入以完成本设备绑定。"
+        android:textSize="14sp"
+        android:textColor="#888888" />
+
+    <EditText
+        android:id="@+id/codetxt"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
+        android:hint="请输入 6 位绑定码"
+        android:inputType="number"
+        android:maxLength="6"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:letterSpacing="0.3" />
+
+    <Button
+        android:id="@+id/bindbtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:text="绑定设备"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary" />
+
+</LinearLayout>

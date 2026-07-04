@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.Glide;
 import com.niu.protect.BabyApplication;
 import com.niu.protect.lib.receiver.BroadcastManager;
+import com.niu.protect.manager.DeviceIdManager;
 import com.niu.protect.manager.MineDevicePolicyManager;
 import com.niu.protect.manager.SharedPreManager;
 import com.niu.protect.manager.UserInfoManager;
@@ -29,7 +30,7 @@ import com.niu.protect.tools.SharedPreUtil;
 import com.niu.protect.tools.SystemUtil;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
-import com.niu.protect.ui.login.PhoneCodeLoginActivity;
+import com.niu.protect.ui.login.BindActivity;
 import com.niu.protect.widget.ParentPinDialog;
 import com.niu.protect.ui.setting.FeedBackActivity;
 import com.niu.protect.ui.setting.SchoolAdminActivity;
@@ -178,6 +179,16 @@ public class MineActivity extends BaseActivity {
     }
 
     public void outAction() {
+        // 通知服务端解绑本设备（best-effort，失败不阻断本地清理）
+        String deviceId = DeviceIdManager.getInstance().getDeviceId();
+        String deviceToken = DeviceIdManager.getInstance().getDeviceToken();
+        if (!Tools.objIsNullStr(deviceToken)) {
+            Map<String, String> up = new HashMap<>();
+            up.put("device_id", deviceId);
+            up.put("device_token", deviceToken);
+            NetTools.getInstance().postAsynHttp(this, StudentBaseUrl.DEVICE_UNBIND, up, null);
+        }
+        DeviceIdManager.getInstance().clearBinding();
         UserProtectManager.getInstance().setProtect(-2);
 //        PushAgent mPushAgent = PushAgent.getInstance(this);
 //        mPushAgent.deleteAlias(Tools.getUsername(this), "username", new UTrack.ICallBack() {
@@ -202,7 +213,7 @@ public class MineActivity extends BaseActivity {
         BroadcastManager.sendAccessibilityStop(this);
         WebSocketManager.getInstance().onDestroy();
         Intent intent = new Intent();
-        intent.setClass(this._context, PhoneCodeLoginActivity.class);
+        intent.setClass(this._context, BindActivity.class);
         this._context.startActivity(intent);
         finish();
     }

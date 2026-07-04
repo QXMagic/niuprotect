@@ -56,5 +56,7 @@ public final class StudentBaseUrl {
     public static final String user_changePwd = "v1/members/reset";
     public static final String user_exit = "v1/members/exit";
     public static final String user_login = "login/account"; // likeadmin 账号密码登录
+    public static final String DEVICE_BIND = "mm.bind/bind";     // 设备绑定：输码换 device_token
+    public static final String DEVICE_UNBIND = "mm.bind/unbind"; // 设备解绑
     public static final String user_register = "v1/members/register";
 }
