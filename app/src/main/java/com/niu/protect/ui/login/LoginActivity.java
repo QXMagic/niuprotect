@@ -105,18 +105,14 @@ public class LoginActivity extends BaseActivity {
 
     public void loginAction() {
         Tools.saveToken(this, null);
-        if (!InputCheckUtil.checkPhoneNo(this.phonetxt) || !InputCheckUtil.checkPwd(this.pwdtxt)) {
+        if (!InputCheckUtil.checkAccount(this.phonetxt) || !InputCheckUtil.checkPwd(this.pwdtxt)) {
             return;
         }
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("username", this.phonetxt.getText().toString());
+        parameters.put("account", this.phonetxt.getText().toString());
         parameters.put("password", this.pwdtxt.getText().toString());
-        parameters.put("memberType", Constants.MSG_DB_READY_REPORT);
-        parameters.put("mobileBrand", SystemDeviceInfo.getBrand());
-        parameters.put("mobileModel", SystemDeviceInfo.getModel());
-        parameters.put("systemVersion", SystemDeviceInfo.getPhoneOs());
-        parameters.put("appDownChannel", AppInfoUtils.getChannel(this));
-        parameters.put("versionCode", AppInfoUtils.getVersionName(this));
+        parameters.put("terminal", "6"); // 安卓 App（likeadmin UserTerminalEnum.ANDROID）
+        parameters.put("scene", "1");    // 账号密码登录（likeadmin LoginEnum.ACCOUNT_PASSWORD）
         showLoadText("登录中..");
         NetTools.getInstance().postAsynHttp(this, StudentBaseUrl.user_login, parameters, new ResultCallBackListener() {
             @Override
@@ -125,21 +121,20 @@ public class LoginActivity extends BaseActivity {
                 if (msg != null) {
                     ILog.log(msg);
                     try {
-                        String data = msg.getString("data");
-                        Gson gson = new Gson();
-                        UserInfo userModel = (UserInfo) gson.fromJson(data, UserInfo.class);
-                        UserInfoManager.getInstance().saveUser(_context, data);
+                        JSONObject data = msg.getJSONObject("data");
+                        UserInfo userModel = new UserInfo();
+                        userModel.setId(data.optString("id"));
+                        userModel.setNickName(data.optString("nickname"));
+                        userModel.setMobile(data.optString("mobile"));
+                        userModel.setImageUrl(data.optString("avatar"));
+                        userModel.setToken(data.optString("token"));
+                        userModel.setUsername(phonetxt.getText().toString());
+                        UserInfoManager.getInstance().saveUser(_context, new Gson().toJson(userModel));
                         Tools.saveToken(_context, userModel.getToken());
                         Tools.saveUserName(_context, phonetxt.getText().toString());
                         Tools.savePwd(_context, pwdtxt.getText().toString());
-                        if (TextUtils.isEmpty(userModel.getNickName())) {
-                            Intent intent = new Intent(LoginActivity.this, RegMsgActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            JumpActivityTools.jumpToMainActivity(LoginActivity.this, MainActivity.class, userModel);
-                            finish();
-                        }
+                        JumpActivityTools.jumpToMainActivity(LoginActivity.this, MainActivity.class, userModel);
+                        finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Tools.showAlert3(LoginActivity.this, e.getMessage());

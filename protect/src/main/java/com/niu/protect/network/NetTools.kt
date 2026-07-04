@@ -51,26 +51,44 @@ class NetTools {
                         return
                     }
                     val json = JSONObject(str)
-                    val code = json.getString("status")
-                    if (code != null) {
-                        if (code == "200") {
+                    if (json.has("code")) {
+                        // likeadmin 格式 {code, show, msg, data}：1=成功，-1=登录态失效
+                        val code = json.getInt("code")
+                        if (code == 1) {
                             isok = true
                             if (netListener != null) {
                                 netListener!!.onResponse(json)
                             }
                         } else {
-                            if (code == "100008") {
-                                if (softContext!!.get() != null) {
-                                    UserInfoManager.getInstance()
-                                        .saveUser(softContext!!.get(), null)
-                                }
-                            } else if (code == "UNAUTHORIZED") {
+                            if (code == -1) {
                                 Tools.saveToken(softContext!!.get(), null)
-                            } else {
-                                Tools.showAlert3(softContext!!.get(), json.getString("message"))
                             }
                             if (softContext!!.get() != null) {
-                                Tools.showAlert3(softContext!!.get(), json.getString("message"))
+                                Tools.showAlert3(softContext!!.get(), json.optString("msg"))
+                            }
+                        }
+                    } else {
+                        val code = json.getString("status")
+                        if (code != null) {
+                            if (code == "200") {
+                                isok = true
+                                if (netListener != null) {
+                                    netListener!!.onResponse(json)
+                                }
+                            } else {
+                                if (code == "100008") {
+                                    if (softContext!!.get() != null) {
+                                        UserInfoManager.getInstance()
+                                            .saveUser(softContext!!.get(), null)
+                                    }
+                                } else if (code == "UNAUTHORIZED") {
+                                    Tools.saveToken(softContext!!.get(), null)
+                                } else {
+                                    Tools.showAlert3(softContext!!.get(), json.getString("message"))
+                                }
+                                if (softContext!!.get() != null) {
+                                    Tools.showAlert3(softContext!!.get(), json.getString("message"))
+                                }
                             }
                         }
                     }
@@ -146,7 +164,9 @@ class NetTools {
             val builder = Request.Builder()
             val url = builder.url(StudentBaseUrl.baseurl + key)
             request =
-                url.addHeader("Authorization", "Bearer $authorization").post(requestBody).build()
+                url.addHeader("Authorization", "Bearer $authorization")
+                    .addHeader("token", authorization) // likeadmin 从 token 头取登录态
+                    .post(requestBody).build()
         } else {
             val builder2 = Request.Builder()
             request = builder2.url(StudentBaseUrl.baseurl + key).post(requestBody).build()
@@ -276,6 +296,9 @@ class NetTools {
         }
         val requestBuilder =
             Request.Builder().url(url + parameterStr).addHeader("Authorization", "Bearer $token2")
+        if (token2 != null) {
+            requestBuilder.addHeader("token", token2) // likeadmin 从 token 头取登录态
+        }
         requestBuilder.method("GET", null)
         val build = requestBuilder.build()
         request = build

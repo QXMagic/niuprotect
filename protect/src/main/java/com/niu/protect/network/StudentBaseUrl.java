@@ -55,6 +55,6 @@ public final class StudentBaseUrl {
     public static final String traceRecords_updateTrace = "v1/traceRecords/updateTrace";
     public static final String user_changePwd = "v1/members/reset";
     public static final String user_exit = "v1/members/exit";
-    public static final String user_login = "v1/members/login";
+    public static final String user_login = "login/account"; // likeadmin 账号密码登录
     public static final String user_register = "v1/members/register";
 }
