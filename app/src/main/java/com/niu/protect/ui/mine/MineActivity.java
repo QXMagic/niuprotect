@@ -29,8 +29,8 @@ import com.niu.protect.tools.SharedPreUtil;
 import com.niu.protect.tools.SystemUtil;
 import com.niu.protect.tools.Tools;
 import com.niu.protect.ui.base.BaseActivity;
-import com.niu.protect.ui.login.ForgetActivity;
 import com.niu.protect.ui.login.PhoneCodeLoginActivity;
+import com.niu.protect.widget.ParentPinDialog;
 import com.niu.protect.ui.setting.FeedBackActivity;
 import com.niu.protect.ui.setting.SchoolAdminActivity;
 
@@ -71,17 +71,13 @@ public class MineActivity extends BaseActivity {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                outAction();
+                // 退出登录 = 解绑设备，属家长操作，需家长密码验证
+                ParentPinDialog.verify(MineActivity.this, "退出登录需家长验证", () -> outAction());
             }
         });
+        // 忘记密码入口下线：账号由家长在管理后台/面板维护，孩子端不提供
         LinearLayout setpwdbtn = (LinearLayout) findViewById(R.id.setpwdbtn);
-        setpwdbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplication(), ForgetActivity.class);
-                startActivity(intent);
-            }
-        });
+        setpwdbtn.setVisibility(View.GONE);
         LinearLayout feedbackbtn = (LinearLayout) findViewById(R.id.feedbackbtn);
         feedbackbtn.setOnClickListener(new View.OnClickListener() {
             @Override

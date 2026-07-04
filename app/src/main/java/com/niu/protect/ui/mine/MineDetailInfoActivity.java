@@ -33,6 +33,7 @@ import com.niu.protect.tools.Tools;
 import com.niu.protect.tools.data.GetJsonDataUtil;
 import com.niu.protect.ui.base.BaseActivity;
 import com.niu.protect.ui.login.LoginActivity;
+import com.niu.protect.widget.ParentPinDialog;
 import com.niu.protect.ui.setting.FeedBackActivity;
 
 import org.json.JSONArray;
@@ -102,26 +103,23 @@ public class MineDetailInfoActivity extends BaseActivity {
         this.loginOutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                PushAgent mPushAgent = PushAgent.getInstance(MineDetailInfoActivity.this);
-//                mPushAgent.deleteAlias(Tools.getUsername(MineDetailInfoActivity.this), "username", new UTrack.ICallBack() {
-//                    @Override
-//                    public void onMessage(boolean isSuccess, String message) {
-//                    }
-//                });
-                StoToolManager.getInstance(MineDetailInfoActivity.this).clearAllController();
-                UserInfoManager.getInstance().saveUser(_context, null);
-                Tools.saveToken(_context, null);
-                Tools.saveTeacher(_context, null);
-                Tools.saveParentHoliday(_context, null);
-                Tools.saveParentSchool(_context, null);
-                Tools.saveParentModel(_context, null, 1);
-                Tools.saveParentModel(_context, null, 2);
-                UserInstallWhiteAppListManager.getInstance().clearOldApps();
-                Tools.saveQxSet(_context, 0);
-                Intent intent = new Intent();
-                intent.setClass(_context, LoginActivity.class);
-                _context.startActivity(intent);
-                finish();
+                // 退出登录 = 解绑设备，属家长操作，需家长密码验证
+                ParentPinDialog.verify(MineDetailInfoActivity.this, "退出登录需家长验证", () -> {
+                    StoToolManager.getInstance(MineDetailInfoActivity.this).clearAllController();
+                    UserInfoManager.getInstance().saveUser(_context, null);
+                    Tools.saveToken(_context, null);
+                    Tools.saveTeacher(_context, null);
+                    Tools.saveParentHoliday(_context, null);
+                    Tools.saveParentSchool(_context, null);
+                    Tools.saveParentModel(_context, null, 1);
+                    Tools.saveParentModel(_context, null, 2);
+                    UserInstallWhiteAppListManager.getInstance().clearOldApps();
+                    Tools.saveQxSet(_context, 0);
+                    Intent intent = new Intent();
+                    intent.setClass(_context, LoginActivity.class);
+                    _context.startActivity(intent);
+                    finish();
+                });
             }
         });
         this.view0.setOnClickListener(new View.OnClickListener() {

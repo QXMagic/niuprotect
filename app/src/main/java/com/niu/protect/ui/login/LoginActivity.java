@@ -21,7 +21,6 @@ import com.hjq.permissions.XXPermissions;
 import com.niu.protect.R;
 import com.niu.protect.accessibility.auto.device.SystemDeviceInfo;
 import com.niu.protect.core.Constants;
-import com.niu.protect.core.MyOnClickListener;
 import com.niu.protect.manager.UserInfoManager;
 import com.niu.protect.model.UserInfo;
 import com.niu.protect.network.NetTools;
@@ -52,7 +51,7 @@ public class LoginActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        changeTitle("登录");
+        changeTitle("家长装机登录");
         if (Build.VERSION.SDK_INT >= 30) {
             requestPermissions2();
         } else {
@@ -62,18 +61,9 @@ public class LoginActivity extends BaseActivity {
         this.pwdtxt = (EditText) findViewById(R.id.pwdtxt);
         this.phonetxt.setText(Tools.getUsername(this._context));
         this.pwdtxt.setText(Tools.getPwd(this._context));
-        showRightText("注册", (MyOnClickListener) btn -> {
-            Intent intent = new Intent(getApplication(), RegActivity.class);
-            startActivity(intent);
-        });
+        // 注册/忘记密码入口下线：账号由家长在管理后台/面板维护，孩子端不提供
         TextView fortegbtn = (TextView) findViewById(R.id.fortegbtn);
-        fortegbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplication(), ForgetActivity.class);
-                startActivity(intent);
-            }
-        });
+        fortegbtn.setVisibility(View.GONE);
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
