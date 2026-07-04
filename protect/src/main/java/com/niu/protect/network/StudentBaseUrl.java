@@ -3,7 +3,7 @@ package com.niu.protect.network;
 import android.os.Environment;
 import java.io.File;
 public final class StudentBaseUrl {
-    public static final String BASE_URL = "http://dev.xinyu126.com";
+    public static final String BASE_URL = "https://www.xinyu126.com/monitor";
     public static final String BASE_URL_JIAOWU = "http://139.9.121.96:8080/h5/#/?token=";
     public static final String GET_SMALLPROGRAMLIST = "v1/apps/smallProgramList";
     public static final String GET_TEMPORARY_UNBINDINFO = "v1/apps/getTemporaryUnBindInfo";
@@ -16,7 +16,7 @@ public final class StudentBaseUrl {
     public static final String USER_CONTROLLER_STATUS = "v1/status/setUserControlStatus";
     public static final String USER_SEND_VCODE = "v1/members/sendVCode";
     public static final String USER_WHITE_APP_LIST = "v1/appWhitelist/studentWhitelist";
-    public static final String WEBSOCKET_URI = "ws://dev.xinyu126.com:9090/monitor/";
+    public static final String WEBSOCKET_URI = "wss://ws.xinyu126.com:9090/monitor/";
     public static final String appBlacklists_studentBlacklist = "v1/appBlacklists/studentBlacklist";
     public static final String appBlacklists_systemBlacklist = "v1/appBlacklists/systemBlacklist";
     public static final String appBlacklists_systemWhiteList = "v1/appBlacklists/systemWhitelist";
