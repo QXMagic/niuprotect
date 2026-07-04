@@ -23,7 +23,7 @@ import java.io.IOException
 class UpgradeManager(private val context: Context) {
 
     private val TAG = "UpgradeManager"
-    private val SERVER_VERSION_URL = "https://dev.xinyu126.com/api/mm/children/version?version=" // 替换为实际的服务器版本检查URL
+    private val SERVER_VERSION_URL = "https://www.xinyu126.com/monitor/api/mm.children/version?version="
     private val client = OkHttpClient()
     fun upgrade() {
         if (!downloadApk()) {
