@@ -19,7 +19,14 @@ import java.net.URI
 import java.nio.ByteBuffer
 import java.util.UUID
 
-class WebSocketManager(ip: String, port: Int) {
+/**
+ * @param ip       服务器 host
+ * @param port     端口
+ * @param deviceId 设备标识（WS uid）；为空时回退到本地 MMKV uuid（兼容旧用法）
+ * @param token    设备凭证，作为 ?t= 参数供服务端校验
+ * @param secure   是否 wss
+ */
+class WebSocketManager(ip: String, port: Int, deviceId: String = "", token: String = "", secure: Boolean = false) {
     private val TAG:String = "WebSocket"
     private var client:WebSClient
     private var enable = false
@@ -157,18 +164,25 @@ class WebSocketManager(ip: String, port: Int) {
     }
 
     init {
-        val kv = MMKV.defaultMMKV()
-        var uuid = kv.getString("uuid","")
-        if(uuid.isNullOrBlank()){
-            uuid = UUID.randomUUID().toString()
-            kv.putString("uuid",uuid)
+        // 设备标识优先用外部传入的 deviceId（与绑定体系一致），否则回退本地 uuid
+        var uid = deviceId
+        if(uid.isBlank()){
+            val kv = MMKV.defaultMMKV()
+            var uuid = kv.getString("uuid","")
+            if(uuid.isNullOrBlank()){
+                uuid = UUID.randomUUID().toString()
+                kv.putString("uuid",uuid)
+            }
+            uid = uuid!!
         }
         var msgHandle:IMessageHandle = TimeLimitHandle()
         handerMap[msgHandle.getMessageName()] = msgHandle
         msgHandle = AppSettingHandle()
         handerMap[msgHandle.getMessageName()] = msgHandle
         connecting = true
-        uri = URI("ws://$ip:$port/monitor/$uuid")
+        val scheme = if(secure) "wss" else "ws"
+        val query = if(token.isNotBlank()) "?t=$token" else ""
+        uri = URI("$scheme://$ip:$port/monitor/$uid$query")
         client = WebSClient(uri)
         client.connect()
     }
