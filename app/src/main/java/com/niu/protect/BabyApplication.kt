@@ -56,6 +56,8 @@ class BabyApplication : Application(), IGlobalInstance {
         KeepAliveManger.instance?.keepAliveByTowService(this)
         init()
         autoSettingSteps = DeviceAccessiFactory.createDeviceInfo(instance)
+        // 已绑定则启动 corelib protobuf 管控栈（方案 B）
+        com.niu.protect.mm.MmControl.start(this)
     }
 
     fun setEntityName(entityName: String) {

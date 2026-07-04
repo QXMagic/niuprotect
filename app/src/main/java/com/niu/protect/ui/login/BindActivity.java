@@ -86,6 +86,8 @@ public class BindActivity extends BaseActivity {
                     return;
                 }
                 DeviceIdManager.getInstance().saveDeviceToken(deviceToken);
+                // 绑定完成，启动 protobuf 管控栈
+                com.niu.protect.mm.MmControl.start(getApplicationContext());
 
                 // 下游大量代码读取 UserInfo.getId() 作为设备标识，这里用 device_id 填充，
                 // 使 WebSocket uid 与后续接口调用保持一致。

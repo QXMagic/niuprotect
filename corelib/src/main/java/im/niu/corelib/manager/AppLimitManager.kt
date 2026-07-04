@@ -37,6 +37,8 @@ class AppLimitManager() {
 
     init {
         EventBus.getDefault().register(this)
+        allowList = ArrayList()
+        rangeList = ArrayList()
         whiteList = ArrayList()
         blackList = ArrayList()
         timeList = ArrayList()
@@ -151,6 +153,9 @@ class AppLimitManager() {
     }
 
 
+    /** 是否配置了白名单（白名单模式：非白名单一律禁止） */
+    fun hasWhiteList(): Boolean = whiteList.isNotEmpty()
+
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     fun onEvent(event: MessageEvent) {
         ILog.i(TAG,"on EventBus -> Event:"+event.type)
@@ -161,6 +166,8 @@ class AppLimitManager() {
 
     private fun refreshData(){
         ILog.d(TAG,"refresh Time Limit Data")
+        allowList.clear()
+        rangeList.clear()
         try {
             val timeLimit = LitePal.findAll(TimeSetting::class.java)
             for (setting in timeLimit) {

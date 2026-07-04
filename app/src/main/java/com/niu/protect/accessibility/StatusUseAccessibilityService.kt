@@ -117,6 +117,25 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                 }
             }
         }
+        // 服务端应用管控（方案 B：corelib protobuf 栈）——仅窗口切换时判断
+        if (com.niu.protect.mm.MmControl.isStarted() &&
+            event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            val pkg = event.packageName?.toString()
+            if (pkg != null && pkg != BuildConfig.APPLICATION_ID) {
+                if (com.niu.protect.mm.MmControl.isForbid(pkg, event)) {
+                    ILog.d(TAG, "mm forbid $pkg")
+                    goBack()
+                    return
+                }
+                // 白名单模式：配置了白名单时，非白名单一律踢出
+                if (com.niu.protect.mm.MmControl.hasWhiteList() &&
+                    !com.niu.protect.mm.MmControl.isAllow(pkg, event)) {
+                    ILog.d(TAG, "mm not in whitelist $pkg")
+                    goBack()
+                    return
+                }
+            }
+        }
         ILog.d(TAG, "eventType:$event.eventType  --roomIsVivo--- $roomIsVivo")
         ILog.d(TAG, "eventType text:$event.text")
         ILog.d(TAG, "eventType getPackageName:" + event.packageName as Any)
