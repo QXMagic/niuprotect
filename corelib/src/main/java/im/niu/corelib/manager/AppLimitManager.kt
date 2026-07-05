@@ -65,6 +65,8 @@ class AppLimitManager() {
         systemBlackMap["com.coloros.oppoguardelf"] = "未知"
         systemBlackMap["com.huawei.systemmanager.power"] = "未知"
         osSetting = OperateSystem.getOsSetting()
+        // 启动即从 LitePal 加载已持久化的管控设置（否则版本已最新、服务端不再下发时名单为空）
+        refreshData()
     }
 
     /**
