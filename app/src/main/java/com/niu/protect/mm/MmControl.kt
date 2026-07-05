@@ -73,9 +73,39 @@ object MmControl {
             ILog.d(TAG, "mm control started: ${ep.host}:${ep.port} secure=${ep.secure} uid=$deviceId")
 
             reportApps(appCtx)
+            startHeartbeat(appCtx)
         } catch (e: Throwable) {
             ILog.d(TAG, "mm control start failed: ${e.message}")
         }
+    }
+
+    /**
+     * WS 心跳：每 30s 发一个带电量的 Ping，服务端据此刷新在线状态/电量/最后在线时间。
+     * 发送失败时 corelib sendMessage 会触发重连（指数退避），一并起到断线快速感知的作用。
+     */
+    private fun startHeartbeat(appCtx: Context) {
+        Thread {
+            while (started) {
+                try {
+                    Thread.sleep(30000)
+                    if (App.webSocketManager.isEnable()) {
+                        val bm = appCtx.getSystemService(Context.BATTERY_SERVICE) as android.os.BatteryManager
+                        val battery = bm.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)
+                        val screen = if (isScreenOn(appCtx)) 1 else 0
+                        App.appManager.pushPing(battery, screen)
+                    }
+                } catch (e: Throwable) {
+                    ILog.d(TAG, "heartbeat error: ${e.message}")
+                }
+            }
+        }.start()
+    }
+
+    private fun isScreenOn(context: Context): Boolean = try {
+        val pm = context.getSystemService(Context.POWER_SERVICE) as android.os.PowerManager
+        pm.isInteractive
+    } catch (e: Throwable) {
+        true
     }
 
     /**

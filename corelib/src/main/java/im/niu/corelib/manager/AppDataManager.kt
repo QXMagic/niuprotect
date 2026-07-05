@@ -55,6 +55,12 @@ class AppDataManager() {
 
     }
 
+    /** 发送心跳 Ping（带电量/屏幕状态），服务端据此刷新在线/电量/最后在线时间 */
+    fun pushPing(battery: Int, screen: Int) {
+        val ping = Userinfo.Ping.newBuilder().setBattery(battery).setScreen(screen).build()
+        App.webSocketManager.sendMessage(ping)
+    }
+
     fun pushUsageEvent(mContext:Context){
         val now = System.currentTimeMillis()
         val mEventList = getEventList(mContext)

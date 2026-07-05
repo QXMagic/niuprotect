@@ -133,11 +133,8 @@ class WebSocketManager(ip: String, port: Int, deviceId: String = "", token: Stri
             reconnect()
         }
         handler.postDelayed(runnable, delayTime)
-        if(delayTime > 60000){
-            delayTime = 60000
-        }else{
-            delayTime += 2000
-        }
+        // 指数退避：5s→10s→20s→…最长 60s
+        delayTime = (delayTime * 2).coerceAtMost(60000)
     }
     private var syncing = false
     fun syncData() {
