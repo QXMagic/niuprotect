@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.niu.protect.manager.KeepAliveManger;
 import com.niu.protect.manager.WebSocketManager;
 import com.niu.protect.tools.ILog;
 import com.niu.protect.tools.ToastUtil;
@@ -19,13 +20,16 @@ public class LiveReciver extends BroadcastReceiver {
         ILog.d("LiveReciver--", "LiveReciver" + intent.getAction());
 
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-//                    OpenSettingApp.showIcon(context);
+            // 开机自启：拉起保活前台服务→进程启动→BabyApplication.onCreate→MmControl 恢复管控
+            try {
+                KeepAliveManger mgr = KeepAliveManger.Companion.getInstance();
+                if (mgr != null) {
+                    mgr.keepAliveByTowService(context.getApplicationContext());
                 }
-            }, 5000L);
-
+                ILog.d("LiveReciver--", "boot: keepalive started");
+            } catch (Throwable t) {
+                ILog.d("LiveReciver--", "boot keepalive error: " + t.getMessage());
+            }
         } else if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())) {
             ILog.d("xxxxxxa==1：", "手机被唤醒");
         } else if ("com.example.service_destory".equals(intent.getAction())) {
