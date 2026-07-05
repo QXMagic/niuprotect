@@ -56,16 +56,43 @@ object MmControl {
             val deviceId = DeviceIdManager.getInstance().deviceId
             val token = DeviceIdManager.getInstance().deviceToken
 
+            val appCtx = context.applicationContext
             App.appLimit = AppLimitManager()
-            App.appManager = AppDataManager(context.applicationContext)
+            App.appManager = AppDataManager(appCtx)
             App.webSocketManager = WebSocketManager(ep.host, ep.port, deviceId, token, ep.secure)
             App.webSocketManager.syncData()
 
             started = true
             ILog.d(TAG, "mm control started: ${ep.host}:${ep.port} secure=${ep.secure} uid=$deviceId")
+
+            reportApps(appCtx)
         } catch (e: Throwable) {
             ILog.d(TAG, "mm control start failed: ${e.message}")
         }
+    }
+
+    /**
+     * WS 连上后上报已装应用列表（写入服务端 la_mobile_appinfo，家长端才有 app 可管控）。
+     * 后台线程等待连接就绪（最多约 30s），再调 corelib 的 pushAppList。
+     */
+    private fun reportApps(appCtx: Context) {
+        Thread {
+            try {
+                var waited = 0
+                while (waited < 30000 && !App.webSocketManager.isEnable()) {
+                    Thread.sleep(1000)
+                    waited += 1000
+                }
+                if (App.webSocketManager.isEnable()) {
+                    App.appManager.pushAppList(appCtx)
+                    ILog.d(TAG, "pushAppList done")
+                } else {
+                    ILog.d(TAG, "pushAppList skipped: ws not connected")
+                }
+            } catch (e: Throwable) {
+                ILog.d(TAG, "reportApps error: ${e.message}")
+            }
+        }.start()
     }
 
     @JvmStatic
