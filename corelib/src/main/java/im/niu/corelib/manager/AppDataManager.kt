@@ -77,6 +77,33 @@ class AppDataManager() {
         return EventUtils.getEventList(mContext, mStartTime, endTime)
     }
 
+    /**
+     * 上报"今日每个应用的前台使用时长"（用于家长端使用统计）。
+     * queryAndAggregateUsageStats 直接给出 totalTimeInForeground，已过滤系统应用。
+     */
+    fun pushAppUseInfo(mContext: Context) {
+        val now = System.currentTimeMillis()
+        val dayStart = timeToDayStart(now)
+        val list = EventUtils.getUsageList(mContext, dayStart, now)
+        val builder = Userinfo.AppUseInfoList.newBuilder()
+        for (s in list) {
+            builder.addAppUseInfo(
+                Userinfo.AppUseInfo.newBuilder()
+                    .setPackageName(s.packageName)
+                    .setFirstTimeStamp(s.firstTimeStamp)
+                    .setLastTimeStamp(s.lastTimeStamp)
+                    .setLastTimeUsed(s.lastTimeUsed)
+                    .setTotalTimeInForeground(s.totalTimeInForeground)
+                    .setTotalTimeVisible(s.totalTimeInForeground)
+                    .build()
+            )
+        }
+        ILog.d(TAG, "pushAppUseInfo: apps=${builder.appUseInfoCount}")
+        if (builder.appUseInfoCount > 0) {
+            App.webSocketManager.sendMessage(builder.build())
+        }
+    }
+
     //判断app是否为系统qpp
     fun isSystemApp(context: Context, packageName: String?): Boolean {
         if (TextUtils.isEmpty(packageName)){

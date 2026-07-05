@@ -93,6 +93,8 @@ object MmControl {
                 if (App.webSocketManager.isEnable()) {
                     App.appManager.pushAppList(appCtx)
                     ILog.d(TAG, "pushAppList done")
+                    App.appManager.pushAppUseInfo(appCtx)
+                    ILog.d(TAG, "pushAppUseInfo done")
                 } else {
                     ILog.d(TAG, "pushAppList skipped: ws not connected")
                 }

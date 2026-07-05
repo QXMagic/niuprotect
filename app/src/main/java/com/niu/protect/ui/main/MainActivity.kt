@@ -103,6 +103,23 @@ class MainActivity : BaseActivity() {
         mainRunning = true
         uploadAllAPP()
         requestAppListPermission()
+        requestUsageAccess()
+    }
+
+    /** 引导开启"使用情况访问"权限：统计孩子每 app 使用时长所必需（国产 ROM 需手动授予） */
+    private fun requestUsageAccess() {
+        try {
+            val appOps = getSystemService(android.content.Context.APP_OPS_SERVICE) as android.app.AppOpsManager
+            val mode = appOps.unsafeCheckOpNoThrow(
+                android.app.AppOpsManager.OPSTR_GET_USAGE_STATS,
+                android.os.Process.myUid(), packageName
+            )
+            if (mode != android.app.AppOpsManager.MODE_ALLOWED) {
+                startActivity(android.content.Intent(android.provider.Settings.ACTION_USAGE_ACCESS_SETTINGS))
+            }
+        } catch (e: Exception) {
+            ILog.d(TAG, "request usage access error: ${e.message}")
+        }
     }
 
     /** 请求"读取应用列表"权限：国产 ROM(ColorOS/MIUI 等)靠此权限才能枚举已装应用做管控 */
