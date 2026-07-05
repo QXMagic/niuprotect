@@ -69,7 +69,8 @@ object EventUtils {
             if(App.appManager.isSystemApp(context, stats.packageName)){
                 continue
             }
-            if(Constants.APPLICATION_ID == stats.packageName){
+            // 排除管控 App 自身（用真实运行包名，Constants.APPLICATION_ID 是库默认值不可靠）
+            if(context.packageName == stats.packageName){
                 continue
             }
             if (stats.totalTimeInForeground > 0) {
