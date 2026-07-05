@@ -103,23 +103,39 @@ class MainActivity : BaseActivity() {
         mainRunning = true
         uploadAllAPP()
         requestAppListPermission()
-        requestUsageAccess()
     }
 
-    /** 引导开启"使用情况访问"权限：统计孩子每 app 使用时长所必需（国产 ROM 需手动授予） */
-    private fun requestUsageAccess() {
-        try {
-            val appOps = getSystemService(android.content.Context.APP_OPS_SERVICE) as android.app.AppOpsManager
-            val mode = appOps.unsafeCheckOpNoThrow(
-                android.app.AppOpsManager.OPSTR_GET_USAGE_STATS,
-                android.os.Process.myUid(), packageName
-            )
-            if (mode != android.app.AppOpsManager.MODE_ALLOWED) {
-                startActivity(android.content.Intent(android.provider.Settings.ACTION_USAGE_ACCESS_SETTINGS))
-            }
-        } catch (e: Exception) {
-            ILog.d(TAG, "request usage access error: ${e.message}")
+    /** 管控自检：缺关键权限/开关时用常驻通知引导开启（切走也可见，比启动期弹窗可靠） */
+    private fun checkMmSetup() {
+        val missing = com.niu.protect.mm.MmSetupCheck.missing(this)
+        ILog.d(TAG, "checkMmSetup missing=${missing.size}: ${missing.joinToString { it.key }}")
+        val nm = getSystemService(android.content.Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+        if (missing.isEmpty()) {
+            nm.cancel(MM_SETUP_NOTI_ID)
+            return
         }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val ch = android.app.NotificationChannel(
+                MM_SETUP_CHANNEL, "管控状态", android.app.NotificationManager.IMPORTANCE_HIGH
+            )
+            nm.createNotificationChannel(ch)
+        }
+        val top = missing.first()
+        val titles = missing.joinToString("、") { it.title }
+        val pi = android.app.PendingIntent.getActivity(
+            this, 0, top.intent,
+            android.app.PendingIntent.FLAG_IMMUTABLE or android.app.PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val noti = androidx.core.app.NotificationCompat.Builder(this, MM_SETUP_CHANNEL)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle("管控未完全生效")
+            .setContentText("点击开启：$titles")
+            .setStyle(androidx.core.app.NotificationCompat.BigTextStyle().bigText("【${top.title}】${top.desc}\n仍需开启：$titles"))
+            .setPriority(androidx.core.app.NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setContentIntent(pi)
+            .build()
+        try { nm.notify(MM_SETUP_NOTI_ID, noti) } catch (e: Exception) { ILog.d(TAG, "mm setup noti error: ${e.message}") }
     }
 
     /** 请求"读取应用列表"权限：国产 ROM(ColorOS/MIUI 等)靠此权限才能枚举已装应用做管控 */
@@ -427,6 +443,7 @@ class MainActivity : BaseActivity() {
     public override fun onResume() {
         super.onResume()
         ILog.d(TAG, "---onResume-----")
+        checkMmSetup()
         if(isLoaded){
             return
         }
@@ -655,6 +672,8 @@ class MainActivity : BaseActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+        private const val MM_SETUP_CHANNEL = "mm_setup"
+        private const val MM_SETUP_NOTI_ID = 0x515E
         var mainRunning = false
     }
 }
