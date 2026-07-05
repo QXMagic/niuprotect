@@ -120,17 +120,19 @@ class MainActivity : BaseActivity() {
             )
             nm.createNotificationChannel(ch)
         }
-        val top = missing.first()
         val titles = missing.joinToString("、") { it.title }
+        // 点击通知打开装机引导页，逐项开启（比跳单个设置更清晰）
+        val guide = android.content.Intent(this, com.niu.protect.ui.setting.SetupGuideActivity::class.java)
+            .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
         val pi = android.app.PendingIntent.getActivity(
-            this, 0, top.intent,
+            this, 0, guide,
             android.app.PendingIntent.FLAG_IMMUTABLE or android.app.PendingIntent.FLAG_UPDATE_CURRENT
         )
         val noti = androidx.core.app.NotificationCompat.Builder(this, MM_SETUP_CHANNEL)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle("管控未完全生效")
             .setContentText("点击开启：$titles")
-            .setStyle(androidx.core.app.NotificationCompat.BigTextStyle().bigText("【${top.title}】${top.desc}\n仍需开启：$titles"))
+            .setStyle(androidx.core.app.NotificationCompat.BigTextStyle().bigText("仍需开启：$titles\n点击进入设置检查逐项开启"))
             .setPriority(androidx.core.app.NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pi)

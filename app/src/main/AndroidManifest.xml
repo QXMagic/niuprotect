@@ -128,6 +128,7 @@
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenQxActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.OpenQxOppoActivity" />
         <activity android:excludeFromRecents="true" android:exported="false" android:name="com.niu.protect.ui.setting.SysSetActivity" />
+        <activity android:exported="false" android:name="com.niu.protect.ui.setting.SetupGuideActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.login.PhoneCodeLoginActivity" />
         <activity android:exported="false" android:name="com.niu.protect.ui.setting.SchoolAdminActivity" />
         <receiver android:enabled="true" android:exported="true" android:name="com.niu.protect.lib.receiver.LiveReciver">
