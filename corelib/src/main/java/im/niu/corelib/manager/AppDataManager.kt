@@ -104,12 +104,17 @@ class AppDataManager() {
         val list =pm.getInstalledApplications(0)
         Thread {
             val version= System.currentTimeMillis()
+            var sysCount = 0
+            var sentCount = 0
+            ILog.d(TAG, "pushAppList: installed total=${list.size}")
             for (i in list.indices){
                 val app = list[i]
                 if(isSystemApp(mContext,app.packageName)){
+                    sysCount++
                     continue
                 }
-                if(app.packageName.equals(Constants.APPLICATION_ID)){
+                // 跳过管控 App 自身（用真实运行包名，Constants.APPLICATION_ID 是库默认值不可靠）
+                if(app.packageName == mContext.packageName){
                     continue
                 }
 
@@ -137,9 +142,11 @@ class AppDataManager() {
                     message = message.setIcon(ByteString.copyFrom(byteArray))
                 }
                 if(App.webSocketManager.sendMessage(message.build())){
+                    sentCount++
                     appInfo.save()
                 }
             }
+            ILog.d(TAG, "pushAppList: total=${list.size} sys=$sysCount sent=$sentCount")
             val delete = LitePal.where("versionCode<?", version.toString()).find(AppInfo::class.java)
             if (delete.isEmpty()){
                 var message = Userinfo.RemoveApp.newBuilder()

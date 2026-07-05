@@ -44,6 +44,13 @@ object MmControl {
     @JvmStatic
     fun start(context: Context) {
         if (started) return
+        // 仅在主进程启动：无障碍服务在主进程，且避免保活(:remote)进程另开一条同 uid 的 WS
+        // 导致 python clients[uid] 相互覆盖、下行响应被路由到另一条连接。
+        val proc = try { android.app.Application.getProcessName() } catch (e: Throwable) { "" }
+        if (proc.isNotEmpty() && proc != context.packageName) {
+            ILog.d(TAG, "skip mm control in process $proc")
+            return
+        }
         if (!DeviceIdManager.getInstance().isBound) {
             ILog.d(TAG, "device not bound, skip mm control start")
             return

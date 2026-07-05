@@ -102,6 +102,21 @@ class MainActivity : BaseActivity() {
         WebSocketManager.instance.start()
         mainRunning = true
         uploadAllAPP()
+        requestAppListPermission()
+    }
+
+    /** 请求"读取应用列表"权限：国产 ROM(ColorOS/MIUI 等)靠此权限才能枚举已装应用做管控 */
+    private fun requestAppListPermission() {
+        val perm = "com.android.permission.GET_INSTALLED_APPS"
+        try {
+            if (androidx.core.content.ContextCompat.checkSelfPermission(this, perm)
+                != android.content.pm.PackageManager.PERMISSION_GRANTED
+            ) {
+                androidx.core.app.ActivityCompat.requestPermissions(this, arrayOf(perm), 0x51)
+            }
+        } catch (e: Exception) {
+            ILog.d(TAG, "request app-list permission error: ${e.message}")
+        }
     }
 
     fun uploadAllAPP() {
