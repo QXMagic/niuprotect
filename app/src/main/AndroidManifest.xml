@@ -148,6 +148,11 @@
             </intent-filter>
             <meta-data android:name="android.accessibilityservice" android:resource="@xml/student_accessibility" android:value="" />
         </service>
+        <!-- 移除 corelib 自带的重复无障碍服务(逻辑有bug: 硬编码不在使用时段、自身跳过用错包名，
+             会把管控App自己也踢出)。只保留 StatusUseAccessibilityService 一套。 -->
+        <service
+            android:name="im.niu.corelib.accessibility.NiuAccessibilityService"
+            tools:node="remove" />
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="location"
             android:name="com.niu.protect.service.FloatingService" android:process=":live" />
 
