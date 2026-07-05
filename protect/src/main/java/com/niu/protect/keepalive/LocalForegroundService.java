@@ -131,6 +131,9 @@ public class LocalForegroundService extends Service {
     }
 
     private void start() {
+        // 老 WS 已停用：数据同步/管控改由 corelib protobuf 栈负责，保活服务本身保留但不再开 WS，
+        // 避免与 corelib 抢占同一 device_id 的连接。
+        if (true) return;
         ILog.d(TAG, "-uri---start-");
         this.mContext = AppGlobal.MainInstance.getContext();
         if (this.cc == null) {

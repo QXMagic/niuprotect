@@ -24,7 +24,8 @@ import java.net.URI
 import java.net.URISyntaxException
 
 class WebSocketManager private constructor(){
-    lateinit var cc: WebSClient
+    // 老 WS 已由 corelib protobuf 栈接管，cc 置空表示不再连接（避免与 corelib 抢占同一 device_id）
+    var cc: WebSClient? = null
     var mContext: Context? = null
     var mGson: Gson? = null
     var userId: String? = null
@@ -32,8 +33,8 @@ class WebSocketManager private constructor(){
     private var mHandler: Handler = object : Handler(Looper.myLooper()!!) {
         override fun handleMessage(msg: Message) {
             if (msg.what == TAG_MSG_SEND_MSG) {
-                if (!cc.isClosed) {
-                    cc.send(msg.obj as String)
+                if (cc?.isClosed == false) {
+                    cc?.send(msg.obj as String)
                     ILog.d(TAG, "receive message:" + msg.obj)
                 } else {
                     ILog.d(TAG, "socket client is closed")
@@ -43,18 +44,11 @@ class WebSocketManager private constructor(){
     }
 
     fun start() {
+        // 老 WS 已停用：应用管控/数据同步改由 corelib protobuf 栈（MmControl）负责。
+        // 保留方法体为空，避免与 corelib 抢占同一 device_id 的 WS 连接。
         mContext = Constants.MainInstance.getContext()
         userId = DeviceIdManager.getInstance().deviceId
-        val uri = DeviceIdManager.getInstance().buildWebSocketUri()
-        ILog.d(TAG, "-uri-$uri")
-        try {
-            val webSClient = WebSClient(URI(uri))
-            cc = webSClient
-            webSClient.close()
-            cc.connect()
-        } catch (e: URISyntaxException) {
-            e.printStackTrace()
-        }
+        ILog.d(TAG, "legacy WS disabled (corelib active)")
     }
 
     private fun getUserId() {
@@ -62,10 +56,10 @@ class WebSocketManager private constructor(){
     }
 
     fun reconnect() {
-        val webSClient = cc
+        val webSClient = cc ?: return
         if (webSClient.isClosed) {
             try {
-                cc.reconnect()
+                webSClient.reconnect()
                 ILog.d(TAG, "-reconnect---true")
             } catch (e: Exception) {
                 ILog.d(TAG, "-reconnect---Exception")
@@ -74,8 +68,7 @@ class WebSocketManager private constructor(){
     }
 
     private fun close() {
-        val webSClient = cc
-        webSClient.close()
+        cc?.close()
         ILog.d(TAG, "-close-")
     }
 
@@ -148,9 +141,9 @@ class WebSocketManager private constructor(){
     }
 
     fun sendMessage(msg: String?) {
-        val webSClient = cc
+        val webSClient = cc ?: return
         if (!webSClient.isClosed) {
-            cc.send(msg)
+            webSClient.send(msg)
         }
     }
 
@@ -170,7 +163,7 @@ class WebSocketManager private constructor(){
         } else if (packageName == evenPackageName) {
         } else {
             packageName = evenPackageName
-            val webSClient = cc
+            val webSClient = cc ?: return
             if (webSClient.isOpen) {
                 if (TextUtils.isEmpty(userId)) {
                     getUserId()
@@ -199,7 +192,7 @@ class WebSocketManager private constructor(){
                     )
                     val sendMessage = mGson!!.toJson(mEventMessageModel)
                     ILog.d("websockets", "sendMessage:$sendMessage")
-                    cc.send(sendMessage)
+                    webSClient.send(sendMessage)
                     return
                 }
                 ILog.log("websockets userId is empty")
@@ -208,7 +201,7 @@ class WebSocketManager private constructor(){
     }
 
     fun sendScreenEventMessage(eventType: String?, eventName: String) {
-        val webSClient = cc
+        val webSClient = cc ?: return
         if (webSClient.isOpen) {
             if (TextUtils.isEmpty(userId)) {
                 getUserId()
@@ -227,7 +220,7 @@ class WebSocketManager private constructor(){
                 )
                 val sendMessage = mGson!!.toJson(mEventMessageModel)
                 ILog.d("websockets", "sendMessage:$sendMessage")
-                cc.send(sendMessage)
+                webSClient.send(sendMessage)
                 return
             }
             ILog.log("websockets userId is empty")
