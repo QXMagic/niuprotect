@@ -3,29 +3,23 @@ package com.niu.protect.lib.receiver;
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.widget.Toast;
-import com.niu.protect.manager.MineDevicePolicyManager;
 public class DeviceReceiver extends DeviceAdminReceiver {
     @Override
     public void onEnabled(Context context, Intent intent) {
-        Toast.makeText(context, "设备管理：可用", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "防卸载已开启：需先取消设备管理器才能卸载", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDisabled(final Context context, Intent intent) {
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                MineDevicePolicyManager.getInstance(context.getApplicationContext()).onActivate();
-            }
-        }, 3000L);
+        // 取消激活后，本应用即可被卸载。防卸载的核心是「激活期间系统禁止卸载」，
+        // 不再做后台强制重新激活(受后台启动限制不可靠，且与用户对抗)。
+        Toast.makeText(context, "防卸载已关闭", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public CharSequence onDisableRequested(Context context, Intent intent) {
-        return "这是一个可选的消息，警告有关禁止用户的请求";
+        return "关闭后孩子将可以卸载本应用，家长管控会失效。确定要关闭吗？";
     }
 
     @Override

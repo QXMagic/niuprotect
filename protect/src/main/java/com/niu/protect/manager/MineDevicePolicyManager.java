@@ -5,6 +5,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.niu.protect.lib.receiver.DeviceReceiver;
+
 public class MineDevicePolicyManager {
     private static MineDevicePolicyManager mDeviceMethod;
     private ComponentName componentName;
@@ -12,23 +15,21 @@ public class MineDevicePolicyManager {
     private Context mContext;
 
     private MineDevicePolicyManager(Context context) {
-        this.mContext = context;
-        this.devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-
+        this.mContext = context.getApplicationContext();
+        this.devicePolicyManager = (DevicePolicyManager) this.mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);
+        // 组件必须指向真正的 DeviceAdminReceiver，否则激活/取消激活全部落空
+        this.componentName = new ComponentName(this.mContext, DeviceReceiver.class);
     }
 
     public static MineDevicePolicyManager getInstance(Context context) {
-        return getInstance(context,null);
+        return getInstance(context, null);
     }
-    public static MineDevicePolicyManager getInstance(Context context,Class cls) {
+
+    public static MineDevicePolicyManager getInstance(Context context, Class cls) {
         if (mDeviceMethod == null) {
-            if(cls==null){
-                return null;
-            }
             synchronized (MineDevicePolicyManager.class) {
                 if (mDeviceMethod == null) {
                     mDeviceMethod = new MineDevicePolicyManager(context);
-                    mDeviceMethod.componentName = new ComponentName(context, Class.class);
                 }
             }
         }

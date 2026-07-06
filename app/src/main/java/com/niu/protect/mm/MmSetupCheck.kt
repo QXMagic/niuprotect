@@ -72,7 +72,9 @@ object MmSetupCheck {
             Item("usage", "使用情况访问", "统计孩子每个应用的使用时长",
                 Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS), hasUsageAccess(context)),
             Item("applist", "读取应用列表", "家长端才能看到并管控已装应用",
-                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse(pkg)), hasAppListPerm(context))
+                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse(pkg)), hasAppListPerm(context)),
+            Item("deviceadmin", "防卸载（设备管理器）", "开启后孩子无法直接卸载本应用，需先取消激活",
+                MmDeviceAdmin.activateIntent(context), MmDeviceAdmin.isActive(context))
         )
     }
 
