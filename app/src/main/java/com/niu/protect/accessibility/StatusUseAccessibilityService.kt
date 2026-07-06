@@ -117,6 +117,11 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                 }
             }
         }
+        // B3 防删除：设备管理器激活期间，拦截「卸载确认框 / 设备管理器停用界面」，弹回桌面。
+        // 放在应用管控之前——防删除优先级最高，且不依赖白/黑名单模式（正常模式下 mm 不拦
+        // packageinstaller/设置，此守卫才是唯一防线）。家长合法卸载走 app 内解绑(PIN)→
+        // removeActiveAdmin→本守卫随即失效。
+        if (mmAntiRemovalGuard(event)) return
         // 服务端应用管控（方案 B：corelib protobuf 栈）——仅窗口切换时判断
         if (com.niu.protect.mm.MmControl.isStarted() &&
             event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
@@ -136,9 +141,6 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                 }
             }
         }
-        // B3 防删除：设备管理器激活期间，拦截「卸载确认框 / 设备管理器停用界面」，弹回桌面。
-        // 家长合法卸载走 app 内解绑(PIN)→removeActiveAdmin→本守卫随即失效。
-        if (mmAntiRemovalGuard(event)) return
         ILog.d(TAG, "eventType:$event.eventType  --roomIsVivo--- $roomIsVivo")
         ILog.d(TAG, "eventType text:$event.text")
         ILog.d(TAG, "eventType getPackageName:" + event.packageName as Any)

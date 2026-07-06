@@ -14,6 +14,20 @@ public class BroadcastManager {
     static ShutDownReciver mShutDownReciver;
     static ScreenReceiver screenReceiver;
 
+    /**
+     * Android 14(targetSdk 34)起，动态注册非「纯系统广播」的 receiver 必须显式声明
+     * RECEIVER_EXPORTED / NOT_EXPORTED，否则抛 SecurityException。这些 receiver 只接收
+     * 系统广播和本应用自发广播，用 NOT_EXPORTED 即可。
+     * 漏了这个标志会导致无障碍服务 onCreate 崩溃、服务永远绑不上。
+     */
+    private static void registerReceiverCompat(Context context, android.content.BroadcastReceiver receiver, IntentFilter filter) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            context.registerReceiver(receiver, filter);
+        }
+    }
+
     public static void startScreenBroadcastReceiver(Context context) {
         screenReceiver = new ScreenReceiver();
         IntentFilter filter = new IntentFilter();
@@ -23,7 +37,7 @@ public class BroadcastManager {
         filter.addAction(Constants.ACTION_ACCESSIBILITY_START);
         filter.addAction(Constants.ACTION_ACCESSIBILITY_STOP);
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        context.registerReceiver(screenReceiver, filter);
+        registerReceiverCompat(context, screenReceiver, filter);
     }
 
     public static void registerShutDownReciver(Context context) {
@@ -36,7 +50,7 @@ public class BroadcastManager {
         filter.addAction("android.intent.action.ACTION_SHUTDOWN");
         filter.addAction("android.intent.action.MEDIA_MOUNTED");
         filter.addAction("android.intent.action.MEDIA_UNMOUNTED");
-        context.registerReceiver(mShutDownReciver, filter);
+        registerReceiverCompat(context, mShutDownReciver, filter);
         registerAppInstallReceiver(context);
         startScreenBroadcastReceiver(context);
     }
@@ -51,7 +65,7 @@ public class BroadcastManager {
         filter.addAction("android.intent.action.PACKAGE_ADDED");
         filter.addAction("android.intent.action.PACKAGE_REMOVED");
         filter.addDataScheme("package");
-        context.registerReceiver(mAppInstallReceiver, filter);
+        registerReceiverCompat(context, mAppInstallReceiver, filter);
     }
 
     public static void unRegisterShutDownReciver(Context context) {
