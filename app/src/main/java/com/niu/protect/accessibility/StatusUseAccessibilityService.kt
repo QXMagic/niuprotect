@@ -136,6 +136,9 @@ class StatusUseAccessibilityService : BaseAccessibility() {
                 }
             }
         }
+        // B3 防删除：设备管理器激活期间，拦截「卸载确认框 / 设备管理器停用界面」，弹回桌面。
+        // 家长合法卸载走 app 内解绑(PIN)→removeActiveAdmin→本守卫随即失效。
+        if (mmAntiRemovalGuard(event)) return
         ILog.d(TAG, "eventType:$event.eventType  --roomIsVivo--- $roomIsVivo")
         ILog.d(TAG, "eventType text:$event.text")
         ILog.d(TAG, "eventType getPackageName:" + event.packageName as Any)
@@ -526,6 +529,70 @@ class StatusUseAccessibilityService : BaseAccessibility() {
         Log.e(TAG, "111112")
         performGlobalAction(GLOBAL_ACTION_HOME)
     }
+
+    // ==================== B3 防删除守卫 ====================
+    /** 上次弹回时间，节流(窗口内容变化会连发)避免重复触发/Toast 刷屏 */
+    private var lastRemovalBounce = 0L
+
+    /**
+     * 拦截孩子删除本应用的两个界面（仅设备管理器激活期间生效）：
+     *  1. 卸载确认框（各厂商 packageinstaller，窗口含本应用名）
+     *  2. 设备管理器停用界面（设置内，含本应用名 + 停用/取消激活字样）
+     * 命中即弹回桌面并提示。返回 true 表示已拦截，调用方应中止后续处理。
+     */
+    private fun mmAntiRemovalGuard(event: AccessibilityEvent): Boolean {
+        if (!com.niu.protect.mm.MmDeviceAdmin.isActive(this)) return false
+        val et = event.eventType
+        if (et != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED &&
+            et != AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+        ) return false
+        val pkg = event.packageName?.toString() ?: return false
+
+        // 1) 卸载确认框：包安装器窗口 + 出现本应用名
+        val isInstaller = pkg.contains("packageinstaller") || pkg.contains("packageinstall")
+        if (isInstaller && windowHasText(appName)) {
+            return bounceRemoval("拦截卸载确认框")
+        }
+        // 2) 设备管理器停用界面：设置窗口 + 本应用名 + 停用/取消激活/设备管理器
+        if (pkg.contains("settings")) {
+            val hasLabel = windowHasText(appName)
+            val hasDeactivate = windowHasText("停用") || windowHasText("取消激活") ||
+                windowHasText("设备管理器") || windowHasText("Deactivate")
+            if (hasLabel && hasDeactivate) {
+                return bounceRemoval("拦截设备管理器停用")
+            }
+        }
+        return false
+    }
+
+    private fun bounceRemoval(reason: String): Boolean {
+        val now = System.currentTimeMillis()
+        if (now - lastRemovalBounce < 1500L) return true
+        lastRemovalBounce = now
+        ILog.d(TAG, "anti-removal: $reason")
+        goBackHome()
+        try {
+            Handler(Looper.getMainLooper()).post {
+                android.widget.Toast.makeText(
+                    this, "已开启防卸载保护，请在应用内解除绑定后再卸载", android.widget.Toast.LENGTH_SHORT
+                ).show()
+            }
+        } catch (e: Throwable) {
+        }
+        return true
+    }
+
+    /** 遍历当前窗口节点树，是否存在包含 keyword 的文本(子串匹配) */
+    private fun windowHasText(keyword: String): Boolean {
+        return try {
+            val root = rootInActiveWindow ?: return false
+            val hits = root.findAccessibilityNodeInfosByText(keyword)
+            hits != null && hits.isNotEmpty()
+        } catch (e: Throwable) {
+            false
+        }
+    }
+    // ================== B3 防删除守卫 end ==================
 
     fun islock(): Boolean {
         val lct = Tools.getLocTask(this)
