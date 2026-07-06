@@ -14,7 +14,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.litepal.LitePal
 
-class AppLimitManager() {
+class AppLimitManager(private val selfPackage: String? = null) {
     /**
      * 允许时间段列表
      * */
@@ -198,6 +198,14 @@ class AppLimitManager() {
         timeList.clear()
         val appList = LitePal.findAll(AppSetting::class.java)
         for (app in appList){
+            // 管控App自身永远由无障碍守卫(pkg != APPLICATION_ID)放行，绝不能进任何名单。
+            // 尤其：若自身被误设为白名单(type=1)，会让 hasWhiteList() 为真、整机翻转成白名单
+            // 模式，把其它所有App(如微信)全部拦截。这里遇到自身设置行直接删除并跳过，从根杜绝。
+            if (selfPackage != null && app.packageName == selfPackage) {
+                ILog.i(TAG, "drop self app-setting to avoid whitelist lockdown: ${app.packageName} type=${app.type}")
+                try { LitePal.delete(AppSetting::class.java, app.id) } catch (e: Exception) {}
+                continue
+            }
             when (app.type) {
                 AppSetting.TYPE_WHITE -> {
                     whiteList.add(app)

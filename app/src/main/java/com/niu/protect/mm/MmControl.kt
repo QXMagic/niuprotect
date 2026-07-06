@@ -64,7 +64,7 @@ object MmControl {
             val token = DeviceIdManager.getInstance().deviceToken
 
             val appCtx = context.applicationContext
-            App.appLimit = AppLimitManager()
+            App.appLimit = AppLimitManager(appCtx.packageName)
             App.appManager = AppDataManager(appCtx)
             App.webSocketManager = WebSocketManager(ep.host, ep.port, deviceId, token, ep.secure)
             App.webSocketManager.syncData()
